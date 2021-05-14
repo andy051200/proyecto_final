@@ -11,7 +11,11 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$dist/default/production\proyecto_final.X.production.o
+$C:\Users\ANDYBO~1\AppData\Local\Temp\sj90.o
+reset_vec CODE 0 0 0 3 2
+end_init CODE 0 C C 3 2
+config CONFIG 4 2007 2007 2 2
+$dist/default/debug\proyecto_final.X.debug.o
 cinit CODE 0 F F 10 2
 text1 CODE 0 BF BF 62 2
 text2 CODE 0 1F 1F A0 2
@@ -20,10 +24,6 @@ maintext CODE 0 121 121 C 2
 cstackCOMMON COMMON 1 70 70 5 1
 intentry CODE 0 4 4 8 2
 dataCOMMON COMMON 1 75 75 2 1
-config CONFIG 4 2007 2007 2 2
-$C:\Users\ANDYBO~1\AppData\Local\Temp\s80c.o
-reset_vec CODE 0 0 0 3 2
-end_init CODE 0 C C 3 2
 config CONFIG 4 2007 2007 2 2
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
@@ -70,16 +70,16 @@ STRING 12F-1FFF 2
 # are in ascending order of addresses.
 # All other numeric values are in decimal.
 %LINETAB
-$dist/default/production\proyecto_final.X.production.o
-F cinit CODE >499:C:\Users\ANDYBO~1\AppData\Local\Temp\s80c.s
-F cinit CODE >502:C:\Users\ANDYBO~1\AppData\Local\Temp\s80c.s
-F cinit CODE >516:C:\Users\ANDYBO~1\AppData\Local\Temp\s80c.s
-14 cinit CODE >517:C:\Users\ANDYBO~1\AppData\Local\Temp\s80c.s
-15 cinit CODE >518:C:\Users\ANDYBO~1\AppData\Local\Temp\s80c.s
-1A cinit CODE >519:C:\Users\ANDYBO~1\AppData\Local\Temp\s80c.s
-1B cinit CODE >525:C:\Users\ANDYBO~1\AppData\Local\Temp\s80c.s
-1B cinit CODE >527:C:\Users\ANDYBO~1\AppData\Local\Temp\s80c.s
-1C cinit CODE >528:C:\Users\ANDYBO~1\AppData\Local\Temp\s80c.s
+$dist/default/debug\proyecto_final.X.debug.o
+F cinit CODE >499:C:\Users\ANDYBO~1\AppData\Local\Temp\sj90.s
+F cinit CODE >502:C:\Users\ANDYBO~1\AppData\Local\Temp\sj90.s
+F cinit CODE >516:C:\Users\ANDYBO~1\AppData\Local\Temp\sj90.s
+14 cinit CODE >517:C:\Users\ANDYBO~1\AppData\Local\Temp\sj90.s
+15 cinit CODE >518:C:\Users\ANDYBO~1\AppData\Local\Temp\sj90.s
+1A cinit CODE >519:C:\Users\ANDYBO~1\AppData\Local\Temp\sj90.s
+1B cinit CODE >525:C:\Users\ANDYBO~1\AppData\Local\Temp\sj90.s
+1B cinit CODE >527:C:\Users\ANDYBO~1\AppData\Local\Temp\sj90.s
+1C cinit CODE >528:C:\Users\ANDYBO~1\AppData\Local\Temp\sj90.s
 4 intentry CODE >53:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\proyecto_final.X\main_pf.c
 1F text2 CODE >53:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\proyecto_final.X\main_pf.c
 1F text2 CODE >56:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\proyecto_final.X\main_pf.c
@@ -179,7 +179,7 @@ FD text1 CODE >172:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\proyect
 # was defined in a psect then <psect> will be "-". File-name
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
-___latbits 2 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
+___latbits 2 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
 __Hspace_0 12F 0 ABS 0 - -
 __Hspace_1 77 0 ABS 0 - -
 __Hspace_2 0 0 ABS 0 - -
@@ -187,39 +187,39 @@ __Hspace_3 0 0 ABS 0 - -
 __Hspace_4 4010 0 ABS 0 - -
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 __Hstrings 0 0 ABS 0 strings -
-_RBIF 58 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
-___sp 0 0 STACK 2 stack C:\Users\ANDYBO~1\AppData\Local\Temp\s80c.o
-_main 242 0 CODE 0 maintext dist/default/production\proyecto_final.X.production.o
-btemp 7E 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
-start 18 0 CODE 0 init C:\Users\ANDYBO~1\AppData\Local\Temp\s80c.o
-__size_of_main 0 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
-_OPTION_REGbits 81 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
+_RBIF 58 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
+___sp 0 0 STACK 2 stack C:\Users\ANDYBO~1\AppData\Local\Temp\sj90.o
+_main 242 0 CODE 0 maintext dist/default/debug\proyecto_final.X.debug.o
+btemp 7E 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
+start 18 0 CODE 0 init C:\Users\ANDYBO~1\AppData\Local\Temp\sj90.o
+__size_of_main 0 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
+_OPTION_REGbits 81 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
 __Hpowerup 0 0 CODE 0 powerup -
 __HdataCOMMON 0 0 ABS 0 dataCOMMON -
-intlevel0 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\s80c.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\s80c.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\s80c.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\s80c.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\s80c.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\s80c.o
-_OSCCONbits 8F 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
-wtemp0 7E 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\sj90.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\sj90.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\sj90.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\sj90.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\sj90.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\sj90.o
+_OSCCONbits 8F 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
+wtemp0 7E 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
 __Hfunctab 0 0 ENTRY 0 functab -
 __Hclrtext 0 0 ABS 0 clrtext -
-__pidataCOMMON 25A 0 CODE 0 idataCOMMON dist/default/production\proyecto_final.X.production.o
-_ADRESH 1E 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
-_ADRESL 9E 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
+__pidataCOMMON 25A 0 CODE 0 idataCOMMON dist/default/debug\proyecto_final.X.debug.o
+_ADRESH 1E 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
+_ADRESL 9E 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
 __LdataCOMMON 0 0 ABS 0 dataCOMMON -
-_CCPR1L 15 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
-_CCPR2L 1B 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
+_CCPR1L 15 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
+_CCPR2L 1B 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
 __Lmaintext 0 0 ABS 0 maintext -
-___stackhi 0 0 ABS 0 - C:\Users\ANDYBO~1\AppData\Local\Temp\s80c.o
-___stacklo 0 0 ABS 0 - C:\Users\ANDYBO~1\AppData\Local\Temp\s80c.o
+___stackhi 0 0 ABS 0 - C:\Users\ANDYBO~1\AppData\Local\Temp\sj90.o
+___stacklo 0 0 ABS 0 - C:\Users\ANDYBO~1\AppData\Local\Temp\sj90.o
 __LidataCOMMON 0 0 ABS 0 idataCOMMON -
-__size_of_setup 0 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
-start_initialization 1E 0 CODE 0 cinit dist/default/production\proyecto_final.X.production.o
-_TRISCbits 87 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\ANDYBO~1\AppData\Local\Temp\s80c.o
+__size_of_setup 0 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
+start_initialization 1E 0 CODE 0 cinit dist/default/debug\proyecto_final.X.debug.o
+_TRISCbits 87 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
+___int_sp 0 0 STACK 2 stack C:\Users\ANDYBO~1\AppData\Local\Temp\sj90.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -235,9 +235,9 @@ __Lbank2 0 0 ABS 0 bank2 -
 __Lbank3 0 0 ABS 0 bank3 -
 __Lcinit 1E 0 CODE 0 cinit -
 __Lstack 0 0 STACK 2 stack -
-_PORTCbits 7 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
-_PORTEbits 9 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
-_INTCONbits B 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
+_PORTCbits 7 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
+_PORTEbits 9 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
+_INTCONbits B 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
 __Habs1 0 0 ABS 0 abs1 -
 __Hcode 0 0 ABS 0 code -
 __Hinit 18 0 CODE 0 init -
@@ -255,70 +255,70 @@ __Lsfr2 0 0 ABS 0 sfr2 -
 __Lsfr3 0 0 ABS 0 sfr3 -
 __Ltext 0 0 ABS 0 text -
 __HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
-_PR2 92 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
-_RB0 30 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
-_RB1 31 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
+_PR2 92 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
+_RB0 30 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
+_RB1 31 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
 __S0 12F 0 ABS 0 - -
 __S1 77 0 ABS 0 - -
 __S2 0 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
-_isr 3E 0 CODE 0 text2 dist/default/production\proyecto_final.X.production.o
-saved_w 7E 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
+_isr 3E 0 CODE 0 text2 dist/default/debug\proyecto_final.X.debug.o
+saved_w 7E 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
 __HidataCOMMON 0 0 ABS 0 idataCOMMON -
-__end_of_isr 17E 0 CODE 0 text2 dist/default/production\proyecto_final.X.production.o
+__end_of_isr 17E 0 CODE 0 text2 dist/default/debug\proyecto_final.X.debug.o
 __Lintentry 8 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec C:\Users\ANDYBO~1\AppData\Local\Temp\s80c.o
-_PIE1bits 8C 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
-__pmaintext 242 0 CODE 0 maintext dist/default/production\proyecto_final.X.production.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\ANDYBO~1\AppData\Local\Temp\sj90.o
+_PIE1bits 8C 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
+__pmaintext 242 0 CODE 0 maintext dist/default/debug\proyecto_final.X.debug.o
 __Lcommon 0 0 ABS 0 common -
 __Lconfig 0 0 CONFIG 4 config -
-_ADCON0bits 1F 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
-_ADCON1bits 9F 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
+_ADCON0bits 1F 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
+_ADCON1bits 9F 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
 __Lspace_0 0 0 ABS 0 - -
 __Lspace_1 0 0 ABS 0 - -
 __Lspace_2 0 0 ABS 0 - -
 __Lspace_3 0 0 ABS 0 - -
 __Lspace_4 0 0 ABS 0 - -
-_PIR1bits C 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
+_PIR1bits C 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
 __Lend_init 18 0 CODE 0 end_init -
 __LcstackCOMMON 0 0 ABS 0 cstackCOMMON -
-end_of_initialization 36 0 CODE 0 cinit dist/default/production\proyecto_final.X.production.o
+end_of_initialization 36 0 CODE 0 cinit dist/default/debug\proyecto_final.X.debug.o
 __Hintentry 18 0 CODE 0 intentry -
 __Lstrings 0 0 ABS 0 strings -
 __Hreset_vec 6 0 CODE 0 reset_vec -
-__ptext1 17E 0 CODE 0 text1 dist/default/production\proyecto_final.X.production.o
-__ptext2 3E 0 CODE 0 text2 dist/default/production\proyecto_final.X.production.o
+__ptext1 17E 0 CODE 0 text1 dist/default/debug\proyecto_final.X.debug.o
+__ptext2 3E 0 CODE 0 text2 dist/default/debug\proyecto_final.X.debug.o
 __Lpowerup 0 0 CODE 0 powerup -
 __Leeprom_data 0 0 EEDATA 3 eeprom_data -
 __Lreset_vec 0 0 CODE 0 reset_vec -
-__end_of__initialization 36 0 CODE 0 cinit dist/default/production\proyecto_final.X.production.o
+__end_of__initialization 36 0 CODE 0 cinit dist/default/debug\proyecto_final.X.debug.o
 __Lfunctab 0 0 ENTRY 0 functab -
 __Lclrtext 0 0 ABS 0 clrtext -
-__pcstackCOMMON 70 0 COMMON 1 cstackCOMMON dist/default/production\proyecto_final.X.production.o
+__pcstackCOMMON 70 0 COMMON 1 cstackCOMMON dist/default/debug\proyecto_final.X.debug.o
 __Hend_init 1E 0 CODE 0 end_init -
-__end_of_main 25A 0 CODE 0 maintext dist/default/production\proyecto_final.X.production.o
-_CCP2CONbits 1D 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
-_ANSEL 188 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
-_PORTA 5 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
-_PORTB 6 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
-_PORTC 7 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
-_PORTE 9 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
-_TRISA 85 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
-_TRISB 86 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
-_TRISC 87 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
-_TRISE 89 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
-__end_of_setup 242 0 CODE 0 text1 dist/default/production\proyecto_final.X.production.o
+__end_of_main 25A 0 CODE 0 maintext dist/default/debug\proyecto_final.X.debug.o
+_CCP2CONbits 1D 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
+_ANSEL 188 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
+_PORTA 5 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
+_PORTB 6 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
+_PORTC 7 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
+_PORTE 9 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
+_TRISA 85 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
+_TRISB 86 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
+_TRISC 87 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
+_TRISE 89 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
+__end_of_setup 242 0 CODE 0 text1 dist/default/debug\proyecto_final.X.debug.o
 __Hram 0 0 ABS 0 ram -
 __Lram 0 0 ABS 0 ram -
-interrupt_function 8 0 CODE 0 intentry dist/default/production\proyecto_final.X.production.o
-_IOCBbits 96 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
-_setup 17E 0 CODE 0 text1 dist/default/production\proyecto_final.X.production.o
-__pintentry 8 0 CODE 0 intentry dist/default/production\proyecto_final.X.production.o
-__size_of_isr 0 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
-__initialization 1E 0 CODE 0 cinit dist/default/production\proyecto_final.X.production.o
-__pdataCOMMON 75 0 COMMON 1 dataCOMMON dist/default/production\proyecto_final.X.production.o
-_T2CONbits 12 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
-_CCP1CONbits 17 0 ABS 0 - dist/default/production\proyecto_final.X.production.o
+interrupt_function 8 0 CODE 0 intentry dist/default/debug\proyecto_final.X.debug.o
+_IOCBbits 96 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
+_setup 17E 0 CODE 0 text1 dist/default/debug\proyecto_final.X.debug.o
+__pintentry 8 0 CODE 0 intentry dist/default/debug\proyecto_final.X.debug.o
+__size_of_isr 0 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
+__initialization 1E 0 CODE 0 cinit dist/default/debug\proyecto_final.X.debug.o
+__pdataCOMMON 75 0 COMMON 1 dataCOMMON dist/default/debug\proyecto_final.X.debug.o
+_T2CONbits 12 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
+_CCP1CONbits 17 0 ABS 0 - dist/default/debug\proyecto_final.X.debug.o
 # %SPLITSTAB Section
 # This section enumerates all the psect splits performed by the assembler.
 # The beginning of the section is indicated by %SPLITSTAB.

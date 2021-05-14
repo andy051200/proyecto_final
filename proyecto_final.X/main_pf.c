@@ -52,13 +52,33 @@ void setup(void);  //funcion para configuracion de registros del PIC
 -----------------------------------------------------------------------------*/
 void __interrupt() isr(void) //funcion de interrupciones
 {
-    if (INTCONbits.TMR0IF==1)   //interrupcion cada 50ms, equivalente a PWM
+    //si hay interrupcion del Timer0
+    if (INTCONbits.TMR0IF==1)   //interrupcion cada 20ms, equivalente a PWM
     {
         PORTCbits.RC4 = ~PORTCbits.RC4;
+        PORTEbits.RE0 = ~PORTEbits.RE0;
         INTCONbits.TMR0IF==0;
-        
     }
-        
+
+    //si hay interrupcion por IntOnChange
+    if (RBIF==1)
+    {
+        if (RB0==1)
+        {
+            PORTEbits.RE0 =1;
+            //__delay_ms(50);
+            //PORTEbits.RE0 =0;
+            RBIF=0; //se apaga la bandera de interrupcion
+        }
+        if (RB1==1)
+        {
+            PORTEbits.RE1 =1;
+            //__delay_ms(50);
+            //PORTEbits.RE1 =0;
+            RBIF=0 ; //se apaga la bandera de interrupcion
+        }
+    }
+    
     //si en caso hay interrupcion por ADC
     if (PIR1bits.ADIF==1)
     {
@@ -95,12 +115,7 @@ void main(void)  //funcion principal sin retorno
     //---------------------loop principal del programa ------------------------
     while(1) //se hace loop infinito mientras sea  1 
     {
-        if (PORTBbits.RB0==1)
-        {
-            PORTCbits.RC4 =1;
-        }
-    
-    
+        
     }                   
 }
 /*-----------------------------------------------------------------------------
@@ -174,7 +189,7 @@ void setup(void) //FUNCION PARA CONFIGURACION DE ENTRADAS Y SALIDAS
     INTCONbits.GIE=1;           //se habilitan las interrupciones globales
     INTCONbits.PEIE=1 ;         //se prende interrupcion por perifericos
     //interrupcion del Timer0
-    INTCONbits.T0IE=1; //enable bit de int timer0
+    //INTCONbits.T0IE=1; //enable bit de int timer0
     INTCONbits.TMR0IF=0; //se apaga la bandera de int timer0
     //interrupt on change
     INTCONbits.RBIF=0; // se apaga la bandera de IntOnChangeB  

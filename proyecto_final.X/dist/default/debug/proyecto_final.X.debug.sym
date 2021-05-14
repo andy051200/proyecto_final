@@ -143,8 +143,8 @@ reset_vec 0 5 CODE 0 0
 intentry 8 25D CODE 8 0
 cstackCOMMON 70 76 COMMON 70 1
 %locals
-dist/default/production\proyecto_final.X.production.o
-C:\Users\ANDYBO~1\AppData\Local\Temp\s80c.s
+dist/default/debug\proyecto_final.X.debug.o
+C:\Users\ANDYBO~1\AppData\Local\Temp\sj90.s
 499 F 0 CODE 0
 502 F 0 CODE 0
 516 F 0 CODE 0
