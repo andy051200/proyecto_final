@@ -5,12 +5,11 @@ Autor: Andy Bonilla
 Compilador: pic-as (v2.30), MPLABX v5.45
     
 Programa: Proyecto final de Programacion de microcontroaladores
-Hardware: PIC16F887, 4 servo motores y 2 potenciometros
+Hardware: PIC16F887, 
     
 Creado: 26 de abril de 2021    
-Descripcion: 4 motores servo y sus respectivos potenciometros para modelarar
-// el funicionamiento de un brazo robotico
-//se usan modulo ADC, CCP1, CCP2 y UART
+Descripcion: 
+//se usan modulo ADC, CCP1, CCP2, ida y vuelta UART, W/R EEPROM
 ------------------------------------------------------------------------------*/
 // CONFIG1
 #pragma config FOSC = INTRC_NOCLKOUT// se declara oscilador interno
@@ -33,14 +32,33 @@ Descripcion: 4 motores servo y sus respectivos potenciometros para modelarar
 -----------------------------------------------------------------------------*/
 #include <xc.h>
 #define  _XTAL_FREQ 8000000  //se define el delay con FreqOsc 4Mhz
+#define _tmr0_value 178      //valor inicial del Timer1
+
+/*-----------------------------------------------------------------------------
+------------------------varibales a implementar ------------------------------
+-----------------------------------------------------------------------------*/
+int pwm=_tmr0_value;
 
 /*-----------------------------------------------------------------------------
 -------------------------prototipos de funciones-------------------------------
 -----------------------------------------------------------------------------*/
 void setup(void);  //funcion para configuracion de registros del PIC
+
+
+
+
+/*-----------------------------------------------------------------------------
+---------------------------- interrupciones -----------------------------------
+-----------------------------------------------------------------------------*/
 void __interrupt() isr(void) //funcion de interrupciones
 {
-    
+    if (INTCONbits.TMR0IF==1)   //interrupcion cada 50ms, equivalente a PWM
+    {
+        PORTCbits.RC4 = ~PORTCbits.RC4;
+        INTCONbits.TMR0IF==0;
+        
+    }
+        
     //si en caso hay interrupcion por ADC
     if (PIR1bits.ADIF==1)
     {
@@ -75,7 +93,15 @@ void main(void)  //funcion principal sin retorno
     setup();                    //Configuraciones generales del PIC
     ADCON0bits.GO=1;            //conversion inicial del ADC
     //---------------------loop principal del programa ------------------------
-    while(1){}                  //se hace loop infinito mientras sea  1  
+    while(1) //se hace loop infinito mientras sea  1 
+    {
+        if (PORTBbits.RB0==1)
+        {
+            PORTCbits.RC4 =1;
+        }
+    
+    
+    }                   
 }
 /*-----------------------------------------------------------------------------
 --------------------------- configuraciones ----------------------------------
@@ -83,20 +109,33 @@ void main(void)  //funcion principal sin retorno
 void setup(void) //FUNCION PARA CONFIGURACION DE ENTRADAS Y SALIDAS
 {
     //CONFIGURACION DE ENTRADAS/SALIDAS DIGITALES
-    ANSEL = 0b00000011;         //AN0 y AN1 como entrada analógica  
+    ANSEL = 0b00000111;         //AN0, AN1 y AN2 como entradas analógicas  
           
     //CONFIGURACION DE ENTRADAS/SALIDAS ANLAGÓGICAS
-    TRISA = 0b00000011;         // se define RA0 y RA1 copmo canal de ADC
-    TRISC= 0;                   // se define PortC como salida
-    PORTA=0;                    // se limpia POrtA
+    TRISA = 0b00000111;         // se define RA0 y RA1 copmo canal de ADC
+    TRISB = 0b00000011;         //se define RB0 y RB1 como entradas
+    TRISC = 0;                  // se define PortC como salida
+    TRISE = 0;                  //se define PortE como salida
+    PORTA=0;                    // se limpia PortA
+    PORTB=0;                    //se limpia PortB
     PORTC=0;                    // se limpia POrtC 
+    PORTE=0;                    // se limpia POrtC 
     
     //CONFIGURACION DEL OSCILADOR
-    OSCCONbits.IRCF2=1;         //8MHz 111
-    OSCCONbits.IRCF1=1;         //8MHz 111
-    OSCCONbits.IRCF0=1;         //8MHz 111
+    OSCCONbits.IRCF2=1;         //4MHz 110
+    OSCCONbits.IRCF1=1;         //4MHz 110
+    OSCCONbits.IRCF0=0;         //4MHz 110
     OSCCONbits.SCS=1;           //configuracion de oscilador interno
-            
+           
+    //CONFIGURACION DEL TIMER1
+    OPTION_REGbits.T0CS=0;
+    OPTION_REGbits.PSA=0; //SE HABILITA EL PREESCALER
+    OPTION_REGbits.PS2=1; //PREESCALER 1:256 111
+    OPTION_REGbits.PS1=1; //PREESCALER 1:256 111
+    OPTION_REGbits.PS0=1; //PREESCALER 1:256 111
+    
+    
+    
     //CONFIGURACION DE ADC
     ADCON1bits.ADFM = 0 ;       // se justifica a la izquierda
     ADCON1bits.VCFG0 = 0 ;      // voltajes de referencia 5V
@@ -134,9 +173,15 @@ void setup(void) //FUNCION PARA CONFIGURACION DE ENTRADAS Y SALIDAS
     //interrupcioness globales
     INTCONbits.GIE=1;           //se habilitan las interrupciones globales
     INTCONbits.PEIE=1 ;         //se prende interrupcion por perifericos
-    //CONFIGURACION INTERRUPCION DEL ADC
+    //interrupcion del Timer0
+    INTCONbits.T0IE=1; //enable bit de int timer0
+    INTCONbits.TMR0IF=0; //se apaga la bandera de int timer0
+    //interrupt on change
+    INTCONbits.RBIF=0; // se apaga la bandera de IntOnChangeB  
+    IOCBbits.IOCB0=1; //se habilita IntOnChangePortB, pin0
+    IOCBbits.IOCB1=1; //se habilita IntOnChangePortB, pin1
+    //interrupcion del ADC
     PIE1bits.ADIE = 1 ;         //se prende interrupcion por ADC
     PIR1bits.ADIF = 0;          // se baja bandera de conversion
     return;
 }
-

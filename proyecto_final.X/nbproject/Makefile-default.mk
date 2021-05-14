@@ -94,7 +94,7 @@ MP_PROCESSOR_OPTION=16F887
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/main_pf.p1: main_pf.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/main_pf.p1: main_pf.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/main_pf.p1.d 
 	@${RM} ${OBJECTDIR}/main_pf.p1 
@@ -103,7 +103,7 @@ ${OBJECTDIR}/main_pf.p1: main_pf.c  nbproject/Makefile-${CND_CONF}.mk
 	@${FIXDEPS} ${OBJECTDIR}/main_pf.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 else
-${OBJECTDIR}/main_pf.p1: main_pf.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/main_pf.p1: main_pf.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/main_pf.p1.d 
 	@${RM} ${OBJECTDIR}/main_pf.p1 
