@@ -53,30 +53,30 @@ void setup(void);  //funcion para configuracion de registros del PIC
 -----------------------------------------------------------------------------*/
 void __interrupt() isr(void) //funcion de interrupciones
 {
-    if (PIR1bits.ADIF ==1)
+    if (PIR1bits.ADIF==1)
     {
-        if (ADCON0bits.CHS == 0)
-        {
+        //conversion de potenciometro del servo 1   
+        if (ADCON0bits.CHS == 0)  
+        { 
             CCPR1L = (ADRESH>>1)+62;          //rando de 180°
             CCP1CONbits.DC1B1 = ADRESH & 0b01; //resolucion de movimiento
             CCP1CONbits.DC1B0 = (ADRESL>>7);
-            ADCON0bits.CHS = 1;        
+            ADCON0bits.CHS = 1;             //se cambia al canal dse conversion
         }
-        if (ADCON0bits.CHS == 1)
+        //conversion del potenciometro del servo2
+        else   
         {
             CCPR2L = (ADRESH>>1)+62;           //rando de 180°
             CCP2CONbits.DC2B1 = ADRESH & 0b01;  // resolucion de movimiento
             CCP2CONbits.DC2B0 = (ADRESL>>7);
-            ADCON0bits.CHS = 1;        
-        }
-        if (ADCON0bits.CHS == 2)
-        {
-            
-        }
-        __delay_us(50);
-        PIR1bits.ADIF = 0;
-        ADCON0bits.GO =1;
+            ADCON0bits.CHS = 0;                //se cambia a canal de conversion
+        } 
+        __delay_us(50);         //delay de 50 us para cargar capacitor
+        PIR1bits.ADIF = 0;      // se apaga bandera de interrupcion ADC
+        ADCON0bits.GO = 1;      // se prende la siguiente conversión
+
     }
+    return; 
     
 }
 /*-----------------------------------------------------------------------------
@@ -85,7 +85,7 @@ void __interrupt() isr(void) //funcion de interrupciones
 void main(void)  //funcion principal sin retorno
 {  
     setup();                    //Configuraciones generales del PIC
-    __delay_ms(20);             //espera de 20ms para conversion inicial
+    //__delay_ms(20);             //espera de 20ms para conversion inicial
     ADCON0bits.GO=1;            //conversion inicial del ADC
     while(1)
     {
@@ -138,24 +138,7 @@ void main(void)  //funcion principal sin retorno
             __delay_ms(18);
         }
         
-        //toggle de canales del ADC
-        /*if (ADCON0bits.GO == 0)
-        {
-            if (ADCON0bits.CHS == 0)    
-            {
-                ADCON0bits.CHS = 1;
-            }
-            
-            if (ADCON0bits.CHS ==1)
-            {
-                ADCON0bits.CHS = 2;
-            }
-            
-            if (ADCON0bits.CHS==2)
-            {
-               ADCON0bits.CHS=0;
-            }
-        }*/
+        
     }
     
 }
@@ -171,12 +154,19 @@ void setup(void) //FUNCION PARA CONFIGURACION DE ENTRADAS Y SALIDAS
     ANSELH = 0; 
     
     //CONFIGURACION ENTRADAS/SALIDAS
+    //puertoA
     TRISAbits.TRISA0 = 1;       //RA0 como entrada 
     TRISAbits.TRISA1 = 1;       //RA1 como entrada
     TRISAbits.TRISA2 = 1;       //RA2 como entrada
-    TRISB = 1;                  //PortB como entrada
-    TRISCbits.TRISC1 = 0;       //RC1 com salida
-    TRISCbits.TRISC2 = 0;       //RC2 com salida
+    TRISB = 1;
+    TRISCbits.TRISC0 = 0;
+    TRISCbits.TRISC1 = 0;       //salida del CCP2
+    TRISCbits.TRISC2 = 0;       //salida del CCP1
+    TRISCbits.TRISC3 = 0;
+    TRISCbits.TRISC4 = 0;
+    TRISCbits.TRISC5 = 0;
+    TRISCbits.TRISC6 = 0;
+    TRISCbits.TRISC7 = 1;
     TRISD = 0;                  //PortD com salida
     TRISE = 0;                  //PortE como salida
     //limpieza de puertos
@@ -192,43 +182,46 @@ void setup(void) //FUNCION PARA CONFIGURACION DE ENTRADAS Y SALIDAS
     OSCCONbits.IRCF0 = 1;
     OSCCONbits.SCS = 1;         //se habilita oscilador interno
     
-    //CONFIGURACION DEL ADC
-    ADCON1bits.ADFM = 0;        //se justifica a la izquierda
-    ADCON1bits.VCFG1 = 0;       //voltaje de referencia Vss
-    ADCON1bits.VCFG0 = 0;       //voltake de referencia Vdd
-    ADCON0bits.ADCS = 0b01;     //Tad es Fosc/8
-    ADCON0bits.CHS = 0;         //uso inicial de AN0
-    __delay_us(50);             //tiempo de carga del capacitor
-    ADCON0bits.ADON = 1;        //se prende el modulo ADC
+    //CONFIGURACION DE ADC
+    ADCON1bits.ADFM = 0 ;       // se justifica a la izquierda
+    ADCON1bits.VCFG0 = 0 ;      // voltajes de referencia 5V
+    ADCON1bits.VCFG1 = 0 ;      // voltaje de referencia gnd
+    ADCON0bits.ADCS = 2 ;       // se usa division de 4us con F/32
+    ADCON0bits.CHS = 0;         // seleccion de canal 1
+    ADCON0bits.ADON = 1 ;       // se prende modulo ADC
+    __delay_us(50);             // delay de 50us para que cargue capacitor
     
-    //CONFIGURACION DE PWM
-    //conifiguracion del Timer2
-    T2CONbits.T2CKPS = 0b11;    //prescaler 1:16
-    T2CONbits.TMR2ON = 1 ;      //se prende el timer0
-    while(PIR1bits.TMR2IF);     // para salidas CCPx
-    PIR1bits.TMR2IF = 0;
-    TRISCbits.TRISC2 = 0;       //saldia del PWM1
-    TRISCbits.TRISC1 = 0;       //saldia del PWM2    
-    PR2 = 249;                  //configuracion periodo de PWM
-    //configuracion del CCP1
-    TRISCbits.TRISC2 = 1;       //temporalmente como entrada
-    CCP1CONbits.P1M = 0;        //configuracion de single bridge
-    CCP1CONbits.CCP1M = 0b1100; //configuracion de PWM
+   //CONFIGURACION DEL MODULO PWM
+    PR2 = 249;                  //configurando el periodo de oscilación
+    //CCP1 para servo 1
+    TRISCbits.TRISC2=1;         // RC2/CCP1 como entrada a motor se desconecta
+    CCP1CONbits.P1M = 0;        // configuracion de una señales de salida
+    CCP1CONbits.CCP1M = 0b1100; // se configura como modo PWM
     CCPR1L = 0x0f ;             // ciclo de trabajo inicial de la onda cuadrada
     CCP1CONbits.DC1B = 0;       // LSB para ciclo de trabajo
-    //configuracion del CCP2 
-    TRISCbits.TRISC1 = 1;       // RC2/CCP2 como entrada a motor se desconecta
+    //CCP2 para servo 2
+    TRISCbits.TRISC1 = 1;       // RC1/CCP2 como entrada a motor se desconecta
     CCP2CONbits.CCP2M = 0b1100; // se configura como modo PWM
     CCPR2L = 0x0f;              // ciclo de trabajo inicial de la onda cuadrada
     CCP2CONbits.DC2B1 = 0;      // LSB para ciclo de trabajo
+    
+    //CONFIGURACION DEL TIMER2
+    PIR1bits.TMR2IF = 0;        // apagar bandera de interrupcion del timer2
+    T2CONbits.T2CKPS = 0b11;    // preescaler del timer2 1:16
+    T2CONbits.TMR2ON = 1;       //se prende el timer2
+    //configuracion del timer2 para el PWM
+    while(PIR1bits.TMR2IF==0);  //ciclo para que nunca se prenda bandera
+    PIR1bits.TMR2IF=0;          // se apaga bandera por si las moscas
+    TRISCbits.TRISC2 = 0;       //salida del pwm1
+    TRISCbits.TRISC1= 0;        // salida del pwm 2
    
     
     //CONFIGURACION DE INTERRUPCIONES
     INTCONbits.GIE = 1;         //se habilitan interrupciones globales
     INTCONbits.PEIE = 1;        //se habilita interrupcion por perifericos
     //interrupciones del Timer2
-    PIE1bits.TMR2IE = 1;        //se habilitainterrupcion por Timer2
-    PIR1bits.TMR2IF = 0;        //se apaga interrucpion del Timer2
+    //PIE1bits.TMR2IE = 1;        //se habilitainterrupcion por Timer2
+    //PIR1bits.TMR2IF = 0;        //se apaga interrucpion del Timer2
     //interrupciones del ADC
     PIE1bits.ADIE = 1 ;         //se habilita interrupcion por ADC
     PIR1bits.ADIF = 0;          // se baja bandera de conversion
