@@ -31,8 +31,8 @@ Descripcion:
 ------------------------librerias a implementar ------------------------------
 -----------------------------------------------------------------------------*/
 #include <xc.h>
-#define  _XTAL_FREQ 8000000  //se define el delay con FreqOsc 4Mhz
-#define _tmr0_value 178      //valor inicial del Timer1
+#define  _XTAL_FREQ 4000000  //se define el delay con FreqOsc 4Mhz
+#define _tmr0_value 200      //valor inicial del Timer1
 
 /*-----------------------------------------------------------------------------
 ------------------------varibales a implementar ------------------------------
@@ -56,16 +56,16 @@ void __interrupt() isr(void) //funcion de interrupciones
     if (INTCONbits.TMR0IF==1)   //interrupcion cada 20ms, equivalente a PWM
     {
         PORTCbits.RC4 = ~PORTCbits.RC4;
-        PORTEbits.RE0 = ~PORTEbits.RE0;
-        INTCONbits.TMR0IF==0;
+        //PORTEbits.RE0 = ~PORTEbits.RE0;
+        INTCONbits.TMR0IF=0;
     }
 
     //si hay interrupcion por IntOnChange
-    if (RBIF==1)
+    if (INTCONbits.RBIF==1)
     {
-        if (RB0==1)
+        if (PORTBbits.RB0==1)
         {
-            PORTEbits.RE0 =1;
+            PORTD++; //bits.RE0 =1;
             //__delay_ms(50);
             //PORTEbits.RE0 =0;
             RBIF=0; //se apaga la bandera de interrupcion
@@ -130,10 +130,12 @@ void setup(void) //FUNCION PARA CONFIGURACION DE ENTRADAS Y SALIDAS
     TRISA = 0b00000111;         // se define RA0 y RA1 copmo canal de ADC
     TRISB = 0b00000011;         //se define RB0 y RB1 como entradas
     TRISC = 0;                  // se define PortC como salida
+    TRISD = 0;                  // se define PortC como salida
     TRISE = 0;                  //se define PortE como salida
     PORTA=0;                    // se limpia PortA
     PORTB=0;                    //se limpia PortB
     PORTC=0;                    // se limpia POrtC 
+    PORTD=0;                    // se limpia POrtC 
     PORTE=0;                    // se limpia POrtC 
     
     //CONFIGURACION DEL OSCILADOR
@@ -142,26 +144,33 @@ void setup(void) //FUNCION PARA CONFIGURACION DE ENTRADAS Y SALIDAS
     OSCCONbits.IRCF0=0;         //4MHz 110
     OSCCONbits.SCS=1;           //configuracion de oscilador interno
            
-    //CONFIGURACION DEL TIMER1
+    //CONFIGURACION DEL TIMER0
     OPTION_REGbits.T0CS=0;
     OPTION_REGbits.PSA=0; //SE HABILITA EL PREESCALER
     OPTION_REGbits.PS2=1; //PREESCALER 1:256 111
     OPTION_REGbits.PS1=1; //PREESCALER 1:256 111
     OPTION_REGbits.PS0=1; //PREESCALER 1:256 111
     
-    
-    
+    //CONFIGURACION DEL TIMER2
+    PIR1bits.TMR2IF = 0;        // apagar bandera de interrupcion del timer2
+    T2CON |= 72;        // bits 6-3 Post scaler 1:1 thru 1:16
+    T2CONbits.T2CKPS1 = 1;    // preescaler del timer2 1:16
+    T2CONbits.T2CKPS0 = 0;    // preescaler del timer2 1:16
+    T2CONbits.TMR2ON = 1;       //se prende el timer2
+    //T2CONbits.
+   
     //CONFIGURACION DE ADC
-    ADCON1bits.ADFM = 0 ;       // se justifica a la izquierda
-    ADCON1bits.VCFG0 = 0 ;      // voltajes de referencia 5V
-    ADCON1bits.VCFG1 = 0 ;      // voltaje de referencia gnd
     ADCON0bits.ADCS = 2 ;       // se usa division de 4us con F/32
     ADCON0bits.CHS = 0;         // seleccion de canal 1
     ADCON0bits.ADON = 1 ;       // se prende modulo ADC
+    ADCON1bits.ADFM = 0 ;       // se prende modulo ADC
+    ADCON1bits.VCFG0 = 0 ;      // voltajes de referencia 5V
+    ADCON1bits.VCFG1 = 0 ;      // voltaje de referencia gnd
     __delay_us(50);             // delay de 50us para que cargue capacitor
     
     //CONFIGURACION DEL MODULO PWM
-    PR2 = 249;                  //configurando el periodo de oscilación
+    //        T2CONbits.
+    PR2 = 250;                  //configurando el periodo de oscilación
     //CCP1 para servo 1
     TRISCbits.TRISC2=1;         // RC2/CCP1 como entrada a motor se desconecta
     CCP1CONbits.P1M = 0;        // configuracion de una señales de salida
@@ -174,12 +183,8 @@ void setup(void) //FUNCION PARA CONFIGURACION DE ENTRADAS Y SALIDAS
     CCPR2L = 0x0f;              // ciclo de trabajo inicial de la onda cuadrada
     CCP2CONbits.DC2B1 = 0;      // LSB para ciclo de trabajo
     
-    //CONFIGURACION DEL TIMER2
-    PIR1bits.TMR2IF = 0;        // apagar bandera de interrupcion del timer2
-    T2CONbits.T2CKPS = 0b11;    // preescaler del timer2 1:16
-    T2CONbits.TMR2ON = 1;       //se prende el timer2
     //configuracion del timer2 para el PWM
-    while(PIR1bits.TMR2IF==0);  //ciclo para que nunca se prenda bandera
+    //while(PIR1bits.TMR2IF==0);  //ciclo para que nunca se prenda bandera
     PIR1bits.TMR2IF=0;          // se apaga bandera por si las moscas
     TRISCbits.TRISC2 = 0;       //salida del pwm1
     TRISCbits.TRISC1= 0;        // salida del pwm 2
@@ -189,12 +194,13 @@ void setup(void) //FUNCION PARA CONFIGURACION DE ENTRADAS Y SALIDAS
     INTCONbits.GIE=1;           //se habilitan las interrupciones globales
     INTCONbits.PEIE=1 ;         //se prende interrupcion por perifericos
     //interrupcion del Timer0
-    //INTCONbits.T0IE=1; //enable bit de int timer0
-    INTCONbits.TMR0IF=0; //se apaga la bandera de int timer0
+    INTCONbits.T0IE=1; //enable bit de int timer0
+    INTCONbits.TMR0IF=0;        //se apaga la bandera de int timer0
     //interrupt on change
-    INTCONbits.RBIF=0; // se apaga la bandera de IntOnChangeB  
-    IOCBbits.IOCB0=1; //se habilita IntOnChangePortB, pin0
-    IOCBbits.IOCB1=1; //se habilita IntOnChangePortB, pin1
+    INTCONbits.RBIF=0;          // se apaga la bandera de IntOnChangeB  
+    INTCONbits.RBIE =1;         //se habilita IntOnChangeB
+    IOCBbits.IOCB0=1;           //se habilita IntOnChangePortB, pin0
+    IOCBbits.IOCB1=1;           //se habilita IntOnChangePortB, pin1
     //interrupcion del ADC
     PIE1bits.ADIE = 1 ;         //se prende interrupcion por ADC
     PIR1bits.ADIF = 0;          // se baja bandera de conversion
