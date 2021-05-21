@@ -12,13 +12,19 @@
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
 $dist/default/production\prueba_basica.X.production.o
-cinit CODE 0 7FC 7FC 4 2
-text1 CODE 0 7C6 7C6 D 2
-maintext CODE 0 7D3 7D3 29 2
-cstackCOMMON COMMON 1 70 70 3 1
+cinit CODE 0 F F 14 2
+text1 CODE 0 92 92 62 2
+text2 CODE 0 23 23 6F 2
+maintext CODE 0 F4 F4 9 2
+cstackCOMMON COMMON 1 78 78 4 1
+cstackBANK0 BANK0 1 26 26 1 1
+intentry CODE 0 4 4 8 2
+bssBANK0 BANK0 1 20 20 6 1
+bssCOMMON COMMON 1 70 70 8 1
 config CONFIG 4 2007 2007 2 2
-$C:\Users\ANDYBO~1\AppData\Local\Temp\sinc.o
-end_init CODE 0 0 0 3 2
+$C:\Users\ANDYBO~1\AppData\Local\Temp\sc2c.o
+reset_vec CODE 0 0 0 3 2
+end_init CODE 0 C C 3 2
 config CONFIG 4 2007 2007 2 2
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
@@ -26,32 +32,32 @@ config CONFIG 4 2007 2007 2 2
 #    <class name> <range> <delta>
 # Addresses given in the range are in hexadecimal and units of delta.
 %UNUSED
-RAM 20-6F 1
+RAM 27-6F 1
 RAM A0-EF 1
 RAM 110-16F 1
 RAM 190-1EF 1
-BANK0 20-6F 1
+BANK0 27-6F 1
 BANK1 A0-EF 1
 BANK2 110-16F 1
 BANK3 190-1EF 1
-CONST 3-7C5 2
-CONST 800-1FFF 2
-ENTRY 3-7C5 2
-ENTRY 800-1FFF 2
+CONST 3-3 2
+CONST FD-1FFF 2
+ENTRY 3-3 2
+ENTRY FD-1FFF 2
 IDLOC 2000-2003 2
 STACK 110-16F 1
-CODE 3-7C5 2
-CODE 800-1FFF 2
+CODE 3-3 2
+CODE FD-1FFF 2
 SFR0 0-1F 1
 SFR1 80-9F 1
 SFR2 100-10F 1
 SFR3 180-18F 1
-COMMON 73-7D 1
+COMMON 7C-7D 1
 EEDATA 2100-21FF 2
-STRCODE 3-7C5 2
-STRCODE 800-1FFF 2
-STRING 3-7C5 2
-STRING 800-1FFF 2
+STRCODE 3-3 2
+STRCODE FD-1FFF 2
+STRING 3-3 2
+STRING FD-1FFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -66,25 +72,98 @@ STRING 800-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\prueba_basica.X.production.o
-7FC cinit CODE >432:C:\Users\ANDYBO~1\AppData\Local\Temp\sinc.s
-7FC cinit CODE >435:C:\Users\ANDYBO~1\AppData\Local\Temp\sinc.s
-7FC cinit CODE >441:C:\Users\ANDYBO~1\AppData\Local\Temp\sinc.s
-7FC cinit CODE >443:C:\Users\ANDYBO~1\AppData\Local\Temp\sinc.s
-7FD cinit CODE >444:C:\Users\ANDYBO~1\AppData\Local\Temp\sinc.s
-7C6 text1 CODE >42:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
-7C6 text1 CODE >44:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
-7C9 text1 CODE >45:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
-7CC text1 CODE >47:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
-7CF text1 CODE >48:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
-7D0 text1 CODE >49:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
-7D1 text1 CODE >50:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
-7D2 text1 CODE >53:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
-7D3 maintext CODE >28:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
-7D3 maintext CODE >30:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
-7D8 maintext CODE >34:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
-7DB maintext CODE >35:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
-7E8 maintext CODE >36:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
-7EB maintext CODE >37:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+F cinit CODE >482:C:\Users\ANDYBO~1\AppData\Local\Temp\sc2c.s
+F cinit CODE >485:C:\Users\ANDYBO~1\AppData\Local\Temp\sc2c.s
+F cinit CODE >517:C:\Users\ANDYBO~1\AppData\Local\Temp\sc2c.s
+10 cinit CODE >518:C:\Users\ANDYBO~1\AppData\Local\Temp\sc2c.s
+11 cinit CODE >519:C:\Users\ANDYBO~1\AppData\Local\Temp\sc2c.s
+12 cinit CODE >520:C:\Users\ANDYBO~1\AppData\Local\Temp\sc2c.s
+13 cinit CODE >521:C:\Users\ANDYBO~1\AppData\Local\Temp\sc2c.s
+14 cinit CODE >522:C:\Users\ANDYBO~1\AppData\Local\Temp\sc2c.s
+15 cinit CODE >523:C:\Users\ANDYBO~1\AppData\Local\Temp\sc2c.s
+16 cinit CODE >524:C:\Users\ANDYBO~1\AppData\Local\Temp\sc2c.s
+17 cinit CODE >527:C:\Users\ANDYBO~1\AppData\Local\Temp\sc2c.s
+18 cinit CODE >528:C:\Users\ANDYBO~1\AppData\Local\Temp\sc2c.s
+19 cinit CODE >529:C:\Users\ANDYBO~1\AppData\Local\Temp\sc2c.s
+1A cinit CODE >530:C:\Users\ANDYBO~1\AppData\Local\Temp\sc2c.s
+1B cinit CODE >531:C:\Users\ANDYBO~1\AppData\Local\Temp\sc2c.s
+1C cinit CODE >532:C:\Users\ANDYBO~1\AppData\Local\Temp\sc2c.s
+1D cinit CODE >533:C:\Users\ANDYBO~1\AppData\Local\Temp\sc2c.s
+1E cinit CODE >534:C:\Users\ANDYBO~1\AppData\Local\Temp\sc2c.s
+1F cinit CODE >540:C:\Users\ANDYBO~1\AppData\Local\Temp\sc2c.s
+1F cinit CODE >542:C:\Users\ANDYBO~1\AppData\Local\Temp\sc2c.s
+20 cinit CODE >543:C:\Users\ANDYBO~1\AppData\Local\Temp\sc2c.s
+4 intentry CODE >54:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+23 text2 CODE >54:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+23 text2 CODE >56:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+29 text2 CODE >58:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+32 text2 CODE >60:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+38 text2 CODE >61:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+42 text2 CODE >62:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+56 text2 CODE >63:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+5A text2 CODE >64:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+5A text2 CODE >65:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+63 text2 CODE >67:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+69 text2 CODE >68:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+73 text2 CODE >69:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+87 text2 CODE >70:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+89 text2 CODE >72:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+8A text2 CODE >73:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+8B text2 CODE >75:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+92 text1 CODE >90:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+92 text1 CODE >93:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+95 text1 CODE >94:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+96 text1 CODE >95:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+97 text1 CODE >96:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+9A text1 CODE >97:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+9B text1 CODE >98:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+9C text1 CODE >100:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+9D text1 CODE >102:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+9E text1 CODE >103:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+9F text1 CODE >105:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+A0 text1 CODE >106:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+A1 text1 CODE >107:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+A2 text1 CODE >109:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+A5 text1 CODE >110:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+A6 text1 CODE >111:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+A7 text1 CODE >112:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+A8 text1 CODE >115:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+AB text1 CODE >116:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+AC text1 CODE >117:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+AD text1 CODE >118:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+AE text1 CODE >121:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+AF text1 CODE >122:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+B0 text1 CODE >123:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+B1 text1 CODE >125:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+B7 text1 CODE >126:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+B9 text1 CODE >127:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+C0 text1 CODE >128:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+C3 text1 CODE >131:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+C7 text1 CODE >133:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+C8 text1 CODE >134:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+CC text1 CODE >135:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+D0 text1 CODE >136:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+D2 text1 CODE >137:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+D4 text1 CODE >139:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+D7 text1 CODE >140:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+DD text1 CODE >141:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+DF text1 CODE >142:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+E0 text1 CODE >145:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+E1 text1 CODE >146:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+E3 text1 CODE >147:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+E4 text1 CODE >149:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+E8 text1 CODE >150:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+E9 text1 CODE >151:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+EC text1 CODE >152:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+ED text1 CODE >155:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+EE text1 CODE >157:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+EF text1 CODE >159:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+F0 text1 CODE >160:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+F3 text1 CODE >161:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+F4 maintext CODE >80:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+F4 maintext CODE >82:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+F9 maintext CODE >83:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
+F9 maintext CODE >84:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\prueba_basica.X\prueba_led.c
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -97,41 +176,53 @@ $dist/default/production\prueba_basica.X.production.o
 # was defined in a psect then <psect> will be "-". File-name
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
+_x 76 0 COMMON 1 bssCOMMON dist/default/production\prueba_basica.X.production.o
 ___latbits 2 0 ABS 0 - dist/default/production\prueba_basica.X.production.o
-__Hspace_0 800 0 ABS 0 - -
-__Hspace_1 73 0 ABS 0 - -
+__Hspace_0 FD 0 ABS 0 - -
+__Hspace_1 7C 0 ABS 0 - -
 __Hspace_2 0 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
 __Hspace_4 4010 0 ABS 0 - -
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 __Hstrings 0 0 ABS 0 strings -
-___sp 0 0 STACK 2 stack C:\Users\ANDYBO~1\AppData\Local\Temp\sinc.o
-_main FA6 0 CODE 0 maintext dist/default/production\prueba_basica.X.production.o
+___sp 0 0 STACK 2 stack C:\Users\ANDYBO~1\AppData\Local\Temp\sc2c.o
+_main 1E8 0 CODE 0 maintext dist/default/production\prueba_basica.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\prueba_basica.X.production.o
-start 0 0 CODE 0 init C:\Users\ANDYBO~1\AppData\Local\Temp\sinc.o
+start 18 0 CODE 0 init C:\Users\ANDYBO~1\AppData\Local\Temp\sc2c.o
 __size_of_main 0 0 ABS 0 - dist/default/production\prueba_basica.X.production.o
+__HbssCOMMON 0 0 ABS 0 bssCOMMON -
 __Hpowerup 0 0 CODE 0 powerup -
-intlevel0 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\sinc.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\sinc.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\sinc.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\sinc.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\sinc.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\sinc.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\sc2c.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\sc2c.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\sc2c.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\sc2c.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\sc2c.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\sc2c.o
+__LbssCOMMON 0 0 ABS 0 bssCOMMON -
 _OSCCONbits 8F 0 ABS 0 - dist/default/production\prueba_basica.X.production.o
 wtemp0 7E 0 ABS 0 - dist/default/production\prueba_basica.X.production.o
 __Hfunctab 0 0 ENTRY 0 functab -
 __Hclrtext 0 0 ABS 0 clrtext -
+_ADRESH 1E 0 ABS 0 - dist/default/production\prueba_basica.X.production.o
+_ADRESL 9E 0 ABS 0 - dist/default/production\prueba_basica.X.production.o
+_CCPR1L 15 0 ABS 0 - dist/default/production\prueba_basica.X.production.o
+_CCPR2L 1B 0 ABS 0 - dist/default/production\prueba_basica.X.production.o
 __Lmaintext 0 0 ABS 0 maintext -
-___stackhi 0 0 ABS 0 - C:\Users\ANDYBO~1\AppData\Local\Temp\sinc.o
-___stacklo 0 0 ABS 0 - C:\Users\ANDYBO~1\AppData\Local\Temp\sinc.o
+___stackhi 0 0 ABS 0 - C:\Users\ANDYBO~1\AppData\Local\Temp\sc2c.o
+___stacklo 0 0 ABS 0 - C:\Users\ANDYBO~1\AppData\Local\Temp\sc2c.o
 __size_of_setup 0 0 ABS 0 - dist/default/production\prueba_basica.X.production.o
-start_initialization FF8 0 CODE 0 cinit dist/default/production\prueba_basica.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\ANDYBO~1\AppData\Local\Temp\sinc.o
+start_initialization 1E 0 CODE 0 cinit dist/default/production\prueba_basica.X.production.o
+_TRISAbits 85 0 ABS 0 - dist/default/production\prueba_basica.X.production.o
+_TRISBbits 86 0 ABS 0 - dist/default/production\prueba_basica.X.production.o
+_TRISCbits 87 0 ABS 0 - dist/default/production\prueba_basica.X.production.o
+_TRISDbits 88 0 ABS 0 - dist/default/production\prueba_basica.X.production.o
+__pcstackBANK0 26 0 BANK0 1 cstackBANK0 dist/default/production\prueba_basica.X.production.o
+___int_sp 0 0 STACK 2 stack C:\Users\ANDYBO~1\AppData\Local\Temp\sc2c.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
 __Hbank3 0 0 ABS 0 bank3 -
-__Hcinit 1000 0 CODE 0 cinit -
+__Hcinit 46 0 CODE 0 cinit -
 __Hstack 0 0 STACK 2 stack -
 __Hmaintext 0 0 ABS 0 maintext -
 __Hcommon 0 0 ABS 0 common -
@@ -140,12 +231,13 @@ __Lbank0 0 0 ABS 0 bank0 -
 __Lbank1 0 0 ABS 0 bank1 -
 __Lbank2 0 0 ABS 0 bank2 -
 __Lbank3 0 0 ABS 0 bank3 -
-__Lcinit FF8 0 CODE 0 cinit -
+__Lcinit 1E 0 CODE 0 cinit -
 __Lstack 0 0 STACK 2 stack -
-_PORTAbits 5 0 ABS 0 - dist/default/production\prueba_basica.X.production.o
+_PORTDbits 8 0 ABS 0 - dist/default/production\prueba_basica.X.production.o
+_INTCONbits B 0 ABS 0 - dist/default/production\prueba_basica.X.production.o
 __Habs1 0 0 ABS 0 abs1 -
 __Hcode 0 0 ABS 0 code -
-__Hinit 0 0 CODE 0 init -
+__Hinit 18 0 CODE 0 init -
 __Hsfr0 0 0 ABS 0 sfr0 -
 __Hsfr1 0 0 ABS 0 sfr1 -
 __Hsfr2 0 0 ABS 0 sfr2 -
@@ -153,50 +245,80 @@ __Hsfr3 0 0 ABS 0 sfr3 -
 __Htext 0 0 ABS 0 text -
 __Labs1 0 0 ABS 0 abs1 -
 __Lcode 0 0 ABS 0 code -
-__Linit 0 0 CODE 0 init -
+__Linit 18 0 CODE 0 init -
 __Lsfr0 0 0 ABS 0 sfr0 -
 __Lsfr1 0 0 ABS 0 sfr1 -
 __Lsfr2 0 0 ABS 0 sfr2 -
 __Lsfr3 0 0 ABS 0 sfr3 -
 __Ltext 0 0 ABS 0 text -
+__LcstackBANK0 0 0 ABS 0 cstackBANK0 -
 __HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
-__S0 800 0 ABS 0 - -
-__S1 73 0 ABS 0 - -
+_PR2 92 0 ABS 0 - dist/default/production\prueba_basica.X.production.o
+__S0 FD 0 ABS 0 - -
+__S1 7C 0 ABS 0 - -
 __S2 0 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
-__Lintentry 0 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec C:\Users\ANDYBO~1\AppData\Local\Temp\sinc.o
-__pmaintext FA6 0 CODE 0 maintext dist/default/production\prueba_basica.X.production.o
+_isr 46 0 CODE 0 text2 dist/default/production\prueba_basica.X.production.o
+saved_w 7E 0 ABS 0 - dist/default/production\prueba_basica.X.production.o
+__end_of_isr 124 0 CODE 0 text2 dist/default/production\prueba_basica.X.production.o
+__Lintentry 8 0 CODE 0 intentry -
+reset_vec 0 0 CODE 0 reset_vec C:\Users\ANDYBO~1\AppData\Local\Temp\sc2c.o
+__LbssBANK0 0 0 ABS 0 bssBANK0 -
+_PIE1bits 8C 0 ABS 0 - dist/default/production\prueba_basica.X.production.o
+__pmaintext 1E8 0 CODE 0 maintext dist/default/production\prueba_basica.X.production.o
 __Lcommon 0 0 ABS 0 common -
 __Lconfig 0 0 CONFIG 4 config -
+_ADCON0bits 1F 0 ABS 0 - dist/default/production\prueba_basica.X.production.o
+_ADCON1bits 9F 0 ABS 0 - dist/default/production\prueba_basica.X.production.o
 __Lspace_0 0 0 ABS 0 - -
 __Lspace_1 0 0 ABS 0 - -
 __Lspace_2 0 0 ABS 0 - -
 __Lspace_3 0 0 ABS 0 - -
 __Lspace_4 0 0 ABS 0 - -
-__Lend_init 0 0 CODE 0 end_init -
+__pbssCOMMON 70 0 COMMON 1 bssCOMMON dist/default/production\prueba_basica.X.production.o
+__HcstackBANK0 0 0 ABS 0 cstackBANK0 -
+_PIR1bits C 0 ABS 0 - dist/default/production\prueba_basica.X.production.o
+__Lend_init 18 0 CODE 0 end_init -
 __LcstackCOMMON 0 0 ABS 0 cstackCOMMON -
-end_of_initialization FF8 0 CODE 0 cinit dist/default/production\prueba_basica.X.production.o
-__Hintentry 0 0 CODE 0 intentry -
+end_of_initialization 3E 0 CODE 0 cinit dist/default/production\prueba_basica.X.production.o
+__Hintentry 18 0 CODE 0 intentry -
 __Lstrings 0 0 ABS 0 strings -
-__Hreset_vec 0 0 CODE 0 reset_vec -
-__ptext1 F8C 0 CODE 0 text1 dist/default/production\prueba_basica.X.production.o
+_servo1_1 74 0 COMMON 1 bssCOMMON dist/default/production\prueba_basica.X.production.o
+_servo1_2 72 0 COMMON 1 bssCOMMON dist/default/production\prueba_basica.X.production.o
+_servo2_1 70 0 COMMON 1 bssCOMMON dist/default/production\prueba_basica.X.production.o
+_servo2_2 24 0 BANK0 1 bssBANK0 dist/default/production\prueba_basica.X.production.o
+_servo3_1 22 0 BANK0 1 bssBANK0 dist/default/production\prueba_basica.X.production.o
+_servo3_2 20 0 BANK0 1 bssBANK0 dist/default/production\prueba_basica.X.production.o
+__Hreset_vec 6 0 CODE 0 reset_vec -
+__HbssBANK0 0 0 ABS 0 bssBANK0 -
+__ptext1 124 0 CODE 0 text1 dist/default/production\prueba_basica.X.production.o
+__ptext2 46 0 CODE 0 text2 dist/default/production\prueba_basica.X.production.o
 __Lpowerup 0 0 CODE 0 powerup -
 __Leeprom_data 0 0 EEDATA 3 eeprom_data -
 __Lreset_vec 0 0 CODE 0 reset_vec -
-__end_of__initialization FF8 0 CODE 0 cinit dist/default/production\prueba_basica.X.production.o
+__end_of__initialization 3E 0 CODE 0 cinit dist/default/production\prueba_basica.X.production.o
 __Lfunctab 0 0 ENTRY 0 functab -
 __Lclrtext 0 0 ABS 0 clrtext -
-__pcstackCOMMON 70 0 COMMON 1 cstackCOMMON dist/default/production\prueba_basica.X.production.o
-__Hend_init 6 0 CODE 0 end_init -
-__end_of_main FF8 0 CODE 0 maintext dist/default/production\prueba_basica.X.production.o
+_ANSELbits 188 0 ABS 0 - dist/default/production\prueba_basica.X.production.o
+__pcstackCOMMON 78 0 COMMON 1 cstackCOMMON dist/default/production\prueba_basica.X.production.o
+__Hend_init 1E 0 CODE 0 end_init -
+__end_of_main 1FA 0 CODE 0 maintext dist/default/production\prueba_basica.X.production.o
+_CCP2CONbits 1D 0 ABS 0 - dist/default/production\prueba_basica.X.production.o
 _PORTA 5 0 ABS 0 - dist/default/production\prueba_basica.X.production.o
-_TRISA 85 0 ABS 0 - dist/default/production\prueba_basica.X.production.o
-__end_of_setup FA6 0 CODE 0 text1 dist/default/production\prueba_basica.X.production.o
+_PORTB 6 0 ABS 0 - dist/default/production\prueba_basica.X.production.o
+_PORTC 7 0 ABS 0 - dist/default/production\prueba_basica.X.production.o
+_PORTD 8 0 ABS 0 - dist/default/production\prueba_basica.X.production.o
+__end_of_setup 1E8 0 CODE 0 text1 dist/default/production\prueba_basica.X.production.o
 __Hram 0 0 ABS 0 ram -
 __Lram 0 0 ABS 0 ram -
-_setup F8C 0 CODE 0 text1 dist/default/production\prueba_basica.X.production.o
-__initialization FF8 0 CODE 0 cinit dist/default/production\prueba_basica.X.production.o
+interrupt_function 8 0 CODE 0 intentry dist/default/production\prueba_basica.X.production.o
+_setup 124 0 CODE 0 text1 dist/default/production\prueba_basica.X.production.o
+__pintentry 8 0 CODE 0 intentry dist/default/production\prueba_basica.X.production.o
+__size_of_isr 0 0 ABS 0 - dist/default/production\prueba_basica.X.production.o
+__initialization 1E 0 CODE 0 cinit dist/default/production\prueba_basica.X.production.o
+__pbssBANK0 20 0 BANK0 1 bssBANK0 dist/default/production\prueba_basica.X.production.o
+_T2CONbits 12 0 ABS 0 - dist/default/production\prueba_basica.X.production.o
+_CCP1CONbits 17 0 ABS 0 - dist/default/production\prueba_basica.X.production.o
 # %SPLITSTAB Section
 # This section enumerates all the psect splits performed by the assembler.
 # The beginning of the section is indicated by %SPLITSTAB.
@@ -222,11 +344,10 @@ __initialization FF8 0 CODE 0 cinit dist/default/production\prueba_basica.X.prod
 # and size are in units of delta. The file address is in units of bytes.
 # All other numeric quantities are in decimal.
 %SEGMENTS
-cinit 0 7FC FF8 4 2
-text1 0 7C6 F8C D 2
-maintext 0 7D3 FA6 29 2
-cstackCOMMON 1 70 70 3 1
+intentry 0 4 8 F9 2
 reset_vec 0 0 0 3 2
+bssBANK0 1 20 20 7 1
+bssCOMMON 1 70 70 C 1
 # %NOTES Section
 # This section contains data of all the note-psects.  The beginning of the section
 # is indicated by %NOTES. The first line indicates the name and decimal

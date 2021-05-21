@@ -2726,63 +2726,62 @@ void setup(void);
 
 void __attribute__((picinterrupt(("")))) isr(void)
 {
-
-    if (PIR1bits.ADIF==1)
+    if (PIR1bits.ADIF)
     {
-
-        if (ADCON0bits.CHS == 0)
+        if (ADCON0bits.CHS ==0)
         {
             CCPR1L = (ADRESH>>1)+62;
             CCP1CONbits.DC1B1 = ADRESH & 0b01;
             CCP1CONbits.DC1B0 = (ADRESL>>7);
             ADCON0bits.CHS = 1;
         }
-
-        else
+        if (ADCON0bits.CHS ==1)
         {
             CCPR2L = (ADRESH>>1)+62;
             CCP2CONbits.DC2B1 = ADRESH & 0b01;
             CCP2CONbits.DC2B0 = (ADRESL>>7);
+            ADCON0bits.CHS = 2;
+        }
+        if (ADCON0bits.CHS == 2)
+        {
+            PORTE = CCPR2L;
             ADCON0bits.CHS = 0;
         }
+
         _delay((unsigned long)((50)*(8000000/4000000.0)));
-        PIR1bits.ADIF = 0;
+        PIR1bits.ADIF =0;
         ADCON0bits.GO = 1;
-
     }
-
 }
 
 
 
-void main(void)
+
+void main (void)
 {
     setup();
-    ADCON0bits.GO=1;
-    while(1)
+    while (1)
     {
 
-        servos_loop();
+
     }
+
 }
 
 
 
-void setup(void)
+void setup()
 {
 
     ANSELbits.ANS0 = 1;
     ANSELbits.ANS1 = 1;
-    ANSELbits.ANS2 = 0;
-    ANSELH = 0;
-
-
+    ANSELbits.ANS2 = 1;
 
     TRISAbits.TRISA0 = 1;
     TRISAbits.TRISA1 = 1;
     TRISAbits.TRISA2 = 1;
 
-    TRISBbits.TRISB2 = 1;
+    TRISBbits.TRISB0 = 1;
 
     TRISCbits.TRISC1 = 0;
     TRISCbits.TRISC2 = 0;
@@ -2791,6 +2790,7 @@ void setup(void)
     TRISDbits.TRISD1 = 0;
     TRISDbits.TRISD2 = 0;
 
+    TRISE = 0;
 
     PORTA = 0;
     PORTB = 0;
@@ -2802,24 +2802,17 @@ void setup(void)
     OSCCONbits.IRCF2 = 1;
     OSCCONbits.IRCF1 = 1;
     OSCCONbits.IRCF0 = 1;
-    OSCCONbits.SCS = 1;
-
-
-    OPTION_REGbits.T0CS = 0;
-    OPTION_REGbits.T0SE = 0;
-    OPTION_REGbits.PSA = 0;
-    OPTION_REGbits.PS2 = 0;
-    OPTION_REGbits.PS1 = 1;
-    OPTION_REGbits.PS0 = 0;
+    OSCCONbits.SCS=1;
 
 
     ADCON1bits.ADFM = 0 ;
     ADCON1bits.VCFG0 = 0 ;
     ADCON1bits.VCFG1 = 0 ;
-    ADCON0bits.ADCS = 2 ;
+
+    ADCON0bits.ADCS = 0b10 ;
     ADCON0bits.CHS = 0;
-    ADCON0bits.ADON = 1 ;
     _delay((unsigned long)((50)*(8000000/4000000.0)));
+    ADCON0bits.ADON = 1 ;
 
 
     PR2 = 249;
@@ -2846,96 +2839,107 @@ void setup(void)
     TRISCbits.TRISC1= 0;
 
 
-    INTCONbits.GIE = 0;
-    INTCONbits.PEIE = 0;
+    INTCONbits.GIE = 1;
+    INTCONbits.PEIE = 1;
 
-    PIE1bits.ADIE = 0 ;
+    PIE1bits.ADIE = 1;
     PIR1bits.ADIF = 0;
-    return;
+
 }
+
+
 
 
 
 int servos_loop()
 {
-     if (PORTBbits.RB2 ==1)
+    for(x=0;x<=7;x++)
     {
-        x++;
-    }
-
-    if (x == 1)
-    {
-        for (servo1_1 = 0; servo1_1 <= 20; servo1_1++)
+        if (x == 1)
         {
-            PORTDbits.RD0 = 1;
-            _delay((unsigned long)((1)*(8000000/4000.0)));
-            PORTDbits.RD0 = 0;
-            _delay((unsigned long)((19)*(8000000/4000.0)));
+            for (servo1_1 = 0; servo1_1 <= 20; servo1_1++)
+            {
+                PORTDbits.RD0 = 1;
+                _delay((unsigned long)((1)*(8000000/4000.0)));
+                PORTDbits.RD0 = 0;
+                _delay((unsigned long)((19)*(8000000/4000.0)));
+            }
         }
 
-    }
-
-    if (x == 2)
-    {
-        for (servo1_2 = 0; servo1_2 <= 20; servo1_2++)
+        if (x == 2)
         {
-            PORTDbits.RD0 = 1;
-            _delay((unsigned long)((1.5)*(8000000/4000.0)));
-            PORTDbits.RD0 = 0;
-            _delay((unsigned long)((18.5)*(8000000/4000.0)));
+            for (servo1_2 = 0; servo1_2 <= 20; servo1_2++)
+            {
+                PORTDbits.RD0 = 1;
+                _delay((unsigned long)((1.5)*(8000000/4000.0)));
+                PORTDbits.RD0 = 0;
+                _delay((unsigned long)((18.5)*(8000000/4000.0)));
+            }
         }
 
-    }
-
-    if (x ==3)
-    {
-        for (servo2_1 = 0; servo2_1 <= 20; servo2_1++)
+        if (x ==3)
         {
-            PORTDbits.RD1 = 1;
-            _delay((unsigned long)((1)*(8000000/4000.0)));
-            PORTDbits.RD1 = 0;
-            _delay((unsigned long)((19)*(8000000/4000.0)));
+            for (servo2_1 = 0; servo2_1 <= 20; servo2_1++)
+            {
+                PORTDbits.RD1 = 1;
+                _delay((unsigned long)((1)*(8000000/4000.0)));
+                PORTDbits.RD1 = 0;
+                _delay((unsigned long)((19)*(8000000/4000.0)));
+            }
         }
 
-    }
-
-    if (x==4)
-    {
-        for (servo2_2 = 0; servo2_2 <= 20; servo2_2++)
+        if (x==4)
         {
-            PORTDbits.RD1 = 1;
-            _delay((unsigned long)((1.5)*(8000000/4000.0)));
-            PORTDbits.RD1 = 0;
-            _delay((unsigned long)((18.5)*(8000000/4000.0)));
+            for (servo2_2 = 0; servo2_2 <= 20; servo2_2++)
+            {
+                PORTDbits.RD1 = 1;
+                _delay((unsigned long)((1.5)*(8000000/4000.0)));
+                PORTDbits.RD1 = 0;
+                _delay((unsigned long)((18.5)*(8000000/4000.0)));
+            }
         }
 
-    }
-
-    if (x==5)
-    {
-        for (servo3_1 = 0; servo3_1 <= 20; servo3_1++)
+        if (x==5)
         {
-            PORTDbits.RD2 = 1;
-            _delay((unsigned long)((1)*(8000000/4000.0)));
-            PORTDbits.RD2 = 0;
-            _delay((unsigned long)((19)*(8000000/4000.0)));
+            for (servo3_1 = 0; servo3_1 <= 20; servo3_1++)
+            {
+                PORTDbits.RD2 = 1;
+                _delay((unsigned long)((1)*(8000000/4000.0)));
+                PORTDbits.RD2 = 0;
+                _delay((unsigned long)((19)*(8000000/4000.0)));
+            }
         }
 
-    }
-
-    if (x==6)
-    {
-        for (servo3_2 = 0; servo3_2 <= 20; servo3_2++)
+        if (x==6)
         {
-            PORTDbits.RD2 = 1;
-            _delay((unsigned long)((1.5)*(8000000/4000.0)));
-            PORTDbits.RD2 = 0;
-            _delay((unsigned long)((18.5)*(8000000/4000.0)));
+            for (servo3_2 = 0; servo3_2 <= 20; servo3_2++)
+            {
+                PORTDbits.RD2 = 1;
+                _delay((unsigned long)((1.5)*(8000000/4000.0)));
+                PORTDbits.RD2 = 0;
+                _delay((unsigned long)((18.5)*(8000000/4000.0)));
+            }
         }
+        if (x==7)
+        {
+            x=0;
+        }
+    }
+}
 
-    }
-    if (x==7)
-    {
-        x=0;
-    }
+int switch_canales_adc()
+{
+    if (ADCON0bits.GO==0)
+        {
+            if (ADCON0bits.CHS==0)
+            {
+                ADCON0bits.CHS=1;
+            }
+            else
+
+                ADCON0bits.CHS=0;
+                _delay((unsigned long)((50)*(8000000/4000000.0)));
+                ADCON0bits.GO = 1;
+
+        }
 }
