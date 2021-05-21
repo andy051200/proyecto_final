@@ -2744,7 +2744,7 @@ void __attribute__((picinterrupt(("")))) isr(void)
         }
         if (ADCON0bits.CHS == 2)
         {
-            PORTE = CCPR2L;
+            PORTE = ADRESH;
             ADCON0bits.CHS = 0;
         }
 
@@ -2925,21 +2925,4 @@ int servos_loop()
             x=0;
         }
     }
-}
-
-int switch_canales_adc()
-{
-    if (ADCON0bits.GO==0)
-        {
-            if (ADCON0bits.CHS==0)
-            {
-                ADCON0bits.CHS=1;
-            }
-            else
-
-                ADCON0bits.CHS=0;
-                _delay((unsigned long)((50)*(8000000/4000000.0)));
-                ADCON0bits.GO = 1;
-
-        }
 }

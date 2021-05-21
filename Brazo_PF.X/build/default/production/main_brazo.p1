@@ -594,8 +594,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main_brazo.c: 78:         {
 {
 "79
-[; ;main_brazo.c: 79:             PORTE = CCPR2L;
-[e = _PORTE _CCPR2L ]
+[; ;main_brazo.c: 79:             PORTE = ADRESH;
+[e = _PORTE _ADRESH ]
 "80
 [; ;main_brazo.c: 80:             ADCON0bits.CHS = 0;
 [e = . . _ADCON0bits 0 2 -> -> 0 `i `uc ]
@@ -1092,52 +1092,4 @@ Version 4.0 HI-TECH Software Intermediate Code
 "260
 [; ;main_brazo.c: 260: }
 [e :UE 156 ]
-}
-"262
-[; ;main_brazo.c: 262: int switch_canales_adc()
-[v _switch_canales_adc `(i ~T0 @X0 1 ef ]
-"263
-[; ;main_brazo.c: 263: {
-{
-[e :U _switch_canales_adc ]
-[f ]
-"264
-[; ;main_brazo.c: 264:     if (ADCON0bits.GO==0)
-[e $ ! == -> . . _ADCON0bits 1 1 `i -> 0 `i 186  ]
-"265
-[; ;main_brazo.c: 265:         {
-{
-"266
-[; ;main_brazo.c: 266:             if (ADCON0bits.CHS==0)
-[e $ ! == -> . . _ADCON0bits 0 2 `i -> 0 `i 187  ]
-"267
-[; ;main_brazo.c: 267:             {
-{
-"268
-[; ;main_brazo.c: 268:                 ADCON0bits.CHS=1;
-[e = . . _ADCON0bits 0 2 -> -> 1 `i `uc ]
-"269
-[; ;main_brazo.c: 269:             }
-}
-[e $U 188  ]
-"270
-[; ;main_brazo.c: 270:             else
-[e :U 187 ]
-"272
-[; ;main_brazo.c: 272:                 ADCON0bits.CHS=0;
-[e = . . _ADCON0bits 0 2 -> -> 0 `i `uc ]
-[e :U 188 ]
-"273
-[; ;main_brazo.c: 273:                 _delay((unsigned long)((50)*(8000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
-"274
-[; ;main_brazo.c: 274:                 ADCON0bits.GO = 1;
-[e = . . _ADCON0bits 1 1 -> -> 1 `i `uc ]
-"276
-[; ;main_brazo.c: 276:         }
-}
-[e :U 186 ]
-"277
-[; ;main_brazo.c: 277: }
-[e :UE 185 ]
 }

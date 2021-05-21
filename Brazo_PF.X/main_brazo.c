@@ -62,21 +62,21 @@ void __interrupt() isr(void) //funcion de interrupciones
     {
         if (ADCON0bits.CHS ==0)
         {
-            CCPR1L = (ADRESH>>1)+62;          //rando de 180°
-            CCP1CONbits.DC1B1 = ADRESH & 0b01; //resolucion de movimiento
+            CCPR1L = (ADRESH>>1)+62;          
+            CCP1CONbits.DC1B1 = ADRESH & 0b01; 
             CCP1CONbits.DC1B0 = (ADRESL>>7);
-            ADCON0bits.CHS = 1;             //se cambia al canal dse conversion
+            ADCON0bits.CHS = 1;             
         }
         if (ADCON0bits.CHS ==1)
         {
-            CCPR2L = (ADRESH>>1)+62;           //rando de 180°
-            CCP2CONbits.DC2B1 = ADRESH & 0b01;  // resolucion de movimiento
+            CCPR2L = (ADRESH>>1)+62;           
+            CCP2CONbits.DC2B1 = ADRESH & 0b01;  
             CCP2CONbits.DC2B0 = (ADRESL>>7);
-            ADCON0bits.CHS = 2;                //se cambia a canal de conversion
+            ADCON0bits.CHS = 2;                
         }
         if (ADCON0bits.CHS == 2)
         {
-            PORTE = CCPR2L;                     //
+            PORTE = ADRESH;                     
             ADCON0bits.CHS = 0;
         }
         
@@ -259,19 +259,3 @@ int servos_loop()
     }
 }
 
-int switch_canales_adc()
-{
-    if (ADCON0bits.GO==0)
-        {
-            if (ADCON0bits.CHS==0)
-            {
-                ADCON0bits.CHS=1;
-            }
-            else
-            //{
-                ADCON0bits.CHS=0; 
-                __delay_us(50);//delay 50us para cambio de canal
-                ADCON0bits.GO = 1;
-            //}
-        }
-}
