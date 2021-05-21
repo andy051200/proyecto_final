@@ -1,4 +1,4 @@
-# 1 "main_brazo.c"
+# 1 "prueba_led.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,8 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "main_brazo.c" 2
-# 15 "main_brazo.c"
+# 1 "prueba_led.c" 2
 #pragma config FOSC = INTRC_NOCLKOUT
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
@@ -2437,7 +2436,7 @@ extern volatile __bit nW __attribute__((address(0x4A2)));
 
 
 extern volatile __bit nWRITE __attribute__((address(0x4A2)));
-# 33 "main_brazo.c" 2
+# 19 "prueba_led.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 1 3
 
@@ -2536,7 +2535,7 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 #pragma printf_check(sprintf) const
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
-# 34 "main_brazo.c" 2
+# 20 "prueba_led.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdlib.h" 1 3
 
@@ -2634,7 +2633,7 @@ extern char * ltoa(char * buf, long val, int base);
 extern char * ultoa(char * buf, unsigned long val, int base);
 
 extern char * ftoa(float f, int * status);
-# 35 "main_brazo.c" 2
+# 21 "prueba_led.c" 2
 
 # 1 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 3
@@ -2700,242 +2699,36 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 2 3
-# 36 "main_brazo.c" 2
-
-
-
-
-
-
-
-int x=0;
-int servo1_1;
-int servo1_2;
-int servo2_1;
-int servo2_2;
-int servo3_1;
-int servo3_2;
+# 22 "prueba_led.c" 2
 
 
 
 
 void setup(void);
 
-
-
-
-void __attribute__((picinterrupt(("")))) isr(void)
-{
-
-    if (PIR1bits.ADIF==1)
-    {
-
-        if (ADCON0bits.CHS == 0)
-        {
-            CCPR1L = (ADRESH>>1)+62;
-            CCP1CONbits.DC1B1 = ADRESH & 0b01;
-            CCP1CONbits.DC1B0 = (ADRESL>>7);
-            ADCON0bits.CHS = 1;
-        }
-
-        else
-        {
-            CCPR2L = (ADRESH>>1)+62;
-            CCP2CONbits.DC2B1 = ADRESH & 0b01;
-            CCP2CONbits.DC2B0 = (ADRESL>>7);
-            ADCON0bits.CHS = 0;
-        }
-        _delay((unsigned long)((50)*(8000000/4000000.0)));
-        PIR1bits.ADIF = 0;
-        ADCON0bits.GO = 1;
-
-    }
-
-}
-
-
-
 void main(void)
 {
     setup();
-    ADCON0bits.GO=1;
+
     while(1)
     {
+        PORTAbits.RA0=0;
+        _delay((unsigned long)((500)*(4000000/4000.0)));
+        PORTAbits.RA0=0;
+        _delay((unsigned long)((500)*(4000000/4000.0)));
 
-        servos_loop();
     }
 }
-
-
 
 void setup(void)
 {
-
-    ANSELbits.ANS0 = 1;
-    ANSELbits.ANS1 = 1;
-    ANSELbits.ANS2 = 0;
-    ANSELH = 0;
-
-
-
-    TRISAbits.TRISA0 = 1;
-    TRISAbits.TRISA1 = 1;
-    TRISAbits.TRISA2 = 1;
-
-    TRISBbits.TRISB2 = 1;
-
-    TRISCbits.TRISC1 = 0;
-    TRISCbits.TRISC2 = 0;
-
-    TRISDbits.TRISD0 = 0;
-    TRISDbits.TRISD1 = 0;
-    TRISDbits.TRISD2 = 0;
-
-
-    PORTA = 0;
-    PORTB = 0;
-    PORTC = 0;
-    PORTD = 0;
-    PORTE = 0;
-
+    TRISA=0;
+    PORTA =0;
 
     OSCCONbits.IRCF2 = 1;
     OSCCONbits.IRCF1 = 1;
-    OSCCONbits.IRCF0 = 1;
+    OSCCONbits.IRCF0 = 0;
     OSCCONbits.SCS = 1;
 
 
-    OPTION_REGbits.T0CS = 0;
-    OPTION_REGbits.T0SE = 0;
-    OPTION_REGbits.PSA = 0;
-    OPTION_REGbits.PS2 = 0;
-    OPTION_REGbits.PS1 = 1;
-    OPTION_REGbits.PS0 = 0;
-
-
-    ADCON1bits.ADFM = 0 ;
-    ADCON1bits.VCFG0 = 0 ;
-    ADCON1bits.VCFG1 = 0 ;
-    ADCON0bits.ADCS = 2 ;
-    ADCON0bits.CHS = 0;
-    ADCON0bits.ADON = 1 ;
-    _delay((unsigned long)((50)*(8000000/4000000.0)));
-
-
-    PR2 = 249;
-
-    TRISCbits.TRISC2=1;
-    CCP1CONbits.P1M = 0;
-    CCP1CONbits.CCP1M = 0b1100;
-    CCPR1L = 0x0f ;
-    CCP1CONbits.DC1B = 0;
-
-    TRISCbits.TRISC1 = 1;
-    CCP2CONbits.CCP2M = 0b1100;
-    CCPR2L = 0x0f;
-    CCP2CONbits.DC2B1 = 0;
-
-
-    PIR1bits.TMR2IF = 0;
-    T2CONbits.T2CKPS = 0b11;
-    T2CONbits.TMR2ON = 1;
-
-    while(PIR1bits.TMR2IF==0);
-    PIR1bits.TMR2IF=0;
-    TRISCbits.TRISC2 = 0;
-    TRISCbits.TRISC1= 0;
-
-
-    INTCONbits.GIE = 0;
-    INTCONbits.PEIE = 0;
-
-    PIE1bits.ADIE = 0 ;
-    PIR1bits.ADIF = 0;
-    return;
-}
-
-
-
-int servos_loop()
-{
-     if (PORTBbits.RB2 ==1)
-    {
-        x++;
-    }
-
-    if (x == 1)
-    {
-        for (servo1_1 = 0; servo1_1 <= 20; servo1_1++)
-        {
-            PORTDbits.RD0 = 1;
-            _delay((unsigned long)((1)*(8000000/4000.0)));
-            PORTDbits.RD0 = 0;
-            _delay((unsigned long)((19)*(8000000/4000.0)));
-        }
-
-    }
-
-    if (x == 2)
-    {
-        for (servo1_2 = 0; servo1_2 <= 20; servo1_2++)
-        {
-            PORTDbits.RD0 = 1;
-            _delay((unsigned long)((1.5)*(8000000/4000.0)));
-            PORTDbits.RD0 = 0;
-            _delay((unsigned long)((18.5)*(8000000/4000.0)));
-        }
-
-    }
-
-    if (x ==3)
-    {
-        for (servo2_1 = 0; servo2_1 <= 20; servo2_1++)
-        {
-            PORTDbits.RD1 = 1;
-            _delay((unsigned long)((1)*(8000000/4000.0)));
-            PORTDbits.RD1 = 0;
-            _delay((unsigned long)((19)*(8000000/4000.0)));
-        }
-
-    }
-
-    if (x==4)
-    {
-        for (servo2_2 = 0; servo2_2 <= 20; servo2_2++)
-        {
-            PORTDbits.RD1 = 1;
-            _delay((unsigned long)((1.5)*(8000000/4000.0)));
-            PORTDbits.RD1 = 0;
-            _delay((unsigned long)((18.5)*(8000000/4000.0)));
-        }
-
-    }
-
-    if (x==5)
-    {
-        for (servo3_1 = 0; servo3_1 <= 20; servo3_1++)
-        {
-            PORTDbits.RD2 = 1;
-            _delay((unsigned long)((1)*(8000000/4000.0)));
-            PORTDbits.RD2 = 0;
-            _delay((unsigned long)((19)*(8000000/4000.0)));
-        }
-
-    }
-
-    if (x==6)
-    {
-        for (servo3_2 = 0; servo3_2 <= 20; servo3_2++)
-        {
-            PORTDbits.RD2 = 1;
-            _delay((unsigned long)((1.5)*(8000000/4000.0)));
-            PORTDbits.RD2 = 0;
-            _delay((unsigned long)((18.5)*(8000000/4000.0)));
-        }
-
-    }
-    if (x==7)
-    {
-        x=0;
-    }
 }
