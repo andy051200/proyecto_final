@@ -23,23 +23,11 @@
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
 "228
 [v _PORTB PORTB `VEuc  1 e 1 @6 ]
-[s S197 . 1 `uc 1 RB0 1 0 :1:0 
-`uc 1 RB1 1 0 :1:1 
-`uc 1 RB2 1 0 :1:2 
-`uc 1 RB3 1 0 :1:3 
-`uc 1 RB4 1 0 :1:4 
-`uc 1 RB5 1 0 :1:5 
-`uc 1 RB6 1 0 :1:6 
-`uc 1 RB7 1 0 :1:7 
-]
-"245
-[u S206 . 1 `S197 1 . 1 0 ]
-[v _PORTBbits PORTBbits `VES206  1 e 1 @6 ]
 "290
 [v _PORTC PORTC `VEuc  1 e 1 @7 ]
 "352
 [v _PORTD PORTD `VEuc  1 e 1 @8 ]
-[s S218 . 1 `uc 1 RD0 1 0 :1:0 
+[s S197 . 1 `uc 1 RD0 1 0 :1:0 
 `uc 1 RD1 1 0 :1:1 
 `uc 1 RD2 1 0 :1:2 
 `uc 1 RD3 1 0 :1:3 
@@ -49,8 +37,8 @@
 `uc 1 RD7 1 0 :1:7 
 ]
 "369
-[u S227 . 1 `S218 1 . 1 0 ]
-[v _PORTDbits PORTDbits `VES227  1 e 1 @8 ]
+[u S206 . 1 `S197 1 . 1 0 ]
+[v _PORTDbits PORTDbits `VES206  1 e 1 @8 ]
 [s S165 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INTF 1 0 :1:1 
 `uc 1 T0IF 1 0 :1:2 

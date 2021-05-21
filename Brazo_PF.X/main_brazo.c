@@ -113,78 +113,78 @@ void setup()
 
 int servos_loop()
 {
-    if (PORTBbits.RB2 ==1)     //se incrementa variable de control
+    for(x=0;x<=7;x++)
     {
-        x++;
-    }
-      
-    if (x == 1)                 //para servo1 a 0°
-    {
-        for (servo1_1 = 0; servo1_1 <= 20; servo1_1++)
-        {
-            PORTDbits.RD0 = 1;
-            __delay_ms(1);
-            PORTDbits.RD0 = 0;
-            __delay_ms(19);
-        }
-    }
+    
           
-    if (x == 2)                 //para servo1 a 45°
-    {
-        for (servo1_2 = 0; servo1_2 <= 20; servo1_2++)
+        if (x == 1)                 //para servo1 a 0°
         {
-            PORTDbits.RD0 = 1;
-            __delay_ms(1.5);
-            PORTDbits.RD0 = 0;
-            __delay_ms(18.5);
+            for (servo1_1 = 0; servo1_1 <= 20; servo1_1++)
+            {
+                PORTDbits.RD0 = 1;
+                __delay_ms(1);
+                PORTDbits.RD0 = 0;
+                __delay_ms(19);
+            }
         }
-    }
-                
-    if (x ==3)                  //para servo2 a 0°
-    {
-        for (servo2_1 = 0; servo2_1 <= 20; servo2_1++)
+
+        if (x == 2)                 //para servo1 a 45°
         {
-            PORTDbits.RD1 = 1;
-            __delay_ms(1);
-            PORTDbits.RD1 = 0;
-            __delay_ms(19);
+            for (servo1_2 = 0; servo1_2 <= 20; servo1_2++)
+            {
+                PORTDbits.RD0 = 1;
+                __delay_ms(1.5);
+                PORTDbits.RD0 = 0;
+                __delay_ms(18.5);
+            }
         }
-    }
-           
-    if (x==4)                   //para servo2 a 45°
-    {
-        for (servo2_2 = 0; servo2_2 <= 20; servo2_2++)
+
+        if (x ==3)                  //para servo2 a 0°
         {
-            PORTDbits.RD1 = 1;
-            __delay_ms(1.5);
-            PORTDbits.RD1 = 0;
-            __delay_ms(18.5);
-        }   
-    }
-            
-    if (x==5)                   //para servo3 a 0°
-    {
-        for (servo3_1 = 0; servo3_1 <= 20; servo3_1++)
-        {
-            PORTDbits.RD2 = 1;
-            __delay_ms(1);
-            PORTDbits.RD2 = 0;
-            __delay_ms(19);
+            for (servo2_1 = 0; servo2_1 <= 20; servo2_1++)
+            {
+                PORTDbits.RD1 = 1;
+                __delay_ms(1);
+                PORTDbits.RD1 = 0;
+                __delay_ms(19);
+            }
         }
-    }
-            
-    if (x==6)                   //para servo3 a 45°
-    {
-        for (servo3_2 = 0; servo3_2 <= 20; servo3_2++)
+
+        if (x==4)                   //para servo2 a 45°
         {
-            PORTDbits.RD2 = 1;
-            __delay_ms(1.5);
-            PORTDbits.RD2 = 0;
-            __delay_ms(18.5);        
+            for (servo2_2 = 0; servo2_2 <= 20; servo2_2++)
+            {
+                PORTDbits.RD1 = 1;
+                __delay_ms(1.5);
+                PORTDbits.RD1 = 0;
+                __delay_ms(18.5);
+            }   
         }
-    }
-    if (x==7)           //se estable limite
-    {
-        x=0;
+
+        if (x==5)                   //para servo3 a 0°
+        {
+            for (servo3_1 = 0; servo3_1 <= 20; servo3_1++)
+            {
+                PORTDbits.RD2 = 1;
+                __delay_ms(1);
+                PORTDbits.RD2 = 0;
+                __delay_ms(19);
+            }
+        }
+
+        if (x==6)                   //para servo3 a 45°
+        {
+            for (servo3_2 = 0; servo3_2 <= 20; servo3_2++)
+            {
+                PORTDbits.RD2 = 1;
+                __delay_ms(1.5);
+                PORTDbits.RD2 = 0;
+                __delay_ms(18.5);        
+            }
+        }
+        if (x==7)           //se estable limite
+        {
+            x=0;
+        }
     }
 }

@@ -2781,78 +2781,78 @@ void setup()
 
 int servos_loop()
 {
-    if (PORTBbits.RB2 ==1)
+    for(x=0;x<=7;x++)
     {
-        x++;
-    }
 
-    if (x == 1)
-    {
-        for (servo1_1 = 0; servo1_1 <= 20; servo1_1++)
-        {
-            PORTDbits.RD0 = 1;
-            _delay((unsigned long)((1)*(8000000/4000.0)));
-            PORTDbits.RD0 = 0;
-            _delay((unsigned long)((19)*(8000000/4000.0)));
-        }
-    }
 
-    if (x == 2)
-    {
-        for (servo1_2 = 0; servo1_2 <= 20; servo1_2++)
+        if (x == 1)
         {
-            PORTDbits.RD0 = 1;
-            _delay((unsigned long)((1.5)*(8000000/4000.0)));
-            PORTDbits.RD0 = 0;
-            _delay((unsigned long)((18.5)*(8000000/4000.0)));
+            for (servo1_1 = 0; servo1_1 <= 20; servo1_1++)
+            {
+                PORTDbits.RD0 = 1;
+                _delay((unsigned long)((1)*(8000000/4000.0)));
+                PORTDbits.RD0 = 0;
+                _delay((unsigned long)((19)*(8000000/4000.0)));
+            }
         }
-    }
 
-    if (x ==3)
-    {
-        for (servo2_1 = 0; servo2_1 <= 20; servo2_1++)
+        if (x == 2)
         {
-            PORTDbits.RD1 = 1;
-            _delay((unsigned long)((1)*(8000000/4000.0)));
-            PORTDbits.RD1 = 0;
-            _delay((unsigned long)((19)*(8000000/4000.0)));
+            for (servo1_2 = 0; servo1_2 <= 20; servo1_2++)
+            {
+                PORTDbits.RD0 = 1;
+                _delay((unsigned long)((1.5)*(8000000/4000.0)));
+                PORTDbits.RD0 = 0;
+                _delay((unsigned long)((18.5)*(8000000/4000.0)));
+            }
         }
-    }
 
-    if (x==4)
-    {
-        for (servo2_2 = 0; servo2_2 <= 20; servo2_2++)
+        if (x ==3)
         {
-            PORTDbits.RD1 = 1;
-            _delay((unsigned long)((1.5)*(8000000/4000.0)));
-            PORTDbits.RD1 = 0;
-            _delay((unsigned long)((18.5)*(8000000/4000.0)));
+            for (servo2_1 = 0; servo2_1 <= 20; servo2_1++)
+            {
+                PORTDbits.RD1 = 1;
+                _delay((unsigned long)((1)*(8000000/4000.0)));
+                PORTDbits.RD1 = 0;
+                _delay((unsigned long)((19)*(8000000/4000.0)));
+            }
         }
-    }
 
-    if (x==5)
-    {
-        for (servo3_1 = 0; servo3_1 <= 20; servo3_1++)
+        if (x==4)
         {
-            PORTDbits.RD2 = 1;
-            _delay((unsigned long)((1)*(8000000/4000.0)));
-            PORTDbits.RD2 = 0;
-            _delay((unsigned long)((19)*(8000000/4000.0)));
+            for (servo2_2 = 0; servo2_2 <= 20; servo2_2++)
+            {
+                PORTDbits.RD1 = 1;
+                _delay((unsigned long)((1.5)*(8000000/4000.0)));
+                PORTDbits.RD1 = 0;
+                _delay((unsigned long)((18.5)*(8000000/4000.0)));
+            }
         }
-    }
 
-    if (x==6)
-    {
-        for (servo3_2 = 0; servo3_2 <= 20; servo3_2++)
+        if (x==5)
         {
-            PORTDbits.RD2 = 1;
-            _delay((unsigned long)((1.5)*(8000000/4000.0)));
-            PORTDbits.RD2 = 0;
-            _delay((unsigned long)((18.5)*(8000000/4000.0)));
+            for (servo3_1 = 0; servo3_1 <= 20; servo3_1++)
+            {
+                PORTDbits.RD2 = 1;
+                _delay((unsigned long)((1)*(8000000/4000.0)));
+                PORTDbits.RD2 = 0;
+                _delay((unsigned long)((19)*(8000000/4000.0)));
+            }
         }
-    }
-    if (x==7)
-    {
-        x=0;
+
+        if (x==6)
+        {
+            for (servo3_2 = 0; servo3_2 <= 20; servo3_2++)
+            {
+                PORTDbits.RD2 = 1;
+                _delay((unsigned long)((1.5)*(8000000/4000.0)));
+                PORTDbits.RD2 = 0;
+                _delay((unsigned long)((18.5)*(8000000/4000.0)));
+            }
+        }
+        if (x==7)
+        {
+            x=0;
+        }
     }
 }
