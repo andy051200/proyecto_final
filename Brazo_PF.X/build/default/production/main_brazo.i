@@ -2701,186 +2701,158 @@ extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 2 3
 # 36 "main_brazo.c" 2
-# 48 "main_brazo.c"
+
+
+
+
+
+
+
+int x=0;
+int servo1_1;
+int servo1_2;
+int servo2_1;
+int servo2_2;
+int servo3_1;
+int servo3_2;
+
+
+
+
 void setup(void);
 
 
 
 
-
 void __attribute__((picinterrupt(("")))) isr(void)
-{
-    if (PIR1bits.ADIF==1)
-    {
-
-        if (ADCON0bits.CHS == 0)
-        {
-            CCPR1L = (ADRESH>>1)+62;
-            CCP1CONbits.DC1B1 = ADRESH & 0b01;
-            CCP1CONbits.DC1B0 = (ADRESL>>7);
-            ADCON0bits.CHS = 1;
-        }
-
-        else
-        {
-            CCPR2L = (ADRESH>>1)+62;
-            CCP2CONbits.DC2B1 = ADRESH & 0b01;
-            CCP2CONbits.DC2B0 = (ADRESL>>7);
-            ADCON0bits.CHS = 0;
-        }
-        _delay((unsigned long)((50)*(8000000/4000000.0)));
-        PIR1bits.ADIF = 0;
-        ADCON0bits.GO = 1;
-
-    }
-    return;
-
-}
+{}
 
 
 
-void main(void)
+
+void main (void)
 {
     setup();
-
-    ADCON0bits.GO=1;
-    while(1)
+    while (1)
     {
-
-
-        while (PORTBbits.RB0)
-        {
-            PORTDbits.RD0 = 1;
-            _delay((unsigned long)((1)*(8000000/4000.0)));
-            PORTDbits.RD0 = 0;
-            _delay((unsigned long)((19)*(8000000/4000.0)));
-        }
-        while (PORTBbits.RB1)
-        {
-            PORTDbits.RD0 = 1;
-            _delay((unsigned long)((2)*(8000000/4000.0)));
-            PORTDbits.RD0 = 0;
-            _delay((unsigned long)((18)*(8000000/4000.0)));
-        }
-
-
-        while (PORTBbits.RB2==1)
-        {
-            PORTDbits.RD1 = 1;
-            _delay((unsigned long)((1)*(8000000/4000.0)));
-            PORTDbits.RD1 = 0;
-            _delay((unsigned long)((19)*(8000000/4000.0)));
-        }
-        while (PORTBbits.RB4==1)
-        {
-            PORTDbits.RD1 = 1;
-            _delay((unsigned long)((2)*(8000000/4000.0)));
-            PORTDbits.RD1 = 0;
-            _delay((unsigned long)((18)*(8000000/4000.0)));
-        }
-
-
-        while (PORTBbits.RB5)
-        {
-            PORTDbits.RD2 = 1;
-            _delay((unsigned long)((1)*(8000000/4000.0)));
-            PORTDbits.RD2 = 0;
-            _delay((unsigned long)((19)*(8000000/4000.0)));
-        }
-        while (PORTBbits.RB6)
-        {
-            PORTDbits.RD2 = 1;
-            _delay((unsigned long)((2)*(8000000/4000.0)));
-            PORTDbits.RD2 = 0;
-            _delay((unsigned long)((18)*(8000000/4000.0)));
-        }
-
-
+        servos_loop();
     }
 
 }
 
 
 
-void setup(void)
+void setup()
 {
 
     ANSELbits.ANS0 = 1;
     ANSELbits.ANS1 = 1;
     ANSELbits.ANS2 = 1;
-    ANSELH = 0;
-
-
 
     TRISAbits.TRISA0 = 1;
     TRISAbits.TRISA1 = 1;
     TRISAbits.TRISA2 = 1;
-    TRISB = 1;
-    TRISCbits.TRISC0 = 0;
+
+    TRISBbits.TRISB2 = 1;
+
     TRISCbits.TRISC1 = 0;
     TRISCbits.TRISC2 = 0;
-    TRISCbits.TRISC3 = 0;
-    TRISCbits.TRISC4 = 0;
-    TRISCbits.TRISC5 = 0;
-    TRISCbits.TRISC6 = 0;
-    TRISCbits.TRISC7 = 1;
-    TRISD = 0;
-    TRISE = 0;
+
+    TRISDbits.TRISD0 = 0;
+    TRISDbits.TRISD1 = 0;
+    TRISDbits.TRISD2 = 0;
 
     PORTA = 0;
     PORTB = 0;
     PORTC = 0;
     PORTD = 0;
-    PORTE = 0;
 
 
     OSCCONbits.IRCF2 = 1;
     OSCCONbits.IRCF1 = 1;
     OSCCONbits.IRCF0 = 1;
-    OSCCONbits.SCS = 1;
-
-
-    ADCON1bits.ADFM = 0 ;
-    ADCON1bits.VCFG0 = 0 ;
-    ADCON1bits.VCFG1 = 0 ;
-    ADCON0bits.ADCS = 2 ;
-    ADCON0bits.CHS = 0;
-    ADCON0bits.ADON = 1 ;
-    _delay((unsigned long)((50)*(8000000/4000000.0)));
-
-
-    PR2 = 249;
-
-    TRISCbits.TRISC2=1;
-    CCP1CONbits.P1M = 0;
-    CCP1CONbits.CCP1M = 0b1100;
-    CCPR1L = 0x0f ;
-    CCP1CONbits.DC1B = 0;
-
-    TRISCbits.TRISC1 = 1;
-    CCP2CONbits.CCP2M = 0b1100;
-    CCPR2L = 0x0f;
-    CCP2CONbits.DC2B1 = 0;
-
-
-    PIR1bits.TMR2IF = 0;
-    T2CONbits.T2CKPS = 0b11;
-    T2CONbits.TMR2ON = 1;
-
-    while(PIR1bits.TMR2IF==0);
-    PIR1bits.TMR2IF=0;
-    TRISCbits.TRISC2 = 0;
-    TRISCbits.TRISC1= 0;
-
+    OSCCONbits.SCS=1;
 
 
     INTCONbits.GIE = 1;
-    INTCONbits.PEIE = 1;
 
 
+}
 
+int servos_loop()
+{
+    if (PORTBbits.RB2 ==1)
+    {
+        x++;
+    }
 
-    PIE1bits.ADIE = 1 ;
-    PIR1bits.ADIF = 0;
-    return;
+    if (x == 1)
+    {
+        for (servo1_1 = 0; servo1_1 <= 20; servo1_1++)
+        {
+            PORTDbits.RD0 = 1;
+            _delay((unsigned long)((1)*(8000000/4000.0)));
+            PORTDbits.RD0 = 0;
+            _delay((unsigned long)((19)*(8000000/4000.0)));
+        }
+    }
+
+    if (x == 2)
+    {
+        for (servo1_2 = 0; servo1_2 <= 20; servo1_2++)
+        {
+            PORTDbits.RD0 = 1;
+            _delay((unsigned long)((1.5)*(8000000/4000.0)));
+            PORTDbits.RD0 = 0;
+            _delay((unsigned long)((18.5)*(8000000/4000.0)));
+        }
+    }
+
+    if (x ==3)
+    {
+        for (servo2_1 = 0; servo2_1 <= 20; servo2_1++)
+        {
+            PORTDbits.RD1 = 1;
+            _delay((unsigned long)((1)*(8000000/4000.0)));
+            PORTDbits.RD1 = 0;
+            _delay((unsigned long)((19)*(8000000/4000.0)));
+        }
+    }
+
+    if (x==4)
+    {
+        for (servo2_2 = 0; servo2_2 <= 20; servo2_2++)
+        {
+            PORTDbits.RD1 = 1;
+            _delay((unsigned long)((1.5)*(8000000/4000.0)));
+            PORTDbits.RD1 = 0;
+            _delay((unsigned long)((18.5)*(8000000/4000.0)));
+        }
+    }
+
+    if (x==5)
+    {
+        for (servo3_1 = 0; servo3_1 <= 20; servo3_1++)
+        {
+            PORTDbits.RD2 = 1;
+            _delay((unsigned long)((1)*(8000000/4000.0)));
+            PORTDbits.RD2 = 0;
+            _delay((unsigned long)((19)*(8000000/4000.0)));
+        }
+    }
+
+    if (x==6)
+    {
+        for (servo3_2 = 0; servo3_2 <= 20; servo3_2++)
+        {
+            PORTDbits.RD2 = 1;
+            _delay((unsigned long)((1.5)*(8000000/4000.0)));
+            PORTDbits.RD2 = 0;
+            _delay((unsigned long)((18.5)*(8000000/4000.0)));
+        }
+    }
+    if (x==7)
+    {
+        x=0;
+    }
 }

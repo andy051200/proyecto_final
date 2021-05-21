@@ -88,6 +88,9 @@
      <ITEM name="HexMode">0</ITEM>
     </PROPERTIES>
    </POPUP>
+   <POPUP w="695" x="591" flags="00000000" y="285" h="459" pid="0" iid="19">
+    <PROPERTIES/>
+   </POPUP>
   </PWI>
  </MODULE>
 </WORKSPACE>
