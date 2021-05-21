@@ -95,7 +95,7 @@ void main (void)
     while (1)
     {
         //switch_canales_adc();   //funcion para cambio de canales de conversion
-        //servos_loop();          //funcion para movimiento de servos
+        servos_loop();          //funcion para movimiento de servos
     }
 
 }

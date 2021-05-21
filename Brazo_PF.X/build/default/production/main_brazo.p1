@@ -92,6 +92,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "54 main_brazo.c
 [; ;main_brazo.c: 54: void setup(void);
 [v _setup `(v ~T0 @X0 0 ef ]
+"98
+[; ;main_brazo.c: 98:         servos_loop();
+[v _servos_loop `(i ~T0 @X0 0 e? ]
 "3393 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3393:     struct {
 [s S133 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -635,6 +638,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "96
 [; ;main_brazo.c: 96:     {
 {
+"98
+[; ;main_brazo.c: 98:         servos_loop();
+[e ( _servos_loop ..  ]
 "99
 [; ;main_brazo.c: 99:     }
 }

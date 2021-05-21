@@ -2763,7 +2763,7 @@ void main (void)
     while (1)
     {
 
-
+        servos_loop();
     }
 
 }
