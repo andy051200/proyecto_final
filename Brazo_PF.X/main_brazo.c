@@ -57,7 +57,27 @@ void setup(void);  //funcion para configuracion de registros del PIC
 ---------------------------- interrupciones -----------------------------------
 -----------------------------------------------------------------------------*/
 void __interrupt() isr(void) //funcion de interrupciones
-{}
+{
+    if (PIR1bits.ADIF)
+    {
+        if (ADCON0bits.CHS ==0)
+        {
+            CCPR1L = (ADRESH>>1)+62;          //rando de 180°
+            CCP1CONbits.DC1B1 = ADRESH & 0b01; //resolucion de movimiento
+            CCP1CONbits.DC1B0 = (ADRESL>>7);
+            ADCON0bits.CHS = 1;             //se cambia al canal dse conversion
+        }
+        if (ADCON0bits.CHS ==1)
+        {
+            CCPR2L = (ADRESH>>1)+62;           //rando de 180°
+            CCP2CONbits.DC2B1 = ADRESH & 0b01;  // resolucion de movimiento
+            CCP2CONbits.DC2B0 = (ADRESL>>7);
+            ADCON0bits.CHS = 0;                //se cambia a canal de conversion
+        }
+        PIR1bits.ADIF =0;
+        ADCON0bits.GO = 1;
+    }
+}
 
 /*-----------------------------------------------------------------------------
 ----------------------------- ciclo principal----------------------------------
@@ -67,7 +87,8 @@ void main (void)
     setup();
     while (1)
     {
-        servos_loop();
+        //switch_canales_adc();   //funcion para cambio de canales de conversion
+        servos_loop();          //funcion para movimiento de servos
     }
 
 }
@@ -85,7 +106,7 @@ void setup()
     TRISAbits.TRISA1 = 1;   //RA0 como entrada
     TRISAbits.TRISA2 = 1;   //RA0 como entrada
     
-    TRISBbits.TRISB2 = 1;   //RB2 como entrada
+    TRISBbits.TRISB0 = 1;   //RB2 como entrada
     
     TRISCbits.TRISC1 = 0;   //RC1 como salida CCP2
     TRISCbits.TRISC2 = 0;   //RC1 como salida CCP1
@@ -105,18 +126,57 @@ void setup()
     OSCCONbits.IRCF0 = 1;   //Freq a 8MHz, 111
     OSCCONbits.SCS=1;       //oscilador interno
     
+    //CONFIGURACION DEL ADC
+    ADCON1bits.ADFM = 0 ;   // se justifica a la isquierda
+    ADCON1bits.VCFG0 = 0 ;  // voltajes de referencia
+    ADCON1bits.VCFG1 = 0 ;  // voltaje de referencia
+    
+    ADCON0bits.ADCS = 0b10 ; // se usa division de 4us con F/32
+    ADCON0bits.CHS = 0;     // seleccion de canal 11
+    __delay_us(50);         //delay de 50us para que cargue capacitor
+    ADCON0bits.ADON = 1 ;   // se prende modulo ADC
+    
+    //CONFIGURACION DE PWM
+    PR2 = 249;                  //configurando el periodo de oscilación
+    //CCP1 para servo 1
+    TRISCbits.TRISC2=1;         // RC2/CCP1 como entrada a motor se desconecta
+    CCP1CONbits.P1M = 0;        // configuracion de una señales de salida
+    CCP1CONbits.CCP1M = 0b1100; // se configura como modo PWM
+    CCPR1L = 0x0f ;             // ciclo de trabajo inicial de la onda cuadrada
+    CCP1CONbits.DC1B = 0;       // LSB para ciclo de trabajo
+    //CCP2 para servo 2
+    TRISCbits.TRISC1 = 1;       // RC1/CCP2 como entrada a motor se desconecta
+    CCP2CONbits.CCP2M = 0b1100; // se configura como modo PWM
+    CCPR2L = 0x0f;              // ciclo de trabajo inicial de la onda cuadrada
+    CCP2CONbits.DC2B1 = 0;      // LSB para ciclo de trabajo
+    
+    //CONFIGURACION DEL TIMER2
+    PIR1bits.TMR2IF = 0;        // apagar bandera de interrupcion del timer2
+    T2CONbits.T2CKPS = 0b11;    // preescaler del timer2 1:16
+    T2CONbits.TMR2ON = 1;       //se prende el timer2
+    //configuracion del timer2 para el PWM
+    while(PIR1bits.TMR2IF==0);  //ciclo para que nunca se prenda bandera
+    PIR1bits.TMR2IF=0;          // se apaga bandera por si las moscas
+    TRISCbits.TRISC2 = 0;       //salida del pwm1
+    TRISCbits.TRISC1= 0;        // salida del pwm 2
+    
     //CONFIGURACION DE INTERRUPCIONES
     INTCONbits.GIE = 1;     //habilitan interrupciones globales
-    //INTCONbits.
+    INTCONbits.PEIE = 1;    //habilitan interrupciones por perifericos
+    //interrupciones del adc
+    PIE1bits.ADIE = 1;      //se habilita interrupcion del ADC
+    PIR1bits.ADIF = 0;      //se apaga interrupcion del ADC
     
 }
+
+/*-----------------------------------------------------------------------------
+--------------------------- funciones ----------------------------------
+-----------------------------------------------------------------------------*/
 
 int servos_loop()
 {
     for(x=0;x<=7;x++)
     {
-    
-          
         if (x == 1)                 //para servo1 a 0°
         {
             for (servo1_1 = 0; servo1_1 <= 20; servo1_1++)
@@ -187,4 +247,21 @@ int servos_loop()
             x=0;
         }
     }
+}
+
+int switch_canales_adc()
+{
+    if (ADCON0bits.GO==0)
+        {
+            if (ADCON0bits.CHS==0)
+            {
+                ADCON0bits.CHS=1;
+            }
+            else
+            //{
+                ADCON0bits.CHS=0; 
+                __delay_us(50);//delay 50us para cambio de canal
+                ADCON0bits.GO = 1;
+            //}
+        }
 }

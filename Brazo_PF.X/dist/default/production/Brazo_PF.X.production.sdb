@@ -13,11 +13,11 @@
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
 "59 C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
 [v _isr isr `II(v  1 e 1 0 ]
-"65
+"85
 [v _main main `(v  1 e 1 0 ]
-"77
+"98
 [v _setup setup `(v  1 e 1 0 ]
-"114
+"176
 [v _servos_loop servos_loop `(i  1 e 2 0 ]
 "166 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
@@ -27,7 +27,7 @@
 [v _PORTC PORTC `VEuc  1 e 1 @7 ]
 "352
 [v _PORTD PORTD `VEuc  1 e 1 @8 ]
-[s S197 . 1 `uc 1 RD0 1 0 :1:0 
+[s S400 . 1 `uc 1 RD0 1 0 :1:0 
 `uc 1 RD1 1 0 :1:1 
 `uc 1 RD2 1 0 :1:2 
 `uc 1 RD3 1 0 :1:3 
@@ -37,9 +37,9 @@
 `uc 1 RD7 1 0 :1:7 
 ]
 "369
-[u S206 . 1 `S197 1 . 1 0 ]
-[v _PORTDbits PORTDbits `VES206  1 e 1 @8 ]
-[s S165 . 1 `uc 1 RBIF 1 0 :1:0 
+[u S409 . 1 `S400 1 . 1 0 ]
+[v _PORTDbits PORTDbits `VES409  1 e 1 @8 ]
+[s S349 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INTF 1 0 :1:1 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 RBIE 1 0 :1:3 
@@ -49,14 +49,103 @@
 `uc 1 GIE 1 0 :1:7 
 ]
 "482
-[s S174 . 1 `uc 1 . 1 0 :2:0 
+[s S358 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 TMR0IE 1 0 :1:5 
 ]
-[u S179 . 1 `S165 1 . 1 0 `S174 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES179  1 e 1 @11 ]
-[s S51 . 1 `uc 1 TRISA0 1 0 :1:0 
+[u S363 . 1 `S349 1 . 1 0 `S358 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES363  1 e 1 @11 ]
+[s S22 . 1 `uc 1 TMR1IF 1 0 :1:0 
+`uc 1 TMR2IF 1 0 :1:1 
+`uc 1 CCP1IF 1 0 :1:2 
+`uc 1 SSPIF 1 0 :1:3 
+`uc 1 TXIF 1 0 :1:4 
+`uc 1 RCIF 1 0 :1:5 
+`uc 1 ADIF 1 0 :1:6 
+]
+"553
+[u S30 . 1 `S22 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES30  1 e 1 @12 ]
+[s S321 . 1 `uc 1 T2CKPS 1 0 :2:0 
+`uc 1 TMR2ON 1 0 :1:2 
+`uc 1 TOUTPS 1 0 :4:3 
+]
+"793
+[s S325 . 1 `uc 1 T2CKPS0 1 0 :1:0 
+`uc 1 T2CKPS1 1 0 :1:1 
+`uc 1 . 1 0 :1:2 
+`uc 1 TOUTPS0 1 0 :1:3 
+`uc 1 TOUTPS1 1 0 :1:4 
+`uc 1 TOUTPS2 1 0 :1:5 
+`uc 1 TOUTPS3 1 0 :1:6 
+]
+[u S333 . 1 `S321 1 . 1 0 `S325 1 . 1 0 ]
+[v _T2CONbits T2CONbits `VES333  1 e 1 @18 ]
+"927
+[v _CCPR1L CCPR1L `VEuc  1 e 1 @21 ]
+[s S89 . 1 `uc 1 CCP1M 1 0 :4:0 
+`uc 1 DC1B 1 0 :2:4 
+`uc 1 P1M 1 0 :2:6 
+]
+"968
+[s S93 . 1 `uc 1 CCP1M0 1 0 :1:0 
+`uc 1 CCP1M1 1 0 :1:1 
+`uc 1 CCP1M2 1 0 :1:2 
+`uc 1 CCP1M3 1 0 :1:3 
+`uc 1 DC1B0 1 0 :1:4 
+`uc 1 DC1B1 1 0 :1:5 
+`uc 1 P1M0 1 0 :1:6 
+`uc 1 P1M1 1 0 :1:7 
+]
+[s S102 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 CCP1Y 1 0 :1:4 
+`uc 1 CCP1X 1 0 :1:5 
+]
+[u S106 . 1 `S89 1 . 1 0 `S93 1 . 1 0 `S102 1 . 1 0 ]
+[v _CCP1CONbits CCP1CONbits `VES106  1 e 1 @23 ]
+"1154
+[v _CCPR2L CCPR2L `VEuc  1 e 1 @27 ]
+[s S130 . 1 `uc 1 CCP2M 1 0 :4:0 
+`uc 1 DC2B0 1 0 :1:4 
+`uc 1 DC2B1 1 0 :1:5 
+]
+"1188
+[s S134 . 1 `uc 1 CCP2M0 1 0 :1:0 
+`uc 1 CCP2M1 1 0 :1:1 
+`uc 1 CCP2M2 1 0 :1:2 
+`uc 1 CCP2M3 1 0 :1:3 
+`uc 1 CCP2Y 1 0 :1:4 
+`uc 1 CCP2X 1 0 :1:5 
+]
+[u S141 . 1 `S130 1 . 1 0 `S134 1 . 1 0 ]
+[v _CCP2CONbits CCP2CONbits `VES141  1 e 1 @29 ]
+"1238
+[v _ADRESH ADRESH `VEuc  1 e 1 @30 ]
+[s S41 . 1 `uc 1 ADON 1 0 :1:0 
+`uc 1 GO_nDONE 1 0 :1:1 
+`uc 1 CHS 1 0 :4:2 
+`uc 1 ADCS 1 0 :2:6 
+]
+"1276
+[s S46 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO 1 0 :1:1 
+`uc 1 CHS0 1 0 :1:2 
+`uc 1 CHS1 1 0 :1:3 
+`uc 1 CHS2 1 0 :1:4 
+`uc 1 CHS3 1 0 :1:5 
+`uc 1 ADCS0 1 0 :1:6 
+`uc 1 ADCS1 1 0 :1:7 
+]
+[s S55 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 nDONE 1 0 :1:1 
+]
+[s S58 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO_DONE 1 0 :1:1 
+]
+[u S61 . 1 `S41 1 . 1 0 `S46 1 . 1 0 `S55 1 . 1 0 `S58 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES61  1 e 1 @31 ]
+[s S185 . 1 `uc 1 TRISA0 1 0 :1:0 
 `uc 1 TRISA1 1 0 :1:1 
 `uc 1 TRISA2 1 0 :1:2 
 `uc 1 TRISA3 1 0 :1:3 
@@ -66,9 +155,9 @@
 `uc 1 TRISA7 1 0 :1:7 
 ]
 "1433
-[u S60 . 1 `S51 1 . 1 0 ]
-[v _TRISAbits TRISAbits `VES60  1 e 1 @133 ]
-[s S72 . 1 `uc 1 TRISB0 1 0 :1:0 
+[u S194 . 1 `S185 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES194  1 e 1 @133 ]
+[s S206 . 1 `uc 1 TRISB0 1 0 :1:0 
 `uc 1 TRISB1 1 0 :1:1 
 `uc 1 TRISB2 1 0 :1:2 
 `uc 1 TRISB3 1 0 :1:3 
@@ -78,9 +167,9 @@
 `uc 1 TRISB7 1 0 :1:7 
 ]
 "1495
-[u S81 . 1 `S72 1 . 1 0 ]
-[v _TRISBbits TRISBbits `VES81  1 e 1 @134 ]
-[s S93 . 1 `uc 1 TRISC0 1 0 :1:0 
+[u S215 . 1 `S206 1 . 1 0 ]
+[v _TRISBbits TRISBbits `VES215  1 e 1 @134 ]
+[s S227 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -90,9 +179,9 @@
 `uc 1 TRISC7 1 0 :1:7 
 ]
 "1557
-[u S102 . 1 `S93 1 . 1 0 ]
-[v _TRISCbits TRISCbits `VES102  1 e 1 @135 ]
-[s S114 . 1 `uc 1 TRISD0 1 0 :1:0 
+[u S236 . 1 `S227 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES236  1 e 1 @135 ]
+[s S248 . 1 `uc 1 TRISD0 1 0 :1:0 
 `uc 1 TRISD1 1 0 :1:1 
 `uc 1 TRISD2 1 0 :1:2 
 `uc 1 TRISD3 1 0 :1:3 
@@ -102,23 +191,47 @@
 `uc 1 TRISD7 1 0 :1:7 
 ]
 "1619
-[u S123 . 1 `S114 1 . 1 0 ]
-[v _TRISDbits TRISDbits `VES123  1 e 1 @136 ]
-[s S139 . 1 `uc 1 SCS 1 0 :1:0 
+[u S257 . 1 `S248 1 . 1 0 ]
+[v _TRISDbits TRISDbits `VES257  1 e 1 @136 ]
+[s S381 . 1 `uc 1 TMR1IE 1 0 :1:0 
+`uc 1 TMR2IE 1 0 :1:1 
+`uc 1 CCP1IE 1 0 :1:2 
+`uc 1 SSPIE 1 0 :1:3 
+`uc 1 TXIE 1 0 :1:4 
+`uc 1 RCIE 1 0 :1:5 
+`uc 1 ADIE 1 0 :1:6 
+]
+"1718
+[u S389 . 1 `S381 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES389  1 e 1 @140 ]
+[s S273 . 1 `uc 1 SCS 1 0 :1:0 
 `uc 1 LTS 1 0 :1:1 
 `uc 1 HTS 1 0 :1:2 
 `uc 1 OSTS 1 0 :1:3 
 `uc 1 IRCF 1 0 :3:4 
 ]
 "1882
-[s S145 . 1 `uc 1 . 1 0 :4:0 
+[s S279 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 IRCF0 1 0 :1:4 
 `uc 1 IRCF1 1 0 :1:5 
 `uc 1 IRCF2 1 0 :1:6 
 ]
-[u S150 . 1 `S139 1 . 1 0 `S145 1 . 1 0 ]
-[v _OSCCONbits OSCCONbits `VES150  1 e 1 @143 ]
-[s S30 . 1 `uc 1 ANS0 1 0 :1:0 
+[u S284 . 1 `S273 1 . 1 0 `S279 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES284  1 e 1 @143 ]
+"2041
+[v _PR2 PR2 `VEuc  1 e 1 @146 ]
+"2970
+[v _ADRESL ADRESL `VEuc  1 e 1 @158 ]
+[s S299 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 VCFG0 1 0 :1:4 
+`uc 1 VCFG1 1 0 :1:5 
+`uc 1 . 1 0 :1:6 
+`uc 1 ADFM 1 0 :1:7 
+]
+"2991
+[u S305 . 1 `S299 1 . 1 0 ]
+[v _ADCON1bits ADCON1bits `VES305  1 e 1 @159 ]
+[s S164 . 1 `uc 1 ANS0 1 0 :1:0 
 `uc 1 ANS1 1 0 :1:1 
 `uc 1 ANS2 1 0 :1:2 
 `uc 1 ANS3 1 0 :1:3 
@@ -128,8 +241,8 @@
 `uc 1 ANS7 1 0 :1:7 
 ]
 "3404
-[u S39 . 1 `S30 1 . 1 0 ]
-[v _ANSELbits ANSELbits `VES39  1 e 1 @392 ]
+[u S173 . 1 `S164 1 . 1 0 ]
+[v _ANSELbits ANSELbits `VES173  1 e 1 @392 ]
 "43 C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
 [v _x x `i  1 e 2 0 ]
 "44
@@ -144,23 +257,23 @@
 [v _servo3_1 servo3_1 `i  1 e 2 0 ]
 "49
 [v _servo3_2 servo3_2 `i  1 e 2 0 ]
-"65
+"85
 [v _main main `(v  1 e 1 0 ]
 {
-"73
+"94
 } 0
-"77
+"98
 [v _setup setup `(v  1 e 1 0 ]
 {
-"112
+"170
 } 0
-"114
+"176
 [v _servos_loop servos_loop `(i  1 e 2 0 ]
 {
-"190
+"250
 } 0
 "59
 [v _isr isr `II(v  1 e 1 0 ]
 {
-"60
+"80
 } 0

@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.31 build 20201012212115 
-                                                                                               Thu May 20 19:08:16 2021
+                                                                                               Thu May 20 20:44:01 2021
 
 Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1 
      1                           	processor	16F887
@@ -220,965 +220,1273 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    206  018D                     	;# 
    207  0008                     _PORTDbits	set	8
    208  000B                     _INTCONbits	set	11
-   209  0008                     _PORTD	set	8
-   210  0007                     _PORTC	set	7
-   211  0006                     _PORTB	set	6
-   212  0005                     _PORTA	set	5
-   213  008F                     _OSCCONbits	set	143
-   214  0088                     _TRISDbits	set	136
-   215  0087                     _TRISCbits	set	135
-   216  0086                     _TRISBbits	set	134
-   217  0085                     _TRISAbits	set	133
-   218  0188                     _ANSELbits	set	392
-   219                           
-   220                           	psect	cinit
-   221  000F                     start_initialization:	
-   222                           ; #config settings
-   223                           
-   224  000F                     __initialization:
-   225                           
-   226                           ; Clear objects allocated to COMMON
-   227  000F  01F0               	clrf	__pbssCOMMON& (0+127)
-   228  0010  01F1               	clrf	(__pbssCOMMON+1)& (0+127)
-   229  0011  01F2               	clrf	(__pbssCOMMON+2)& (0+127)
-   230  0012  01F3               	clrf	(__pbssCOMMON+3)& (0+127)
-   231  0013  01F4               	clrf	(__pbssCOMMON+4)& (0+127)
-   232  0014  01F5               	clrf	(__pbssCOMMON+5)& (0+127)
-   233  0015  01F6               	clrf	(__pbssCOMMON+6)& (0+127)
-   234  0016  01F7               	clrf	(__pbssCOMMON+7)& (0+127)
-   235  0017  01F8               	clrf	(__pbssCOMMON+8)& (0+127)
-   236  0018  01F9               	clrf	(__pbssCOMMON+9)& (0+127)
+   209  0012                     _T2CONbits	set	18
+   210  0008                     _PORTD	set	8
+   211  0007                     _PORTC	set	7
+   212  0006                     _PORTB	set	6
+   213  0005                     _PORTA	set	5
+   214  001D                     _CCP2CONbits	set	29
+   215  001B                     _CCPR2L	set	27
+   216  0017                     _CCP1CONbits	set	23
+   217  001E                     _ADRESH	set	30
+   218  0015                     _CCPR1L	set	21
+   219  001F                     _ADCON0bits	set	31
+   220  000C                     _PIR1bits	set	12
+   221  008C                     _PIE1bits	set	140
+   222  0092                     _PR2	set	146
+   223  009F                     _ADCON1bits	set	159
+   224  008F                     _OSCCONbits	set	143
+   225  0088                     _TRISDbits	set	136
+   226  0087                     _TRISCbits	set	135
+   227  0086                     _TRISBbits	set	134
+   228  0085                     _TRISAbits	set	133
+   229  009E                     _ADRESL	set	158
+   230  0188                     _ANSELbits	set	392
+   231                           
+   232                           	psect	cinit
+   233  000F                     start_initialization:	
+   234                           ; #config settings
+   235                           
+   236  000F                     __initialization:
    237                           
-   238                           ; Clear objects allocated to BANK0
-   239  0019  1283               	bcf	3,5	;RP0=0, select bank0
-   240  001A  1303               	bcf	3,6	;RP1=0, select bank0
-   241  001B  01A0               	clrf	__pbssBANK0& (0+127)
-   242  001C  01A1               	clrf	(__pbssBANK0+1)& (0+127)
-   243  001D  01A2               	clrf	(__pbssBANK0+2)& (0+127)
-   244  001E  01A3               	clrf	(__pbssBANK0+3)& (0+127)
-   245  001F                     end_of_initialization:	
-   246                           ;End of C runtime variable initialization code
+   238                           ; Clear objects allocated to COMMON
+   239  000F  01F0               	clrf	__pbssCOMMON& (0+127)
+   240  0010  01F1               	clrf	(__pbssCOMMON+1)& (0+127)
+   241  0011  01F2               	clrf	(__pbssCOMMON+2)& (0+127)
+   242  0012  01F3               	clrf	(__pbssCOMMON+3)& (0+127)
+   243  0013  01F4               	clrf	(__pbssCOMMON+4)& (0+127)
+   244  0014  01F5               	clrf	(__pbssCOMMON+5)& (0+127)
+   245  0015  01F6               	clrf	(__pbssCOMMON+6)& (0+127)
+   246  0016  01F7               	clrf	(__pbssCOMMON+7)& (0+127)
    247                           
-   248  001F                     __end_of__initialization:
-   249  001F  0183               	clrf	3
-   250  0020  120A  118A  29B1   	ljmp	_main	;jump to C main() function
-   251                           
-   252                           	psect	bssCOMMON
-   253  0070                     __pbssCOMMON:
-   254  0070                     _servo2_2:
-   255  0070                     	ds	2
-   256  0072                     _servo2_1:
-   257  0072                     	ds	2
-   258  0074                     _servo1_2:
-   259  0074                     	ds	2
-   260  0076                     _servo1_1:
-   261  0076                     	ds	2
-   262  0078                     _x:
-   263  0078                     	ds	2
-   264                           
-   265                           	psect	bssBANK0
-   266  0020                     __pbssBANK0:
-   267  0020                     _servo3_2:
-   268  0020                     	ds	2
-   269  0022                     _servo3_1:
-   270  0022                     	ds	2
-   271                           
-   272                           	psect	cstackCOMMON
-   273  007A                     __pcstackCOMMON:
-   274  007A                     ?_setup:
-   275  007A                     ?_isr:	
-   276                           ; 1 bytes @ 0x0
-   277                           
-   278  007A                     ??_isr:	
-   279                           ; 1 bytes @ 0x0
-   280                           
-   281  007A                     ?_main:	
-   282                           ; 1 bytes @ 0x0
+   248                           ; Clear objects allocated to BANK0
+   249  0017  1283               	bcf	3,5	;RP0=0, select bank0
+   250  0018  1303               	bcf	3,6	;RP1=0, select bank0
+   251  0019  01A0               	clrf	__pbssBANK0& (0+127)
+   252  001A  01A1               	clrf	(__pbssBANK0+1)& (0+127)
+   253  001B  01A2               	clrf	(__pbssBANK0+2)& (0+127)
+   254  001C  01A3               	clrf	(__pbssBANK0+3)& (0+127)
+   255  001D  01A4               	clrf	(__pbssBANK0+4)& (0+127)
+   256  001E  01A5               	clrf	(__pbssBANK0+5)& (0+127)
+   257  001F                     end_of_initialization:	
+   258                           ;End of C runtime variable initialization code
+   259                           
+   260  001F                     __end_of__initialization:
+   261  001F  0183               	clrf	3
+   262  0020  120A  118A  2A68   	ljmp	_main	;jump to C main() function
+   263                           
+   264                           	psect	bssCOMMON
+   265  0070                     __pbssCOMMON:
+   266  0070                     _servo2_1:
+   267  0070                     	ds	2
+   268  0072                     _servo1_2:
+   269  0072                     	ds	2
+   270  0074                     _servo1_1:
+   271  0074                     	ds	2
+   272  0076                     _x:
+   273  0076                     	ds	2
+   274                           
+   275                           	psect	bssBANK0
+   276  0020                     __pbssBANK0:
+   277  0020                     _servo3_2:
+   278  0020                     	ds	2
+   279  0022                     _servo3_1:
+   280  0022                     	ds	2
+   281  0024                     _servo2_2:
+   282  0024                     	ds	2
    283                           
-   284  007A                     ?_servos_loop:	
-   285                           ; 1 bytes @ 0x0
-   286                           
-   287                           
-   288                           ; 2 bytes @ 0x0
-   289  007A                     	ds	2
-   290  007C                     ??_setup:
-   291  007C                     ??_main:	
-   292                           ; 1 bytes @ 0x2
-   293                           
-   294                           
-   295                           	psect	cstackBANK0
-   296  0024                     __pcstackBANK0:	
-   297                           ; 1 bytes @ 0x2
+   284                           	psect	cstackCOMMON
+   285  0078                     __pcstackCOMMON:
+   286  0078                     ?_setup:
+   287  0078                     ?_isr:	
+   288                           ; 1 bytes @ 0x0
+   289                           
+   290  0078                     ??_isr:	
+   291                           ; 1 bytes @ 0x0
+   292                           
+   293  0078                     ?_main:	
+   294                           ; 1 bytes @ 0x0
+   295                           
+   296  0078                     ?_servos_loop:	
+   297                           ; 1 bytes @ 0x0
    298                           
-   299  0024                     ??_servos_loop:
-   300                           
-   301                           ; 1 bytes @ 0x0
-   302  0024                     	ds	2
-   303                           
-   304                           	psect	maintext
-   305  01B1                     __pmaintext:	
-   306 ;;
-   307 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
-   308 ;;
-   309 ;; *************** function _main *****************
-   310 ;; Defined at:
-   311 ;;		line 65 in file "main_brazo.c"
-   312 ;; Parameters:    Size  Location     Type
-   313 ;;		None
-   314 ;; Auto vars:     Size  Location     Type
-   315 ;;		None
-   316 ;; Return value:  Size  Location     Type
-   317 ;;                  1    wreg      void 
-   318 ;; Registers used:
-   319 ;;		wreg, status,2, status,0, btemp+1, pclath, cstack
-   320 ;; Tracked objects:
-   321 ;;		On entry : B00/0
-   322 ;;		On exit  : 0/0
-   323 ;;		Unchanged: 0/0
-   324 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-   325 ;;      Params:         0       0       0       0       0
-   326 ;;      Locals:         0       0       0       0       0
-   327 ;;      Temps:          0       0       0       0       0
-   328 ;;      Totals:         0       0       0       0       0
-   329 ;;Total ram usage:        0 bytes
-   330 ;; Hardware stack levels required when called:    2
-   331 ;; This function calls:
-   332 ;;		_servos_loop
-   333 ;;		_setup
-   334 ;; This function is called by:
-   335 ;;		Startup code after reset
-   336 ;; This function uses a non-reentrant model
-   337 ;;
-   338                           
-   339                           
-   340                           ;psect for function _main
-   341  01B1                     _main:
-   342  01B1                     l992:	
-   343                           ;incstack = 0
-   344                           ; Regs used in _main: [wreg+status,2+status,0+btemp+1+pclath+cstack]
-   345                           
-   346                           
-   347                           ;main_brazo.c: 67:     setup();
-   348  01B1  120A  118A  2193  120A  118A  	fcall	_setup
-   349  01B6                     l994:
+   299                           
+   300                           ; 2 bytes @ 0x0
+   301  0078                     	ds	4
+   302                           
+   303                           	psect	cstackBANK0
+   304  0026                     __pcstackBANK0:
+   305  0026                     ??_setup:
+   306  0026                     ??_servos_loop:	
+   307                           ; 1 bytes @ 0x0
+   308                           
+   309                           
+   310                           ; 1 bytes @ 0x0
+   311  0026                     	ds	2
+   312  0028                     ??_main:
+   313                           
+   314                           	psect	maintext
+   315  0268                     __pmaintext:	
+   316                           ; 1 bytes @ 0x2
+   317 ;;
+   318 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   319 ;;
+   320 ;; *************** function _main *****************
+   321 ;; Defined at:
+   322 ;;		line 85 in file "main_brazo.c"
+   323 ;; Parameters:    Size  Location     Type
+   324 ;;		None
+   325 ;; Auto vars:     Size  Location     Type
+   326 ;;		None
+   327 ;; Return value:  Size  Location     Type
+   328 ;;                  1    wreg      void 
+   329 ;; Registers used:
+   330 ;;		wreg, status,2, status,0, btemp+1, pclath, cstack
+   331 ;; Tracked objects:
+   332 ;;		On entry : B00/0
+   333 ;;		On exit  : 0/0
+   334 ;;		Unchanged: 0/0
+   335 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   336 ;;      Params:         0       0       0       0       0
+   337 ;;      Locals:         0       0       0       0       0
+   338 ;;      Temps:          0       0       0       0       0
+   339 ;;      Totals:         0       0       0       0       0
+   340 ;;Total ram usage:        0 bytes
+   341 ;; Hardware stack levels required when called:    2
+   342 ;; This function calls:
+   343 ;;		_servos_loop
+   344 ;;		_setup
+   345 ;; This function is called by:
+   346 ;;		Startup code after reset
+   347 ;; This function uses a non-reentrant model
+   348 ;;
+   349                           
    350                           
-   351                           ;main_brazo.c: 69:     {;main_brazo.c: 70:         servos_loop();
-   352  01B6  120A  118A  2023  120A  118A  	fcall	_servos_loop
-   353  01BB  29B6               	goto	l994
-   354  01BC  120A  118A  280C   	ljmp	start
-   355  01BF                     __end_of_main:
+   351                           ;psect for function _main
+   352  0268                     _main:
+   353  0268                     l1142:	
+   354                           ;incstack = 0
+   355                           ; Regs used in _main: [wreg+status,2+status,0+btemp+1+pclath+cstack]
    356                           
-   357                           	psect	text1
-   358  0193                     __ptext1:	
-   359 ;; *************** function _setup *****************
-   360 ;; Defined at:
-   361 ;;		line 77 in file "main_brazo.c"
-   362 ;; Parameters:    Size  Location     Type
-   363 ;;		None
-   364 ;; Auto vars:     Size  Location     Type
-   365 ;;		None
-   366 ;; Return value:  Size  Location     Type
-   367 ;;                  1    wreg      void 
-   368 ;; Registers used:
-   369 ;;		status,2
-   370 ;; Tracked objects:
-   371 ;;		On entry : 0/0
-   372 ;;		On exit  : 0/0
-   373 ;;		Unchanged: 0/0
-   374 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-   375 ;;      Params:         0       0       0       0       0
-   376 ;;      Locals:         0       0       0       0       0
-   377 ;;      Temps:          0       0       0       0       0
-   378 ;;      Totals:         0       0       0       0       0
-   379 ;;Total ram usage:        0 bytes
-   380 ;; Hardware stack levels used:    1
-   381 ;; Hardware stack levels required when called:    1
-   382 ;; This function calls:
-   383 ;;		Nothing
-   384 ;; This function is called by:
-   385 ;;		_main
-   386 ;; This function uses a non-reentrant model
-   387 ;;
-   388                           
-   389                           
-   390                           ;psect for function _setup
-   391  0193                     _setup:
-   392  0193                     l676:	
-   393                           ;incstack = 0
-   394                           ; Regs used in _setup: [status,2]
-   395                           
-   396                           
-   397                           ;main_brazo.c: 80:     ANSELbits.ANS0 = 1;
-   398  0193  1683               	bsf	3,5	;RP0=1, select bank3
-   399  0194  1703               	bsf	3,6	;RP1=1, select bank3
-   400  0195  1408               	bsf	8,0	;volatile
-   401                           
-   402                           ;main_brazo.c: 81:     ANSELbits.ANS1 = 1;
-   403  0196  1488               	bsf	8,1	;volatile
-   404                           
-   405                           ;main_brazo.c: 82:     ANSELbits.ANS2 = 1;
-   406  0197  1508               	bsf	8,2	;volatile
+   357                           
+   358                           ;main_brazo.c: 87:     setup();
+   359  0268  120A  118A  2206  120A  118A  	fcall	_setup
+   360  026D                     l1144:
+   361                           
+   362                           ;main_brazo.c: 89:     {;main_brazo.c: 91:         servos_loop();
+   363  026D  120A  118A  2023  120A  118A  	fcall	_servos_loop
+   364  0272  2A6D               	goto	l1144
+   365  0273  120A  118A  280C   	ljmp	start
+   366  0276                     __end_of_main:
+   367                           
+   368                           	psect	text1
+   369  0206                     __ptext1:	
+   370 ;; *************** function _setup *****************
+   371 ;; Defined at:
+   372 ;;		line 98 in file "main_brazo.c"
+   373 ;; Parameters:    Size  Location     Type
+   374 ;;		None
+   375 ;; Auto vars:     Size  Location     Type
+   376 ;;		None
+   377 ;; Return value:  Size  Location     Type
+   378 ;;                  1    wreg      void 
+   379 ;; Registers used:
+   380 ;;		wreg, status,2, status,0
+   381 ;; Tracked objects:
+   382 ;;		On entry : 0/0
+   383 ;;		On exit  : 0/0
+   384 ;;		Unchanged: 0/0
+   385 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   386 ;;      Params:         0       0       0       0       0
+   387 ;;      Locals:         0       0       0       0       0
+   388 ;;      Temps:          0       1       0       0       0
+   389 ;;      Totals:         0       1       0       0       0
+   390 ;;Total ram usage:        1 bytes
+   391 ;; Hardware stack levels used:    1
+   392 ;; Hardware stack levels required when called:    1
+   393 ;; This function calls:
+   394 ;;		Nothing
+   395 ;; This function is called by:
+   396 ;;		_main
+   397 ;; This function uses a non-reentrant model
+   398 ;;
+   399                           
+   400                           
+   401                           ;psect for function _setup
+   402  0206                     _setup:
+   403  0206                     l992:	
+   404                           ;incstack = 0
+   405                           ; Regs used in _setup: [wreg+status,2+status,0]
+   406                           
    407                           
-   408                           ;main_brazo.c: 84:     TRISAbits.TRISA0 = 1;
-   409  0198  1683               	bsf	3,5	;RP0=1, select bank1
-   410  0199  1303               	bcf	3,6	;RP1=0, select bank1
-   411  019A  1405               	bsf	5,0	;volatile
+   408                           ;main_brazo.c: 101:     ANSELbits.ANS0 = 1;
+   409  0206  1683               	bsf	3,5	;RP0=1, select bank3
+   410  0207  1703               	bsf	3,6	;RP1=1, select bank3
+   411  0208  1408               	bsf	8,0	;volatile
    412                           
-   413                           ;main_brazo.c: 85:     TRISAbits.TRISA1 = 1;
-   414  019B  1485               	bsf	5,1	;volatile
+   413                           ;main_brazo.c: 102:     ANSELbits.ANS1 = 1;
+   414  0209  1488               	bsf	8,1	;volatile
    415                           
-   416                           ;main_brazo.c: 86:     TRISAbits.TRISA2 = 1;
-   417  019C  1505               	bsf	5,2	;volatile
+   416                           ;main_brazo.c: 103:     ANSELbits.ANS2 = 1;
+   417  020A  1508               	bsf	8,2	;volatile
    418                           
-   419                           ;main_brazo.c: 88:     TRISBbits.TRISB2 = 1;
-   420  019D  1506               	bsf	6,2	;volatile
-   421                           
-   422                           ;main_brazo.c: 90:     TRISCbits.TRISC1 = 0;
-   423  019E  1087               	bcf	7,1	;volatile
-   424                           
-   425                           ;main_brazo.c: 91:     TRISCbits.TRISC2 = 0;
-   426  019F  1107               	bcf	7,2	;volatile
-   427                           
-   428                           ;main_brazo.c: 93:     TRISDbits.TRISD0 = 0;
-   429  01A0  1008               	bcf	8,0	;volatile
-   430                           
-   431                           ;main_brazo.c: 94:     TRISDbits.TRISD1 = 0;
-   432  01A1  1088               	bcf	8,1	;volatile
-   433                           
-   434                           ;main_brazo.c: 95:     TRISDbits.TRISD2 = 0;
-   435  01A2  1108               	bcf	8,2	;volatile
-   436  01A3                     l678:
-   437                           
-   438                           ;main_brazo.c: 97:     PORTA = 0;
-   439  01A3  1283               	bcf	3,5	;RP0=0, select bank0
-   440  01A4  1303               	bcf	3,6	;RP1=0, select bank0
-   441  01A5  0185               	clrf	5	;volatile
-   442                           
-   443                           ;main_brazo.c: 98:     PORTB = 0;
-   444  01A6  0186               	clrf	6	;volatile
-   445                           
-   446                           ;main_brazo.c: 99:     PORTC = 0;
-   447  01A7  0187               	clrf	7	;volatile
+   419                           ;main_brazo.c: 105:     TRISAbits.TRISA0 = 1;
+   420  020B  1683               	bsf	3,5	;RP0=1, select bank1
+   421  020C  1303               	bcf	3,6	;RP1=0, select bank1
+   422  020D  1405               	bsf	5,0	;volatile
+   423                           
+   424                           ;main_brazo.c: 106:     TRISAbits.TRISA1 = 1;
+   425  020E  1485               	bsf	5,1	;volatile
+   426                           
+   427                           ;main_brazo.c: 107:     TRISAbits.TRISA2 = 1;
+   428  020F  1505               	bsf	5,2	;volatile
+   429                           
+   430                           ;main_brazo.c: 109:     TRISBbits.TRISB0 = 1;
+   431  0210  1406               	bsf	6,0	;volatile
+   432                           
+   433                           ;main_brazo.c: 111:     TRISCbits.TRISC1 = 0;
+   434  0211  1087               	bcf	7,1	;volatile
+   435                           
+   436                           ;main_brazo.c: 112:     TRISCbits.TRISC2 = 0;
+   437  0212  1107               	bcf	7,2	;volatile
+   438                           
+   439                           ;main_brazo.c: 114:     TRISDbits.TRISD0 = 0;
+   440  0213  1008               	bcf	8,0	;volatile
+   441                           
+   442                           ;main_brazo.c: 115:     TRISDbits.TRISD1 = 0;
+   443  0214  1088               	bcf	8,1	;volatile
+   444                           
+   445                           ;main_brazo.c: 116:     TRISDbits.TRISD2 = 0;
+   446  0215  1108               	bcf	8,2	;volatile
+   447  0216                     l994:
    448                           
-   449                           ;main_brazo.c: 100:     PORTD = 0;
-   450  01A8  0188               	clrf	8	;volatile
-   451  01A9                     l680:
-   452                           
-   453                           ;main_brazo.c: 103:     OSCCONbits.IRCF2 = 1;
-   454  01A9  1683               	bsf	3,5	;RP0=1, select bank1
-   455  01AA  1303               	bcf	3,6	;RP1=0, select bank1
-   456  01AB  170F               	bsf	15,6	;volatile
-   457  01AC                     l682:
-   458                           
-   459                           ;main_brazo.c: 104:     OSCCONbits.IRCF1 = 1;
-   460  01AC  168F               	bsf	15,5	;volatile
-   461  01AD                     l684:
-   462                           
-   463                           ;main_brazo.c: 105:     OSCCONbits.IRCF0 = 1;
-   464  01AD  160F               	bsf	15,4	;volatile
-   465  01AE                     l686:
-   466                           
-   467                           ;main_brazo.c: 106:     OSCCONbits.SCS=1;
-   468  01AE  140F               	bsf	15,0	;volatile
-   469  01AF                     l688:
-   470                           
-   471                           ;main_brazo.c: 109:     INTCONbits.GIE = 1;
-   472  01AF  178B               	bsf	11,7	;volatile
-   473  01B0                     l60:
-   474  01B0  0008               	return
-   475  01B1                     __end_of_setup:
-   476                           
-   477                           	psect	text2
-   478  0023                     __ptext2:	
-   479 ;; *************** function _servos_loop *****************
-   480 ;; Defined at:
-   481 ;;		line 114 in file "main_brazo.c"
-   482 ;; Parameters:    Size  Location     Type
-   483 ;;		None
-   484 ;; Auto vars:     Size  Location     Type
-   485 ;;		None
-   486 ;; Return value:  Size  Location     Type
-   487 ;;                  2    4[None  ] int 
-   488 ;; Registers used:
-   489 ;;		wreg, status,2, status,0, btemp+1
-   490 ;; Tracked objects:
-   491 ;;		On entry : 0/0
-   492 ;;		On exit  : 0/0
-   493 ;;		Unchanged: 0/0
-   494 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-   495 ;;      Params:         0       0       0       0       0
-   496 ;;      Locals:         0       0       0       0       0
-   497 ;;      Temps:          0       2       0       0       0
-   498 ;;      Totals:         0       2       0       0       0
-   499 ;;Total ram usage:        2 bytes
-   500 ;; Hardware stack levels used:    1
-   501 ;; Hardware stack levels required when called:    1
-   502 ;; This function calls:
-   503 ;;		Nothing
-   504 ;; This function is called by:
-   505 ;;		_main
-   506 ;; This function uses a non-reentrant model
-   507 ;;
-   508                           
-   509                           
-   510                           ;psect for function _servos_loop
-   511  0023                     _servos_loop:
-   512  0023                     l894:	
-   513                           ;incstack = 0
-   514                           ; Regs used in _servos_loop: [wreg+status,2+status,0+btemp+1]
-   515                           
-   516                           
-   517                           ;main_brazo.c: 116:     for(x=0;x<=7;x++)
-   518  0023  01F8               	clrf	_x
-   519  0024  01F9               	clrf	_x+1
-   520  0025                     l900:
-   521                           
-   522                           ;main_brazo.c: 117:     {;main_brazo.c: 120:         if (x == 1)
-   523  0025  0378               	decf	_x,w
-   524  0026  0479               	iorwf	_x+1,w
-   525  0027  1D03               	btfss	3,2
-   526  0028  282A               	goto	u291
-   527  0029  282B               	goto	u290
-   528  002A                     u291:
-   529  002A  285B               	goto	l914
-   530  002B                     u290:
-   531  002B                     l902:
-   532                           
-   533                           ;main_brazo.c: 121:         {;main_brazo.c: 122:             for (servo1_1 = 0; servo1_1
-      +                           <= 20; servo1_1++)
-   534  002B  01F6               	clrf	_servo1_1
-   535  002C  01F7               	clrf	_servo1_1+1
-   536  002D                     l66:
-   537                           
-   538                           ;main_brazo.c: 123:             {;main_brazo.c: 124:                 PORTDbits.RD0 = 1;
-   539  002D  1283               	bcf	3,5	;RP0=0, select bank0
-   540  002E  1303               	bcf	3,6	;RP1=0, select bank0
-   541  002F  1408               	bsf	8,0	;volatile
-   542  0030                     l908:
-   543                           
-   544                           ;main_brazo.c: 125:                 _delay((unsigned long)((1)*(8000000/4000.0)));
-   545  0030  3003               	movlw	3
-   546  0031  1283               	bcf	3,5	;RP0=0, select bank0
-   547  0032  1303               	bcf	3,6	;RP1=0, select bank0
-   548  0033  00A5               	movwf	??_servos_loop+1
-   549  0034  3097               	movlw	151
-   550  0035  00A4               	movwf	??_servos_loop
-   551  0036                     u437:
-   552  0036  0BA4               	decfsz	??_servos_loop,f
-   553  0037  2836               	goto	u437
-   554  0038  0BA5               	decfsz	??_servos_loop+1,f
-   555  0039  2836               	goto	u437
-   556  003A                     l910:
-   557                           
-   558                           ;main_brazo.c: 126:                 PORTDbits.RD0 = 0;
-   559  003A  1283               	bcf	3,5	;RP0=0, select bank0
-   560  003B  1303               	bcf	3,6	;RP1=0, select bank0
-   561  003C  1008               	bcf	8,0	;volatile
-   562                           
-   563                           ;main_brazo.c: 127:                 _delay((unsigned long)((19)*(8000000/4000.0)));
-   564  003D  3032               	movlw	50
-   565  003E  1283               	bcf	3,5	;RP0=0, select bank0
-   566  003F  1303               	bcf	3,6	;RP1=0, select bank0
-   567  0040  00A5               	movwf	??_servos_loop+1
-   568  0041  3057               	movlw	87
-   569  0042  00A4               	movwf	??_servos_loop
-   570  0043                     u447:
-   571  0043  0BA4               	decfsz	??_servos_loop,f
-   572  0044  2843               	goto	u447
-   573  0045  0BA5               	decfsz	??_servos_loop+1,f
-   574  0046  2843               	goto	u447
-   575  0047  2848               	nop2
-   576                           
-   577                           ;main_brazo.c: 128:             }
-   578  0048  3001               	movlw	1
-   579  0049  07F6               	addwf	_servo1_1,f
-   580  004A  1803               	skipnc
-   581  004B  0AF7               	incf	_servo1_1+1,f
-   582  004C  3000               	movlw	0
-   583  004D  07F7               	addwf	_servo1_1+1,f
-   584  004E                     l912:
-   585  004E  0877               	movf	_servo1_1+1,w
-   586  004F  3A80               	xorlw	128
-   587  0050  00FF               	movwf	btemp+1
-   588  0051  3080               	movlw	128
-   589  0052  027F               	subwf	btemp+1,w
-   590  0053  1D03               	skipz
-   591  0054  2857               	goto	u305
-   592  0055  3015               	movlw	21
-   593  0056  0276               	subwf	_servo1_1,w
-   594  0057                     u305:
-   595  0057  1C03               	skipc
-   596  0058  285A               	goto	u301
-   597  0059  285B               	goto	u300
-   598  005A                     u301:
-   599  005A  282D               	goto	l66
-   600  005B                     u300:
-   601  005B                     l914:
-   602                           
-   603                           ;main_brazo.c: 131:         if (x == 2)
-   604  005B  3002               	movlw	2
-   605  005C  0678               	xorwf	_x,w
-   606  005D  0479               	iorwf	_x+1,w
-   607  005E  1D03               	btfss	3,2
-   608  005F  2861               	goto	u311
-   609  0060  2862               	goto	u310
-   610  0061                     u311:
-   611  0061  2892               	goto	l928
-   612  0062                     u310:
-   613  0062                     l916:
-   614                           
-   615                           ;main_brazo.c: 132:         {;main_brazo.c: 133:             for (servo1_2 = 0; servo1_2
-      +                           <= 20; servo1_2++)
-   616  0062  01F4               	clrf	_servo1_2
-   617  0063  01F5               	clrf	_servo1_2+1
-   618  0064                     l69:
+   449                           ;main_brazo.c: 118:     PORTA = 0;
+   450  0216  1283               	bcf	3,5	;RP0=0, select bank0
+   451  0217  1303               	bcf	3,6	;RP1=0, select bank0
+   452  0218  0185               	clrf	5	;volatile
+   453                           
+   454                           ;main_brazo.c: 119:     PORTB = 0;
+   455  0219  0186               	clrf	6	;volatile
+   456                           
+   457                           ;main_brazo.c: 120:     PORTC = 0;
+   458  021A  0187               	clrf	7	;volatile
+   459                           
+   460                           ;main_brazo.c: 121:     PORTD = 0;
+   461  021B  0188               	clrf	8	;volatile
+   462  021C                     l996:
+   463                           
+   464                           ;main_brazo.c: 124:     OSCCONbits.IRCF2 = 1;
+   465  021C  1683               	bsf	3,5	;RP0=1, select bank1
+   466  021D  1303               	bcf	3,6	;RP1=0, select bank1
+   467  021E  170F               	bsf	15,6	;volatile
+   468  021F                     l998:
+   469                           
+   470                           ;main_brazo.c: 125:     OSCCONbits.IRCF1 = 1;
+   471  021F  168F               	bsf	15,5	;volatile
+   472  0220                     l1000:
+   473                           
+   474                           ;main_brazo.c: 126:     OSCCONbits.IRCF0 = 1;
+   475  0220  160F               	bsf	15,4	;volatile
+   476  0221                     l1002:
+   477                           
+   478                           ;main_brazo.c: 127:     OSCCONbits.SCS=1;
+   479  0221  140F               	bsf	15,0	;volatile
+   480  0222                     l1004:
+   481                           
+   482                           ;main_brazo.c: 130:     ADCON1bits.ADFM = 0 ;
+   483  0222  139F               	bcf	31,7	;volatile
+   484  0223                     l1006:
+   485                           
+   486                           ;main_brazo.c: 131:     ADCON1bits.VCFG0 = 0 ;
+   487  0223  121F               	bcf	31,4	;volatile
+   488  0224                     l1008:
+   489                           
+   490                           ;main_brazo.c: 132:     ADCON1bits.VCFG1 = 0 ;
+   491  0224  129F               	bcf	31,5	;volatile
+   492  0225                     l1010:
+   493                           
+   494                           ;main_brazo.c: 134:     ADCON0bits.ADCS = 0b10 ;
+   495  0225  1283               	bcf	3,5	;RP0=0, select bank0
+   496  0226  1303               	bcf	3,6	;RP1=0, select bank0
+   497  0227  081F               	movf	31,w	;volatile
+   498  0228  393F               	andlw	-193
+   499  0229  3880               	iorlw	128
+   500  022A  009F               	movwf	31	;volatile
+   501  022B                     l1012:
+   502                           
+   503                           ;main_brazo.c: 135:     ADCON0bits.CHS = 0;
+   504  022B  30C3               	movlw	-61
+   505  022C  059F               	andwf	31,f	;volatile
+   506  022D                     l1014:
+   507                           
+   508                           ;main_brazo.c: 136:     _delay((unsigned long)((50)*(8000000/4000000.0)));
+   509  022D  3020               	movlw	32
+   510  022E  1283               	bcf	3,5	;RP0=0, select bank0
+   511  022F  1303               	bcf	3,6	;RP1=0, select bank0
+   512  0230  00A6               	movwf	??_setup
+   513  0231                     u527:
+   514  0231  0BA6               	decfsz	??_setup,f
+   515  0232  2A31               	goto	u527
+   516  0233  0000               	nop
+   517  0234                     l1016:
+   518                           
+   519                           ;main_brazo.c: 137:     ADCON0bits.ADON = 1 ;
+   520  0234  1283               	bcf	3,5	;RP0=0, select bank0
+   521  0235  1303               	bcf	3,6	;RP1=0, select bank0
+   522  0236  141F               	bsf	31,0	;volatile
+   523  0237                     l1018:
+   524                           
+   525                           ;main_brazo.c: 140:     PR2 = 249;
+   526  0237  30F9               	movlw	249
+   527  0238  1683               	bsf	3,5	;RP0=1, select bank1
+   528  0239  1303               	bcf	3,6	;RP1=0, select bank1
+   529  023A  0092               	movwf	18	;volatile
+   530  023B                     l1020:
+   531                           
+   532                           ;main_brazo.c: 142:     TRISCbits.TRISC2=1;
+   533  023B  1507               	bsf	7,2	;volatile
+   534  023C                     l1022:
+   535                           
+   536                           ;main_brazo.c: 143:     CCP1CONbits.P1M = 0;
+   537  023C  303F               	movlw	-193
+   538  023D  1283               	bcf	3,5	;RP0=0, select bank0
+   539  023E  1303               	bcf	3,6	;RP1=0, select bank0
+   540  023F  0597               	andwf	23,f	;volatile
+   541  0240                     l1024:
+   542                           
+   543                           ;main_brazo.c: 144:     CCP1CONbits.CCP1M = 0b1100;
+   544  0240  0817               	movf	23,w	;volatile
+   545  0241  39F0               	andlw	-16
+   546  0242  380C               	iorlw	12
+   547  0243  0097               	movwf	23	;volatile
+   548  0244                     l1026:
+   549                           
+   550                           ;main_brazo.c: 145:     CCPR1L = 0x0f ;
+   551  0244  300F               	movlw	15
+   552  0245  0095               	movwf	21	;volatile
+   553  0246                     l1028:
+   554                           
+   555                           ;main_brazo.c: 146:     CCP1CONbits.DC1B = 0;
+   556  0246  30CF               	movlw	-49
+   557  0247  0597               	andwf	23,f	;volatile
+   558  0248                     l1030:
+   559                           
+   560                           ;main_brazo.c: 148:     TRISCbits.TRISC1 = 1;
+   561  0248  1683               	bsf	3,5	;RP0=1, select bank1
+   562  0249  1303               	bcf	3,6	;RP1=0, select bank1
+   563  024A  1487               	bsf	7,1	;volatile
+   564  024B                     l1032:
+   565                           
+   566                           ;main_brazo.c: 149:     CCP2CONbits.CCP2M = 0b1100;
+   567  024B  1283               	bcf	3,5	;RP0=0, select bank0
+   568  024C  1303               	bcf	3,6	;RP1=0, select bank0
+   569  024D  081D               	movf	29,w	;volatile
+   570  024E  39F0               	andlw	-16
+   571  024F  380C               	iorlw	12
+   572  0250  009D               	movwf	29	;volatile
+   573  0251                     l1034:
+   574                           
+   575                           ;main_brazo.c: 150:     CCPR2L = 0x0f;
+   576  0251  300F               	movlw	15
+   577  0252  009B               	movwf	27	;volatile
+   578  0253                     l1036:
+   579                           
+   580                           ;main_brazo.c: 151:     CCP2CONbits.DC2B1 = 0;
+   581  0253  129D               	bcf	29,5	;volatile
+   582  0254                     l1038:
+   583                           
+   584                           ;main_brazo.c: 154:     PIR1bits.TMR2IF = 0;
+   585  0254  108C               	bcf	12,1	;volatile
+   586  0255                     l1040:
+   587                           
+   588                           ;main_brazo.c: 155:     T2CONbits.T2CKPS = 0b11;
+   589  0255  3003               	movlw	3
+   590  0256  0492               	iorwf	18,f	;volatile
+   591  0257                     l1042:
+   592                           
+   593                           ;main_brazo.c: 156:     T2CONbits.TMR2ON = 1;
+   594  0257  1512               	bsf	18,2	;volatile
+   595  0258                     l87:	
+   596                           ;main_brazo.c: 158:     while(PIR1bits.TMR2IF==0);
+   597                           
+   598  0258  1C8C               	btfss	12,1	;volatile
+   599  0259  2A5B               	goto	u371
+   600  025A  2A5C               	goto	u370
+   601  025B                     u371:
+   602  025B  2A58               	goto	l87
+   603  025C                     u370:
+   604  025C                     l89:
+   605                           
+   606                           ;main_brazo.c: 159:     PIR1bits.TMR2IF=0;
+   607  025C  108C               	bcf	12,1	;volatile
+   608                           
+   609                           ;main_brazo.c: 160:     TRISCbits.TRISC2 = 0;
+   610  025D  1683               	bsf	3,5	;RP0=1, select bank1
+   611  025E  1303               	bcf	3,6	;RP1=0, select bank1
+   612  025F  1107               	bcf	7,2	;volatile
+   613                           
+   614                           ;main_brazo.c: 161:     TRISCbits.TRISC1= 0;
+   615  0260  1087               	bcf	7,1	;volatile
+   616                           
+   617                           ;main_brazo.c: 164:     INTCONbits.GIE = 1;
+   618  0261  178B               	bsf	11,7	;volatile
    619                           
-   620                           ;main_brazo.c: 134:             {;main_brazo.c: 135:                 PORTDbits.RD0 = 1;
-   621  0064  1283               	bcf	3,5	;RP0=0, select bank0
-   622  0065  1303               	bcf	3,6	;RP1=0, select bank0
-   623  0066  1408               	bsf	8,0	;volatile
-   624  0067                     l922:
+   620                           ;main_brazo.c: 165:     INTCONbits.PEIE = 1;
+   621  0262  170B               	bsf	11,6	;volatile
+   622                           
+   623                           ;main_brazo.c: 167:     PIE1bits.ADIE = 1;
+   624  0263  170C               	bsf	12,6	;volatile
    625                           
-   626                           ;main_brazo.c: 136:                 _delay((unsigned long)((1.5)*(8000000/4000.0)));
-   627  0067  3004               	movlw	4
-   628  0068  1283               	bcf	3,5	;RP0=0, select bank0
-   629  0069  1303               	bcf	3,6	;RP1=0, select bank0
-   630  006A  00A5               	movwf	??_servos_loop+1
-   631  006B  30E3               	movlw	227
-   632  006C  00A4               	movwf	??_servos_loop
-   633  006D                     u457:
-   634  006D  0BA4               	decfsz	??_servos_loop,f
-   635  006E  286D               	goto	u457
-   636  006F  0BA5               	decfsz	??_servos_loop+1,f
-   637  0070  286D               	goto	u457
-   638  0071  2872               	nop2
-   639  0072                     l924:
-   640                           
-   641                           ;main_brazo.c: 137:                 PORTDbits.RD0 = 0;
-   642  0072  1283               	bcf	3,5	;RP0=0, select bank0
-   643  0073  1303               	bcf	3,6	;RP1=0, select bank0
-   644  0074  1008               	bcf	8,0	;volatile
-   645                           
-   646                           ;main_brazo.c: 138:                 _delay((unsigned long)((18.5)*(8000000/4000.0)));
-   647  0075  3031               	movlw	49
-   648  0076  1283               	bcf	3,5	;RP0=0, select bank0
-   649  0077  1303               	bcf	3,6	;RP1=0, select bank0
-   650  0078  00A5               	movwf	??_servos_loop+1
-   651  0079  300B               	movlw	11
-   652  007A  00A4               	movwf	??_servos_loop
-   653  007B                     u467:
-   654  007B  0BA4               	decfsz	??_servos_loop,f
-   655  007C  287B               	goto	u467
-   656  007D  0BA5               	decfsz	??_servos_loop+1,f
-   657  007E  287B               	goto	u467
-   658                           
-   659                           ;main_brazo.c: 139:             }
-   660  007F  3001               	movlw	1
-   661  0080  07F4               	addwf	_servo1_2,f
-   662  0081  1803               	skipnc
-   663  0082  0AF5               	incf	_servo1_2+1,f
-   664  0083  3000               	movlw	0
-   665  0084  07F5               	addwf	_servo1_2+1,f
-   666  0085                     l926:
-   667  0085  0875               	movf	_servo1_2+1,w
-   668  0086  3A80               	xorlw	128
-   669  0087  00FF               	movwf	btemp+1
-   670  0088  3080               	movlw	128
-   671  0089  027F               	subwf	btemp+1,w
-   672  008A  1D03               	skipz
-   673  008B  288E               	goto	u325
-   674  008C  3015               	movlw	21
-   675  008D  0274               	subwf	_servo1_2,w
-   676  008E                     u325:
-   677  008E  1C03               	skipc
-   678  008F  2891               	goto	u321
-   679  0090  2892               	goto	u320
-   680  0091                     u321:
-   681  0091  2864               	goto	l69
-   682  0092                     u320:
-   683  0092                     l928:
-   684                           
-   685                           ;main_brazo.c: 142:         if (x ==3)
-   686  0092  3003               	movlw	3
-   687  0093  0678               	xorwf	_x,w
-   688  0094  0479               	iorwf	_x+1,w
-   689  0095  1D03               	btfss	3,2
-   690  0096  2898               	goto	u331
-   691  0097  2899               	goto	u330
-   692  0098                     u331:
-   693  0098  28C9               	goto	l942
-   694  0099                     u330:
-   695  0099                     l930:
-   696                           
-   697                           ;main_brazo.c: 143:         {;main_brazo.c: 144:             for (servo2_1 = 0; servo2_1
+   626                           ;main_brazo.c: 168:     PIR1bits.ADIF = 0;
+   627  0264  1283               	bcf	3,5	;RP0=0, select bank0
+   628  0265  1303               	bcf	3,6	;RP1=0, select bank0
+   629  0266  130C               	bcf	12,6	;volatile
+   630  0267                     l90:
+   631  0267  0008               	return
+   632  0268                     __end_of_setup:
+   633                           
+   634                           	psect	text2
+   635  0023                     __ptext2:	
+   636 ;; *************** function _servos_loop *****************
+   637 ;; Defined at:
+   638 ;;		line 176 in file "main_brazo.c"
+   639 ;; Parameters:    Size  Location     Type
+   640 ;;		None
+   641 ;; Auto vars:     Size  Location     Type
+   642 ;;		None
+   643 ;; Return value:  Size  Location     Type
+   644 ;;                  2   20[None  ] int 
+   645 ;; Registers used:
+   646 ;;		wreg, status,2, status,0, btemp+1
+   647 ;; Tracked objects:
+   648 ;;		On entry : 0/0
+   649 ;;		On exit  : 0/0
+   650 ;;		Unchanged: 0/0
+   651 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   652 ;;      Params:         0       0       0       0       0
+   653 ;;      Locals:         0       0       0       0       0
+   654 ;;      Temps:          0       2       0       0       0
+   655 ;;      Totals:         0       2       0       0       0
+   656 ;;Total ram usage:        2 bytes
+   657 ;; Hardware stack levels used:    1
+   658 ;; Hardware stack levels required when called:    1
+   659 ;; This function calls:
+   660 ;;		Nothing
+   661 ;; This function is called by:
+   662 ;;		_main
+   663 ;; This function uses a non-reentrant model
+   664 ;;
+   665                           
+   666                           
+   667                           ;psect for function _servos_loop
+   668  0023                     _servos_loop:
+   669  0023                     l1044:	
+   670                           ;incstack = 0
+   671                           ; Regs used in _servos_loop: [wreg+status,2+status,0+btemp+1]
+   672                           
+   673                           
+   674                           ;main_brazo.c: 178:     for(x=0;x<=7;x++)
+   675  0023  01F6               	clrf	_x
+   676  0024  01F7               	clrf	_x+1
+   677  0025                     l1050:
+   678                           
+   679                           ;main_brazo.c: 179:     {;main_brazo.c: 180:         if (x == 1)
+   680  0025  0376               	decf	_x,w
+   681  0026  0477               	iorwf	_x+1,w
+   682  0027  1D03               	btfss	3,2
+   683  0028  282A               	goto	u381
+   684  0029  282B               	goto	u380
+   685  002A                     u381:
+   686  002A  285B               	goto	l1064
+   687  002B                     u380:
+   688  002B                     l1052:
+   689                           
+   690                           ;main_brazo.c: 181:         {;main_brazo.c: 182:             for (servo1_1 = 0; servo1_1
+      +                           <= 20; servo1_1++)
+   691  002B  01F4               	clrf	_servo1_1
+   692  002C  01F5               	clrf	_servo1_1+1
+   693  002D                     l96:
+   694                           
+   695                           ;main_brazo.c: 183:             {;main_brazo.c: 184:                 PORTDbits.RD0 = 1;
+   696  002D  1283               	bcf	3,5	;RP0=0, select bank0
+   697  002E  1303               	bcf	3,6	;RP1=0, select bank0
+   698  002F  1408               	bsf	8,0	;volatile
+   699  0030                     l1058:
+   700                           
+   701                           ;main_brazo.c: 185:                 _delay((unsigned long)((1)*(8000000/4000.0)));
+   702  0030  3003               	movlw	3
+   703  0031  1283               	bcf	3,5	;RP0=0, select bank0
+   704  0032  1303               	bcf	3,6	;RP1=0, select bank0
+   705  0033  00A7               	movwf	??_servos_loop+1
+   706  0034  3097               	movlw	151
+   707  0035  00A6               	movwf	??_servos_loop
+   708  0036                     u537:
+   709  0036  0BA6               	decfsz	??_servos_loop,f
+   710  0037  2836               	goto	u537
+   711  0038  0BA7               	decfsz	??_servos_loop+1,f
+   712  0039  2836               	goto	u537
+   713  003A                     l1060:
+   714                           
+   715                           ;main_brazo.c: 186:                 PORTDbits.RD0 = 0;
+   716  003A  1283               	bcf	3,5	;RP0=0, select bank0
+   717  003B  1303               	bcf	3,6	;RP1=0, select bank0
+   718  003C  1008               	bcf	8,0	;volatile
+   719                           
+   720                           ;main_brazo.c: 187:                 _delay((unsigned long)((19)*(8000000/4000.0)));
+   721  003D  3032               	movlw	50
+   722  003E  1283               	bcf	3,5	;RP0=0, select bank0
+   723  003F  1303               	bcf	3,6	;RP1=0, select bank0
+   724  0040  00A7               	movwf	??_servos_loop+1
+   725  0041  3057               	movlw	87
+   726  0042  00A6               	movwf	??_servos_loop
+   727  0043                     u547:
+   728  0043  0BA6               	decfsz	??_servos_loop,f
+   729  0044  2843               	goto	u547
+   730  0045  0BA7               	decfsz	??_servos_loop+1,f
+   731  0046  2843               	goto	u547
+   732  0047  2848               	nop2
+   733                           
+   734                           ;main_brazo.c: 188:             }
+   735  0048  3001               	movlw	1
+   736  0049  07F4               	addwf	_servo1_1,f
+   737  004A  1803               	skipnc
+   738  004B  0AF5               	incf	_servo1_1+1,f
+   739  004C  3000               	movlw	0
+   740  004D  07F5               	addwf	_servo1_1+1,f
+   741  004E                     l1062:
+   742  004E  0875               	movf	_servo1_1+1,w
+   743  004F  3A80               	xorlw	128
+   744  0050  00FF               	movwf	btemp+1
+   745  0051  3080               	movlw	128
+   746  0052  027F               	subwf	btemp+1,w
+   747  0053  1D03               	skipz
+   748  0054  2857               	goto	u395
+   749  0055  3015               	movlw	21
+   750  0056  0274               	subwf	_servo1_1,w
+   751  0057                     u395:
+   752  0057  1C03               	skipc
+   753  0058  285A               	goto	u391
+   754  0059  285B               	goto	u390
+   755  005A                     u391:
+   756  005A  282D               	goto	l96
+   757  005B                     u390:
+   758  005B                     l1064:
+   759                           
+   760                           ;main_brazo.c: 191:         if (x == 2)
+   761  005B  3002               	movlw	2
+   762  005C  0676               	xorwf	_x,w
+   763  005D  0477               	iorwf	_x+1,w
+   764  005E  1D03               	btfss	3,2
+   765  005F  2861               	goto	u401
+   766  0060  2862               	goto	u400
+   767  0061                     u401:
+   768  0061  2892               	goto	l1078
+   769  0062                     u400:
+   770  0062                     l1066:
+   771                           
+   772                           ;main_brazo.c: 192:         {;main_brazo.c: 193:             for (servo1_2 = 0; servo1_2
+      +                           <= 20; servo1_2++)
+   773  0062  01F2               	clrf	_servo1_2
+   774  0063  01F3               	clrf	_servo1_2+1
+   775  0064                     l99:
+   776                           
+   777                           ;main_brazo.c: 194:             {;main_brazo.c: 195:                 PORTDbits.RD0 = 1;
+   778  0064  1283               	bcf	3,5	;RP0=0, select bank0
+   779  0065  1303               	bcf	3,6	;RP1=0, select bank0
+   780  0066  1408               	bsf	8,0	;volatile
+   781  0067                     l1072:
+   782                           
+   783                           ;main_brazo.c: 196:                 _delay((unsigned long)((1.5)*(8000000/4000.0)));
+   784  0067  3004               	movlw	4
+   785  0068  1283               	bcf	3,5	;RP0=0, select bank0
+   786  0069  1303               	bcf	3,6	;RP1=0, select bank0
+   787  006A  00A7               	movwf	??_servos_loop+1
+   788  006B  30E3               	movlw	227
+   789  006C  00A6               	movwf	??_servos_loop
+   790  006D                     u557:
+   791  006D  0BA6               	decfsz	??_servos_loop,f
+   792  006E  286D               	goto	u557
+   793  006F  0BA7               	decfsz	??_servos_loop+1,f
+   794  0070  286D               	goto	u557
+   795  0071  2872               	nop2
+   796  0072                     l1074:
+   797                           
+   798                           ;main_brazo.c: 197:                 PORTDbits.RD0 = 0;
+   799  0072  1283               	bcf	3,5	;RP0=0, select bank0
+   800  0073  1303               	bcf	3,6	;RP1=0, select bank0
+   801  0074  1008               	bcf	8,0	;volatile
+   802                           
+   803                           ;main_brazo.c: 198:                 _delay((unsigned long)((18.5)*(8000000/4000.0)));
+   804  0075  3031               	movlw	49
+   805  0076  1283               	bcf	3,5	;RP0=0, select bank0
+   806  0077  1303               	bcf	3,6	;RP1=0, select bank0
+   807  0078  00A7               	movwf	??_servos_loop+1
+   808  0079  300B               	movlw	11
+   809  007A  00A6               	movwf	??_servos_loop
+   810  007B                     u567:
+   811  007B  0BA6               	decfsz	??_servos_loop,f
+   812  007C  287B               	goto	u567
+   813  007D  0BA7               	decfsz	??_servos_loop+1,f
+   814  007E  287B               	goto	u567
+   815                           
+   816                           ;main_brazo.c: 199:             }
+   817  007F  3001               	movlw	1
+   818  0080  07F2               	addwf	_servo1_2,f
+   819  0081  1803               	skipnc
+   820  0082  0AF3               	incf	_servo1_2+1,f
+   821  0083  3000               	movlw	0
+   822  0084  07F3               	addwf	_servo1_2+1,f
+   823  0085                     l1076:
+   824  0085  0873               	movf	_servo1_2+1,w
+   825  0086  3A80               	xorlw	128
+   826  0087  00FF               	movwf	btemp+1
+   827  0088  3080               	movlw	128
+   828  0089  027F               	subwf	btemp+1,w
+   829  008A  1D03               	skipz
+   830  008B  288E               	goto	u415
+   831  008C  3015               	movlw	21
+   832  008D  0272               	subwf	_servo1_2,w
+   833  008E                     u415:
+   834  008E  1C03               	skipc
+   835  008F  2891               	goto	u411
+   836  0090  2892               	goto	u410
+   837  0091                     u411:
+   838  0091  2864               	goto	l99
+   839  0092                     u410:
+   840  0092                     l1078:
+   841                           
+   842                           ;main_brazo.c: 202:         if (x ==3)
+   843  0092  3003               	movlw	3
+   844  0093  0676               	xorwf	_x,w
+   845  0094  0477               	iorwf	_x+1,w
+   846  0095  1D03               	btfss	3,2
+   847  0096  2898               	goto	u421
+   848  0097  2899               	goto	u420
+   849  0098                     u421:
+   850  0098  28C9               	goto	l1092
+   851  0099                     u420:
+   852  0099                     l1080:
+   853                           
+   854                           ;main_brazo.c: 203:         {;main_brazo.c: 204:             for (servo2_1 = 0; servo2_1
       +                           <= 20; servo2_1++)
-   698  0099  01F2               	clrf	_servo2_1
-   699  009A  01F3               	clrf	_servo2_1+1
-   700  009B                     l72:
-   701                           
-   702                           ;main_brazo.c: 145:             {;main_brazo.c: 146:                 PORTDbits.RD1 = 1;
-   703  009B  1283               	bcf	3,5	;RP0=0, select bank0
-   704  009C  1303               	bcf	3,6	;RP1=0, select bank0
-   705  009D  1488               	bsf	8,1	;volatile
-   706  009E                     l936:
-   707                           
-   708                           ;main_brazo.c: 147:                 _delay((unsigned long)((1)*(8000000/4000.0)));
-   709  009E  3003               	movlw	3
-   710  009F  1283               	bcf	3,5	;RP0=0, select bank0
-   711  00A0  1303               	bcf	3,6	;RP1=0, select bank0
-   712  00A1  00A5               	movwf	??_servos_loop+1
-   713  00A2  3097               	movlw	151
-   714  00A3  00A4               	movwf	??_servos_loop
-   715  00A4                     u477:
-   716  00A4  0BA4               	decfsz	??_servos_loop,f
-   717  00A5  28A4               	goto	u477
-   718  00A6  0BA5               	decfsz	??_servos_loop+1,f
-   719  00A7  28A4               	goto	u477
-   720  00A8                     l938:
-   721                           
-   722                           ;main_brazo.c: 148:                 PORTDbits.RD1 = 0;
-   723  00A8  1283               	bcf	3,5	;RP0=0, select bank0
-   724  00A9  1303               	bcf	3,6	;RP1=0, select bank0
-   725  00AA  1088               	bcf	8,1	;volatile
-   726                           
-   727                           ;main_brazo.c: 149:                 _delay((unsigned long)((19)*(8000000/4000.0)));
-   728  00AB  3032               	movlw	50
-   729  00AC  1283               	bcf	3,5	;RP0=0, select bank0
-   730  00AD  1303               	bcf	3,6	;RP1=0, select bank0
-   731  00AE  00A5               	movwf	??_servos_loop+1
-   732  00AF  3057               	movlw	87
-   733  00B0  00A4               	movwf	??_servos_loop
-   734  00B1                     u487:
-   735  00B1  0BA4               	decfsz	??_servos_loop,f
-   736  00B2  28B1               	goto	u487
-   737  00B3  0BA5               	decfsz	??_servos_loop+1,f
-   738  00B4  28B1               	goto	u487
-   739  00B5  28B6               	nop2
-   740                           
-   741                           ;main_brazo.c: 150:             }
-   742  00B6  3001               	movlw	1
-   743  00B7  07F2               	addwf	_servo2_1,f
-   744  00B8  1803               	skipnc
-   745  00B9  0AF3               	incf	_servo2_1+1,f
-   746  00BA  3000               	movlw	0
-   747  00BB  07F3               	addwf	_servo2_1+1,f
-   748  00BC                     l940:
-   749  00BC  0873               	movf	_servo2_1+1,w
-   750  00BD  3A80               	xorlw	128
-   751  00BE  00FF               	movwf	btemp+1
-   752  00BF  3080               	movlw	128
-   753  00C0  027F               	subwf	btemp+1,w
-   754  00C1  1D03               	skipz
-   755  00C2  28C5               	goto	u345
-   756  00C3  3015               	movlw	21
-   757  00C4  0272               	subwf	_servo2_1,w
-   758  00C5                     u345:
-   759  00C5  1C03               	skipc
-   760  00C6  28C8               	goto	u341
-   761  00C7  28C9               	goto	u340
-   762  00C8                     u341:
-   763  00C8  289B               	goto	l72
-   764  00C9                     u340:
-   765  00C9                     l942:
-   766                           
-   767                           ;main_brazo.c: 153:         if (x==4)
-   768  00C9  3004               	movlw	4
-   769  00CA  0678               	xorwf	_x,w
-   770  00CB  0479               	iorwf	_x+1,w
-   771  00CC  1D03               	btfss	3,2
-   772  00CD  28CF               	goto	u351
-   773  00CE  28D0               	goto	u350
-   774  00CF                     u351:
-   775  00CF  2900               	goto	l956
-   776  00D0                     u350:
-   777  00D0                     l944:
-   778                           
-   779                           ;main_brazo.c: 154:         {;main_brazo.c: 155:             for (servo2_2 = 0; servo2_2
+   855  0099  01F0               	clrf	_servo2_1
+   856  009A  01F1               	clrf	_servo2_1+1
+   857  009B                     l102:
+   858                           
+   859                           ;main_brazo.c: 205:             {;main_brazo.c: 206:                 PORTDbits.RD1 = 1;
+   860  009B  1283               	bcf	3,5	;RP0=0, select bank0
+   861  009C  1303               	bcf	3,6	;RP1=0, select bank0
+   862  009D  1488               	bsf	8,1	;volatile
+   863  009E                     l1086:
+   864                           
+   865                           ;main_brazo.c: 207:                 _delay((unsigned long)((1)*(8000000/4000.0)));
+   866  009E  3003               	movlw	3
+   867  009F  1283               	bcf	3,5	;RP0=0, select bank0
+   868  00A0  1303               	bcf	3,6	;RP1=0, select bank0
+   869  00A1  00A7               	movwf	??_servos_loop+1
+   870  00A2  3097               	movlw	151
+   871  00A3  00A6               	movwf	??_servos_loop
+   872  00A4                     u577:
+   873  00A4  0BA6               	decfsz	??_servos_loop,f
+   874  00A5  28A4               	goto	u577
+   875  00A6  0BA7               	decfsz	??_servos_loop+1,f
+   876  00A7  28A4               	goto	u577
+   877  00A8                     l1088:
+   878                           
+   879                           ;main_brazo.c: 208:                 PORTDbits.RD1 = 0;
+   880  00A8  1283               	bcf	3,5	;RP0=0, select bank0
+   881  00A9  1303               	bcf	3,6	;RP1=0, select bank0
+   882  00AA  1088               	bcf	8,1	;volatile
+   883                           
+   884                           ;main_brazo.c: 209:                 _delay((unsigned long)((19)*(8000000/4000.0)));
+   885  00AB  3032               	movlw	50
+   886  00AC  1283               	bcf	3,5	;RP0=0, select bank0
+   887  00AD  1303               	bcf	3,6	;RP1=0, select bank0
+   888  00AE  00A7               	movwf	??_servos_loop+1
+   889  00AF  3057               	movlw	87
+   890  00B0  00A6               	movwf	??_servos_loop
+   891  00B1                     u587:
+   892  00B1  0BA6               	decfsz	??_servos_loop,f
+   893  00B2  28B1               	goto	u587
+   894  00B3  0BA7               	decfsz	??_servos_loop+1,f
+   895  00B4  28B1               	goto	u587
+   896  00B5  28B6               	nop2
+   897                           
+   898                           ;main_brazo.c: 210:             }
+   899  00B6  3001               	movlw	1
+   900  00B7  07F0               	addwf	_servo2_1,f
+   901  00B8  1803               	skipnc
+   902  00B9  0AF1               	incf	_servo2_1+1,f
+   903  00BA  3000               	movlw	0
+   904  00BB  07F1               	addwf	_servo2_1+1,f
+   905  00BC                     l1090:
+   906  00BC  0871               	movf	_servo2_1+1,w
+   907  00BD  3A80               	xorlw	128
+   908  00BE  00FF               	movwf	btemp+1
+   909  00BF  3080               	movlw	128
+   910  00C0  027F               	subwf	btemp+1,w
+   911  00C1  1D03               	skipz
+   912  00C2  28C5               	goto	u435
+   913  00C3  3015               	movlw	21
+   914  00C4  0270               	subwf	_servo2_1,w
+   915  00C5                     u435:
+   916  00C5  1C03               	skipc
+   917  00C6  28C8               	goto	u431
+   918  00C7  28C9               	goto	u430
+   919  00C8                     u431:
+   920  00C8  289B               	goto	l102
+   921  00C9                     u430:
+   922  00C9                     l1092:
+   923                           
+   924                           ;main_brazo.c: 213:         if (x==4)
+   925  00C9  3004               	movlw	4
+   926  00CA  0676               	xorwf	_x,w
+   927  00CB  0477               	iorwf	_x+1,w
+   928  00CC  1D03               	btfss	3,2
+   929  00CD  28CF               	goto	u441
+   930  00CE  28D0               	goto	u440
+   931  00CF                     u441:
+   932  00CF  2904               	goto	l1106
+   933  00D0                     u440:
+   934  00D0                     l1094:
+   935                           
+   936                           ;main_brazo.c: 214:         {;main_brazo.c: 215:             for (servo2_2 = 0; servo2_2
       +                           <= 20; servo2_2++)
-   780  00D0  01F0               	clrf	_servo2_2
-   781  00D1  01F1               	clrf	_servo2_2+1
-   782  00D2                     l75:
-   783                           
-   784                           ;main_brazo.c: 156:             {;main_brazo.c: 157:                 PORTDbits.RD1 = 1;
-   785  00D2  1283               	bcf	3,5	;RP0=0, select bank0
-   786  00D3  1303               	bcf	3,6	;RP1=0, select bank0
-   787  00D4  1488               	bsf	8,1	;volatile
-   788  00D5                     l950:
-   789                           
-   790                           ;main_brazo.c: 158:                 _delay((unsigned long)((1.5)*(8000000/4000.0)));
-   791  00D5  3004               	movlw	4
-   792  00D6  1283               	bcf	3,5	;RP0=0, select bank0
-   793  00D7  1303               	bcf	3,6	;RP1=0, select bank0
-   794  00D8  00A5               	movwf	??_servos_loop+1
-   795  00D9  30E3               	movlw	227
-   796  00DA  00A4               	movwf	??_servos_loop
-   797  00DB                     u497:
-   798  00DB  0BA4               	decfsz	??_servos_loop,f
-   799  00DC  28DB               	goto	u497
-   800  00DD  0BA5               	decfsz	??_servos_loop+1,f
-   801  00DE  28DB               	goto	u497
-   802  00DF  28E0               	nop2
-   803  00E0                     l952:
-   804                           
-   805                           ;main_brazo.c: 159:                 PORTDbits.RD1 = 0;
-   806  00E0  1283               	bcf	3,5	;RP0=0, select bank0
-   807  00E1  1303               	bcf	3,6	;RP1=0, select bank0
-   808  00E2  1088               	bcf	8,1	;volatile
-   809                           
-   810                           ;main_brazo.c: 160:                 _delay((unsigned long)((18.5)*(8000000/4000.0)));
-   811  00E3  3031               	movlw	49
-   812  00E4  1283               	bcf	3,5	;RP0=0, select bank0
-   813  00E5  1303               	bcf	3,6	;RP1=0, select bank0
-   814  00E6  00A5               	movwf	??_servos_loop+1
-   815  00E7  300B               	movlw	11
-   816  00E8  00A4               	movwf	??_servos_loop
-   817  00E9                     u507:
-   818  00E9  0BA4               	decfsz	??_servos_loop,f
-   819  00EA  28E9               	goto	u507
-   820  00EB  0BA5               	decfsz	??_servos_loop+1,f
-   821  00EC  28E9               	goto	u507
-   822                           
-   823                           ;main_brazo.c: 161:             }
-   824  00ED  3001               	movlw	1
-   825  00EE  07F0               	addwf	_servo2_2,f
-   826  00EF  1803               	skipnc
-   827  00F0  0AF1               	incf	_servo2_2+1,f
-   828  00F1  3000               	movlw	0
-   829  00F2  07F1               	addwf	_servo2_2+1,f
-   830  00F3                     l954:
-   831  00F3  0871               	movf	_servo2_2+1,w
-   832  00F4  3A80               	xorlw	128
-   833  00F5  00FF               	movwf	btemp+1
-   834  00F6  3080               	movlw	128
-   835  00F7  027F               	subwf	btemp+1,w
-   836  00F8  1D03               	skipz
-   837  00F9  28FC               	goto	u365
-   838  00FA  3015               	movlw	21
-   839  00FB  0270               	subwf	_servo2_2,w
-   840  00FC                     u365:
-   841  00FC  1C03               	skipc
-   842  00FD  28FF               	goto	u361
-   843  00FE  2900               	goto	u360
-   844  00FF                     u361:
-   845  00FF  28D2               	goto	l75
-   846  0100                     u360:
-   847  0100                     l956:
-   848                           
-   849                           ;main_brazo.c: 164:         if (x==5)
-   850  0100  3005               	movlw	5
-   851  0101  0678               	xorwf	_x,w
-   852  0102  0479               	iorwf	_x+1,w
-   853  0103  1D03               	btfss	3,2
-   854  0104  2906               	goto	u371
-   855  0105  2907               	goto	u370
-   856  0106                     u371:
-   857  0106  293B               	goto	l970
-   858  0107                     u370:
-   859  0107                     l958:
-   860                           
-   861                           ;main_brazo.c: 165:         {;main_brazo.c: 166:             for (servo3_1 = 0; servo3_1
+   937  00D0  1283               	bcf	3,5	;RP0=0, select bank0
+   938  00D1  1303               	bcf	3,6	;RP1=0, select bank0
+   939  00D2  01A4               	clrf	_servo2_2
+   940  00D3  01A5               	clrf	_servo2_2+1
+   941  00D4                     l105:
+   942                           
+   943                           ;main_brazo.c: 216:             {;main_brazo.c: 217:                 PORTDbits.RD1 = 1;
+   944  00D4  1283               	bcf	3,5	;RP0=0, select bank0
+   945  00D5  1303               	bcf	3,6	;RP1=0, select bank0
+   946  00D6  1488               	bsf	8,1	;volatile
+   947  00D7                     l1100:
+   948                           
+   949                           ;main_brazo.c: 218:                 _delay((unsigned long)((1.5)*(8000000/4000.0)));
+   950  00D7  3004               	movlw	4
+   951  00D8  1283               	bcf	3,5	;RP0=0, select bank0
+   952  00D9  1303               	bcf	3,6	;RP1=0, select bank0
+   953  00DA  00A7               	movwf	??_servos_loop+1
+   954  00DB  30E3               	movlw	227
+   955  00DC  00A6               	movwf	??_servos_loop
+   956  00DD                     u597:
+   957  00DD  0BA6               	decfsz	??_servos_loop,f
+   958  00DE  28DD               	goto	u597
+   959  00DF  0BA7               	decfsz	??_servos_loop+1,f
+   960  00E0  28DD               	goto	u597
+   961  00E1  28E2               	nop2
+   962  00E2                     l1102:
+   963                           
+   964                           ;main_brazo.c: 219:                 PORTDbits.RD1 = 0;
+   965  00E2  1283               	bcf	3,5	;RP0=0, select bank0
+   966  00E3  1303               	bcf	3,6	;RP1=0, select bank0
+   967  00E4  1088               	bcf	8,1	;volatile
+   968                           
+   969                           ;main_brazo.c: 220:                 _delay((unsigned long)((18.5)*(8000000/4000.0)));
+   970  00E5  3031               	movlw	49
+   971  00E6  1283               	bcf	3,5	;RP0=0, select bank0
+   972  00E7  1303               	bcf	3,6	;RP1=0, select bank0
+   973  00E8  00A7               	movwf	??_servos_loop+1
+   974  00E9  300B               	movlw	11
+   975  00EA  00A6               	movwf	??_servos_loop
+   976  00EB                     u607:
+   977  00EB  0BA6               	decfsz	??_servos_loop,f
+   978  00EC  28EB               	goto	u607
+   979  00ED  0BA7               	decfsz	??_servos_loop+1,f
+   980  00EE  28EB               	goto	u607
+   981                           
+   982                           ;main_brazo.c: 221:             }
+   983  00EF  3001               	movlw	1
+   984  00F0  1283               	bcf	3,5	;RP0=0, select bank0
+   985  00F1  1303               	bcf	3,6	;RP1=0, select bank0
+   986  00F2  07A4               	addwf	_servo2_2,f
+   987  00F3  1803               	skipnc
+   988  00F4  0AA5               	incf	_servo2_2+1,f
+   989  00F5  3000               	movlw	0
+   990  00F6  07A5               	addwf	_servo2_2+1,f
+   991  00F7                     l1104:
+   992  00F7  0825               	movf	_servo2_2+1,w
+   993  00F8  3A80               	xorlw	128
+   994  00F9  00FF               	movwf	btemp+1
+   995  00FA  3080               	movlw	128
+   996  00FB  027F               	subwf	btemp+1,w
+   997  00FC  1D03               	skipz
+   998  00FD  2900               	goto	u455
+   999  00FE  3015               	movlw	21
+  1000  00FF  0224               	subwf	_servo2_2,w
+  1001  0100                     u455:
+  1002  0100  1C03               	skipc
+  1003  0101  2903               	goto	u451
+  1004  0102  2904               	goto	u450
+  1005  0103                     u451:
+  1006  0103  28D4               	goto	l105
+  1007  0104                     u450:
+  1008  0104                     l1106:
+  1009                           
+  1010                           ;main_brazo.c: 224:         if (x==5)
+  1011  0104  3005               	movlw	5
+  1012  0105  0676               	xorwf	_x,w
+  1013  0106  0477               	iorwf	_x+1,w
+  1014  0107  1D03               	btfss	3,2
+  1015  0108  290A               	goto	u461
+  1016  0109  290B               	goto	u460
+  1017  010A                     u461:
+  1018  010A  293F               	goto	l1120
+  1019  010B                     u460:
+  1020  010B                     l1108:
+  1021                           
+  1022                           ;main_brazo.c: 225:         {;main_brazo.c: 226:             for (servo3_1 = 0; servo3_1
       +                           <= 20; servo3_1++)
-   862  0107  1283               	bcf	3,5	;RP0=0, select bank0
-   863  0108  1303               	bcf	3,6	;RP1=0, select bank0
-   864  0109  01A2               	clrf	_servo3_1
-   865  010A  01A3               	clrf	_servo3_1+1
-   866  010B                     l78:
-   867                           
-   868                           ;main_brazo.c: 167:             {;main_brazo.c: 168:                 PORTDbits.RD2 = 1;
-   869  010B  1283               	bcf	3,5	;RP0=0, select bank0
-   870  010C  1303               	bcf	3,6	;RP1=0, select bank0
-   871  010D  1508               	bsf	8,2	;volatile
-   872  010E                     l964:
-   873                           
-   874                           ;main_brazo.c: 169:                 _delay((unsigned long)((1)*(8000000/4000.0)));
-   875  010E  3003               	movlw	3
-   876  010F  1283               	bcf	3,5	;RP0=0, select bank0
-   877  0110  1303               	bcf	3,6	;RP1=0, select bank0
-   878  0111  00A5               	movwf	??_servos_loop+1
-   879  0112  3097               	movlw	151
-   880  0113  00A4               	movwf	??_servos_loop
-   881  0114                     u517:
-   882  0114  0BA4               	decfsz	??_servos_loop,f
-   883  0115  2914               	goto	u517
-   884  0116  0BA5               	decfsz	??_servos_loop+1,f
-   885  0117  2914               	goto	u517
-   886  0118                     l966:
-   887                           
-   888                           ;main_brazo.c: 170:                 PORTDbits.RD2 = 0;
-   889  0118  1283               	bcf	3,5	;RP0=0, select bank0
-   890  0119  1303               	bcf	3,6	;RP1=0, select bank0
-   891  011A  1108               	bcf	8,2	;volatile
-   892                           
-   893                           ;main_brazo.c: 171:                 _delay((unsigned long)((19)*(8000000/4000.0)));
-   894  011B  3032               	movlw	50
-   895  011C  1283               	bcf	3,5	;RP0=0, select bank0
-   896  011D  1303               	bcf	3,6	;RP1=0, select bank0
-   897  011E  00A5               	movwf	??_servos_loop+1
-   898  011F  3057               	movlw	87
-   899  0120  00A4               	movwf	??_servos_loop
-   900  0121                     u527:
-   901  0121  0BA4               	decfsz	??_servos_loop,f
-   902  0122  2921               	goto	u527
-   903  0123  0BA5               	decfsz	??_servos_loop+1,f
-   904  0124  2921               	goto	u527
-   905  0125  2926               	nop2
-   906                           
-   907                           ;main_brazo.c: 172:             }
-   908  0126  3001               	movlw	1
-   909  0127  1283               	bcf	3,5	;RP0=0, select bank0
-   910  0128  1303               	bcf	3,6	;RP1=0, select bank0
-   911  0129  07A2               	addwf	_servo3_1,f
-   912  012A  1803               	skipnc
-   913  012B  0AA3               	incf	_servo3_1+1,f
-   914  012C  3000               	movlw	0
-   915  012D  07A3               	addwf	_servo3_1+1,f
-   916  012E                     l968:
-   917  012E  0823               	movf	_servo3_1+1,w
-   918  012F  3A80               	xorlw	128
-   919  0130  00FF               	movwf	btemp+1
-   920  0131  3080               	movlw	128
-   921  0132  027F               	subwf	btemp+1,w
-   922  0133  1D03               	skipz
-   923  0134  2937               	goto	u385
-   924  0135  3015               	movlw	21
-   925  0136  0222               	subwf	_servo3_1,w
-   926  0137                     u385:
-   927  0137  1C03               	skipc
-   928  0138  293A               	goto	u381
-   929  0139  293B               	goto	u380
-   930  013A                     u381:
-   931  013A  290B               	goto	l78
-   932  013B                     u380:
-   933  013B                     l970:
-   934                           
-   935                           ;main_brazo.c: 175:         if (x==6)
-   936  013B  3006               	movlw	6
-   937  013C  0678               	xorwf	_x,w
-   938  013D  0479               	iorwf	_x+1,w
-   939  013E  1D03               	btfss	3,2
-   940  013F  2941               	goto	u391
-   941  0140  2942               	goto	u390
-   942  0141                     u391:
-   943  0141  2976               	goto	l984
-   944  0142                     u390:
-   945  0142                     l972:
-   946                           
-   947                           ;main_brazo.c: 176:         {;main_brazo.c: 177:             for (servo3_2 = 0; servo3_2
+  1023  010B  1283               	bcf	3,5	;RP0=0, select bank0
+  1024  010C  1303               	bcf	3,6	;RP1=0, select bank0
+  1025  010D  01A2               	clrf	_servo3_1
+  1026  010E  01A3               	clrf	_servo3_1+1
+  1027  010F                     l108:
+  1028                           
+  1029                           ;main_brazo.c: 227:             {;main_brazo.c: 228:                 PORTDbits.RD2 = 1;
+  1030  010F  1283               	bcf	3,5	;RP0=0, select bank0
+  1031  0110  1303               	bcf	3,6	;RP1=0, select bank0
+  1032  0111  1508               	bsf	8,2	;volatile
+  1033  0112                     l1114:
+  1034                           
+  1035                           ;main_brazo.c: 229:                 _delay((unsigned long)((1)*(8000000/4000.0)));
+  1036  0112  3003               	movlw	3
+  1037  0113  1283               	bcf	3,5	;RP0=0, select bank0
+  1038  0114  1303               	bcf	3,6	;RP1=0, select bank0
+  1039  0115  00A7               	movwf	??_servos_loop+1
+  1040  0116  3097               	movlw	151
+  1041  0117  00A6               	movwf	??_servos_loop
+  1042  0118                     u617:
+  1043  0118  0BA6               	decfsz	??_servos_loop,f
+  1044  0119  2918               	goto	u617
+  1045  011A  0BA7               	decfsz	??_servos_loop+1,f
+  1046  011B  2918               	goto	u617
+  1047  011C                     l1116:
+  1048                           
+  1049                           ;main_brazo.c: 230:                 PORTDbits.RD2 = 0;
+  1050  011C  1283               	bcf	3,5	;RP0=0, select bank0
+  1051  011D  1303               	bcf	3,6	;RP1=0, select bank0
+  1052  011E  1108               	bcf	8,2	;volatile
+  1053                           
+  1054                           ;main_brazo.c: 231:                 _delay((unsigned long)((19)*(8000000/4000.0)));
+  1055  011F  3032               	movlw	50
+  1056  0120  1283               	bcf	3,5	;RP0=0, select bank0
+  1057  0121  1303               	bcf	3,6	;RP1=0, select bank0
+  1058  0122  00A7               	movwf	??_servos_loop+1
+  1059  0123  3057               	movlw	87
+  1060  0124  00A6               	movwf	??_servos_loop
+  1061  0125                     u627:
+  1062  0125  0BA6               	decfsz	??_servos_loop,f
+  1063  0126  2925               	goto	u627
+  1064  0127  0BA7               	decfsz	??_servos_loop+1,f
+  1065  0128  2925               	goto	u627
+  1066  0129  292A               	nop2
+  1067                           
+  1068                           ;main_brazo.c: 232:             }
+  1069  012A  3001               	movlw	1
+  1070  012B  1283               	bcf	3,5	;RP0=0, select bank0
+  1071  012C  1303               	bcf	3,6	;RP1=0, select bank0
+  1072  012D  07A2               	addwf	_servo3_1,f
+  1073  012E  1803               	skipnc
+  1074  012F  0AA3               	incf	_servo3_1+1,f
+  1075  0130  3000               	movlw	0
+  1076  0131  07A3               	addwf	_servo3_1+1,f
+  1077  0132                     l1118:
+  1078  0132  0823               	movf	_servo3_1+1,w
+  1079  0133  3A80               	xorlw	128
+  1080  0134  00FF               	movwf	btemp+1
+  1081  0135  3080               	movlw	128
+  1082  0136  027F               	subwf	btemp+1,w
+  1083  0137  1D03               	skipz
+  1084  0138  293B               	goto	u475
+  1085  0139  3015               	movlw	21
+  1086  013A  0222               	subwf	_servo3_1,w
+  1087  013B                     u475:
+  1088  013B  1C03               	skipc
+  1089  013C  293E               	goto	u471
+  1090  013D  293F               	goto	u470
+  1091  013E                     u471:
+  1092  013E  290F               	goto	l108
+  1093  013F                     u470:
+  1094  013F                     l1120:
+  1095                           
+  1096                           ;main_brazo.c: 235:         if (x==6)
+  1097  013F  3006               	movlw	6
+  1098  0140  0676               	xorwf	_x,w
+  1099  0141  0477               	iorwf	_x+1,w
+  1100  0142  1D03               	btfss	3,2
+  1101  0143  2945               	goto	u481
+  1102  0144  2946               	goto	u480
+  1103  0145                     u481:
+  1104  0145  297A               	goto	l1134
+  1105  0146                     u480:
+  1106  0146                     l1122:
+  1107                           
+  1108                           ;main_brazo.c: 236:         {;main_brazo.c: 237:             for (servo3_2 = 0; servo3_2
       +                           <= 20; servo3_2++)
-   948  0142  1283               	bcf	3,5	;RP0=0, select bank0
-   949  0143  1303               	bcf	3,6	;RP1=0, select bank0
-   950  0144  01A0               	clrf	_servo3_2
-   951  0145  01A1               	clrf	_servo3_2+1
-   952  0146                     l81:
-   953                           
-   954                           ;main_brazo.c: 178:             {;main_brazo.c: 179:                 PORTDbits.RD2 = 1;
-   955  0146  1283               	bcf	3,5	;RP0=0, select bank0
-   956  0147  1303               	bcf	3,6	;RP1=0, select bank0
-   957  0148  1508               	bsf	8,2	;volatile
-   958  0149                     l978:
-   959                           
-   960                           ;main_brazo.c: 180:                 _delay((unsigned long)((1.5)*(8000000/4000.0)));
-   961  0149  3004               	movlw	4
-   962  014A  1283               	bcf	3,5	;RP0=0, select bank0
-   963  014B  1303               	bcf	3,6	;RP1=0, select bank0
-   964  014C  00A5               	movwf	??_servos_loop+1
-   965  014D  30E3               	movlw	227
-   966  014E  00A4               	movwf	??_servos_loop
-   967  014F                     u537:
-   968  014F  0BA4               	decfsz	??_servos_loop,f
-   969  0150  294F               	goto	u537
-   970  0151  0BA5               	decfsz	??_servos_loop+1,f
-   971  0152  294F               	goto	u537
-   972  0153  2954               	nop2
-   973  0154                     l980:
-   974                           
-   975                           ;main_brazo.c: 181:                 PORTDbits.RD2 = 0;
-   976  0154  1283               	bcf	3,5	;RP0=0, select bank0
-   977  0155  1303               	bcf	3,6	;RP1=0, select bank0
-   978  0156  1108               	bcf	8,2	;volatile
-   979                           
-   980                           ;main_brazo.c: 182:                 _delay((unsigned long)((18.5)*(8000000/4000.0)));
-   981  0157  3031               	movlw	49
-   982  0158  1283               	bcf	3,5	;RP0=0, select bank0
-   983  0159  1303               	bcf	3,6	;RP1=0, select bank0
-   984  015A  00A5               	movwf	??_servos_loop+1
-   985  015B  300B               	movlw	11
-   986  015C  00A4               	movwf	??_servos_loop
-   987  015D                     u547:
-   988  015D  0BA4               	decfsz	??_servos_loop,f
-   989  015E  295D               	goto	u547
-   990  015F  0BA5               	decfsz	??_servos_loop+1,f
-   991  0160  295D               	goto	u547
-   992                           
-   993                           ;main_brazo.c: 183:             }
-   994  0161  3001               	movlw	1
-   995  0162  1283               	bcf	3,5	;RP0=0, select bank0
-   996  0163  1303               	bcf	3,6	;RP1=0, select bank0
-   997  0164  07A0               	addwf	_servo3_2,f
-   998  0165  1803               	skipnc
-   999  0166  0AA1               	incf	_servo3_2+1,f
-  1000  0167  3000               	movlw	0
-  1001  0168  07A1               	addwf	_servo3_2+1,f
-  1002  0169                     l982:
-  1003  0169  0821               	movf	_servo3_2+1,w
-  1004  016A  3A80               	xorlw	128
-  1005  016B  00FF               	movwf	btemp+1
-  1006  016C  3080               	movlw	128
-  1007  016D  027F               	subwf	btemp+1,w
-  1008  016E  1D03               	skipz
-  1009  016F  2972               	goto	u405
-  1010  0170  3015               	movlw	21
-  1011  0171  0220               	subwf	_servo3_2,w
-  1012  0172                     u405:
-  1013  0172  1C03               	skipc
-  1014  0173  2975               	goto	u401
-  1015  0174  2976               	goto	u400
-  1016  0175                     u401:
-  1017  0175  2946               	goto	l81
-  1018  0176                     u400:
-  1019  0176                     l984:
-  1020                           
-  1021                           ;main_brazo.c: 185:         if (x==7)
-  1022  0176  3007               	movlw	7
-  1023  0177  0678               	xorwf	_x,w
-  1024  0178  0479               	iorwf	_x+1,w
-  1025  0179  1D03               	btfss	3,2
-  1026  017A  297C               	goto	u411
-  1027  017B  297D               	goto	u410
-  1028  017C                     u411:
-  1029  017C  297F               	goto	l988
-  1030  017D                     u410:
-  1031  017D                     l986:
-  1032                           
-  1033                           ;main_brazo.c: 186:         {;main_brazo.c: 187:             x=0;
-  1034  017D  01F8               	clrf	_x
-  1035  017E  01F9               	clrf	_x+1
-  1036  017F                     l988:
-  1037                           
-  1038                           ;main_brazo.c: 189:     }
-  1039  017F  3001               	movlw	1
-  1040  0180  07F8               	addwf	_x,f
-  1041  0181  1803               	skipnc
-  1042  0182  0AF9               	incf	_x+1,f
-  1043  0183  3000               	movlw	0
-  1044  0184  07F9               	addwf	_x+1,f
-  1045  0185                     l990:
-  1046  0185  0879               	movf	_x+1,w
-  1047  0186  3A80               	xorlw	128
-  1048  0187  00FF               	movwf	btemp+1
-  1049  0188  3080               	movlw	128
-  1050  0189  027F               	subwf	btemp+1,w
-  1051  018A  1D03               	skipz
-  1052  018B  298E               	goto	u425
-  1053  018C  3008               	movlw	8
-  1054  018D  0278               	subwf	_x,w
-  1055  018E                     u425:
-  1056  018E  1C03               	skipc
-  1057  018F  2991               	goto	u421
-  1058  0190  2992               	goto	u420
-  1059  0191                     u421:
-  1060  0191  2825               	goto	l900
-  1061  0192                     u420:
-  1062  0192                     l84:
-  1063  0192  0008               	return
-  1064  0193                     __end_of_servos_loop:
-  1065                           
-  1066                           	psect	text3
-  1067  01BF                     __ptext3:	
-  1068 ;; *************** function _isr *****************
-  1069 ;; Defined at:
-  1070 ;;		line 59 in file "main_brazo.c"
-  1071 ;; Parameters:    Size  Location     Type
-  1072 ;;		None
-  1073 ;; Auto vars:     Size  Location     Type
-  1074 ;;		None
-  1075 ;; Return value:  Size  Location     Type
-  1076 ;;                  1    wreg      void 
-  1077 ;; Registers used:
-  1078 ;;		None
-  1079 ;; Tracked objects:
-  1080 ;;		On entry : 0/0
-  1081 ;;		On exit  : 0/0
-  1082 ;;		Unchanged: 0/0
-  1083 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-  1084 ;;      Params:         0       0       0       0       0
-  1085 ;;      Locals:         0       0       0       0       0
-  1086 ;;      Temps:          2       0       0       0       0
-  1087 ;;      Totals:         2       0       0       0       0
-  1088 ;;Total ram usage:        2 bytes
-  1089 ;; Hardware stack levels used:    1
-  1090 ;; This function calls:
-  1091 ;;		Nothing
-  1092 ;; This function is called by:
-  1093 ;;		Interrupt level 1
-  1094 ;; This function uses a non-reentrant model
-  1095 ;;
-  1096                           
-  1097                           
-  1098                           ;psect for function _isr
-  1099  01BF                     _isr:
-  1100  01BF                     i1l49:
-  1101  01BF  087B               	movf	??_isr+1,w
-  1102  01C0  008A               	movwf	10
-  1103  01C1  0E7A               	swapf	??_isr,w
-  1104  01C2  0083               	movwf	3
-  1105  01C3  0EFE               	swapf	btemp,f
-  1106  01C4  0E7E               	swapf	btemp,w
-  1107  01C5  0009               	retfie
-  1108  01C6                     __end_of_isr:
-  1109  007E                     btemp	set	126	;btemp
-  1110  007E                     wtemp0	set	126
-  1111                           
-  1112                           	psect	intentry
-  1113  0004                     __pintentry:	
-  1114                           ;incstack = 0
-  1115                           ; Regs used in _isr: []
-  1116                           
-  1117  0004                     interrupt_function:
-  1118  007E                     saved_w	set	btemp
-  1119  0004  00FE               	movwf	btemp
-  1120  0005  0E03               	swapf	3,w
-  1121  0006  00FA               	movwf	??_isr
-  1122  0007  080A               	movf	10,w
-  1123  0008  00FB               	movwf	??_isr+1
-  1124  0009  120A  118A  29BF   	ljmp	_isr
-  1125                           
-  1126                           	psect	config
-  1127                           
-  1128                           ;Config register CONFIG1 @ 0x2007
-  1129                           ;	Oscillator Selection bits
-  1130                           ;	FOSC = INTRC_NOCLKOUT, INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O f
-      +                          unction on RA7/OSC1/CLKIN
-  1131                           ;	Watchdog Timer Enable bit
-  1132                           ;	WDTE = OFF, WDT disabled and can be enabled by SWDTEN bit of the WDTCON register
-  1133                           ;	Power-up Timer Enable bit
-  1134                           ;	PWRTE = OFF, PWRT disabled
-  1135                           ;	RE3/MCLR pin function select bit
-  1136                           ;	MCLRE = OFF, RE3/MCLR pin function is digital input, MCLR internally tied to VDD
-  1137                           ;	Code Protection bit
-  1138                           ;	CP = OFF, Program memory code protection is disabled
-  1139                           ;	Data Code Protection bit
-  1140                           ;	CPD = OFF, Data memory code protection is disabled
-  1141                           ;	Brown Out Reset Selection bits
-  1142                           ;	BOREN = OFF, BOR disabled
-  1143                           ;	Internal External Switchover bit
-  1144                           ;	IESO = OFF, Internal/External Switchover mode is disabled
-  1145                           ;	Fail-Safe Clock Monitor Enabled bit
-  1146                           ;	FCMEN = OFF, Fail-Safe Clock Monitor is disabled
-  1147                           ;	Low Voltage Programming Enable bit
-  1148                           ;	LVP = ON, RB3/PGM pin has PGM function, low voltage programming enabled
-  1149                           ;	In-Circuit Debugger Mode bit
-  1150                           ;	DEBUG = 0x1, unprogrammed default
-  1151  2007                     	org	8199
-  1152  2007  30D4               	dw	12500
+  1109  0146  1283               	bcf	3,5	;RP0=0, select bank0
+  1110  0147  1303               	bcf	3,6	;RP1=0, select bank0
+  1111  0148  01A0               	clrf	_servo3_2
+  1112  0149  01A1               	clrf	_servo3_2+1
+  1113  014A                     l111:
+  1114                           
+  1115                           ;main_brazo.c: 238:             {;main_brazo.c: 239:                 PORTDbits.RD2 = 1;
+  1116  014A  1283               	bcf	3,5	;RP0=0, select bank0
+  1117  014B  1303               	bcf	3,6	;RP1=0, select bank0
+  1118  014C  1508               	bsf	8,2	;volatile
+  1119  014D                     l1128:
+  1120                           
+  1121                           ;main_brazo.c: 240:                 _delay((unsigned long)((1.5)*(8000000/4000.0)));
+  1122  014D  3004               	movlw	4
+  1123  014E  1283               	bcf	3,5	;RP0=0, select bank0
+  1124  014F  1303               	bcf	3,6	;RP1=0, select bank0
+  1125  0150  00A7               	movwf	??_servos_loop+1
+  1126  0151  30E3               	movlw	227
+  1127  0152  00A6               	movwf	??_servos_loop
+  1128  0153                     u637:
+  1129  0153  0BA6               	decfsz	??_servos_loop,f
+  1130  0154  2953               	goto	u637
+  1131  0155  0BA7               	decfsz	??_servos_loop+1,f
+  1132  0156  2953               	goto	u637
+  1133  0157  2958               	nop2
+  1134  0158                     l1130:
+  1135                           
+  1136                           ;main_brazo.c: 241:                 PORTDbits.RD2 = 0;
+  1137  0158  1283               	bcf	3,5	;RP0=0, select bank0
+  1138  0159  1303               	bcf	3,6	;RP1=0, select bank0
+  1139  015A  1108               	bcf	8,2	;volatile
+  1140                           
+  1141                           ;main_brazo.c: 242:                 _delay((unsigned long)((18.5)*(8000000/4000.0)));
+  1142  015B  3031               	movlw	49
+  1143  015C  1283               	bcf	3,5	;RP0=0, select bank0
+  1144  015D  1303               	bcf	3,6	;RP1=0, select bank0
+  1145  015E  00A7               	movwf	??_servos_loop+1
+  1146  015F  300B               	movlw	11
+  1147  0160  00A6               	movwf	??_servos_loop
+  1148  0161                     u647:
+  1149  0161  0BA6               	decfsz	??_servos_loop,f
+  1150  0162  2961               	goto	u647
+  1151  0163  0BA7               	decfsz	??_servos_loop+1,f
+  1152  0164  2961               	goto	u647
   1153                           
-  1154                           ;Config register CONFIG2 @ 0x2008
-  1155                           ;	Brown-out Reset Selection bit
-  1156                           ;	BOR4V = BOR40V, Brown-out Reset set to 4.0V
-  1157                           ;	Flash Program Memory Self Write Enable bits
-  1158                           ;	WRT = OFF, Write protection off
-  1159  2008                     	org	8200
-  1160  2008  3FFF               	dw	16383
+  1154                           ;main_brazo.c: 243:             }
+  1155  0165  3001               	movlw	1
+  1156  0166  1283               	bcf	3,5	;RP0=0, select bank0
+  1157  0167  1303               	bcf	3,6	;RP1=0, select bank0
+  1158  0168  07A0               	addwf	_servo3_2,f
+  1159  0169  1803               	skipnc
+  1160  016A  0AA1               	incf	_servo3_2+1,f
+  1161  016B  3000               	movlw	0
+  1162  016C  07A1               	addwf	_servo3_2+1,f
+  1163  016D                     l1132:
+  1164  016D  0821               	movf	_servo3_2+1,w
+  1165  016E  3A80               	xorlw	128
+  1166  016F  00FF               	movwf	btemp+1
+  1167  0170  3080               	movlw	128
+  1168  0171  027F               	subwf	btemp+1,w
+  1169  0172  1D03               	skipz
+  1170  0173  2976               	goto	u495
+  1171  0174  3015               	movlw	21
+  1172  0175  0220               	subwf	_servo3_2,w
+  1173  0176                     u495:
+  1174  0176  1C03               	skipc
+  1175  0177  2979               	goto	u491
+  1176  0178  297A               	goto	u490
+  1177  0179                     u491:
+  1178  0179  294A               	goto	l111
+  1179  017A                     u490:
+  1180  017A                     l1134:
+  1181                           
+  1182                           ;main_brazo.c: 245:         if (x==7)
+  1183  017A  3007               	movlw	7
+  1184  017B  0676               	xorwf	_x,w
+  1185  017C  0477               	iorwf	_x+1,w
+  1186  017D  1D03               	btfss	3,2
+  1187  017E  2980               	goto	u501
+  1188  017F  2981               	goto	u500
+  1189  0180                     u501:
+  1190  0180  2983               	goto	l1138
+  1191  0181                     u500:
+  1192  0181                     l1136:
+  1193                           
+  1194                           ;main_brazo.c: 246:         {;main_brazo.c: 247:             x=0;
+  1195  0181  01F6               	clrf	_x
+  1196  0182  01F7               	clrf	_x+1
+  1197  0183                     l1138:
+  1198                           
+  1199                           ;main_brazo.c: 249:     }
+  1200  0183  3001               	movlw	1
+  1201  0184  07F6               	addwf	_x,f
+  1202  0185  1803               	skipnc
+  1203  0186  0AF7               	incf	_x+1,f
+  1204  0187  3000               	movlw	0
+  1205  0188  07F7               	addwf	_x+1,f
+  1206  0189                     l1140:
+  1207  0189  0877               	movf	_x+1,w
+  1208  018A  3A80               	xorlw	128
+  1209  018B  00FF               	movwf	btemp+1
+  1210  018C  3080               	movlw	128
+  1211  018D  027F               	subwf	btemp+1,w
+  1212  018E  1D03               	skipz
+  1213  018F  2992               	goto	u515
+  1214  0190  3008               	movlw	8
+  1215  0191  0276               	subwf	_x,w
+  1216  0192                     u515:
+  1217  0192  1C03               	skipc
+  1218  0193  2995               	goto	u511
+  1219  0194  2996               	goto	u510
+  1220  0195                     u511:
+  1221  0195  2825               	goto	l1050
+  1222  0196                     u510:
+  1223  0196                     l114:
+  1224  0196  0008               	return
+  1225  0197                     __end_of_servos_loop:
+  1226                           
+  1227                           	psect	text3
+  1228  0197                     __ptext3:	
+  1229 ;; *************** function _isr *****************
+  1230 ;; Defined at:
+  1231 ;;		line 59 in file "main_brazo.c"
+  1232 ;; Parameters:    Size  Location     Type
+  1233 ;;		None
+  1234 ;; Auto vars:     Size  Location     Type
+  1235 ;;		None
+  1236 ;; Return value:  Size  Location     Type
+  1237 ;;                  1    wreg      void 
+  1238 ;; Registers used:
+  1239 ;;		wreg, status,2, status,0
+  1240 ;; Tracked objects:
+  1241 ;;		On entry : 0/0
+  1242 ;;		On exit  : 0/0
+  1243 ;;		Unchanged: 0/0
+  1244 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1245 ;;      Params:         0       0       0       0       0
+  1246 ;;      Locals:         0       0       0       0       0
+  1247 ;;      Temps:          4       0       0       0       0
+  1248 ;;      Totals:         4       0       0       0       0
+  1249 ;;Total ram usage:        4 bytes
+  1250 ;; Hardware stack levels used:    1
+  1251 ;; This function calls:
+  1252 ;;		Nothing
+  1253 ;; This function is called by:
+  1254 ;;		Interrupt level 1
+  1255 ;; This function uses a non-reentrant model
+  1256 ;;
+  1257                           
+  1258                           
+  1259                           ;psect for function _isr
+  1260  0197                     _isr:
+  1261  0197                     i1l862:
+  1262                           
+  1263                           ;main_brazo.c: 61:     if (PIR1bits.ADIF)
+  1264  0197  1283               	bcf	3,5	;RP0=0, select bank0
+  1265  0198  1303               	bcf	3,6	;RP1=0, select bank0
+  1266  0199  1F0C               	btfss	12,6	;volatile
+  1267  019A  299C               	goto	u16_21
+  1268  019B  299D               	goto	u16_20
+  1269  019C                     u16_21:
+  1270  019C  29FF               	goto	i1l76
+  1271  019D                     u16_20:
+  1272  019D                     i1l864:
+  1273                           
+  1274                           ;main_brazo.c: 62:     {;main_brazo.c: 63:         if (ADCON0bits.CHS ==0)
+  1275  019D  0C1F               	rrf	31,w	;volatile
+  1276  019E  00F8               	movwf	??_isr
+  1277  019F  0C78               	rrf	??_isr,w
+  1278  01A0  390F               	andlw	15
+  1279  01A1  3A00               	xorlw	0
+  1280  01A2  1D03               	skipz
+  1281  01A3  29A5               	goto	u17_21
+  1282  01A4  29A6               	goto	u17_20
+  1283  01A5                     u17_21:
+  1284  01A5  29CE               	goto	i1l74
+  1285  01A6                     u17_20:
+  1286  01A6                     i1l866:
+  1287                           
+  1288                           ;main_brazo.c: 64:         {;main_brazo.c: 65:             CCPR1L = (ADRESH>>1)+62;
+  1289  01A6  081E               	movf	30,w	;volatile
+  1290  01A7  00F8               	movwf	??_isr
+  1291  01A8  1003               	clrc
+  1292  01A9  0C78               	rrf	??_isr,w
+  1293  01AA  3E3E               	addlw	62
+  1294  01AB  0095               	movwf	21	;volatile
+  1295                           
+  1296                           ;main_brazo.c: 66:             CCP1CONbits.DC1B1 = ADRESH & 0b01;
+  1297  01AC  081E               	movf	30,w	;volatile
+  1298  01AD  3901               	andlw	1
+  1299  01AE  00F8               	movwf	??_isr
+  1300  01AF  0EF8               	swapf	??_isr,f
+  1301  01B0  0DF8               	rlf	??_isr,f
+  1302  01B1  0817               	movf	23,w	;volatile
+  1303  01B2  0678               	xorwf	??_isr,w
+  1304  01B3  39DF               	andlw	-33
+  1305  01B4  0678               	xorwf	??_isr,w
+  1306  01B5  0097               	movwf	23	;volatile
+  1307                           
+  1308                           ;main_brazo.c: 67:             CCP1CONbits.DC1B0 = (ADRESL>>7);
+  1309  01B6  1683               	bsf	3,5	;RP0=1, select bank1
+  1310  01B7  1303               	bcf	3,6	;RP1=0, select bank1
+  1311  01B8  081E               	movf	30,w	;volatile
+  1312  01B9  00F8               	movwf	??_isr
+  1313  01BA  3007               	movlw	7
+  1314  01BB                     u18_25:
+  1315  01BB  1003               	clrc
+  1316  01BC  0CF8               	rrf	??_isr,f
+  1317  01BD  3EFF               	addlw	-1
+  1318  01BE  1D03               	skipz
+  1319  01BF  29BB               	goto	u18_25
+  1320  01C0  0878               	movf	??_isr,w
+  1321  01C1  00F9               	movwf	??_isr+1
+  1322  01C2  0EF9               	swapf	??_isr+1,f
+  1323  01C3  1283               	bcf	3,5	;RP0=0, select bank0
+  1324  01C4  1303               	bcf	3,6	;RP1=0, select bank0
+  1325  01C5  0817               	movf	23,w	;volatile
+  1326  01C6  0679               	xorwf	??_isr+1,w
+  1327  01C7  39EF               	andlw	-17
+  1328  01C8  0679               	xorwf	??_isr+1,w
+  1329  01C9  0097               	movwf	23	;volatile
+  1330                           
+  1331                           ;main_brazo.c: 68:             ADCON0bits.CHS = 1;
+  1332  01CA  081F               	movf	31,w	;volatile
+  1333  01CB  39C3               	andlw	-61
+  1334  01CC  3804               	iorlw	4
+  1335  01CD  009F               	movwf	31	;volatile
+  1336  01CE                     i1l74:	
+  1337                           ;main_brazo.c: 69:         }
+  1338                           
+  1339                           
+  1340                           ;main_brazo.c: 70:         if (ADCON0bits.CHS ==1)
+  1341  01CE  0C1F               	rrf	31,w	;volatile
+  1342  01CF  00F8               	movwf	??_isr
+  1343  01D0  0C78               	rrf	??_isr,w
+  1344  01D1  390F               	andlw	15
+  1345  01D2  3A01               	xorlw	1
+  1346  01D3  1D03               	skipz
+  1347  01D4  29D6               	goto	u19_21
+  1348  01D5  29D7               	goto	u19_20
+  1349  01D6                     u19_21:
+  1350  01D6  29FD               	goto	i1l870
+  1351  01D7                     u19_20:
+  1352  01D7                     i1l868:
+  1353                           
+  1354                           ;main_brazo.c: 71:         {;main_brazo.c: 72:             CCPR2L = (ADRESH>>1)+62;
+  1355  01D7  081E               	movf	30,w	;volatile
+  1356  01D8  00F8               	movwf	??_isr
+  1357  01D9  1003               	clrc
+  1358  01DA  0C78               	rrf	??_isr,w
+  1359  01DB  3E3E               	addlw	62
+  1360  01DC  009B               	movwf	27	;volatile
+  1361                           
+  1362                           ;main_brazo.c: 73:             CCP2CONbits.DC2B1 = ADRESH & 0b01;
+  1363  01DD  081E               	movf	30,w	;volatile
+  1364  01DE  3901               	andlw	1
+  1365  01DF  00F8               	movwf	??_isr
+  1366  01E0  0EF8               	swapf	??_isr,f
+  1367  01E1  0DF8               	rlf	??_isr,f
+  1368  01E2  081D               	movf	29,w	;volatile
+  1369  01E3  0678               	xorwf	??_isr,w
+  1370  01E4  39DF               	andlw	-33
+  1371  01E5  0678               	xorwf	??_isr,w
+  1372  01E6  009D               	movwf	29	;volatile
+  1373                           
+  1374                           ;main_brazo.c: 74:             CCP2CONbits.DC2B0 = (ADRESL>>7);
+  1375  01E7  1683               	bsf	3,5	;RP0=1, select bank1
+  1376  01E8  1303               	bcf	3,6	;RP1=0, select bank1
+  1377  01E9  081E               	movf	30,w	;volatile
+  1378  01EA  00F8               	movwf	??_isr
+  1379  01EB  3007               	movlw	7
+  1380  01EC                     u20_25:
+  1381  01EC  1003               	clrc
+  1382  01ED  0CF8               	rrf	??_isr,f
+  1383  01EE  3EFF               	addlw	-1
+  1384  01EF  1D03               	skipz
+  1385  01F0  29EC               	goto	u20_25
+  1386  01F1  0878               	movf	??_isr,w
+  1387  01F2  00F9               	movwf	??_isr+1
+  1388  01F3  0EF9               	swapf	??_isr+1,f
+  1389  01F4  1283               	bcf	3,5	;RP0=0, select bank0
+  1390  01F5  1303               	bcf	3,6	;RP1=0, select bank0
+  1391  01F6  081D               	movf	29,w	;volatile
+  1392  01F7  0679               	xorwf	??_isr+1,w
+  1393  01F8  39EF               	andlw	-17
+  1394  01F9  0679               	xorwf	??_isr+1,w
+  1395  01FA  009D               	movwf	29	;volatile
+  1396                           
+  1397                           ;main_brazo.c: 75:             ADCON0bits.CHS = 0;
+  1398  01FB  30C3               	movlw	-61
+  1399  01FC  059F               	andwf	31,f	;volatile
+  1400  01FD                     i1l870:
+  1401                           
+  1402                           ;main_brazo.c: 77:         PIR1bits.ADIF =0;
+  1403  01FD  130C               	bcf	12,6	;volatile
+  1404  01FE                     i1l872:
+  1405                           
+  1406                           ;main_brazo.c: 78:         ADCON0bits.GO = 1;
+  1407  01FE  149F               	bsf	31,1	;volatile
+  1408  01FF                     i1l76:
+  1409  01FF  087B               	movf	??_isr+3,w
+  1410  0200  008A               	movwf	10
+  1411  0201  0E7A               	swapf	??_isr+2,w
+  1412  0202  0083               	movwf	3
+  1413  0203  0EFE               	swapf	btemp,f
+  1414  0204  0E7E               	swapf	btemp,w
+  1415  0205  0009               	retfie
+  1416  0206                     __end_of_isr:
+  1417  007E                     btemp	set	126	;btemp
+  1418  007E                     wtemp0	set	126
+  1419                           
+  1420                           	psect	intentry
+  1421  0004                     __pintentry:	
+  1422                           ;incstack = 0
+  1423                           ; Regs used in _isr: [wreg+status,2+status,0]
+  1424                           
+  1425  0004                     interrupt_function:
+  1426  007E                     saved_w	set	btemp
+  1427  0004  00FE               	movwf	btemp
+  1428  0005  0E03               	swapf	3,w
+  1429  0006  00FA               	movwf	??_isr+2
+  1430  0007  080A               	movf	10,w
+  1431  0008  00FB               	movwf	??_isr+3
+  1432  0009  120A  118A  2997   	ljmp	_isr
+  1433                           
+  1434                           	psect	config
+  1435                           
+  1436                           ;Config register CONFIG1 @ 0x2007
+  1437                           ;	Oscillator Selection bits
+  1438                           ;	FOSC = INTRC_NOCLKOUT, INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O f
+      +                          unction on RA7/OSC1/CLKIN
+  1439                           ;	Watchdog Timer Enable bit
+  1440                           ;	WDTE = OFF, WDT disabled and can be enabled by SWDTEN bit of the WDTCON register
+  1441                           ;	Power-up Timer Enable bit
+  1442                           ;	PWRTE = OFF, PWRT disabled
+  1443                           ;	RE3/MCLR pin function select bit
+  1444                           ;	MCLRE = OFF, RE3/MCLR pin function is digital input, MCLR internally tied to VDD
+  1445                           ;	Code Protection bit
+  1446                           ;	CP = OFF, Program memory code protection is disabled
+  1447                           ;	Data Code Protection bit
+  1448                           ;	CPD = OFF, Data memory code protection is disabled
+  1449                           ;	Brown Out Reset Selection bits
+  1450                           ;	BOREN = OFF, BOR disabled
+  1451                           ;	Internal External Switchover bit
+  1452                           ;	IESO = OFF, Internal/External Switchover mode is disabled
+  1453                           ;	Fail-Safe Clock Monitor Enabled bit
+  1454                           ;	FCMEN = OFF, Fail-Safe Clock Monitor is disabled
+  1455                           ;	Low Voltage Programming Enable bit
+  1456                           ;	LVP = ON, RB3/PGM pin has PGM function, low voltage programming enabled
+  1457                           ;	In-Circuit Debugger Mode bit
+  1458                           ;	DEBUG = 0x1, unprogrammed default
+  1459  2007                     	org	8199
+  1460  2007  30D4               	dw	12500
+  1461                           
+  1462                           ;Config register CONFIG2 @ 0x2008
+  1463                           ;	Brown-out Reset Selection bit
+  1464                           ;	BOR4V = BOR40V, Brown-out Reset set to 4.0V
+  1465                           ;	Flash Program Memory Self Write Enable bits
+  1466                           ;	WRT = OFF, Write protection off
+  1467  2008                     	org	8200
+  1468  2008  3FFF               	dw	16383
 
 Data Sizes:
     Strings     0
@@ -1190,8 +1498,8 @@ Data Sizes:
 
 Auto Spaces:
     Space          Size  Autos    Used
-    COMMON           14      2      12
-    BANK0            80      2       6
+    COMMON           14      4      12
+    BANK0            80      2       8
     BANK1            80      0       0
     BANK3            96      0       0
     BANK2            96      0       0
@@ -1249,7 +1557,8 @@ Call Graph Tables:
                         _servos_loop
                               _setup
  ---------------------------------------------------------------------------------
- (1) _setup                                                0     0      0       0
+ (1) _setup                                                1     1      0       0
+                                              0 BANK0      1     1      0
  ---------------------------------------------------------------------------------
  (1) _servos_loop                                          2     2      0       0
                                               0 BANK0      2     2      0
@@ -1258,8 +1567,8 @@ Call Graph Tables:
  ---------------------------------------------------------------------------------
  (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
  ---------------------------------------------------------------------------------
- (2) _isr                                                  2     2      0       0
-                                              0 COMMON     2     2      0
+ (2) _isr                                                  4     4      0       0
+                                              0 COMMON     4     4      0
  ---------------------------------------------------------------------------------
  Estimated maximum stack depth 2
  ---------------------------------------------------------------------------------
@@ -1278,17 +1587,17 @@ BITCOMMON            E      0       0       0        0.0%
 EEDATA             100      0       0       0        0.0%
 NULL                 0      0       0       0        0.0%
 CODE                 0      0       0       0        0.0%
-COMMON               E      2       C       1       85.7%
+COMMON               E      4       C       1       85.7%
 BITSFR0              0      0       0       1        0.0%
 SFR0                 0      0       0       1        0.0%
 BITSFR1              0      0       0       2        0.0%
 SFR1                 0      0       0       2        0.0%
 STACK                0      0       0       2        0.0%
-ABS                  0      0      12       3        0.0%
+ABS                  0      0      14       3        0.0%
 BITBANK0            50      0       0       4        0.0%
 BITSFR3              0      0       0       4        0.0%
 SFR3                 0      0       0       4        0.0%
-BANK0               50      2       6       5        7.5%
+BANK0               50      2       8       5       10.0%
 BITSFR2              0      0       0       5        0.0%
 SFR2                 0      0       0       5        0.0%
 BITBANK1            50      0       0       6        0.0%
@@ -1297,63 +1606,80 @@ BITBANK3            60      0       0       8        0.0%
 BANK3               60      0       0       9        0.0%
 BITBANK2            60      0       0      10        0.0%
 BANK2               60      0       0      11        0.0%
-DATA                 0      0      12      12        0.0%
+DATA                 0      0      14      12        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.31 build 20201012212115 
-Symbol Table                                                                                   Thu May 20 19:08:16 2021
+Symbol Table                                                                                   Thu May 20 20:44:01 2021
 
-                      _x 0078                       l60 01B0                       l72 009B  
-                     l81 0146                       l66 002D                       l75 00D2  
-                     l84 0192                       l69 0064                       l78 010B  
-                    l900 0025                      l910 003A                      l902 002B  
-                    l912 004E                      l680 01A9                      l930 0099  
-                    l922 0067                      l914 005B                      l682 01AC  
-                    l940 00BC                      l924 0072                      l916 0062  
-                    l908 0030                      l684 01AD                      l676 0193  
-                    l950 00D5                      l942 00C9                      l926 0085  
-                    l686 01AE                      l678 01A3                      l952 00E0  
-                    l944 00D0                      l936 009E                      l928 0092  
-                    l688 01AF                      l970 013B                      l954 00F3  
-                    l938 00A8                      l980 0154                      l972 0142  
-                    l964 010E                      l956 0100                      l990 0185  
-                    l982 0169                      l966 0118                      l958 0107  
-                    l894 0023                      l984 0176                      l968 012E  
-                    l992 01B1                      l986 017D                      l978 0149  
-                    l994 01B6                      l988 017F                      u300 005B  
-                    u301 005A                      u310 0062                      u311 0061  
-                    u400 0176                      u320 0092                      u401 0175  
-                    u321 0091                      u305 0057                      u410 017D  
-                    u330 0099                      u411 017C                      u331 0098  
-                    u420 0192                      u340 00C9                      u421 0191  
-                    u405 0172                      u341 00C8                      u325 008E  
-                    u350 00D0                      u351 00CF                      u360 0100  
-                    u425 018E                      u361 00FF                      u345 00C5  
-                    u370 0107                      u290 002B                      u371 0106  
-                    u507 00E9                      u291 002A                      u380 013B  
-                    u381 013A                      u517 0114                      u365 00FC  
-                    u437 0036                      u390 0142                      u391 0141  
-                    u527 0121                      u447 0043                      u537 014F  
-                    u385 0137                      u457 006D                      u547 015D  
-                    u467 007B                      u477 00A4                      u487 00B1  
-                    u497 00DB                      _isr 01BF                     ?_isr 007A  
-                   i1l49 01BF                     _main 01B1                     btemp 007E  
-                   start 000C                    ??_isr 007A                    ?_main 007A  
-                  _PORTA 0005                    _PORTB 0006                    _PORTC 0007  
-                  _PORTD 0008                    _setup 0193                    pclath 000A  
-                  status 0003                    wtemp0 007E          __initialization 000F  
-           __end_of_main 01BF                   ??_main 007C                   ?_setup 007A  
-                 saved_w 007E             ?_servos_loop 007A  __end_of__initialization 001F  
-         __pcstackCOMMON 007A            __end_of_setup 01B1                  ??_setup 007C  
-             __pbssBANK0 0020               __pmaintext 01B1               __pintentry 0004  
-              _ANSELbits 0188                  __ptext1 0193                  __ptext2 0023  
-                __ptext3 01BF             __size_of_isr 0007     end_of_initialization 001F  
-   __size_of_servos_loop 0170                _PORTDbits 0008                _TRISAbits 0085  
+                      _x 0076                       l90 0267                       l87 0258  
+                     l96 002D                       l89 025C                       l99 0064  
+                    l102 009B                      l111 014A                      l105 00D4  
+                    l114 0196                      l108 010F                      l992 0206  
+                    l994 0216                      l996 021C                      l998 021F  
+                    u400 0062                      u401 0061                      u410 0092  
+                    u411 0091                      u500 0181                      u420 0099  
+                    u501 0180                      u421 0098                      u510 0196  
+                    u430 00C9                      _PR2 0092                      u511 0195  
+                    u431 00C8                      u415 008E                      u440 00D0  
+                    u441 00CF                      u450 0104                      u370 025C  
+                    u515 0192                      u451 0103                      u435 00C5  
+                    u371 025B                      u460 010B                      u380 002B  
+                    u461 010A                      u381 002A                      u470 013F  
+                    u390 005B                      u471 013E                      u455 0100  
+                    u607 00EB                      u391 005A                      u527 0231  
+                    u480 0146                      u481 0145                      u617 0118  
+                    u537 0036                      u490 017A                      u491 0179  
+                    u475 013B                      u627 0125                      u395 0057  
+                    u547 0043                      u637 0153                      u557 006D  
+                    u495 0176                      u647 0161                      u567 007B  
+                    u577 00A4                      u587 00B1                      u597 00DD  
+                    _isr 0197                     l1000 0220                     l1010 0225  
+                   l1002 0221                     l1100 00D7                     l1020 023B  
+                   l1012 022B                     l1004 0222                     l1102 00E2  
+                   l1030 0248                     l1022 023C                     l1014 022D  
+                   l1006 0223                     l1120 013F                     l1104 00F7  
+                   l1040 0255                     l1032 024B                     l1024 0240  
+                   l1016 0234                     l1008 0224                     l1130 0158  
+                   l1122 0146                     l1114 0112                     l1106 0104  
+                   l1050 0025                     l1042 0257                     l1034 0251  
+                   l1026 0244                     l1018 0237                     l1140 0189  
+                   l1132 016D                     l1116 011C                     l1108 010B  
+                   l1060 003A                     l1052 002B                     l1044 0023  
+                   l1036 0253                     l1028 0246                     l1134 017A  
+                   l1118 0132                     l1062 004E                     l1038 0254  
+                   l1142 0268                     l1136 0181                     l1128 014D  
+                   l1080 0099                     l1072 0067                     l1064 005B  
+                   l1144 026D                     l1138 0183                     l1090 00BC  
+                   l1074 0072                     l1066 0062                     l1058 0030  
+                   l1092 00C9                     l1076 0085                     l1094 00D0  
+                   l1086 009E                     l1078 0092                     l1088 00A8  
+                   ?_isr 0078                     i1l74 01CE                     i1l76 01FF  
+                   _main 0268                     btemp 007E                     start 000C  
+                  ??_isr 0078                    ?_main 0078                    i1l870 01FD  
+                  i1l862 0197                    i1l872 01FE                    i1l864 019D  
+                  i1l866 01A6                    i1l868 01D7                    u20_25 01EC  
+                  u16_20 019D                    u16_21 019C                    u17_20 01A6  
+                  u17_21 01A5                    u18_25 01BB                    u19_20 01D7  
+                  u19_21 01D6                    _PORTA 0005                    _PORTB 0006  
+                  _PORTC 0007                    _PORTD 0008                    _setup 0206  
+                  pclath 000A                    status 0003                    wtemp0 007E  
+        __initialization 000F             __end_of_main 0276                   ??_main 0028  
+                 _ADRESH 001E                   _ADRESL 009E                   _CCPR1L 0015  
+                 _CCPR2L 001B                   ?_setup 0078                   saved_w 007E  
+           ?_servos_loop 0078  __end_of__initialization 001F           __pcstackCOMMON 0078  
+          __end_of_setup 0268                  ??_setup 0026               __pbssBANK0 0020  
+             __pmaintext 0268               __pintentry 0004                _ANSELbits 0188  
+                __ptext1 0206                  __ptext2 0023                  __ptext3 0197  
+              _T2CONbits 0012             __size_of_isr 006F     end_of_initialization 001F  
+   __size_of_servos_loop 0174                _PORTDbits 0008                _TRISAbits 0085  
               _TRISBbits 0086                _TRISCbits 0087                _TRISDbits 0088  
-    start_initialization 000F              __end_of_isr 01C6              __pbssCOMMON 0070  
-              ___latbits 0002            __pcstackBANK0 0024           __size_of_setup 001E  
-      interrupt_function 0004            ??_servos_loop 0024            __size_of_main 000E  
-    __end_of_servos_loop 0193                 _servo1_1 0076                 _servo1_2 0074  
-               _servo2_1 0072                 _servo2_2 0070                 _servo3_1 0022  
+            _CCP1CONbits 0017              _CCP2CONbits 001D      start_initialization 000F  
+            __end_of_isr 0206              __pbssCOMMON 0070                ___latbits 0002  
+          __pcstackBANK0 0026           __size_of_setup 0062        interrupt_function 0004  
+               _PIE1bits 008C                 _PIR1bits 000C               _ADCON0bits 001F  
+             _ADCON1bits 009F            ??_servos_loop 0026            __size_of_main 000E  
+    __end_of_servos_loop 0197                 _servo1_1 0074                 _servo1_2 0072  
+               _servo2_1 0070                 _servo2_2 0024                 _servo3_1 0022  
                _servo3_2 0020               _INTCONbits 000B                 intlevel1 0000  
              _OSCCONbits 008F              _servos_loop 0023  
