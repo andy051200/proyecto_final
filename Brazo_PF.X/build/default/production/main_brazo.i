@@ -2720,6 +2720,7 @@ int servo3_2;
 
 
 void setup(void);
+void servos_loop(void);
 
 
 
@@ -2760,6 +2761,7 @@ void __attribute__((picinterrupt(("")))) isr(void)
 void main (void)
 {
     setup();
+
     while (1)
     {
 
@@ -2833,7 +2835,7 @@ void setup()
     T2CONbits.T2CKPS = 0b11;
     T2CONbits.TMR2ON = 1;
 
-    while(PIR1bits.TMR2IF==0);
+
     PIR1bits.TMR2IF=0;
     TRISCbits.TRISC2 = 0;
     TRISCbits.TRISC1= 0;
@@ -2845,13 +2847,17 @@ void setup()
     PIE1bits.ADIE = 1;
     PIR1bits.ADIF = 0;
 
+
+    _delay((unsigned long)((100)*(8000000/4000000.0)));
+    ADCON0bits.GO=1;
+
 }
 
 
 
 
 
-int servos_loop()
+void servos_loop(void)
 {
     for(x=0;x<=7;x++)
     {

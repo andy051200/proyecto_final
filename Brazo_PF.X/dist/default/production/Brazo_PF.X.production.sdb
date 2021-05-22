@@ -11,14 +11,14 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"59 C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+"60 C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
 [v _isr isr `II(v  1 e 1 0 ]
-"92
+"93
 [v _main main `(v  1 e 1 0 ]
-"105
+"107
 [v _setup setup `(v  1 e 1 0 ]
-"186
-[v _servos_loop servos_loop `(i  1 e 2 0 ]
+"192
+[v _servos_loop servos_loop `(v  1 e 1 0 ]
 "166 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
 "228
@@ -261,23 +261,23 @@
 [v _servo3_1 servo3_1 `i  1 e 2 0 ]
 "49
 [v _servo3_2 servo3_2 `i  1 e 2 0 ]
-"92
+"93
 [v _main main `(v  1 e 1 0 ]
 {
-"101
+"103
 } 0
-"105
+"107
 [v _setup setup `(v  1 e 1 0 ]
 {
-"180
-} 0
 "186
-[v _servos_loop servos_loop `(i  1 e 2 0 ]
-{
-"260
 } 0
-"59
+"192
+[v _servos_loop servos_loop `(v  1 e 1 0 ]
+{
+"266
+} 0
+"60
 [v _isr isr `II(v  1 e 1 0 ]
 {
-"87
+"88
 } 0

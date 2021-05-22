@@ -52,6 +52,7 @@ int servo3_2;
 -------------------------prototipos de funciones-------------------------------
 -----------------------------------------------------------------------------*/
 void setup(void);  //funcion para configuracion de registros del PIC
+void servos_loop(void);
 
 /*-----------------------------------------------------------------------------
 ---------------------------- interrupciones -----------------------------------
@@ -92,6 +93,7 @@ void __interrupt() isr(void) //funcion de interrupciones
 void main (void)
 {
     setup();
+    
     while (1)
     {
         //switch_canales_adc();   //funcion para cambio de canales de conversion
@@ -165,7 +167,7 @@ void setup()
     T2CONbits.T2CKPS = 0b11;    // preescaler del timer2 1:16
     T2CONbits.TMR2ON = 1;       //se prende el timer2
     //configuracion del timer2 para el PWM
-    while(PIR1bits.TMR2IF==0);  //ciclo para que nunca se prenda bandera
+    //while(PIR1bits.TMR2IF==0);  //ciclo para que nunca se prenda bandera
     PIR1bits.TMR2IF=0;          // se apaga bandera por si las moscas
     TRISCbits.TRISC2 = 0;       //salida del pwm1
     TRISCbits.TRISC1= 0;        // salida del pwm 2
@@ -177,13 +179,17 @@ void setup()
     PIE1bits.ADIE = 1;      //se habilita interrupcion del ADC
     PIR1bits.ADIF = 0;      //se apaga interrupcion del ADC
     
+    //----
+    __delay_us(100);
+    ADCON0bits.GO=1;
+    
 }
 
 /*-----------------------------------------------------------------------------
 --------------------------- funciones ----------------------------------
 -----------------------------------------------------------------------------*/
 
-int servos_loop()
+void servos_loop(void)
 {
     for(x=0;x<=7;x++)
     {

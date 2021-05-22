@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files\Microchip\xc8\v2.31\pic\dat\en_msgs.txt -cn \
   -h+dist/default/production\Brazo_PF.X.production.sym \
   --cmf=dist/default/production\Brazo_PF.X.production.cmf -z -Q16F887 \
-  -oC:\Users\ANDYBO~1\AppData\Local\Temp\sg9o.2 --defsym=__MPLAB_BUILD=1 \
+  -oC:\Users\ANDYBO~1\AppData\Local\Temp\s9pk.2 --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/Brazo_PF.X.production.map -E1 -ver=XC8 Compiler \
   --acfsm=1493 -ASTACK=0110h-016Fh -pstack=STACK -ACODE=00h-07FFhx4 \
   -ASTRCODE=00h-01FFFh -ASTRING=00h-0FFhx32 -ACONST=00h-0FFhx32 \
@@ -18,7 +18,7 @@ Linker command line:
   -AEEDATA=00h-0FFh/02100h -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 \
   -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 \
   -preset_vec=00h,intentry=04h,init,end_init -ppowerup=CODE -pcinit=CODE \
-  -pfunctab=ENTRY -k C:\Users\ANDYBO~1\AppData\Local\Temp\sg9o.o \
+  -pfunctab=ENTRY -k C:\Users\ANDYBO~1\AppData\Local\Temp\s9pk.o \
   dist/default/production\Brazo_PF.X.production.o 
 
 Object code version is 3.11
@@ -28,7 +28,7 @@ Machine type is 16F887
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\ANDYBO~1\AppData\Local\Temp\sg9o.o
+C:\Users\ANDYBO~1\AppData\Local\Temp\s9pk.o
                 end_init                              C        C        3        8       0
                 reset_vec                             0        0        3        0       0
                 config                             2007     2007        2        0       4
@@ -38,8 +38,8 @@ dist/default/production\Brazo_PF.X.production.o
                 config                             2007     2007        2        0       4
                 text3                               197      197       84        8       0
                 text2                                23       23      174        8       0
-                text1                               21B      21B       64        8       0
-                maintext                            27F      27F        E        8       0
+                text1                               21B      21B       6A        8       0
+                maintext                            285      285        E        8       0
                 cstackBANK0                          26       26        2       20       1
                 cstackCOMMON                         78       78        4       70       1
                 bssBANK0                             20       20        6       20       1
@@ -55,8 +55,8 @@ TOTAL           Name                               Link     Load   Length     Sp
                 reset_vec                             0        0        3         0
                 text3                               197      197       84         0
                 text2                                23       23      174         0
-                text1                               21B      21B       64         0
-                maintext                            27F      27F        E         0
+                text1                               21B      21B       6A         0
+                maintext                            285      285        E         0
 
         CLASS   STRCODE        
 
@@ -105,7 +105,7 @@ TOTAL           Name                               Link     Load   Length     Sp
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class     Delta
 
                 reset_vec                      000000  000003  000003         0       0  CODE        2
-                intentry                       000004  000289  00028D         8       0  CODE        2
+                intentry                       000004  00028F  000293         8       0  CODE        2
                 bssBANK0                       000020  000008  000028        20       1  BANK0       1
                 bssCOMMON                      000070  00000C  00007C        70       1  COMMON      1
 
@@ -118,13 +118,13 @@ UNUSED ADDRESS RANGES
         BANK2            0110-016F             60           1
         BANK3            0190-01EF             60           1
         CODE             0003-0003              1           2
-                         028D-1FFF            800
+                         0293-1FFF            800
         COMMON           007C-007D              2           1
         CONST            0003-0003              1           2
-                         028D-1FFF            100
+                         0293-1FFF            100
         EEDATA           2100-21FF            100           2
         ENTRY            0003-0003              1           2
-                         028D-1FFF            100
+                         0293-1FFF            100
         IDLOC            2000-2003              4           2
         RAM              0028-006F             48           1
                          00A0-00EF             50
@@ -136,9 +136,9 @@ UNUSED ADDRESS RANGES
         SFR3             0180-018F             10           1
         STACK            0110-016F             60           1
         STRCODE          0003-0003              1           2
-                         028D-1FFF           1D73
+                         0293-1FFF           1D6D
         STRING           0003-0003              1           2
-                         028D-1FFF            100
+                         0293-1FFF            100
 
                                   Symbol Table
 
@@ -195,7 +195,7 @@ __Hsfr0                  sfr0         0000
 __Hsfr1                  sfr1         0000
 __Hsfr2                  sfr2         0000
 __Hsfr3                  sfr3         0000
-__Hspace_0               (abs)        028D
+__Hspace_0               (abs)        0293
 __Hspace_1               (abs)        007C
 __Hspace_2               (abs)        0000
 __Hspace_3               (abs)        0000
@@ -238,7 +238,7 @@ __Lspace_4               (abs)        0000
 __Lstack                 stack        0000
 __Lstrings               strings      0000
 __Ltext                  text         0000
-__S0                     (abs)        028D
+__S0                     (abs)        0293
 __S1                     (abs)        007C
 __S2                     (abs)        0000
 __S3                     (abs)        0000
@@ -249,16 +249,16 @@ ___stackhi               (abs)        0000
 ___stacklo               (abs)        0000
 __end_of__initialization cinit        001F
 __end_of_isr             text3        021B
-__end_of_main            maintext     028D
+__end_of_main            maintext     0293
 __end_of_servos_loop     text2        0197
-__end_of_setup           text1        027F
+__end_of_setup           text1        0285
 __initialization         cinit        000F
 __pbssBANK0              bssBANK0     0020
 __pbssCOMMON             bssCOMMON    0070
 __pcstackBANK0           cstackBANK0  0026
 __pcstackCOMMON          cstackCOMMON 0078
 __pintentry              intentry     0004
-__pmaintext              maintext     027F
+__pmaintext              maintext     0285
 __ptext1                 text1        021B
 __ptext2                 text2        0023
 __ptext3                 text3        0197
@@ -267,7 +267,7 @@ __size_of_main           (abs)        0000
 __size_of_servos_loop    (abs)        0000
 __size_of_setup          (abs)        0000
 _isr                     text3        0197
-_main                    maintext     027F
+_main                    maintext     0285
 _servo1_1                bssCOMMON    0074
 _servo1_2                bssCOMMON    0072
 _servo2_1                bssCOMMON    0070
@@ -297,7 +297,7 @@ FUNCTION INFORMATION:
 
  *************** function _main *****************
  Defined at:
-		line 92 in file "main_brazo.c"
+		line 93 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -327,7 +327,7 @@ Total ram usage:        0 bytes
 
  *************** function _setup *****************
  Defined at:
-		line 105 in file "main_brazo.c"
+		line 107 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -357,13 +357,13 @@ Total ram usage:        1 bytes
 
  *************** function _servos_loop *****************
  Defined at:
-		line 186 in file "main_brazo.c"
+		line 192 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
 		None
  Return value:  Size  Location     Type
-                  2   24[None  ] int 
+                  1    wreg      void 
  Registers used:
 		wreg, status,2, status,0, btemp+1
  Tracked objects:
@@ -387,7 +387,7 @@ Total ram usage:        2 bytes
 
  *************** function _isr *****************
  Defined at:
-		line 59 in file "main_brazo.c"
+		line 60 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -419,12 +419,12 @@ MODULE INFORMATION
 
 Module		Function		Class		Link	Load	Size
 main_brazo.c
-		_main          		CODE           	027F	0000	14
+		_main          		CODE           	0285	0000	14
 		_servos_loop   		CODE           	0023	0000	372
 		_isr           		CODE           	0197	0000	132
-		_setup         		CODE           	021B	0000	100
+		_setup         		CODE           	021B	0000	106
 
-main_brazo.c estimated size: 618
+main_brazo.c estimated size: 624
 
 shared
 		__initialization		CODE           	000F	0000	16
