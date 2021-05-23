@@ -40,19 +40,36 @@ Descripcion:
 /*-----------------------------------------------------------------------------
 ------------------------varibales a implementar ------------------------------
 -----------------------------------------------------------------------------*/
-int x=0;
-int servo1_1;
-int servo1_2;
-int servo2_1;
-int servo2_2;
-int servo3_1;
-int servo3_2;
+int x=0;            
+int servo1_1;           //control de for en servo1 a 0°
+int servo1_2;           //control de for en servo1 a 45°
+int servo2_1;           //control de for en servo2 a 0°
+int servo2_2;           //control de for en servo2 a 45°
+int servo3_1;           //control de for en servo3 a 0°
+int servo3_2;           //control de for en servo3 a 45°
+char dato_recibido;     //valor recibido de interfaz
 
 /*-----------------------------------------------------------------------------
 -------------------------prototipos de funciones-------------------------------
 -----------------------------------------------------------------------------*/
+//setup del pic
 void setup(void);  //funcion para configuracion de registros del PIC
 void servos_loop(void);
+//transmision
+void transmision_tx(void);  //funcion para transmitir datos via UART
+
+//recepcion
+char recepcion_rx();    //funcion para recepcion datos via UART
+
+//servo1
+void servo1_19(void);   //funcion para mover servo1 a 0° 
+void servo1_18(void);   //funcion para mover servo1 a 45°
+//servo2
+void servo2_19(void);   //funcion para mover servo2 a 0°
+void servo2_18(void);   //funcion para mover servo2 a 45° 
+//servo3
+void servo3_19(void);   //funcion para mover servo3 a 0°
+void servo3_18(void);   //funcion para mover servo3 a 45°
 
 /*-----------------------------------------------------------------------------
 ---------------------------- interrupciones -----------------------------------
@@ -92,11 +109,42 @@ void __interrupt() isr(void) //funcion de interrupciones
 -----------------------------------------------------------------------------*/
 void main (void)
 {
-    setup();
+    setup();                            //se llama funcion con configuracion
     
-    while (1)
+    //MAIN LOOP
+    while (1)                           
     {
-        //switch_canales_adc();   //funcion para cambio de canales de conversion
+        dato_recibido = recepcion_rx;   //se almacena dato recibio en variable 
+        switch(dato_recibido)
+        {
+            //casos para el servo1
+            case ('1'):                 //en caso se reciba 1, servo1 a 0°
+                servo1_19();            //se llama funcion para 0°
+                break;
+            case ('2'):                 //en caso se reciba 2, servo1 a 45°
+                servo1_18();            //se llama funcion para 45°
+                break;
+                
+            //casos para el servo2    
+            case ('3'):                 //en caso se reciba 3, servo2 a 0°
+                servo2_19();            //se llama funcion para 0°
+                break;
+            case ('4'):                 //en caso se reciba 4, servo2 a 45°
+                servo2_18();            //se llama funcion para 45°
+                break;
+
+            //casos para el servo3      
+            case ('5'):                 //en caso se reciba 5, servo3 a 0°
+                servo3_19();            //se llama funcion para 0°
+                break;
+            case ('6'):                 //en caso se reciba 6, servo3 a 45°
+                servo3_18();            //se llama funcion para 45°
+                break;
+                
+        }
+        
+        
+        
         servos_loop();          //funcion para movimiento de servos
     }
 
@@ -172,6 +220,22 @@ void setup()
     TRISCbits.TRISC2 = 0;       //salida del pwm1
     TRISCbits.TRISC1= 0;        // salida del pwm 2
     
+    //CONFIGURACION DE UART
+    //transmision
+    TXSTAbits.SYNC = 0;         //se habilita transmision asincrona
+    TXSTAbits.BRGH = 1;         //se habilita transmision de alta velocidad
+    BAUDCTLbits.BRG16 = 1;      //se habilita uso los 16 bits   
+    //braudeaje
+    SPBRG = 207;                //valor adecuado al SPBRG para braudeaje                  
+    SPBRGH = 0;                 //pagina 168 del datasheet del 2009       
+    //recepcion
+    RCSTAbits.SPEN = 1;          //enciendo el modulo
+    RCSTAbits.RX9 = 0;           //No trabajo a 9 bits
+    //encendido de modulos
+    RCSTAbits.CREN = 1;          //se activa la recepción
+    TXSTAbits.TXEN = 1;          //se activa la transmision 
+    
+    
     //CONFIGURACION DE INTERRUPCIONES
     INTCONbits.GIE = 1;     //habilitan interrupciones globales
     INTCONbits.PEIE = 1;    //habilitan interrupciones por perifericos
@@ -179,7 +243,7 @@ void setup()
     PIE1bits.ADIE = 1;      //se habilita interrupcion del ADC
     PIR1bits.ADIF = 0;      //se apaga interrupcion del ADC
     
-    //----
+    //tiempo de espera para conversion inicial ADC
     __delay_us(100);
     ADCON0bits.GO=1;
     
@@ -188,6 +252,88 @@ void setup()
 /*-----------------------------------------------------------------------------
 --------------------------- funciones ----------------------------------
 -----------------------------------------------------------------------------*/
+//funcion para movimiento del servo1 a 0°
+void servo1_19(void)
+{
+    for (servo1_1 = 0; servo1_1 <= 15; servo1_1++)
+        {
+            PORTDbits.RD0 = 1;
+            __delay_ms(1);
+            PORTDbits.RD0 = 0;
+            __delay_ms(19);
+        }
+}
+
+//funcion para movimiento del servo1 a 45°
+void servo1_18(void)
+{
+    for (servo1_2 = 0; servo1_2 <= 15; servo1_2++)
+        {
+            PORTDbits.RD0 = 1;
+            __delay_ms(1.5);
+            PORTDbits.RD0 = 0;
+            __delay_ms(18.5);
+        }
+}
+
+
+//funcion para movimiento del servo2 a 0°
+void servo2_19(void)
+{
+    for (servo2_1 = 0; servo2_1 <= 15; servo2_1++)
+        {
+            PORTDbits.RD1 = 1;
+            __delay_ms(1);
+            PORTDbits.RD1 = 0;
+            __delay_ms(19);
+        }
+}
+
+//funcion para movimiento del servo2 a 45°
+void servo2_18(void)
+{
+    for (servo2_2 = 0; servo2_2 <= 15; servo2_2++)
+        {
+            PORTDbits.RD1 = 1;
+            __delay_ms(1.5);
+            PORTDbits.RD1 = 0;
+            __delay_ms(18.5);
+        }   
+}
+
+//funcion para el movimiento del servo3 a 0°
+void servo3_19(void)
+{
+    for (servo3_1 = 0; servo3_1 <= 15; servo3_1++)
+        {
+            PORTDbits.RD2 = 1;
+            __delay_ms(1);
+            PORTDbits.RD2 = 0;
+            __delay_ms(19);
+        }
+}
+
+//funcion para el movimiento del servo3 a 45°
+void servo3_18(void)
+{
+    for (servo3_2 = 0; servo3_2 <= 15; servo3_2++)
+        {
+            PORTDbits.RD2 = 1;
+            __delay_ms(1.5);
+            PORTDbits.RD2 = 0;
+            __delay_ms(18.5);        
+        }
+}
+
+void transmision_tx(void)
+{
+
+}
+
+char recepcion_rx()
+{
+    return RCREG;       //el valor de RCREG lo pongo en ese caracter
+}
 
 void servos_loop(void)
 {
@@ -195,7 +341,7 @@ void servos_loop(void)
     {
         if (x == 1)                 //para servo1 a 0°
         {
-            for (servo1_1 = 0; servo1_1 <= 20; servo1_1++)
+            for (servo1_1 = 0; servo1_1 <= 15; servo1_1++)
             {
                 PORTDbits.RD0 = 1;
                 __delay_ms(1);
@@ -206,7 +352,7 @@ void servos_loop(void)
 
         if (x == 2)                 //para servo1 a 45°
         {
-            for (servo1_2 = 0; servo1_2 <= 20; servo1_2++)
+            for (servo1_2 = 0; servo1_2 <= 15; servo1_2++)
             {
                 PORTDbits.RD0 = 1;
                 __delay_ms(1.5);

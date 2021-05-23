@@ -2715,12 +2715,29 @@ int servo2_1;
 int servo2_2;
 int servo3_1;
 int servo3_2;
+char dato_recibido;
+
 
 
 
 
 void setup(void);
 void servos_loop(void);
+
+void transmision_tx(void);
+
+
+char recepcion_rx();
+
+
+void servo1_19(void);
+void servo1_18(void);
+
+void servo2_19(void);
+void servo2_18(void);
+
+void servo3_19(void);
+void servo3_18(void);
 
 
 
@@ -2762,8 +2779,39 @@ void main (void)
 {
     setup();
 
+
     while (1)
     {
+        dato_recibido = recepcion_rx;
+        switch(dato_recibido)
+        {
+
+            case ('1'):
+                servo1_19();
+                break;
+            case ('2'):
+                servo1_18();
+                break;
+
+
+            case ('3'):
+                servo2_19();
+                break;
+            case ('4'):
+                servo2_18();
+                break;
+
+
+            case ('5'):
+                servo3_19();
+                break;
+            case ('6'):
+                servo3_18();
+                break;
+
+        }
+
+
 
         servos_loop();
     }
@@ -2841,6 +2889,22 @@ void setup()
     TRISCbits.TRISC1= 0;
 
 
+
+    TXSTAbits.SYNC = 0;
+    TXSTAbits.BRGH = 1;
+    BAUDCTLbits.BRG16 = 1;
+
+    SPBRG = 207;
+    SPBRGH = 0;
+
+    RCSTAbits.SPEN = 1;
+    RCSTAbits.RX9 = 0;
+
+    RCSTAbits.CREN = 1;
+    TXSTAbits.TXEN = 1;
+
+
+
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
 
@@ -2857,13 +2921,95 @@ void setup()
 
 
 
+void servo1_19(void)
+{
+    for (servo1_1 = 0; servo1_1 <= 15; servo1_1++)
+        {
+            PORTDbits.RD0 = 1;
+            _delay((unsigned long)((1)*(8000000/4000.0)));
+            PORTDbits.RD0 = 0;
+            _delay((unsigned long)((19)*(8000000/4000.0)));
+        }
+}
+
+
+void servo1_18(void)
+{
+    for (servo1_2 = 0; servo1_2 <= 15; servo1_2++)
+        {
+            PORTDbits.RD0 = 1;
+            _delay((unsigned long)((1.5)*(8000000/4000.0)));
+            PORTDbits.RD0 = 0;
+            _delay((unsigned long)((18.5)*(8000000/4000.0)));
+        }
+}
+
+
+
+void servo2_19(void)
+{
+    for (servo2_1 = 0; servo2_1 <= 15; servo2_1++)
+        {
+            PORTDbits.RD1 = 1;
+            _delay((unsigned long)((1)*(8000000/4000.0)));
+            PORTDbits.RD1 = 0;
+            _delay((unsigned long)((19)*(8000000/4000.0)));
+        }
+}
+
+
+void servo2_18(void)
+{
+    for (servo2_2 = 0; servo2_2 <= 15; servo2_2++)
+        {
+            PORTDbits.RD1 = 1;
+            _delay((unsigned long)((1.5)*(8000000/4000.0)));
+            PORTDbits.RD1 = 0;
+            _delay((unsigned long)((18.5)*(8000000/4000.0)));
+        }
+}
+
+
+void servo3_19(void)
+{
+    for (servo3_1 = 0; servo3_1 <= 15; servo3_1++)
+        {
+            PORTDbits.RD2 = 1;
+            _delay((unsigned long)((1)*(8000000/4000.0)));
+            PORTDbits.RD2 = 0;
+            _delay((unsigned long)((19)*(8000000/4000.0)));
+        }
+}
+
+
+void servo3_18(void)
+{
+    for (servo3_2 = 0; servo3_2 <= 15; servo3_2++)
+        {
+            PORTDbits.RD2 = 1;
+            _delay((unsigned long)((1.5)*(8000000/4000.0)));
+            PORTDbits.RD2 = 0;
+            _delay((unsigned long)((18.5)*(8000000/4000.0)));
+        }
+}
+
+void transmision_tx(void)
+{
+
+}
+
+char recepcion_rx()
+{
+    return RCREG;
+}
+
 void servos_loop(void)
 {
     for(x=0;x<=7;x++)
     {
         if (x == 1)
         {
-            for (servo1_1 = 0; servo1_1 <= 20; servo1_1++)
+            for (servo1_1 = 0; servo1_1 <= 15; servo1_1++)
             {
                 PORTDbits.RD0 = 1;
                 _delay((unsigned long)((1)*(8000000/4000.0)));
@@ -2874,7 +3020,7 @@ void servos_loop(void)
 
         if (x == 2)
         {
-            for (servo1_2 = 0; servo1_2 <= 20; servo1_2++)
+            for (servo1_2 = 0; servo1_2 <= 15; servo1_2++)
             {
                 PORTDbits.RD0 = 1;
                 _delay((unsigned long)((1.5)*(8000000/4000.0)));
