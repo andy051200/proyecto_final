@@ -48,6 +48,19 @@ text("de Micrcontroladores",160,80);
 
 void comunicacion_serial()
 {
+  
+  /*int input = myPort.read();
+  datosPIC[cont] = input;
+  cont++;
+  if (cont > 1){
+     valpot = datosPIC[0];
+     delay(5);
+     println(valpot);
+     //myPort.write('A');
+     cont = 0;
+     send = bit1 + bit2 + bit3 + bit4 + bit5;
+     myPort.write(send);*/
+  
   //fill(300,300,300);
   //rect(slider1[0],2*slider1[1],300,100);
 }
