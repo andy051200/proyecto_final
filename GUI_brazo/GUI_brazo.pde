@@ -48,7 +48,7 @@ text("de Micrcontroladores",160,80);
 
 void comunicacion_serial()
 {
-  fill(300,300,300);
+  //fill(300,300,300);
   //rect(slider1[0],2*slider1[1],300,100);
 }
 
@@ -56,67 +56,122 @@ void comunicacion_serial()
 void draw()
 {
   
-  fill(300,300,300);
+  fill(1300,1300,1300);
   //square(boton1[0],boton1[1],boton1[2]);
   
-  rect(boton1[0]-50,2.6*boton1[1],350,100);
+  rect(boton1[0]-50,2.6*boton1[1],400,100);
   textSize(15);                                       //tamaño de texto en pantalla
-  text("Valores UART",boton1[0]+90, 650);
+  text("Valores UART recibidos",boton1[0]+90, 650);
   
-  //DIBUJO DE BOTONES PARA SERVO 1
-  //a 0°
+  //------------------------DIBUJO DE BOTONES PARA SERVO 1
+  //servo1 a 0°
   fill(300,300,300);                                  //
   textSize(15);                                       //tamaño de texto en pantalla
   text("Servo 1, 0°",boton1[0]-2, boton1[1]-10);
   square(boton1[0],boton1[1],boton1[2]);
-  //a 45°
+  if (mousePressed)
+  {
+    if (mouseX > boton1[0] && mouseX < boton1[0]+boton1[2])
+    {
+      if (mouseY > boton1[1] && mouseY < boton1[1]+boton1[2])
+      {
+        fill(255,0,0);
+        square(boton1[0],boton1[1],boton1[2]);
+        dato_transmitido=1;
+      }
+    }
+  }
+  
+  //servo 1 a 45°
   fill(300,300,300);                                  //
   textSize(15);                                       //tamaño de texto en pantalla
   text("Servo 1, 45°",boton1[0]-2, boton1[1]+105);
   square(boton1[0],boton1[1]+120,boton1[2]);
+  if (mousePressed)
+  {
+    if (mouseX > boton1[0] && mouseX < boton1[0]+boton1[2])
+    {
+      if (mouseY > boton1[1]+120 && mouseY < boton1[1]+boton1[2]+120)
+      {
+        fill(255,0,0);
+        square(boton1[0],boton1[1]+120,boton1[2]);
+        dato_transmitido=2;
+      }
+    }
+  }
   
-  //DIBUJO DE BOTONES PARA SERVO 2
-  //a 0°
+  
+  //------------------------DIBUJO DE BOTONES PARA SERVO 2
+  //servo 2 a 0°
   fill(300,300,300);                                  //
   textSize(15);                                       //tamaño de texto en pantalla
   text("Servo 2, 0°",boton1[0]+120, boton1[1]-10);
   square(boton1[0]+120,boton1[1],boton1[2]);
-  //a 45°
+  if (mousePressed)
+  {
+    if (mouseX > boton1[0]+120 && mouseX < boton1[0]+boton1[2]+120)
+    {
+      if (mouseY > boton1[1] && mouseY < boton1[1]+boton1[2])
+      {
+        fill(255,0,0);
+        square(boton1[0]+120,boton1[1],boton1[2]);
+        dato_transmitido=3;
+      }
+    }
+  }
+  //servo 2 a 45°
   fill(300,300,300);                                  //
   textSize(15);                                       //tamaño de texto en pantalla
   text("Servo 2, 45°",boton1[0]+118, boton1[1]+105);
   square(boton1[0]+120,boton1[1]+120,boton1[2]);
+  if (mousePressed)
+  {
+    if (mouseX > boton1[0]+120 && mouseX < boton1[0]+boton1[2]+120)
+    {
+      if (mouseY > boton1[1]+120 && mouseY < boton1[1]+boton1[2]+120)
+      {
+        fill(255,0,0);
+        square(boton1[0]+120,boton1[1]+120,boton1[2]);
+        dato_transmitido=4;
+      }
+    }
+  }
   
-  
-  //DIBUJO DE BOTONES PARA SERVO 3
-  //a 0°
+  //------------------------DIBUJO DE BOTONES PARA SERVO 3
+  //servo 3 a 0°
   fill(300,300,300);                                  //
   textSize(15);                                       //tamaño de texto en pantalla
   text("Servo 3, 0°",boton1[0]+240, boton1[1]-10);
   square(boton1[0]+240,boton1[1],boton1[2]);
-  //a 45°
-  fill(300,300,300);                                  //
-  textSize(15);                                       //tamaño de texto en pantalla
-  text("Servo 2, 45°",boton1[0]+236, boton1[1]+105);
-  square(boton1[0]+240,boton1[1]+120,boton1[2]);
-  
-  
-  /*
-  rect(slider1[0],slider1[1],slider1[2],slider1[3]);  
-  square(led1[0],led1[1],led1[2]);
   if (mousePressed)
   {
-    if (mouseX > slider1[0] && mouseX < slider1[0]+slider1[2])
+    if (mouseX > boton1[0]+240 && mouseX < boton1[0]+boton1[2]+240)
     {
-      if (mouseY > slider1[1] && mouseY < slider1[1]+slider1[3])
+      if (mouseY > boton1[1] && mouseY < boton1[1]+boton1[2])
       {
-        slider_var1 = mouseY-100;
-        fill(slider_var1,0,0);
-        square(led1[0],led1[1],led1[2]);
+        fill(255,0,0);
+        square(boton1[0]+240,boton1[1],boton1[2]);
+        dato_transmitido=5;
       }
     }
-  }*/
+  }
   
-  
-//----fin de implementacion de funciones  
+  //servo 3 a 45°
+  fill(300,300,300);                                  //
+  textSize(15);                                       //tamaño de texto en pantalla
+  text("Servo 3, 45°",boton1[0]+236, boton1[1]+105);
+  square(boton1[0]+240,boton1[1]+120,boton1[2]);
+  if (mousePressed)
+  {
+    if (mouseX > boton1[0]+240 && mouseX < boton1[0]+boton1[2]+240)
+    {
+      if (mouseY > boton1[1]+120 && mouseY < boton1[1]+boton1[2]+240)
+      {
+        fill(255,0,0);
+        square(boton1[0]+240,boton1[1]+120,boton1[2]);
+        dato_transmitido=6;
+      }
+    }
+  }
+println(dato_transmitido);
 }
