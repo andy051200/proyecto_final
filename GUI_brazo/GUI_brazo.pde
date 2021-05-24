@@ -31,8 +31,9 @@ String puerto[];          //variable tipo string para los datos
 /*----------------------------------------------------------------------------------
 -----------------------------definicion de cadenas a implementar--------------------
 ----------------------------------------------------------------------------------*/
-char boton1[] = {100,200,60};             //punto en x, punto en y,tamaño0
-char led1[] = {150,100,50};                         //puntox, puntoy,tamaño
+int boton1[] = {100,150,60};             //punto en x, punto en y,tamaño0
+int led1[] = {150,100,50};                         //puntox, puntoy,tamaño
+int boton_eeprom[] = {220,425, 60};              //puntox, puntoy y tamaño
 
 /*----------------------------------------------------------------------------------
 ---------------------------------implementacion de funciones------------------------
@@ -48,7 +49,7 @@ void setup()
 //thread("serial_comm");
 
   
-size(550,780);                                      //tamaño de 500*500 pixeles
+size(550,580);                                      //tamaño de 500*500 pixeles
 background(100,100,100);                            //color de fondo
 textSize(20);                                       //tamaño de texto en pantalla
 text("Proyecto final de Programacion", 120, 50);
@@ -120,9 +121,9 @@ void draw()
   fill(1300,1300,1300);
   //square(boton1[0],boton1[1],boton1[2]);
   
-  rect(boton1[0]-50,2.6*boton1[1],400,100);
+  /*rect(boton1[0]-50,2.6*boton1[1],400,100);
   textSize(15);                                       //tamaño de texto en pantalla
-  text("Valores UART recibidos",boton1[0]+90, 650);
+  text("Valores UART recibidos",boton1[0]+90, 650);*/
   
   //------------------------DIBUJO DE BOTONES PARA SERVO 1
   //servo1 a 0°
@@ -234,5 +235,27 @@ void draw()
       }
     }
   }
+  
+  //------------------------DIBUJO DE BOTON PARA DATOS EN EEPROM
+  fill(300,300,300);
+  textSize(15);
+  text("Guardar en EEPROM", boton_eeprom[0]-32,boton_eeprom[1]-5);
+  square(boton_eeprom[0],boton_eeprom[1], boton_eeprom[2]);
+  if (mousePressed)
+  {
+    if (mouseX > boton_eeprom[0] && mouseX < boton_eeprom[0]+boton_eeprom[2] )
+    {
+      if (mouseY > boton_eeprom[1] && mouseX < boton_eeprom[1]+boton_eeprom[2])
+      {
+        fill(255,0,0);
+        square(boton_eeprom[0],boton_eeprom[1], boton_eeprom[2]);
+        //poner variable que va a 
+      }
+    }
+  }
+  
+  
+  
+  
 println(dato_transmitido);
 }

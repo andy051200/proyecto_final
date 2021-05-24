@@ -2717,13 +2717,18 @@ int servo3_1;
 int servo3_2;
 char dato_recibido;
 
+unsigned int dato ;
+
+const char data = 10;
+char out_str;
+
+
 
 
 
 
 void setup(void);
 void servos_loop(void);
-
 
 
 void transmision_tx(char data);
@@ -2743,6 +2748,12 @@ void servo2_18(void);
 
 void servo3_19(void);
 void servo3_18(void);
+
+
+unsigned int writeToEEPROM(unsigned int data, unsigned int address);
+unsigned int readFromEEPROM(unsigned address);
+
+
 
 
 
@@ -2775,6 +2786,12 @@ void __attribute__((picinterrupt(("")))) isr(void)
         PIR1bits.ADIF =0;
         ADCON0bits.GO = 1;
     }
+
+    if (PIR2bits.EEIF==1)
+    {
+
+        PIR2bits.EEIF=0;
+    }
 }
 
 
@@ -2787,6 +2804,7 @@ void main (void)
 
     while (1)
     {
+
         USART_Cadena("\r Que accion desea ejecutar? \r");
         USART_Cadena(" 1) Mover a 0 servo1 \r");
         USART_Cadena(" 2) Mover a 45 servo1 \r");
@@ -2795,7 +2813,7 @@ void main (void)
         USART_Cadena(" 3) Mover a 0 servo3 \r");
         USART_Cadena(" 3) Mover a 45 servo3 \r");
 
-        while (PIR1bits.RCIF==0);
+        while (PIR1bits.RCIF==0)
         {
             dato_recibido = recepcion_rx;
         }
@@ -2824,6 +2842,10 @@ void main (void)
                 break;
             case ('6'):
                 servo3_18();
+                break;
+
+            case ('7'):
+                writeToEEPROM(ADRESH,10);
                 break;
 
         }
@@ -3109,4 +3131,17 @@ void servos_loop(void)
             x=0;
         }
     }
+}
+
+unsigned int writeToEEPROM(unsigned int data, unsigned int address)
+{
+
+}
+
+unsigned int readFromEEPROM(unsigned address)
+{
+    EEADR =address;
+    EECON1bits.EEPGD = 0;
+    EECON1bits.RD=1;
+
 }

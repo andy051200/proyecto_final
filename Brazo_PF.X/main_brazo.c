@@ -35,7 +35,7 @@ Descripcion:
 #include <stdlib.h>
 #include <xc.h>
 #define  _XTAL_FREQ 8000000  //se define el delay con FreqOsc 4Mhz
-//#define _tmr0_value 254     //valor del Timer0, interrupcion cada 8us
+#define direccion_eeprom 10  //direccion de escritura/lectura EEPROM
 
 /*-----------------------------------------------------------------------------
 ------------------------varibales a implementar ------------------------------
@@ -48,6 +48,12 @@ int servo2_2;           //control de for en servo2 a 45°
 int servo3_1;           //control de for en servo3 a 0°
 int servo3_2;           //control de for en servo3 a 45°
 char dato_recibido;     //valor recibido de interfaz
+//----
+unsigned int dato ;
+//-----
+const char data = 10;
+char out_str;
+
 
 /*-----------------------------------------------------------------------------
 -------------------------prototipos de funciones-------------------------------
@@ -55,7 +61,6 @@ char dato_recibido;     //valor recibido de interfaz
 //setup del pic
 void setup(void);  //funcion para configuracion de registros del PIC
 void servos_loop(void);
-
 
 //transmision
 void transmision_tx(char data);  //funcion para transmitir datos via UART
@@ -75,6 +80,12 @@ void servo2_18(void);   //funcion para mover servo2 a 45°
 //servo3
 void servo3_19(void);   //funcion para mover servo3 a 0°
 void servo3_18(void);   //funcion para mover servo3 a 45°
+
+//-----prueba de eeprom
+unsigned int writeToEEPROM(unsigned int data, unsigned int address); //los ints en teoria son de 8bits
+unsigned int readFromEEPROM(unsigned address);
+
+//-----------
 
 /*-----------------------------------------------------------------------------
 ---------------------------- interrupciones -----------------------------------
@@ -107,6 +118,12 @@ void __interrupt() isr(void) //funcion de interrupciones
         PIR1bits.ADIF =0;
         ADCON0bits.GO = 1;
     }
+    
+    if (PIR2bits.EEIF==1)
+    {
+        
+        PIR2bits.EEIF=0;
+    }
 }
 
 /*-----------------------------------------------------------------------------
@@ -119,6 +136,7 @@ void main (void)
     //MAIN LOOP
     while (1)                           
     {
+        
         USART_Cadena("\r Que accion desea ejecutar? \r");
         USART_Cadena(" 1) Mover a 0 servo1 \r");
         USART_Cadena(" 2) Mover a 45 servo1 \r");
@@ -127,7 +145,7 @@ void main (void)
         USART_Cadena(" 3) Mover a 0 servo3 \r");
         USART_Cadena(" 3) Mover a 45 servo3 \r");
         
-        while (PIR1bits.RCIF==0);
+        while (PIR1bits.RCIF==0)
         {
             dato_recibido = recepcion_rx;//se almacena dato recibio en variable 
         }
@@ -156,6 +174,10 @@ void main (void)
                 break;
             case ('6'):                 //en caso se reciba 6, servo3 a 45°
                 servo3_18();            //se llama funcion para 45°
+                break;
+                
+            case ('7'):                 //en caso se reciba 7, se guardan datos
+                writeToEEPROM(ADRESH,direccion_eeprom);
                 break;
                 
         }
@@ -266,7 +288,7 @@ void setup()
 }
 
 /*-----------------------------------------------------------------------------
---------------------------- funciones ----------------------------------
+------------------------------ funciones -------------------------------------
 -----------------------------------------------------------------------------*/
 //funcion para movimiento del servo1 a 0°
 void servo1_19(void)
@@ -443,4 +465,15 @@ void servos_loop(void)
     }
 }
 
+unsigned int writeToEEPROM(unsigned int data, unsigned int address)
+{
+    
+}
 
+unsigned int readFromEEPROM(unsigned address)
+{
+    EEADR =address;
+    EECON1bits.EEPGD = 0;
+    EECON1bits.RD=1;
+    
+}
