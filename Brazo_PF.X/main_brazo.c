@@ -82,8 +82,8 @@ void servo3_19(void);   //funcion para mover servo3 a 0°
 void servo3_18(void);   //funcion para mover servo3 a 45°
 
 //-----prueba de eeprom
-unsigned int writeToEEPROM(unsigned int data, unsigned int address); //los ints en teoria son de 8bits
-unsigned int readFromEEPROM(unsigned address);
+void writeToEEPROM(char data, int address); //los ints en teoria son de 8bits
+//unsigned char readFromEEPROM(int address);
 
 //-----------
 
@@ -132,7 +132,10 @@ void __interrupt() isr(void) //funcion de interrupciones
 void main (void)
 {
     setup();                            //se llama funcion con configuracion
-    
+    writeToEEPROM('a',0);        //dato, direccion
+    writeToEEPROM('n',1);        //dato, direccion
+    writeToEEPROM('d',2);        //dato, direccion
+    writeToEEPROM('y',3);        //dato, direccion
     //MAIN LOOP
     while (1)                           
     {
@@ -147,7 +150,7 @@ void main (void)
         
         while (PIR1bits.RCIF==0)
         {
-            dato_recibido = recepcion_rx;//se almacena dato recibio en variable 
+            dato_recibido = recepcion_rx; //se almacena dato recibio en variable 
         }
         
         switch(dato_recibido)
@@ -182,6 +185,7 @@ void main (void)
                 
         }
         
+    
         
 
         //servos_loop();          //funcion para movimiento de servos
@@ -369,7 +373,7 @@ char recepcion_rx()
     return RCREG;       //el valor de RCREG lo pongo en ese caracter
 }
 
-//funcion para 
+//funcion para transmitir datos a interfaz
 void transmision_tx(char data)
 {
     while(TXSTAbits.TRMT == 0)
@@ -378,6 +382,7 @@ void transmision_tx(char data)
     }
 }
 
+//funcion con cadena de caracteres
 void USART_Cadena(char *str)
 {
     while(*str != '\0')
@@ -387,8 +392,39 @@ void USART_Cadena(char *str)
     }
 }
 
+//funcion para escritura en EEPROM
+void writeToEEPROM(char data, int address)
+{
+    EEADR = address;             //se seleccion direccion a escribir
+    EEDATA=data;                 //se asgina dato a escribir
+    
+    EECON1bits.EEPGD = 0;       //se accede a la memoria EEPROm
+    EECON1bits.WREN = 1;        //se habilita escritura
+    INTCONbits.GIE =0;          //se deshabilitan interrupciones
+    
+    EECON2 = 0x55;              //escritura de valores por defecto  
+    EECON2 = 0x0AA;              //escritura de valores por defecto
+    
+    EECON1bits.WR =1;           //inicializa la escritura
+    INTCONbits.GIE =1;          //se vuelve a habilitar interrupciones
+    
+    while(PIR2bits.EEIF==0);
+    PIR2bits.EEIF==0;
+    
+    EECON1bits.WREN = 0;        //se deshabilita escritura   
+}
 
+//funcion para lectura en EEPROM
+unsigned char readFromEEPROM(unsigned address)
+{
+    EEADR =address;             //se selecciona direccion a leer
+    EECON1bits.EEPGD = 0;       //se accede a la memoria EEPROm
+    EECON1bits.RD=1;            //inicializando la lectura
+    return EEDATA;
+    
+}
 
+//muy probable que me lo vuele, pero lo dejo por si me sirve
 void servos_loop(void)
 {
     for(x=0;x<=7;x++)
@@ -463,17 +499,4 @@ void servos_loop(void)
             x=0;
         }
     }
-}
-
-unsigned int writeToEEPROM(unsigned int data, unsigned int address)
-{
-    
-}
-
-unsigned int readFromEEPROM(unsigned address)
-{
-    EEADR =address;
-    EECON1bits.EEPGD = 0;
-    EECON1bits.RD=1;
-    
 }

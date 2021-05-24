@@ -2750,8 +2750,8 @@ void servo3_19(void);
 void servo3_18(void);
 
 
-unsigned int writeToEEPROM(unsigned int data, unsigned int address);
-unsigned int readFromEEPROM(unsigned address);
+void writeToEEPROM(char data, int address);
+
 
 
 
@@ -2800,7 +2800,10 @@ void __attribute__((picinterrupt(("")))) isr(void)
 void main (void)
 {
     setup();
-
+    writeToEEPROM('a',0);
+    writeToEEPROM('n',1);
+    writeToEEPROM('d',2);
+    writeToEEPROM('y',3);
 
     while (1)
     {
@@ -2849,6 +2852,7 @@ void main (void)
                 break;
 
         }
+
 
 
 
@@ -3046,6 +3050,7 @@ void transmision_tx(char data)
     }
 }
 
+
 void USART_Cadena(char *str)
 {
     while(*str != '\0')
@@ -3055,6 +3060,37 @@ void USART_Cadena(char *str)
     }
 }
 
+
+void writeToEEPROM(char data, int address)
+{
+    EEADR = address;
+    EEDATA=data;
+
+    EECON1bits.EEPGD = 0;
+    EECON1bits.WREN = 1;
+    INTCONbits.GIE =0;
+
+    EECON2 = 0x55;
+    EECON2 = 0x0AA;
+
+    EECON1bits.WR =1;
+    INTCONbits.GIE =1;
+
+    while(PIR2bits.EEIF==0);
+    PIR2bits.EEIF==0;
+
+    EECON1bits.WREN = 0;
+}
+
+
+unsigned char readFromEEPROM(unsigned address)
+{
+    EEADR =address;
+    EECON1bits.EEPGD = 0;
+    EECON1bits.RD=1;
+    return EEDATA;
+
+}
 
 
 void servos_loop(void)
@@ -3131,17 +3167,4 @@ void servos_loop(void)
             x=0;
         }
     }
-}
-
-unsigned int writeToEEPROM(unsigned int data, unsigned int address)
-{
-
-}
-
-unsigned int readFromEEPROM(unsigned address)
-{
-    EEADR =address;
-    EECON1bits.EEPGD = 0;
-    EECON1bits.RD=1;
-
 }
