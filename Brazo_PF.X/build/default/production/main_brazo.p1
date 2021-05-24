@@ -755,75 +755,81 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 152 ]
 [e $ == -> . . _PIR1bits 0 5 `i -> 0 `i 153  ]
 [e :U 154 ]
-"132
-[; ;main_brazo.c: 132:         dato_recibido = recepcion_rx;
-[e = _dato_recibido -> &U _recepcion_rx `uc ]
-"134
-[; ;main_brazo.c: 134:         switch(dato_recibido)
-[e $U 156  ]
-"135
-[; ;main_brazo.c: 135:         {
+"131
+[; ;main_brazo.c: 131:         {
 {
-"137
-[; ;main_brazo.c: 137:             case ('a'):
-[e :U 157 ]
+"132
+[; ;main_brazo.c: 132:             dato_recibido = recepcion_rx;
+[e = _dato_recibido -> &U _recepcion_rx `uc ]
+"133
+[; ;main_brazo.c: 133:         }
+}
+"135
+[; ;main_brazo.c: 135:         switch(dato_recibido)
+[e $U 156  ]
+"136
+[; ;main_brazo.c: 136:         {
+{
 "138
-[; ;main_brazo.c: 138:                 servo1_19();
-[e ( _servo1_19 ..  ]
+[; ;main_brazo.c: 138:             case ('1'):
+[e :U 157 ]
 "139
-[; ;main_brazo.c: 139:                 break;
-[e $U 155  ]
+[; ;main_brazo.c: 139:                 servo1_19();
+[e ( _servo1_19 ..  ]
 "140
-[; ;main_brazo.c: 140:             case ('2'):
-[e :U 158 ]
+[; ;main_brazo.c: 140:                 break;
+[e $U 155  ]
 "141
-[; ;main_brazo.c: 141:                 servo1_18();
-[e ( _servo1_18 ..  ]
+[; ;main_brazo.c: 141:             case ('2'):
+[e :U 158 ]
 "142
-[; ;main_brazo.c: 142:                 break;
+[; ;main_brazo.c: 142:                 servo1_18();
+[e ( _servo1_18 ..  ]
+"143
+[; ;main_brazo.c: 143:                 break;
 [e $U 155  ]
-"145
-[; ;main_brazo.c: 145:             case ('3'):
-[e :U 159 ]
 "146
-[; ;main_brazo.c: 146:                 servo2_19();
-[e ( _servo2_19 ..  ]
+[; ;main_brazo.c: 146:             case ('3'):
+[e :U 159 ]
 "147
-[; ;main_brazo.c: 147:                 break;
-[e $U 155  ]
+[; ;main_brazo.c: 147:                 servo2_19();
+[e ( _servo2_19 ..  ]
 "148
-[; ;main_brazo.c: 148:             case ('4'):
-[e :U 160 ]
+[; ;main_brazo.c: 148:                 break;
+[e $U 155  ]
 "149
-[; ;main_brazo.c: 149:                 servo2_18();
-[e ( _servo2_18 ..  ]
+[; ;main_brazo.c: 149:             case ('4'):
+[e :U 160 ]
 "150
-[; ;main_brazo.c: 150:                 break;
+[; ;main_brazo.c: 150:                 servo2_18();
+[e ( _servo2_18 ..  ]
+"151
+[; ;main_brazo.c: 151:                 break;
 [e $U 155  ]
-"153
-[; ;main_brazo.c: 153:             case ('5'):
-[e :U 161 ]
 "154
-[; ;main_brazo.c: 154:                 servo3_19();
-[e ( _servo3_19 ..  ]
+[; ;main_brazo.c: 154:             case ('5'):
+[e :U 161 ]
 "155
-[; ;main_brazo.c: 155:                 break;
-[e $U 155  ]
+[; ;main_brazo.c: 155:                 servo3_19();
+[e ( _servo3_19 ..  ]
 "156
-[; ;main_brazo.c: 156:             case ('6'):
-[e :U 162 ]
-"157
-[; ;main_brazo.c: 157:                 servo3_18();
-[e ( _servo3_18 ..  ]
-"158
-[; ;main_brazo.c: 158:                 break;
+[; ;main_brazo.c: 156:                 break;
 [e $U 155  ]
-"160
-[; ;main_brazo.c: 160:         }
+"157
+[; ;main_brazo.c: 157:             case ('6'):
+[e :U 162 ]
+"158
+[; ;main_brazo.c: 158:                 servo3_18();
+[e ( _servo3_18 ..  ]
+"159
+[; ;main_brazo.c: 159:                 break;
+[e $U 155  ]
+"161
+[; ;main_brazo.c: 161:         }
 }
 [e $U 155  ]
 [e :U 156 ]
-[e [\ -> _dato_recibido `i , $ -> -> 97 `ui `i 157
+[e [\ -> _dato_recibido `i , $ -> -> 49 `ui `i 157
  , $ -> -> 50 `ui `i 158
  , $ -> -> 51 `ui `i 159
  , $ -> -> 52 `ui `i 160
@@ -831,809 +837,817 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> -> 54 `ui `i 162
  155 ]
 [e :U 155 ]
-"165
-[; ;main_brazo.c: 165:     }
+"166
+[; ;main_brazo.c: 166:     }
 }
 [e :U 149 ]
 [e $U 150  ]
 [e :U 151 ]
-"167
-[; ;main_brazo.c: 167: }
+"168
+[; ;main_brazo.c: 168: }
 [e :UE 148 ]
 }
-"171
-[; ;main_brazo.c: 171: void setup()
-[v _setup `(v ~T0 @X0 1 ef ]
 "172
-[; ;main_brazo.c: 172: {
+[; ;main_brazo.c: 172: void setup()
+[v _setup `(v ~T0 @X0 1 ef ]
+"173
+[; ;main_brazo.c: 173: {
 {
 [e :U _setup ]
 [f ]
-"174
-[; ;main_brazo.c: 174:     ANSELbits.ANS0 = 1;
-[e = . . _ANSELbits 0 0 -> -> 1 `i `uc ]
 "175
-[; ;main_brazo.c: 175:     ANSELbits.ANS1 = 1;
-[e = . . _ANSELbits 0 1 -> -> 1 `i `uc ]
+[; ;main_brazo.c: 175:     ANSELbits.ANS0 = 1;
+[e = . . _ANSELbits 0 0 -> -> 1 `i `uc ]
 "176
-[; ;main_brazo.c: 176:     ANSELbits.ANS2 = 1;
+[; ;main_brazo.c: 176:     ANSELbits.ANS1 = 1;
+[e = . . _ANSELbits 0 1 -> -> 1 `i `uc ]
+"177
+[; ;main_brazo.c: 177:     ANSELbits.ANS2 = 1;
 [e = . . _ANSELbits 0 2 -> -> 1 `i `uc ]
-"178
-[; ;main_brazo.c: 178:     TRISAbits.TRISA0 = 1;
-[e = . . _TRISAbits 0 0 -> -> 1 `i `uc ]
 "179
-[; ;main_brazo.c: 179:     TRISAbits.TRISA1 = 1;
-[e = . . _TRISAbits 0 1 -> -> 1 `i `uc ]
+[; ;main_brazo.c: 179:     TRISAbits.TRISA0 = 1;
+[e = . . _TRISAbits 0 0 -> -> 1 `i `uc ]
 "180
-[; ;main_brazo.c: 180:     TRISAbits.TRISA2 = 1;
+[; ;main_brazo.c: 180:     TRISAbits.TRISA1 = 1;
+[e = . . _TRISAbits 0 1 -> -> 1 `i `uc ]
+"181
+[; ;main_brazo.c: 181:     TRISAbits.TRISA2 = 1;
 [e = . . _TRISAbits 0 2 -> -> 1 `i `uc ]
-"182
-[; ;main_brazo.c: 182:     TRISBbits.TRISB0 = 1;
+"183
+[; ;main_brazo.c: 183:     TRISBbits.TRISB0 = 1;
 [e = . . _TRISBbits 0 0 -> -> 1 `i `uc ]
-"184
-[; ;main_brazo.c: 184:     TRISCbits.TRISC1 = 0;
-[e = . . _TRISCbits 0 1 -> -> 0 `i `uc ]
 "185
-[; ;main_brazo.c: 185:     TRISCbits.TRISC2 = 0;
-[e = . . _TRISCbits 0 2 -> -> 0 `i `uc ]
-"187
-[; ;main_brazo.c: 187:     TRISDbits.TRISD0 = 0;
-[e = . . _TRISDbits 0 0 -> -> 0 `i `uc ]
-"188
-[; ;main_brazo.c: 188:     TRISDbits.TRISD1 = 0;
-[e = . . _TRISDbits 0 1 -> -> 0 `i `uc ]
-"189
-[; ;main_brazo.c: 189:     TRISDbits.TRISD2 = 0;
-[e = . . _TRISDbits 0 2 -> -> 0 `i `uc ]
-"191
-[; ;main_brazo.c: 191:     TRISE = 0;
-[e = _TRISE -> -> 0 `i `uc ]
-"193
-[; ;main_brazo.c: 193:     PORTA = 0;
-[e = _PORTA -> -> 0 `i `uc ]
-"194
-[; ;main_brazo.c: 194:     PORTB = 0;
-[e = _PORTB -> -> 0 `i `uc ]
-"195
-[; ;main_brazo.c: 195:     PORTC = 0;
-[e = _PORTC -> -> 0 `i `uc ]
-"196
-[; ;main_brazo.c: 196:     PORTD = 0;
-[e = _PORTD -> -> 0 `i `uc ]
-"197
-[; ;main_brazo.c: 197:     PORTE = 0;
-[e = _PORTE -> -> 0 `i `uc ]
-"200
-[; ;main_brazo.c: 200:     OSCCONbits.IRCF2 = 1;
-[e = . . _OSCCONbits 1 3 -> -> 1 `i `uc ]
-"201
-[; ;main_brazo.c: 201:     OSCCONbits.IRCF1 = 1;
-[e = . . _OSCCONbits 1 2 -> -> 1 `i `uc ]
-"202
-[; ;main_brazo.c: 202:     OSCCONbits.IRCF0 = 1;
-[e = . . _OSCCONbits 1 1 -> -> 1 `i `uc ]
-"203
-[; ;main_brazo.c: 203:     OSCCONbits.SCS=1;
-[e = . . _OSCCONbits 0 0 -> -> 1 `i `uc ]
-"206
-[; ;main_brazo.c: 206:     ADCON1bits.ADFM = 0 ;
-[e = . . _ADCON1bits 0 4 -> -> 0 `i `uc ]
-"207
-[; ;main_brazo.c: 207:     ADCON1bits.VCFG0 = 0 ;
-[e = . . _ADCON1bits 0 1 -> -> 0 `i `uc ]
-"208
-[; ;main_brazo.c: 208:     ADCON1bits.VCFG1 = 0 ;
-[e = . . _ADCON1bits 0 2 -> -> 0 `i `uc ]
-"210
-[; ;main_brazo.c: 210:     ADCON0bits.ADCS = 0b10 ;
-[e = . . _ADCON0bits 0 3 -> -> 2 `i `uc ]
-"211
-[; ;main_brazo.c: 211:     ADCON0bits.CHS = 0;
-[e = . . _ADCON0bits 0 2 -> -> 0 `i `uc ]
-"212
-[; ;main_brazo.c: 212:     _delay((unsigned long)((50)*(8000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
-"213
-[; ;main_brazo.c: 213:     ADCON0bits.ADON = 1 ;
-[e = . . _ADCON0bits 0 0 -> -> 1 `i `uc ]
-"216
-[; ;main_brazo.c: 216:     PR2 = 249;
-[e = _PR2 -> -> 249 `i `uc ]
-"218
-[; ;main_brazo.c: 218:     TRISCbits.TRISC2=1;
-[e = . . _TRISCbits 0 2 -> -> 1 `i `uc ]
-"219
-[; ;main_brazo.c: 219:     CCP1CONbits.P1M = 0;
-[e = . . _CCP1CONbits 0 2 -> -> 0 `i `uc ]
-"220
-[; ;main_brazo.c: 220:     CCP1CONbits.CCP1M = 0b1100;
-[e = . . _CCP1CONbits 0 0 -> -> 12 `i `uc ]
-"221
-[; ;main_brazo.c: 221:     CCPR1L = 0x0f ;
-[e = _CCPR1L -> -> 15 `i `uc ]
-"222
-[; ;main_brazo.c: 222:     CCP1CONbits.DC1B = 0;
-[e = . . _CCP1CONbits 0 1 -> -> 0 `i `uc ]
-"224
-[; ;main_brazo.c: 224:     TRISCbits.TRISC1 = 1;
-[e = . . _TRISCbits 0 1 -> -> 1 `i `uc ]
-"225
-[; ;main_brazo.c: 225:     CCP2CONbits.CCP2M = 0b1100;
-[e = . . _CCP2CONbits 0 0 -> -> 12 `i `uc ]
-"226
-[; ;main_brazo.c: 226:     CCPR2L = 0x0f;
-[e = _CCPR2L -> -> 15 `i `uc ]
-"227
-[; ;main_brazo.c: 227:     CCP2CONbits.DC2B1 = 0;
-[e = . . _CCP2CONbits 0 2 -> -> 0 `i `uc ]
-"230
-[; ;main_brazo.c: 230:     PIR1bits.TMR2IF = 0;
-[e = . . _PIR1bits 0 1 -> -> 0 `i `uc ]
-"231
-[; ;main_brazo.c: 231:     T2CONbits.T2CKPS = 0b11;
-[e = . . _T2CONbits 0 0 -> -> 3 `i `uc ]
-"232
-[; ;main_brazo.c: 232:     T2CONbits.TMR2ON = 1;
-[e = . . _T2CONbits 0 1 -> -> 1 `i `uc ]
-"235
-[; ;main_brazo.c: 235:     PIR1bits.TMR2IF=0;
-[e = . . _PIR1bits 0 1 -> -> 0 `i `uc ]
-"236
-[; ;main_brazo.c: 236:     TRISCbits.TRISC2 = 0;
-[e = . . _TRISCbits 0 2 -> -> 0 `i `uc ]
-"237
-[; ;main_brazo.c: 237:     TRISCbits.TRISC1= 0;
+[; ;main_brazo.c: 185:     TRISCbits.TRISC1 = 0;
 [e = . . _TRISCbits 0 1 -> -> 0 `i `uc ]
-"241
-[; ;main_brazo.c: 241:     TXSTAbits.SYNC = 0;
-[e = . . _TXSTAbits 0 4 -> -> 0 `i `uc ]
+"186
+[; ;main_brazo.c: 186:     TRISCbits.TRISC2 = 0;
+[e = . . _TRISCbits 0 2 -> -> 0 `i `uc ]
+"188
+[; ;main_brazo.c: 188:     TRISDbits.TRISD0 = 0;
+[e = . . _TRISDbits 0 0 -> -> 0 `i `uc ]
+"189
+[; ;main_brazo.c: 189:     TRISDbits.TRISD1 = 0;
+[e = . . _TRISDbits 0 1 -> -> 0 `i `uc ]
+"190
+[; ;main_brazo.c: 190:     TRISDbits.TRISD2 = 0;
+[e = . . _TRISDbits 0 2 -> -> 0 `i `uc ]
+"192
+[; ;main_brazo.c: 192:     TRISE = 0;
+[e = _TRISE -> -> 0 `i `uc ]
+"194
+[; ;main_brazo.c: 194:     PORTA = 0;
+[e = _PORTA -> -> 0 `i `uc ]
+"195
+[; ;main_brazo.c: 195:     PORTB = 0;
+[e = _PORTB -> -> 0 `i `uc ]
+"196
+[; ;main_brazo.c: 196:     PORTC = 0;
+[e = _PORTC -> -> 0 `i `uc ]
+"197
+[; ;main_brazo.c: 197:     PORTD = 0;
+[e = _PORTD -> -> 0 `i `uc ]
+"198
+[; ;main_brazo.c: 198:     PORTE = 0;
+[e = _PORTE -> -> 0 `i `uc ]
+"201
+[; ;main_brazo.c: 201:     OSCCONbits.IRCF2 = 1;
+[e = . . _OSCCONbits 1 3 -> -> 1 `i `uc ]
+"202
+[; ;main_brazo.c: 202:     OSCCONbits.IRCF1 = 1;
+[e = . . _OSCCONbits 1 2 -> -> 1 `i `uc ]
+"203
+[; ;main_brazo.c: 203:     OSCCONbits.IRCF0 = 1;
+[e = . . _OSCCONbits 1 1 -> -> 1 `i `uc ]
+"204
+[; ;main_brazo.c: 204:     OSCCONbits.SCS=1;
+[e = . . _OSCCONbits 0 0 -> -> 1 `i `uc ]
+"207
+[; ;main_brazo.c: 207:     ADCON1bits.ADFM = 0 ;
+[e = . . _ADCON1bits 0 4 -> -> 0 `i `uc ]
+"208
+[; ;main_brazo.c: 208:     ADCON1bits.VCFG0 = 0 ;
+[e = . . _ADCON1bits 0 1 -> -> 0 `i `uc ]
+"209
+[; ;main_brazo.c: 209:     ADCON1bits.VCFG1 = 0 ;
+[e = . . _ADCON1bits 0 2 -> -> 0 `i `uc ]
+"211
+[; ;main_brazo.c: 211:     ADCON0bits.ADCS = 0b10 ;
+[e = . . _ADCON0bits 0 3 -> -> 2 `i `uc ]
+"212
+[; ;main_brazo.c: 212:     ADCON0bits.CHS = 0;
+[e = . . _ADCON0bits 0 2 -> -> 0 `i `uc ]
+"213
+[; ;main_brazo.c: 213:     _delay((unsigned long)((50)*(8000000/4000000.0)));
+[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
+"214
+[; ;main_brazo.c: 214:     ADCON0bits.ADON = 1 ;
+[e = . . _ADCON0bits 0 0 -> -> 1 `i `uc ]
+"217
+[; ;main_brazo.c: 217:     PR2 = 249;
+[e = _PR2 -> -> 249 `i `uc ]
+"219
+[; ;main_brazo.c: 219:     TRISCbits.TRISC2=1;
+[e = . . _TRISCbits 0 2 -> -> 1 `i `uc ]
+"220
+[; ;main_brazo.c: 220:     CCP1CONbits.P1M = 0;
+[e = . . _CCP1CONbits 0 2 -> -> 0 `i `uc ]
+"221
+[; ;main_brazo.c: 221:     CCP1CONbits.CCP1M = 0b1100;
+[e = . . _CCP1CONbits 0 0 -> -> 12 `i `uc ]
+"222
+[; ;main_brazo.c: 222:     CCPR1L = 0x0f ;
+[e = _CCPR1L -> -> 15 `i `uc ]
+"223
+[; ;main_brazo.c: 223:     CCP1CONbits.DC1B = 0;
+[e = . . _CCP1CONbits 0 1 -> -> 0 `i `uc ]
+"225
+[; ;main_brazo.c: 225:     TRISCbits.TRISC1 = 1;
+[e = . . _TRISCbits 0 1 -> -> 1 `i `uc ]
+"226
+[; ;main_brazo.c: 226:     CCP2CONbits.CCP2M = 0b1100;
+[e = . . _CCP2CONbits 0 0 -> -> 12 `i `uc ]
+"227
+[; ;main_brazo.c: 227:     CCPR2L = 0x0f;
+[e = _CCPR2L -> -> 15 `i `uc ]
+"228
+[; ;main_brazo.c: 228:     CCP2CONbits.DC2B1 = 0;
+[e = . . _CCP2CONbits 0 2 -> -> 0 `i `uc ]
+"231
+[; ;main_brazo.c: 231:     PIR1bits.TMR2IF = 0;
+[e = . . _PIR1bits 0 1 -> -> 0 `i `uc ]
+"232
+[; ;main_brazo.c: 232:     T2CONbits.T2CKPS = 0b11;
+[e = . . _T2CONbits 0 0 -> -> 3 `i `uc ]
+"233
+[; ;main_brazo.c: 233:     T2CONbits.TMR2ON = 1;
+[e = . . _T2CONbits 0 1 -> -> 1 `i `uc ]
+"236
+[; ;main_brazo.c: 236:     PIR1bits.TMR2IF=0;
+[e = . . _PIR1bits 0 1 -> -> 0 `i `uc ]
+"237
+[; ;main_brazo.c: 237:     TRISCbits.TRISC2 = 0;
+[e = . . _TRISCbits 0 2 -> -> 0 `i `uc ]
+"238
+[; ;main_brazo.c: 238:     TRISCbits.TRISC1= 0;
+[e = . . _TRISCbits 0 1 -> -> 0 `i `uc ]
 "242
-[; ;main_brazo.c: 242:     TXSTAbits.BRGH = 1;
-[e = . . _TXSTAbits 0 2 -> -> 1 `i `uc ]
+[; ;main_brazo.c: 242:     TXSTAbits.SYNC = 0;
+[e = . . _TXSTAbits 0 4 -> -> 0 `i `uc ]
 "243
-[; ;main_brazo.c: 243:     BAUDCTLbits.BRG16 = 1;
+[; ;main_brazo.c: 243:     TXSTAbits.BRGH = 1;
+[e = . . _TXSTAbits 0 2 -> -> 1 `i `uc ]
+"244
+[; ;main_brazo.c: 244:     BAUDCTLbits.BRG16 = 1;
 [e = . . _BAUDCTLbits 0 3 -> -> 1 `i `uc ]
-"245
-[; ;main_brazo.c: 245:     SPBRG = 207;
-[e = _SPBRG -> -> 207 `i `uc ]
 "246
-[; ;main_brazo.c: 246:     SPBRGH = 0;
+[; ;main_brazo.c: 246:     SPBRG = 12;
+[e = _SPBRG -> -> 12 `i `uc ]
+"247
+[; ;main_brazo.c: 247:     SPBRGH = 0;
 [e = _SPBRGH -> -> 0 `i `uc ]
-"248
-[; ;main_brazo.c: 248:     RCSTAbits.SPEN = 1;
-[e = . . _RCSTAbits 0 7 -> -> 1 `i `uc ]
 "249
-[; ;main_brazo.c: 249:     RCSTAbits.RX9 = 0;
+[; ;main_brazo.c: 249:     RCSTAbits.SPEN = 1;
+[e = . . _RCSTAbits 0 7 -> -> 1 `i `uc ]
+"250
+[; ;main_brazo.c: 250:     RCSTAbits.RX9 = 0;
 [e = . . _RCSTAbits 0 6 -> -> 0 `i `uc ]
-"251
-[; ;main_brazo.c: 251:     RCSTAbits.CREN = 1;
-[e = . . _RCSTAbits 0 4 -> -> 1 `i `uc ]
 "252
-[; ;main_brazo.c: 252:     TXSTAbits.TXEN = 1;
+[; ;main_brazo.c: 252:     RCSTAbits.CREN = 1;
+[e = . . _RCSTAbits 0 4 -> -> 1 `i `uc ]
+"253
+[; ;main_brazo.c: 253:     TXSTAbits.TXEN = 1;
 [e = . . _TXSTAbits 0 5 -> -> 1 `i `uc ]
-"255
-[; ;main_brazo.c: 255:     INTCONbits.GIE = 1;
-[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
 "256
-[; ;main_brazo.c: 256:     INTCONbits.PEIE = 1;
+[; ;main_brazo.c: 256:     INTCONbits.GIE = 1;
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+"257
+[; ;main_brazo.c: 257:     INTCONbits.PEIE = 1;
 [e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
-"258
-[; ;main_brazo.c: 258:     PIE1bits.ADIE = 1;
-[e = . . _PIE1bits 0 6 -> -> 1 `i `uc ]
 "259
-[; ;main_brazo.c: 259:     PIR1bits.ADIF = 0;
+[; ;main_brazo.c: 259:     PIE1bits.ADIE = 1;
+[e = . . _PIE1bits 0 6 -> -> 1 `i `uc ]
+"260
+[; ;main_brazo.c: 260:     PIR1bits.ADIF = 0;
 [e = . . _PIR1bits 0 6 -> -> 0 `i `uc ]
-"262
-[; ;main_brazo.c: 262:     _delay((unsigned long)((100)*(8000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
 "263
-[; ;main_brazo.c: 263:     ADCON0bits.GO=1;
+[; ;main_brazo.c: 263:     _delay((unsigned long)((100)*(8000000/4000000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
+"264
+[; ;main_brazo.c: 264:     ADCON0bits.GO=1;
 [e = . . _ADCON0bits 1 1 -> -> 1 `i `uc ]
-"265
-[; ;main_brazo.c: 265: }
+"266
+[; ;main_brazo.c: 266: }
 [e :UE 163 ]
 }
-"271
-[; ;main_brazo.c: 271: void servo1_19(void)
-[v _servo1_19 `(v ~T0 @X0 1 ef ]
 "272
-[; ;main_brazo.c: 272: {
+[; ;main_brazo.c: 272: void servo1_19(void)
+[v _servo1_19 `(v ~T0 @X0 1 ef ]
+"273
+[; ;main_brazo.c: 273: {
 {
 [e :U _servo1_19 ]
 [f ]
-"273
-[; ;main_brazo.c: 273:     for (servo1_1 = 0; servo1_1 <= 15; servo1_1++)
+"274
+[; ;main_brazo.c: 274:     for (servo1_1 = 0; servo1_1 <= 15; servo1_1++)
 {
 [e = _servo1_1 -> 0 `i ]
 [e $ <= _servo1_1 -> 15 `i 165  ]
 [e $U 166  ]
 [e :U 165 ]
-"274
-[; ;main_brazo.c: 274:         {
-{
 "275
-[; ;main_brazo.c: 275:             PORTDbits.RD0 = 1;
-[e = . . _PORTDbits 0 0 -> -> 1 `i `uc ]
+[; ;main_brazo.c: 275:         {
+{
 "276
-[; ;main_brazo.c: 276:             _delay((unsigned long)((1)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;main_brazo.c: 276:             PORTDbits.RD0 = 1;
+[e = . . _PORTDbits 0 0 -> -> 1 `i `uc ]
 "277
-[; ;main_brazo.c: 277:             PORTDbits.RD0 = 0;
-[e = . . _PORTDbits 0 0 -> -> 0 `i `uc ]
+[; ;main_brazo.c: 277:             _delay((unsigned long)((1)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
 "278
-[; ;main_brazo.c: 278:             _delay((unsigned long)((19)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 19 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;main_brazo.c: 278:             PORTDbits.RD0 = 0;
+[e = . . _PORTDbits 0 0 -> -> 0 `i `uc ]
 "279
-[; ;main_brazo.c: 279:         }
+[; ;main_brazo.c: 279:             _delay((unsigned long)((19)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 19 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"280
+[; ;main_brazo.c: 280:         }
 }
 [e ++ _servo1_1 -> 1 `i ]
 [e $ <= _servo1_1 -> 15 `i 165  ]
 [e :U 166 ]
 }
-"280
-[; ;main_brazo.c: 280: }
+"281
+[; ;main_brazo.c: 281: }
 [e :UE 164 ]
 }
-"283
-[; ;main_brazo.c: 283: void servo1_18(void)
-[v _servo1_18 `(v ~T0 @X0 1 ef ]
 "284
-[; ;main_brazo.c: 284: {
+[; ;main_brazo.c: 284: void servo1_18(void)
+[v _servo1_18 `(v ~T0 @X0 1 ef ]
+"285
+[; ;main_brazo.c: 285: {
 {
 [e :U _servo1_18 ]
 [f ]
-"285
-[; ;main_brazo.c: 285:     for (servo1_2 = 0; servo1_2 <= 15; servo1_2++)
+"286
+[; ;main_brazo.c: 286:     for (servo1_2 = 0; servo1_2 <= 15; servo1_2++)
 {
 [e = _servo1_2 -> 0 `i ]
 [e $ <= _servo1_2 -> 15 `i 169  ]
 [e $U 170  ]
 [e :U 169 ]
-"286
-[; ;main_brazo.c: 286:         {
-{
 "287
-[; ;main_brazo.c: 287:             PORTDbits.RD0 = 1;
-[e = . . _PORTDbits 0 0 -> -> 1 `i `uc ]
+[; ;main_brazo.c: 287:         {
+{
 "288
-[; ;main_brazo.c: 288:             _delay((unsigned long)((1.5)*(8000000/4000.0)));
-[e ( __delay (1 -> * .1.5 / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;main_brazo.c: 288:             PORTDbits.RD0 = 1;
+[e = . . _PORTDbits 0 0 -> -> 1 `i `uc ]
 "289
-[; ;main_brazo.c: 289:             PORTDbits.RD0 = 0;
-[e = . . _PORTDbits 0 0 -> -> 0 `i `uc ]
+[; ;main_brazo.c: 289:             _delay((unsigned long)((1.5)*(8000000/4000.0)));
+[e ( __delay (1 -> * .1.5 / -> -> 8000000 `l `d .4000.0 `ul ]
 "290
-[; ;main_brazo.c: 290:             _delay((unsigned long)((18.5)*(8000000/4000.0)));
-[e ( __delay (1 -> * .18.5 / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;main_brazo.c: 290:             PORTDbits.RD0 = 0;
+[e = . . _PORTDbits 0 0 -> -> 0 `i `uc ]
 "291
-[; ;main_brazo.c: 291:         }
+[; ;main_brazo.c: 291:             _delay((unsigned long)((18.5)*(8000000/4000.0)));
+[e ( __delay (1 -> * .18.5 / -> -> 8000000 `l `d .4000.0 `ul ]
+"292
+[; ;main_brazo.c: 292:         }
 }
 [e ++ _servo1_2 -> 1 `i ]
 [e $ <= _servo1_2 -> 15 `i 169  ]
 [e :U 170 ]
 }
-"292
-[; ;main_brazo.c: 292: }
+"293
+[; ;main_brazo.c: 293: }
 [e :UE 168 ]
 }
-"296
-[; ;main_brazo.c: 296: void servo2_19(void)
-[v _servo2_19 `(v ~T0 @X0 1 ef ]
 "297
-[; ;main_brazo.c: 297: {
+[; ;main_brazo.c: 297: void servo2_19(void)
+[v _servo2_19 `(v ~T0 @X0 1 ef ]
+"298
+[; ;main_brazo.c: 298: {
 {
 [e :U _servo2_19 ]
 [f ]
-"298
-[; ;main_brazo.c: 298:     for (servo2_1 = 0; servo2_1 <= 15; servo2_1++)
+"299
+[; ;main_brazo.c: 299:     for (servo2_1 = 0; servo2_1 <= 15; servo2_1++)
 {
 [e = _servo2_1 -> 0 `i ]
 [e $ <= _servo2_1 -> 15 `i 173  ]
 [e $U 174  ]
 [e :U 173 ]
-"299
-[; ;main_brazo.c: 299:         {
-{
 "300
-[; ;main_brazo.c: 300:             PORTDbits.RD1 = 1;
-[e = . . _PORTDbits 0 1 -> -> 1 `i `uc ]
+[; ;main_brazo.c: 300:         {
+{
 "301
-[; ;main_brazo.c: 301:             _delay((unsigned long)((1)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;main_brazo.c: 301:             PORTDbits.RD1 = 1;
+[e = . . _PORTDbits 0 1 -> -> 1 `i `uc ]
 "302
-[; ;main_brazo.c: 302:             PORTDbits.RD1 = 0;
-[e = . . _PORTDbits 0 1 -> -> 0 `i `uc ]
+[; ;main_brazo.c: 302:             _delay((unsigned long)((1)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
 "303
-[; ;main_brazo.c: 303:             _delay((unsigned long)((19)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 19 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;main_brazo.c: 303:             PORTDbits.RD1 = 0;
+[e = . . _PORTDbits 0 1 -> -> 0 `i `uc ]
 "304
-[; ;main_brazo.c: 304:         }
+[; ;main_brazo.c: 304:             _delay((unsigned long)((19)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 19 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"305
+[; ;main_brazo.c: 305:         }
 }
 [e ++ _servo2_1 -> 1 `i ]
 [e $ <= _servo2_1 -> 15 `i 173  ]
 [e :U 174 ]
 }
-"305
-[; ;main_brazo.c: 305: }
+"306
+[; ;main_brazo.c: 306: }
 [e :UE 172 ]
 }
-"308
-[; ;main_brazo.c: 308: void servo2_18(void)
-[v _servo2_18 `(v ~T0 @X0 1 ef ]
 "309
-[; ;main_brazo.c: 309: {
+[; ;main_brazo.c: 309: void servo2_18(void)
+[v _servo2_18 `(v ~T0 @X0 1 ef ]
+"310
+[; ;main_brazo.c: 310: {
 {
 [e :U _servo2_18 ]
 [f ]
-"310
-[; ;main_brazo.c: 310:     for (servo2_2 = 0; servo2_2 <= 15; servo2_2++)
+"311
+[; ;main_brazo.c: 311:     for (servo2_2 = 0; servo2_2 <= 15; servo2_2++)
 {
 [e = _servo2_2 -> 0 `i ]
 [e $ <= _servo2_2 -> 15 `i 177  ]
 [e $U 178  ]
 [e :U 177 ]
-"311
-[; ;main_brazo.c: 311:         {
-{
 "312
-[; ;main_brazo.c: 312:             PORTDbits.RD1 = 1;
-[e = . . _PORTDbits 0 1 -> -> 1 `i `uc ]
+[; ;main_brazo.c: 312:         {
+{
 "313
-[; ;main_brazo.c: 313:             _delay((unsigned long)((1.5)*(8000000/4000.0)));
-[e ( __delay (1 -> * .1.5 / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;main_brazo.c: 313:             PORTDbits.RD1 = 1;
+[e = . . _PORTDbits 0 1 -> -> 1 `i `uc ]
 "314
-[; ;main_brazo.c: 314:             PORTDbits.RD1 = 0;
-[e = . . _PORTDbits 0 1 -> -> 0 `i `uc ]
+[; ;main_brazo.c: 314:             _delay((unsigned long)((1.5)*(8000000/4000.0)));
+[e ( __delay (1 -> * .1.5 / -> -> 8000000 `l `d .4000.0 `ul ]
 "315
-[; ;main_brazo.c: 315:             _delay((unsigned long)((18.5)*(8000000/4000.0)));
-[e ( __delay (1 -> * .18.5 / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;main_brazo.c: 315:             PORTDbits.RD1 = 0;
+[e = . . _PORTDbits 0 1 -> -> 0 `i `uc ]
 "316
-[; ;main_brazo.c: 316:         }
+[; ;main_brazo.c: 316:             _delay((unsigned long)((18.5)*(8000000/4000.0)));
+[e ( __delay (1 -> * .18.5 / -> -> 8000000 `l `d .4000.0 `ul ]
+"317
+[; ;main_brazo.c: 317:         }
 }
 [e ++ _servo2_2 -> 1 `i ]
 [e $ <= _servo2_2 -> 15 `i 177  ]
 [e :U 178 ]
 }
-"317
-[; ;main_brazo.c: 317: }
+"318
+[; ;main_brazo.c: 318: }
 [e :UE 176 ]
 }
-"320
-[; ;main_brazo.c: 320: void servo3_19(void)
-[v _servo3_19 `(v ~T0 @X0 1 ef ]
 "321
-[; ;main_brazo.c: 321: {
+[; ;main_brazo.c: 321: void servo3_19(void)
+[v _servo3_19 `(v ~T0 @X0 1 ef ]
+"322
+[; ;main_brazo.c: 322: {
 {
 [e :U _servo3_19 ]
 [f ]
-"322
-[; ;main_brazo.c: 322:     for (servo3_1 = 0; servo3_1 <= 15; servo3_1++)
+"323
+[; ;main_brazo.c: 323:     for (servo3_1 = 0; servo3_1 <= 15; servo3_1++)
 {
 [e = _servo3_1 -> 0 `i ]
 [e $ <= _servo3_1 -> 15 `i 181  ]
 [e $U 182  ]
 [e :U 181 ]
-"323
-[; ;main_brazo.c: 323:         {
-{
 "324
-[; ;main_brazo.c: 324:             PORTDbits.RD2 = 1;
-[e = . . _PORTDbits 0 2 -> -> 1 `i `uc ]
+[; ;main_brazo.c: 324:         {
+{
 "325
-[; ;main_brazo.c: 325:             _delay((unsigned long)((1)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;main_brazo.c: 325:             PORTDbits.RD2 = 1;
+[e = . . _PORTDbits 0 2 -> -> 1 `i `uc ]
 "326
-[; ;main_brazo.c: 326:             PORTDbits.RD2 = 0;
-[e = . . _PORTDbits 0 2 -> -> 0 `i `uc ]
+[; ;main_brazo.c: 326:             _delay((unsigned long)((1)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
 "327
-[; ;main_brazo.c: 327:             _delay((unsigned long)((19)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 19 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;main_brazo.c: 327:             PORTDbits.RD2 = 0;
+[e = . . _PORTDbits 0 2 -> -> 0 `i `uc ]
 "328
-[; ;main_brazo.c: 328:         }
+[; ;main_brazo.c: 328:             _delay((unsigned long)((19)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 19 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"329
+[; ;main_brazo.c: 329:         }
 }
 [e ++ _servo3_1 -> 1 `i ]
 [e $ <= _servo3_1 -> 15 `i 181  ]
 [e :U 182 ]
 }
-"329
-[; ;main_brazo.c: 329: }
+"330
+[; ;main_brazo.c: 330: }
 [e :UE 180 ]
 }
-"332
-[; ;main_brazo.c: 332: void servo3_18(void)
-[v _servo3_18 `(v ~T0 @X0 1 ef ]
 "333
-[; ;main_brazo.c: 333: {
+[; ;main_brazo.c: 333: void servo3_18(void)
+[v _servo3_18 `(v ~T0 @X0 1 ef ]
+"334
+[; ;main_brazo.c: 334: {
 {
 [e :U _servo3_18 ]
 [f ]
-"334
-[; ;main_brazo.c: 334:     for (servo3_2 = 0; servo3_2 <= 15; servo3_2++)
+"335
+[; ;main_brazo.c: 335:     for (servo3_2 = 0; servo3_2 <= 15; servo3_2++)
 {
 [e = _servo3_2 -> 0 `i ]
 [e $ <= _servo3_2 -> 15 `i 185  ]
 [e $U 186  ]
 [e :U 185 ]
-"335
-[; ;main_brazo.c: 335:         {
-{
 "336
-[; ;main_brazo.c: 336:             PORTDbits.RD2 = 1;
-[e = . . _PORTDbits 0 2 -> -> 1 `i `uc ]
+[; ;main_brazo.c: 336:         {
+{
 "337
-[; ;main_brazo.c: 337:             _delay((unsigned long)((1.5)*(8000000/4000.0)));
-[e ( __delay (1 -> * .1.5 / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;main_brazo.c: 337:             PORTDbits.RD2 = 1;
+[e = . . _PORTDbits 0 2 -> -> 1 `i `uc ]
 "338
-[; ;main_brazo.c: 338:             PORTDbits.RD2 = 0;
-[e = . . _PORTDbits 0 2 -> -> 0 `i `uc ]
+[; ;main_brazo.c: 338:             _delay((unsigned long)((1.5)*(8000000/4000.0)));
+[e ( __delay (1 -> * .1.5 / -> -> 8000000 `l `d .4000.0 `ul ]
 "339
-[; ;main_brazo.c: 339:             _delay((unsigned long)((18.5)*(8000000/4000.0)));
-[e ( __delay (1 -> * .18.5 / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;main_brazo.c: 339:             PORTDbits.RD2 = 0;
+[e = . . _PORTDbits 0 2 -> -> 0 `i `uc ]
 "340
-[; ;main_brazo.c: 340:         }
+[; ;main_brazo.c: 340:             _delay((unsigned long)((18.5)*(8000000/4000.0)));
+[e ( __delay (1 -> * .18.5 / -> -> 8000000 `l `d .4000.0 `ul ]
+"341
+[; ;main_brazo.c: 341:         }
 }
 [e ++ _servo3_2 -> 1 `i ]
 [e $ <= _servo3_2 -> 15 `i 185  ]
 [e :U 186 ]
 }
-"341
-[; ;main_brazo.c: 341: }
+"342
+[; ;main_brazo.c: 342: }
 [e :UE 184 ]
 }
-"344
-[; ;main_brazo.c: 344: char recepcion_rx()
-[v _recepcion_rx `(uc ~T0 @X0 1 ef ]
 "345
-[; ;main_brazo.c: 345: {
+[; ;main_brazo.c: 345: char recepcion_rx()
+[v _recepcion_rx `(uc ~T0 @X0 1 ef ]
+"346
+[; ;main_brazo.c: 346: {
 {
 [e :U _recepcion_rx ]
 [f ]
-"346
-[; ;main_brazo.c: 346:     return RCREG;
+"347
+[; ;main_brazo.c: 347:     return RCREG;
 [e ) -> _RCREG `uc ]
 [e $UE 188  ]
-"347
-[; ;main_brazo.c: 347: }
+"348
+[; ;main_brazo.c: 348: }
 [e :UE 188 ]
 }
-"350
-[; ;main_brazo.c: 350: void transmision_tx(char data)
-[v _transmision_tx `(v ~T0 @X0 1 ef1`uc ]
 "351
-[; ;main_brazo.c: 351: {
+[; ;main_brazo.c: 351: void transmision_tx(char data)
+[v _transmision_tx `(v ~T0 @X0 1 ef1`uc ]
+"352
+[; ;main_brazo.c: 352: {
 {
 [e :U _transmision_tx ]
-"350
-[; ;main_brazo.c: 350: void transmision_tx(char data)
-[v _data `uc ~T0 @X0 1 r1 ]
 "351
-[; ;main_brazo.c: 351: {
-[f ]
+[; ;main_brazo.c: 351: void transmision_tx(char data)
+[v _data `uc ~T0 @X0 1 r1 ]
 "352
-[; ;main_brazo.c: 352:     while(TXSTAbits.TRMT == 0);
+[; ;main_brazo.c: 352: {
+[f ]
+"353
+[; ;main_brazo.c: 353:     while(TXSTAbits.TRMT == 0)
 [e $U 190  ]
 [e :U 191 ]
+"354
+[; ;main_brazo.c: 354:     {
+{
+"355
+[; ;main_brazo.c: 355:         TXREG = data;
+[e = _TXREG -> _data `uc ]
+"356
+[; ;main_brazo.c: 356:     }
+}
 [e :U 190 ]
+"353
+[; ;main_brazo.c: 353:     while(TXSTAbits.TRMT == 0)
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 191  ]
 [e :U 192 ]
-"353
-[; ;main_brazo.c: 353:     TXREG = data;
-[e = _TXREG -> _data `uc ]
-"354
-[; ;main_brazo.c: 354: }
+"357
+[; ;main_brazo.c: 357: }
 [e :UE 189 ]
 }
-"356
-[; ;main_brazo.c: 356: void USART_Cadena(char *str)
+"359
+[; ;main_brazo.c: 359: void USART_Cadena(char *str)
 [v _USART_Cadena `(v ~T0 @X0 1 ef1`*uc ]
-"357
-[; ;main_brazo.c: 357: {
+"360
+[; ;main_brazo.c: 360: {
 {
 [e :U _USART_Cadena ]
-"356
-[; ;main_brazo.c: 356: void USART_Cadena(char *str)
+"359
+[; ;main_brazo.c: 359: void USART_Cadena(char *str)
 [v _str `*uc ~T0 @X0 1 r1 ]
-"357
-[; ;main_brazo.c: 357: {
+"360
+[; ;main_brazo.c: 360: {
 [f ]
-"358
-[; ;main_brazo.c: 358:         while(*str != '\0')
+"361
+[; ;main_brazo.c: 361:     while(*str != '\0')
 [e $U 194  ]
 [e :U 195 ]
-"359
-[; ;main_brazo.c: 359:         {
-{
-"360
-[; ;main_brazo.c: 360:             transmision_tx(*str);
-[e ( _transmision_tx (1 *U _str ]
-"361
-[; ;main_brazo.c: 361:             str++;
-[e ++ _str * -> -> 1 `i `x -> -> # *U _str `i `x ]
 "362
-[; ;main_brazo.c: 362:         }
+[; ;main_brazo.c: 362:     {
+{
+"363
+[; ;main_brazo.c: 363:         transmision_tx(*str);
+[e ( _transmision_tx (1 *U _str ]
+"364
+[; ;main_brazo.c: 364:         str++;
+[e ++ _str * -> -> 1 `i `x -> -> # *U _str `i `x ]
+"365
+[; ;main_brazo.c: 365:     }
 }
 [e :U 194 ]
-"358
-[; ;main_brazo.c: 358:         while(*str != '\0')
+"361
+[; ;main_brazo.c: 361:     while(*str != '\0')
 [e $ != -> *U _str `ui -> 0 `ui 195  ]
 [e :U 196 ]
-"363
-[; ;main_brazo.c: 363: }
+"366
+[; ;main_brazo.c: 366: }
 [e :UE 193 ]
 }
-"367
-[; ;main_brazo.c: 367: void servos_loop(void)
+"370
+[; ;main_brazo.c: 370: void servos_loop(void)
 [v _servos_loop `(v ~T0 @X0 1 ef ]
-"368
-[; ;main_brazo.c: 368: {
+"371
+[; ;main_brazo.c: 371: {
 {
 [e :U _servos_loop ]
 [f ]
-"369
-[; ;main_brazo.c: 369:     for(x=0;x<=7;x++)
+"372
+[; ;main_brazo.c: 372:     for(x=0;x<=7;x++)
 {
 [e = _x -> 0 `i ]
 [e $ <= _x -> 7 `i 198  ]
 [e $U 199  ]
 [e :U 198 ]
-"370
-[; ;main_brazo.c: 370:     {
-{
-"371
-[; ;main_brazo.c: 371:         if (x == 1)
-[e $ ! == _x -> 1 `i 201  ]
-"372
-[; ;main_brazo.c: 372:         {
-{
 "373
-[; ;main_brazo.c: 373:             for (servo1_1 = 0; servo1_1 <= 15; servo1_1++)
+[; ;main_brazo.c: 373:     {
+{
+"374
+[; ;main_brazo.c: 374:         if (x == 1)
+[e $ ! == _x -> 1 `i 201  ]
+"375
+[; ;main_brazo.c: 375:         {
+{
+"376
+[; ;main_brazo.c: 376:             for (servo1_1 = 0; servo1_1 <= 15; servo1_1++)
 {
 [e = _servo1_1 -> 0 `i ]
 [e $ <= _servo1_1 -> 15 `i 202  ]
 [e $U 203  ]
 [e :U 202 ]
-"374
-[; ;main_brazo.c: 374:             {
-{
-"375
-[; ;main_brazo.c: 375:                 PORTDbits.RD0 = 1;
-[e = . . _PORTDbits 0 0 -> -> 1 `i `uc ]
-"376
-[; ;main_brazo.c: 376:                 _delay((unsigned long)((1)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
 "377
-[; ;main_brazo.c: 377:                 PORTDbits.RD0 = 0;
-[e = . . _PORTDbits 0 0 -> -> 0 `i `uc ]
+[; ;main_brazo.c: 377:             {
+{
 "378
-[; ;main_brazo.c: 378:                 _delay((unsigned long)((19)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 19 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;main_brazo.c: 378:                 PORTDbits.RD0 = 1;
+[e = . . _PORTDbits 0 0 -> -> 1 `i `uc ]
 "379
-[; ;main_brazo.c: 379:             }
+[; ;main_brazo.c: 379:                 _delay((unsigned long)((1)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"380
+[; ;main_brazo.c: 380:                 PORTDbits.RD0 = 0;
+[e = . . _PORTDbits 0 0 -> -> 0 `i `uc ]
+"381
+[; ;main_brazo.c: 381:                 _delay((unsigned long)((19)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 19 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"382
+[; ;main_brazo.c: 382:             }
 }
 [e ++ _servo1_1 -> 1 `i ]
 [e $ <= _servo1_1 -> 15 `i 202  ]
 [e :U 203 ]
 }
-"380
-[; ;main_brazo.c: 380:         }
+"383
+[; ;main_brazo.c: 383:         }
 }
 [e :U 201 ]
-"382
-[; ;main_brazo.c: 382:         if (x == 2)
+"385
+[; ;main_brazo.c: 385:         if (x == 2)
 [e $ ! == _x -> 2 `i 205  ]
-"383
-[; ;main_brazo.c: 383:         {
+"386
+[; ;main_brazo.c: 386:         {
 {
-"384
-[; ;main_brazo.c: 384:             for (servo1_2 = 0; servo1_2 <= 15; servo1_2++)
+"387
+[; ;main_brazo.c: 387:             for (servo1_2 = 0; servo1_2 <= 15; servo1_2++)
 {
 [e = _servo1_2 -> 0 `i ]
 [e $ <= _servo1_2 -> 15 `i 206  ]
 [e $U 207  ]
 [e :U 206 ]
-"385
-[; ;main_brazo.c: 385:             {
-{
-"386
-[; ;main_brazo.c: 386:                 PORTDbits.RD0 = 1;
-[e = . . _PORTDbits 0 0 -> -> 1 `i `uc ]
-"387
-[; ;main_brazo.c: 387:                 _delay((unsigned long)((1.5)*(8000000/4000.0)));
-[e ( __delay (1 -> * .1.5 / -> -> 8000000 `l `d .4000.0 `ul ]
 "388
-[; ;main_brazo.c: 388:                 PORTDbits.RD0 = 0;
-[e = . . _PORTDbits 0 0 -> -> 0 `i `uc ]
+[; ;main_brazo.c: 388:             {
+{
 "389
-[; ;main_brazo.c: 389:                 _delay((unsigned long)((18.5)*(8000000/4000.0)));
-[e ( __delay (1 -> * .18.5 / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;main_brazo.c: 389:                 PORTDbits.RD0 = 1;
+[e = . . _PORTDbits 0 0 -> -> 1 `i `uc ]
 "390
-[; ;main_brazo.c: 390:             }
+[; ;main_brazo.c: 390:                 _delay((unsigned long)((1.5)*(8000000/4000.0)));
+[e ( __delay (1 -> * .1.5 / -> -> 8000000 `l `d .4000.0 `ul ]
+"391
+[; ;main_brazo.c: 391:                 PORTDbits.RD0 = 0;
+[e = . . _PORTDbits 0 0 -> -> 0 `i `uc ]
+"392
+[; ;main_brazo.c: 392:                 _delay((unsigned long)((18.5)*(8000000/4000.0)));
+[e ( __delay (1 -> * .18.5 / -> -> 8000000 `l `d .4000.0 `ul ]
+"393
+[; ;main_brazo.c: 393:             }
 }
 [e ++ _servo1_2 -> 1 `i ]
 [e $ <= _servo1_2 -> 15 `i 206  ]
 [e :U 207 ]
 }
-"391
-[; ;main_brazo.c: 391:         }
+"394
+[; ;main_brazo.c: 394:         }
 }
 [e :U 205 ]
-"393
-[; ;main_brazo.c: 393:         if (x ==3)
+"396
+[; ;main_brazo.c: 396:         if (x ==3)
 [e $ ! == _x -> 3 `i 209  ]
-"394
-[; ;main_brazo.c: 394:         {
+"397
+[; ;main_brazo.c: 397:         {
 {
-"395
-[; ;main_brazo.c: 395:             for (servo2_1 = 0; servo2_1 <= 20; servo2_1++)
+"398
+[; ;main_brazo.c: 398:             for (servo2_1 = 0; servo2_1 <= 20; servo2_1++)
 {
 [e = _servo2_1 -> 0 `i ]
 [e $ <= _servo2_1 -> 20 `i 210  ]
 [e $U 211  ]
 [e :U 210 ]
-"396
-[; ;main_brazo.c: 396:             {
-{
-"397
-[; ;main_brazo.c: 397:                 PORTDbits.RD1 = 1;
-[e = . . _PORTDbits 0 1 -> -> 1 `i `uc ]
-"398
-[; ;main_brazo.c: 398:                 _delay((unsigned long)((1)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
 "399
-[; ;main_brazo.c: 399:                 PORTDbits.RD1 = 0;
-[e = . . _PORTDbits 0 1 -> -> 0 `i `uc ]
+[; ;main_brazo.c: 399:             {
+{
 "400
-[; ;main_brazo.c: 400:                 _delay((unsigned long)((19)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 19 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;main_brazo.c: 400:                 PORTDbits.RD1 = 1;
+[e = . . _PORTDbits 0 1 -> -> 1 `i `uc ]
 "401
-[; ;main_brazo.c: 401:             }
+[; ;main_brazo.c: 401:                 _delay((unsigned long)((1)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"402
+[; ;main_brazo.c: 402:                 PORTDbits.RD1 = 0;
+[e = . . _PORTDbits 0 1 -> -> 0 `i `uc ]
+"403
+[; ;main_brazo.c: 403:                 _delay((unsigned long)((19)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 19 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"404
+[; ;main_brazo.c: 404:             }
 }
 [e ++ _servo2_1 -> 1 `i ]
 [e $ <= _servo2_1 -> 20 `i 210  ]
 [e :U 211 ]
 }
-"402
-[; ;main_brazo.c: 402:         }
+"405
+[; ;main_brazo.c: 405:         }
 }
 [e :U 209 ]
-"404
-[; ;main_brazo.c: 404:         if (x==4)
+"407
+[; ;main_brazo.c: 407:         if (x==4)
 [e $ ! == _x -> 4 `i 213  ]
-"405
-[; ;main_brazo.c: 405:         {
+"408
+[; ;main_brazo.c: 408:         {
 {
-"406
-[; ;main_brazo.c: 406:             for (servo2_2 = 0; servo2_2 <= 20; servo2_2++)
+"409
+[; ;main_brazo.c: 409:             for (servo2_2 = 0; servo2_2 <= 20; servo2_2++)
 {
 [e = _servo2_2 -> 0 `i ]
 [e $ <= _servo2_2 -> 20 `i 214  ]
 [e $U 215  ]
 [e :U 214 ]
-"407
-[; ;main_brazo.c: 407:             {
-{
-"408
-[; ;main_brazo.c: 408:                 PORTDbits.RD1 = 1;
-[e = . . _PORTDbits 0 1 -> -> 1 `i `uc ]
-"409
-[; ;main_brazo.c: 409:                 _delay((unsigned long)((1.5)*(8000000/4000.0)));
-[e ( __delay (1 -> * .1.5 / -> -> 8000000 `l `d .4000.0 `ul ]
 "410
-[; ;main_brazo.c: 410:                 PORTDbits.RD1 = 0;
-[e = . . _PORTDbits 0 1 -> -> 0 `i `uc ]
+[; ;main_brazo.c: 410:             {
+{
 "411
-[; ;main_brazo.c: 411:                 _delay((unsigned long)((18.5)*(8000000/4000.0)));
-[e ( __delay (1 -> * .18.5 / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;main_brazo.c: 411:                 PORTDbits.RD1 = 1;
+[e = . . _PORTDbits 0 1 -> -> 1 `i `uc ]
 "412
-[; ;main_brazo.c: 412:             }
+[; ;main_brazo.c: 412:                 _delay((unsigned long)((1.5)*(8000000/4000.0)));
+[e ( __delay (1 -> * .1.5 / -> -> 8000000 `l `d .4000.0 `ul ]
+"413
+[; ;main_brazo.c: 413:                 PORTDbits.RD1 = 0;
+[e = . . _PORTDbits 0 1 -> -> 0 `i `uc ]
+"414
+[; ;main_brazo.c: 414:                 _delay((unsigned long)((18.5)*(8000000/4000.0)));
+[e ( __delay (1 -> * .18.5 / -> -> 8000000 `l `d .4000.0 `ul ]
+"415
+[; ;main_brazo.c: 415:             }
 }
 [e ++ _servo2_2 -> 1 `i ]
 [e $ <= _servo2_2 -> 20 `i 214  ]
 [e :U 215 ]
 }
-"413
-[; ;main_brazo.c: 413:         }
+"416
+[; ;main_brazo.c: 416:         }
 }
 [e :U 213 ]
-"415
-[; ;main_brazo.c: 415:         if (x==5)
+"418
+[; ;main_brazo.c: 418:         if (x==5)
 [e $ ! == _x -> 5 `i 217  ]
-"416
-[; ;main_brazo.c: 416:         {
+"419
+[; ;main_brazo.c: 419:         {
 {
-"417
-[; ;main_brazo.c: 417:             for (servo3_1 = 0; servo3_1 <= 20; servo3_1++)
+"420
+[; ;main_brazo.c: 420:             for (servo3_1 = 0; servo3_1 <= 20; servo3_1++)
 {
 [e = _servo3_1 -> 0 `i ]
 [e $ <= _servo3_1 -> 20 `i 218  ]
 [e $U 219  ]
 [e :U 218 ]
-"418
-[; ;main_brazo.c: 418:             {
-{
-"419
-[; ;main_brazo.c: 419:                 PORTDbits.RD2 = 1;
-[e = . . _PORTDbits 0 2 -> -> 1 `i `uc ]
-"420
-[; ;main_brazo.c: 420:                 _delay((unsigned long)((1)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
 "421
-[; ;main_brazo.c: 421:                 PORTDbits.RD2 = 0;
-[e = . . _PORTDbits 0 2 -> -> 0 `i `uc ]
+[; ;main_brazo.c: 421:             {
+{
 "422
-[; ;main_brazo.c: 422:                 _delay((unsigned long)((19)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 19 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;main_brazo.c: 422:                 PORTDbits.RD2 = 1;
+[e = . . _PORTDbits 0 2 -> -> 1 `i `uc ]
 "423
-[; ;main_brazo.c: 423:             }
+[; ;main_brazo.c: 423:                 _delay((unsigned long)((1)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"424
+[; ;main_brazo.c: 424:                 PORTDbits.RD2 = 0;
+[e = . . _PORTDbits 0 2 -> -> 0 `i `uc ]
+"425
+[; ;main_brazo.c: 425:                 _delay((unsigned long)((19)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 19 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"426
+[; ;main_brazo.c: 426:             }
 }
 [e ++ _servo3_1 -> 1 `i ]
 [e $ <= _servo3_1 -> 20 `i 218  ]
 [e :U 219 ]
 }
-"424
-[; ;main_brazo.c: 424:         }
+"427
+[; ;main_brazo.c: 427:         }
 }
 [e :U 217 ]
-"426
-[; ;main_brazo.c: 426:         if (x==6)
+"429
+[; ;main_brazo.c: 429:         if (x==6)
 [e $ ! == _x -> 6 `i 221  ]
-"427
-[; ;main_brazo.c: 427:         {
+"430
+[; ;main_brazo.c: 430:         {
 {
-"428
-[; ;main_brazo.c: 428:             for (servo3_2 = 0; servo3_2 <= 20; servo3_2++)
+"431
+[; ;main_brazo.c: 431:             for (servo3_2 = 0; servo3_2 <= 20; servo3_2++)
 {
 [e = _servo3_2 -> 0 `i ]
 [e $ <= _servo3_2 -> 20 `i 222  ]
 [e $U 223  ]
 [e :U 222 ]
-"429
-[; ;main_brazo.c: 429:             {
-{
-"430
-[; ;main_brazo.c: 430:                 PORTDbits.RD2 = 1;
-[e = . . _PORTDbits 0 2 -> -> 1 `i `uc ]
-"431
-[; ;main_brazo.c: 431:                 _delay((unsigned long)((1.5)*(8000000/4000.0)));
-[e ( __delay (1 -> * .1.5 / -> -> 8000000 `l `d .4000.0 `ul ]
 "432
-[; ;main_brazo.c: 432:                 PORTDbits.RD2 = 0;
-[e = . . _PORTDbits 0 2 -> -> 0 `i `uc ]
+[; ;main_brazo.c: 432:             {
+{
 "433
-[; ;main_brazo.c: 433:                 _delay((unsigned long)((18.5)*(8000000/4000.0)));
-[e ( __delay (1 -> * .18.5 / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;main_brazo.c: 433:                 PORTDbits.RD2 = 1;
+[e = . . _PORTDbits 0 2 -> -> 1 `i `uc ]
 "434
-[; ;main_brazo.c: 434:             }
+[; ;main_brazo.c: 434:                 _delay((unsigned long)((1.5)*(8000000/4000.0)));
+[e ( __delay (1 -> * .1.5 / -> -> 8000000 `l `d .4000.0 `ul ]
+"435
+[; ;main_brazo.c: 435:                 PORTDbits.RD2 = 0;
+[e = . . _PORTDbits 0 2 -> -> 0 `i `uc ]
+"436
+[; ;main_brazo.c: 436:                 _delay((unsigned long)((18.5)*(8000000/4000.0)));
+[e ( __delay (1 -> * .18.5 / -> -> 8000000 `l `d .4000.0 `ul ]
+"437
+[; ;main_brazo.c: 437:             }
 }
 [e ++ _servo3_2 -> 1 `i ]
 [e $ <= _servo3_2 -> 20 `i 222  ]
 [e :U 223 ]
 }
-"435
-[; ;main_brazo.c: 435:         }
+"438
+[; ;main_brazo.c: 438:         }
 }
 [e :U 221 ]
-"436
-[; ;main_brazo.c: 436:         if (x==7)
-[e $ ! == _x -> 7 `i 225  ]
-"437
-[; ;main_brazo.c: 437:         {
-{
-"438
-[; ;main_brazo.c: 438:             x=0;
-[e = _x -> 0 `i ]
 "439
-[; ;main_brazo.c: 439:         }
+[; ;main_brazo.c: 439:         if (x==7)
+[e $ ! == _x -> 7 `i 225  ]
+"440
+[; ;main_brazo.c: 440:         {
+{
+"441
+[; ;main_brazo.c: 441:             x=0;
+[e = _x -> 0 `i ]
+"442
+[; ;main_brazo.c: 442:         }
 }
 [e :U 225 ]
-"440
-[; ;main_brazo.c: 440:     }
+"443
+[; ;main_brazo.c: 443:     }
 }
 [e ++ _x -> 1 `i ]
 [e $ <= _x -> 7 `i 198  ]
 [e :U 199 ]
 }
-"441
-[; ;main_brazo.c: 441: }
+"444
+[; ;main_brazo.c: 444: }
 [e :UE 197 ]
 }
 [a 1C 13 32 81 117 101 32 97 99 99 105 111 110 32 100 101 115 101 97 32 101 106 101 99 117 116 97 114 63 32 13 0 ]

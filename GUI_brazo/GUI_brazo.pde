@@ -9,13 +9,20 @@
 import processing.serial.*;
 
 /*----------------------------------------------------------------------------------
----------------------------inicializacion de puerto serial--------------------------
-----------------------------------------------------------------------------------*/
-Serial myPort;            //variable objeto para comunicacion serial
-
-/*----------------------------------------------------------------------------------
 ---------------------------definicion de variables a implementar--------------------
 ----------------------------------------------------------------------------------*/
+Serial myPort;                        //variable objeto para comunicacion serial
+
+byte[] dePic = new byte[6];           //bytes recibidos desde PIC
+int [] dePicInt = {0,0,0,0,0,0};        //se desconoce su valor, por eso en 0
+
+byte [] haciaPic = new byte [6];      //byts para mandar a PIC
+int [] haciaPicInt = {0,1,0,1,1,0};    //arreglo de datos a mandar al PIC, [servo1_0,servo1_45,servo2_0,servo2_45,servo3_0,servo3_45]
+
+int interval = 100;
+int previousMillis = 0;
+int currentMillis = 0;
+
 int dato_transmitido=0;    //variable para mandar al PIC
 int dato_recibido;         //variable con datos desde el PIC
 String puerto[];          //variable tipo string para los datos
@@ -37,6 +44,8 @@ void setup()
 //------------------Configuracion de puertos seriales
 //puerto = Serial.list()[0];                 //declaraccion de puerto USB para USARTcom
 //myPort = new Serial(this, puerto, 9600);          //configuracion de puerto y braudeaje
+//myPort.buffer(6);
+//thread("serial_comm");
 
   
 size(550,780);                                      //tamaño de 500*500 pixeles
@@ -48,12 +57,17 @@ text("de Micrcontroladores",160,80);
 
 //--------------------------funcion de comunicacion serial----------------------------
 
-void comunicacion_serial()
+void serialEvent(Serial myPort)
 {
-  
+  myPort.readBytes(dePic);
+  for (int i=0;i<6 ;i++)
+  {
+    dePicInt[i] = dePic[i] & 0xFF;
+  }
+  //inString = p.readString();
   /*int input = myPort.read();
   datosPIC[cont] = input;
-  cont++;
+  cont++; 
   if (cont > 1){
      valpot = datosPIC[0];
      delay(5);
@@ -67,9 +81,41 @@ void comunicacion_serial()
   //rect(slider1[0],2*slider1[1],300,100);
 }
 
+void serial_comm()
+{
+  while (true)
+  {
+    currentMillis = millis();
+  
+    if (currentMillis - previousMillis >= interval)
+    {
+      previousMillis = currentMillis;
+      for (int i = 0; i<6;i++)
+      {
+        haciaPic[i]=byte(haciaPicInt[i]);
+      }
+      myPort.write(haciaPic);
+    }
+  }
+}
+
 //----------------------------------funcion de dibujo------------------------------------
 void draw()
 {
+  println("---------------------------------------------");
+  println("ESTADO DE LOS SERVO MOTORES EN EL CIRCUITO");
+  println("---------------------------------------------");
+  println("El servo 1 está en:");       //texto de referencia
+  println(dePicInt[0]);                 //estado del servo 1
+  println("El servo 2 está en:");      //texto de referencia
+  println(dePicInt[1]);                 //estado del servo 2
+  println("El servo 3 está en:");      //texto de referencia
+  println(dePicInt[2]);                //estado del servo3
+  
+  
+  
+  //idealmente tambien debería mostrar los valores que se estan modificando de la eeprom y demas
+  
   
   fill(1300,1300,1300);
   //square(boton1[0],boton1[1],boton1[2]);

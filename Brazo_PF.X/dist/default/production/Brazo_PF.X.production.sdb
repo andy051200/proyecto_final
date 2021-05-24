@@ -15,25 +15,25 @@
 [v _isr isr `II(v  1 e 1 0 ]
 "115
 [v _main main `(v  1 e 1 0 ]
-"171
+"172
 [v _setup setup `(v  1 e 1 0 ]
-"271
+"272
 [v _servo1_19 servo1_19 `(v  1 e 1 0 ]
-"283
+"284
 [v _servo1_18 servo1_18 `(v  1 e 1 0 ]
-"296
+"297
 [v _servo2_19 servo2_19 `(v  1 e 1 0 ]
-"308
+"309
 [v _servo2_18 servo2_18 `(v  1 e 1 0 ]
-"320
+"321
 [v _servo3_19 servo3_19 `(v  1 e 1 0 ]
-"332
+"333
 [v _servo3_18 servo3_18 `(v  1 e 1 0 ]
-"344
+"345
 [v _recepcion_rx recepcion_rx `(uc  1 e 1 0 ]
-"350
+"351
 [v _transmision_tx transmision_tx `(v  1 e 1 0 ]
-"356
+"359
 [v _USART_Cadena USART_Cadena `(v  1 e 1 0 ]
 "166 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
@@ -343,58 +343,58 @@
 "115
 [v _main main `(v  1 e 1 0 ]
 {
-"167
+"168
 } 0
-"171
+"172
 [v _setup setup `(v  1 e 1 0 ]
 {
-"265
+"266
 } 0
-"320
+"321
 [v _servo3_19 servo3_19 `(v  1 e 1 0 ]
 {
-"329
+"330
 } 0
-"332
+"333
 [v _servo3_18 servo3_18 `(v  1 e 1 0 ]
 {
-"341
+"342
 } 0
-"296
+"297
 [v _servo2_19 servo2_19 `(v  1 e 1 0 ]
 {
-"305
+"306
 } 0
-"308
+"309
 [v _servo2_18 servo2_18 `(v  1 e 1 0 ]
 {
-"317
+"318
 } 0
-"271
+"272
 [v _servo1_19 servo1_19 `(v  1 e 1 0 ]
 {
-"280
+"281
 } 0
-"283
+"284
 [v _servo1_18 servo1_18 `(v  1 e 1 0 ]
 {
-"292
+"293
 } 0
-"356
+"359
 [v _USART_Cadena USART_Cadena `(v  1 e 1 0 ]
 {
 [v USART_Cadena@str str `*.24uc  1 a 1 wreg ]
 [v USART_Cadena@str str `*.24uc  1 a 1 wreg ]
 [v USART_Cadena@str str `*.24uc  1 a 1 1 ]
-"363
+"366
 } 0
-"350
+"351
 [v _transmision_tx transmision_tx `(v  1 e 1 0 ]
 {
 [v transmision_tx@data data `uc  1 a 1 wreg ]
 [v transmision_tx@data data `uc  1 a 1 wreg ]
 [v transmision_tx@data data `uc  1 a 1 4 ]
-"354
+"357
 } 0
 "82
 [v _isr isr `II(v  1 e 1 0 ]

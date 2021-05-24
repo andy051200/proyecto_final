@@ -2796,13 +2796,14 @@ void main (void)
         USART_Cadena(" 3) Mover a 45 servo3 \r");
 
         while (PIR1bits.RCIF==0);
-
-        dato_recibido = recepcion_rx;
+        {
+            dato_recibido = recepcion_rx;
+        }
 
         switch(dato_recibido)
         {
 
-            case ('a'):
+            case ('1'):
                 servo1_19();
                 break;
             case ('2'):
@@ -2910,7 +2911,7 @@ void setup()
     TXSTAbits.BRGH = 1;
     BAUDCTLbits.BRG16 = 1;
 
-    SPBRG = 207;
+    SPBRG = 12;
     SPBRGH = 0;
 
     RCSTAbits.SPEN = 1;
@@ -3017,17 +3018,19 @@ char recepcion_rx()
 
 void transmision_tx(char data)
 {
-    while(TXSTAbits.TRMT == 0);
-    TXREG = data;
+    while(TXSTAbits.TRMT == 0)
+    {
+        TXREG = data;
+    }
 }
 
 void USART_Cadena(char *str)
 {
-        while(*str != '\0')
-        {
-            transmision_tx(*str);
-            str++;
-        }
+    while(*str != '\0')
+    {
+        transmision_tx(*str);
+        str++;
+    }
 }
 
 

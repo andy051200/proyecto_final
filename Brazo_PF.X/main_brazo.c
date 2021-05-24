@@ -128,13 +128,14 @@ void main (void)
         USART_Cadena(" 3) Mover a 45 servo3 \r");
         
         while (PIR1bits.RCIF==0);
-        
-        dato_recibido = recepcion_rx;   //se almacena dato recibio en variable 
+        {
+            dato_recibido = recepcion_rx;//se almacena dato recibio en variable 
+        }
         
         switch(dato_recibido)
         {
             //casos para el servo1
-            case ('a'):                 //en caso se reciba 1, servo1 a 0°
+            case ('1'):                 //en caso se reciba 1, servo1 a 0°
                 servo1_19();            //se llama funcion para 0°
                 break;
             case ('2'):                 //en caso se reciba 2, servo1 a 45°
@@ -242,11 +243,11 @@ void setup()
     TXSTAbits.BRGH = 1;         //se habilita transmision de alta velocidad
     BAUDCTLbits.BRG16 = 1;      //se habilita uso los 16 bits   
     //braudeaje
-    SPBRG = 207;                //valor adecuado al SPBRG para braudeaje                  
+    SPBRG = 12;                //valor adecuado al SPBRG para braudeaje                  
     SPBRGH = 0;                 //pagina 168 del datasheet del 2009       
     //recepcion
-    RCSTAbits.SPEN = 1;          //enciendo el modulo
-    RCSTAbits.RX9 = 0;           //No trabajo a 9 bits
+    RCSTAbits.SPEN = 1;          //se enciendeel modulo
+    RCSTAbits.RX9 = 0;           //se habilita transmision de 8bits
     //encendido de modulos
     RCSTAbits.CREN = 1;          //se activa la recepción
     TXSTAbits.TXEN = 1;          //se activa la transmision 
@@ -349,17 +350,19 @@ char recepcion_rx()
 //funcion para 
 void transmision_tx(char data)
 {
-    while(TXSTAbits.TRMT == 0);
-    TXREG = data;
+    while(TXSTAbits.TRMT == 0)
+    {
+        TXREG = data;
+    }
 }
 
 void USART_Cadena(char *str)
 {
-        while(*str != '\0')
-        {
-            transmision_tx(*str);
-            str++;
-        }
+    while(*str != '\0')
+    {
+        transmision_tx(*str);
+        str++;
+    }
 }
 
 
