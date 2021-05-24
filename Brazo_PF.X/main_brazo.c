@@ -55,8 +55,13 @@ char dato_recibido;     //valor recibido de interfaz
 //setup del pic
 void setup(void);  //funcion para configuracion de registros del PIC
 void servos_loop(void);
+
+
 //transmision
-void transmision_tx(void);  //funcion para transmitir datos via UART
+void transmision_tx(char data);  //funcion para transmitir datos via UART
+
+//cadena
+void USART_Cadena(char *str);
 
 //recepcion
 char recepcion_rx();    //funcion para recepcion datos via UART
@@ -114,11 +119,22 @@ void main (void)
     //MAIN LOOP
     while (1)                           
     {
+        USART_Cadena("\r Que accion desea ejecutar? \r");
+        USART_Cadena(" 1) Mover a 0 servo1 \r");
+        USART_Cadena(" 2) Mover a 45 servo1 \r");
+        USART_Cadena(" 3) Mover a 0 servo2 \r");
+        USART_Cadena(" 3) Mover a 45 servo2 \r");
+        USART_Cadena(" 3) Mover a 0 servo3 \r");
+        USART_Cadena(" 3) Mover a 45 servo3 \r");
+        
+        while (PIR1bits.RCIF==0);
+        
         dato_recibido = recepcion_rx;   //se almacena dato recibio en variable 
+        
         switch(dato_recibido)
         {
             //casos para el servo1
-            case ('1'):                 //en caso se reciba 1, servo1 a 0°
+            case ('a'):                 //en caso se reciba 1, servo1 a 0°
                 servo1_19();            //se llama funcion para 0°
                 break;
             case ('2'):                 //en caso se reciba 2, servo1 a 45°
@@ -144,8 +160,8 @@ void main (void)
         }
         
         
-        
-        servos_loop();          //funcion para movimiento de servos
+
+        //servos_loop();          //funcion para movimiento de servos
     }
 
 }
@@ -174,11 +190,11 @@ void setup()
     
     TRISE = 0;              //PortE como salida
     
-    PORTA = 0;              //se limpia puerto
-    PORTB = 0;              //se limpia puerto
-    PORTC = 0;              //se limpia puerto
-    PORTD = 0;              //se limpia puerto
-    PORTE = 0;              //se limpia puerto
+    PORTA = 0;              //se limpia puertoA
+    PORTB = 0;              //se limpia puertoB
+    PORTC = 0;              //se limpia puertoC
+    PORTD = 0;              //se limpia puertoD
+    PORTE = 0;              //se limpia puertoE
     
     //CONFIGURACION DE OSCILADOR
     OSCCONbits.IRCF2 = 1;   //Freq a 8MHz, 111
@@ -234,7 +250,6 @@ void setup()
     //encendido de modulos
     RCSTAbits.CREN = 1;          //se activa la recepción
     TXSTAbits.TXEN = 1;          //se activa la transmision 
-    
     
     //CONFIGURACION DE INTERRUPCIONES
     INTCONbits.GIE = 1;     //habilitan interrupciones globales
@@ -325,15 +340,29 @@ void servo3_18(void)
         }
 }
 
-void transmision_tx(void)
-{
-
-}
-
+//funcion para transladar datos recibidos
 char recepcion_rx()
 {
     return RCREG;       //el valor de RCREG lo pongo en ese caracter
 }
+
+//funcion para 
+void transmision_tx(char data)
+{
+    while(TXSTAbits.TRMT == 0);
+    TXREG = data;
+}
+
+void USART_Cadena(char *str)
+{
+        while(*str != '\0')
+        {
+            transmision_tx(*str);
+            str++;
+        }
+}
+
+
 
 void servos_loop(void)
 {
@@ -410,4 +439,5 @@ void servos_loop(void)
         }
     }
 }
+
 

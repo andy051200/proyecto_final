@@ -11,12 +11,15 @@ import processing.serial.*;
 /*----------------------------------------------------------------------------------
 ---------------------------inicializacion de puerto serial--------------------------
 ----------------------------------------------------------------------------------*/
-Serial myPort;
+Serial myPort;            //variable objeto para comunicacion serial
 
 /*----------------------------------------------------------------------------------
 ---------------------------definicion de variables a implementar--------------------
 ----------------------------------------------------------------------------------*/
 int dato_transmitido=0;    //variable para mandar al PIC
+int dato_recibido;         //variable con datos desde el PIC
+String puerto[];          //variable tipo string para los datos
+
 
 /*----------------------------------------------------------------------------------
 -----------------------------definicion de cadenas a implementar--------------------
@@ -31,17 +34,16 @@ char led1[] = {150,100,50};                         //puntox, puntoy,tamaño
 //--------------------------------configuracion general-----------------------------
 void setup()
 {
-//Configuracion de puertos seriales
-//String puerto = Serial.list()[0];                 //declaraccion de puerto USB para USARTcom
+//------------------Configuracion de puertos seriales
+//puerto = Serial.list()[0];                 //declaraccion de puerto USB para USARTcom
 //myPort = new Serial(this, puerto, 9600);          //configuracion de puerto y braudeaje
+
   
 size(550,780);                                      //tamaño de 500*500 pixeles
 background(100,100,100);                            //color de fondo
 textSize(20);                                       //tamaño de texto en pantalla
 text("Proyecto final de Programacion", 120, 50);
 text("de Micrcontroladores",160,80);
-
-
 }
 
 //--------------------------funcion de comunicacion serial----------------------------

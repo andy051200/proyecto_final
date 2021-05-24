@@ -2724,7 +2724,12 @@ char dato_recibido;
 void setup(void);
 void servos_loop(void);
 
-void transmision_tx(void);
+
+
+void transmision_tx(char data);
+
+
+void USART_Cadena(char *str);
 
 
 char recepcion_rx();
@@ -2782,11 +2787,22 @@ void main (void)
 
     while (1)
     {
+        USART_Cadena("\r Que accion desea ejecutar? \r");
+        USART_Cadena(" 1) Mover a 0 servo1 \r");
+        USART_Cadena(" 2) Mover a 45 servo1 \r");
+        USART_Cadena(" 3) Mover a 0 servo2 \r");
+        USART_Cadena(" 3) Mover a 45 servo2 \r");
+        USART_Cadena(" 3) Mover a 0 servo3 \r");
+        USART_Cadena(" 3) Mover a 45 servo3 \r");
+
+        while (PIR1bits.RCIF==0);
+
         dato_recibido = recepcion_rx;
+
         switch(dato_recibido)
         {
 
-            case ('1'):
+            case ('a'):
                 servo1_19();
                 break;
             case ('2'):
@@ -2813,7 +2829,7 @@ void main (void)
 
 
 
-        servos_loop();
+
     }
 
 }
@@ -2904,7 +2920,6 @@ void setup()
     TXSTAbits.TXEN = 1;
 
 
-
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
 
@@ -2993,15 +3008,29 @@ void servo3_18(void)
         }
 }
 
-void transmision_tx(void)
-{
-
-}
 
 char recepcion_rx()
 {
     return RCREG;
 }
+
+
+void transmision_tx(char data)
+{
+    while(TXSTAbits.TRMT == 0);
+    TXREG = data;
+}
+
+void USART_Cadena(char *str)
+{
+        while(*str != '\0')
+        {
+            transmision_tx(*str);
+            str++;
+        }
+}
+
+
 
 void servos_loop(void)
 {
