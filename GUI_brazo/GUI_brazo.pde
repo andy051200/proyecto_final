@@ -250,12 +250,12 @@ void draw()
         fill(255,0,0);
         square(boton_eeprom[0],boton_eeprom[1], boton_eeprom[2]);
         //poner variable que va a 
+        dato_transmitido=7;
       }
     }
   }
   
   
-  
-  
+ 
 println(dato_transmitido);
 }
