@@ -1,4 +1,4 @@
-# 1 "main_brazo.c"
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\sources\\c90\\pic\\__eeprom.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,27 +6,44 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "main_brazo.c" 2
-# 15 "main_brazo.c"
-#pragma config FOSC = INTRC_NOCLKOUT
-#pragma config WDTE = OFF
-#pragma config PWRTE = OFF
-#pragma config MCLRE = OFF
-#pragma config CP = OFF
-#pragma config CPD = OFF
-#pragma config BOREN = OFF
-#pragma config IESO = OFF
-#pragma config FCMEN = OFF
-#pragma config LVP = ON
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\sources\\c90\\pic\\__eeprom.c" 2
+# 1 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 1 3
+# 18 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 3
+extern const char __xc8_OPTIM_SPEED;
 
-
-#pragma config BOR4V = BOR40V
-#pragma config WRT = OFF
+extern double __fpnormalize(double);
 
 
 
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\xc8debug.h" 1 3
+# 13 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\xc8debug.h" 3
+#pragma intrinsic(__builtin_software_breakpoint)
+extern void __builtin_software_breakpoint(void);
+# 24 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 2 3
 
 
+
+# 1 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\pic.h" 1 3
+
+
+
+
+# 1 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\htc.h" 1 3
+
+
+
+# 1 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 1 3
+# 5 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\htc.h" 2 3
+# 6 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\pic.h" 2 3
+
+
+
+
+
+
+
+# 1 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\pic_chip_select.h" 1 3
+# 723 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\pic_chip_select.h" 3
 # 1 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\proc\\pic16f887.h" 1 3
 # 44 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\proc\\pic16f887.h" 3
 # 1 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\__at.h" 1 3
@@ -2437,237 +2454,7 @@ extern volatile __bit nW __attribute__((address(0x4A2)));
 
 
 extern volatile __bit nWRITE __attribute__((address(0x4A2)));
-# 33 "main_brazo.c" 2
-
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 1 3
-
-
-
-# 1 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\__size_t.h" 1 3
-
-
-
-typedef unsigned size_t;
-# 4 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 2 3
-
-# 1 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\__null.h" 1 3
-# 5 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 2 3
-
-
-
-
-
-
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdarg.h" 1 3
-
-
-
-
-
-
-typedef void * va_list[1];
-
-#pragma intrinsic(__va_start)
-extern void * __va_start(void);
-
-#pragma intrinsic(__va_arg)
-extern void * __va_arg(void *, ...);
-# 11 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 2 3
-# 43 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 3
-struct __prbuf
-{
- char * ptr;
- void (* func)(char);
-};
-# 85 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 3
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\conio.h" 1 3
-
-
-
-
-
-
-
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\errno.h" 1 3
-# 29 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\errno.h" 3
-extern int errno;
-# 8 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\conio.h" 2 3
-
-
-
-
-extern void init_uart(void);
-
-extern char getch(void);
-extern char getche(void);
-extern void putch(char);
-extern void ungetch(char);
-
-extern __bit kbhit(void);
-
-
-
-extern char * cgets(char *);
-extern void cputs(const char *);
-# 85 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 2 3
-
-
-
-extern int cprintf(char *, ...);
-#pragma printf_check(cprintf)
-
-
-
-extern int _doprnt(struct __prbuf *, const register char *, register va_list);
-# 180 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 3
-#pragma printf_check(vprintf) const
-#pragma printf_check(vsprintf) const
-
-extern char * gets(char *);
-extern int puts(const char *);
-extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
-extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
-extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
-extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
-extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
-extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
-
-#pragma printf_check(printf) const
-#pragma printf_check(sprintf) const
-extern int sprintf(char *, const char *, ...);
-extern int printf(const char *, ...);
-# 34 "main_brazo.c" 2
-
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdlib.h" 1 3
-
-
-
-
-
-
-typedef unsigned short wchar_t;
-
-
-
-
-
-
-
-typedef struct {
- int rem;
- int quot;
-} div_t;
-typedef struct {
- unsigned rem;
- unsigned quot;
-} udiv_t;
-typedef struct {
- long quot;
- long rem;
-} ldiv_t;
-typedef struct {
- unsigned long quot;
- unsigned long rem;
-} uldiv_t;
-# 65 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdlib.h" 3
-extern double atof(const char *);
-extern double strtod(const char *, const char **);
-extern int atoi(const char *);
-extern unsigned xtoi(const char *);
-extern long atol(const char *);
-
-
-
-extern long strtol(const char *, char **, int);
-
-extern int rand(void);
-extern void srand(unsigned int);
-extern void * calloc(size_t, size_t);
-extern div_t div(int numer, int denom);
-extern udiv_t udiv(unsigned numer, unsigned denom);
-extern ldiv_t ldiv(long numer, long denom);
-extern uldiv_t uldiv(unsigned long numer,unsigned long denom);
-
-
-
-extern unsigned long _lrotl(unsigned long value, unsigned int shift);
-extern unsigned long _lrotr(unsigned long value, unsigned int shift);
-extern unsigned int _rotl(unsigned int value, unsigned int shift);
-extern unsigned int _rotr(unsigned int value, unsigned int shift);
-
-
-
-
-extern void * malloc(size_t);
-extern void free(void *);
-extern void * realloc(void *, size_t);
-
-
-
-
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\xc8debug.h" 1 3
-# 13 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\xc8debug.h" 3
-#pragma intrinsic(__builtin_software_breakpoint)
-extern void __builtin_software_breakpoint(void);
-# 99 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdlib.h" 2 3
-
-
-
-
-
-extern int atexit(void (*)(void));
-extern char * getenv(const char *);
-extern char ** environ;
-extern int system(char *);
-extern void qsort(void *, size_t, size_t, int (*)(const void *, const void *));
-extern void * bsearch(const void *, void *, size_t, size_t, int(*)(const void *, const void *));
-extern int abs(int);
-extern long labs(long);
-
-extern char * itoa(char * buf, int val, int base);
-extern char * utoa(char * buf, unsigned val, int base);
-
-
-
-
-extern char * ltoa(char * buf, long val, int base);
-extern char * ultoa(char * buf, unsigned long val, int base);
-
-extern char * ftoa(float f, int * status);
-# 35 "main_brazo.c" 2
-
-# 1 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 1 3
-# 18 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 3
-extern const char __xc8_OPTIM_SPEED;
-
-extern double __fpnormalize(double);
-
-
-
-
-
-
-
-# 1 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\pic.h" 1 3
-
-
-
-
-# 1 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\htc.h" 1 3
-
-
-
-# 1 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 1 3
-# 5 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\htc.h" 2 3
-# 6 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\pic.h" 2 3
-
-
-
-
-
-
-
-# 1 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\pic_chip_select.h" 1 3
+# 724 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\pic_chip_select.h" 2 3
 # 14 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\pic.h" 2 3
 # 30 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\pic.h" 3
 #pragma intrinsic(__nop)
@@ -2700,483 +2487,176 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 2 3
-# 36 "main_brazo.c" 2
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\sources\\c90\\pic\\__eeprom.c" 2
 
 
 
 
-
-
-
-int x=0;
-int servo1_1;
-int servo1_2;
-int servo2_1;
-int servo2_2;
-int servo3_1;
-int servo3_2;
-char dato_recibido;
-int eeprom_sino;
-
-char dato ;
-
-const char data = 10;
-char out_str;
-
-
-
-
-
-
-void setup(void);
-void servos_loop(void);
-
-
-void transmision_tx(char data);
-
-
-void USART_Cadena(char *str);
-
-
-char recepcion_rx();
-
-
-void servo1_19(void);
-void servo1_18(void);
-
-void servo2_19(void);
-void servo2_18(void);
-
-void servo3_19(void);
-void servo3_18(void);
-
-
-void writeToEEPROM(char data, int address);
-
-
-
-
-
-
-
-void __attribute__((picinterrupt(("")))) isr(void)
+void
+__eecpymem(volatile unsigned char *to, __eeprom unsigned char * from, unsigned char size)
 {
-    if (PIR1bits.ADIF)
-    {
-        if (ADCON0bits.CHS ==0)
-        {
-            CCPR1L = (ADRESH>>1)+62;
-            CCP1CONbits.DC1B1 = ADRESH & 0b01;
-            CCP1CONbits.DC1B0 = (ADRESL>>7);
-            ADCON0bits.CHS = 1;
-        }
-        if (ADCON0bits.CHS ==1)
-        {
-            CCPR2L = (ADRESH>>1)+62;
-            CCP2CONbits.DC2B1 = ADRESH & 0b01;
-            CCP2CONbits.DC2B0 = (ADRESL>>7);
-            ADCON0bits.CHS = 2;
-        }
-        if (ADCON0bits.CHS == 2)
-        {
-            PORTE = ADRESH;
-            ADCON0bits.CHS = 0;
-        }
+ volatile unsigned char *cp = to;
 
-        _delay((unsigned long)((50)*(8000000/4000000.0)));
-        PIR1bits.ADIF =0;
-        ADCON0bits.GO = 1;
-    }
+ while (EECON1bits.WR) continue;
+ EEADR = (unsigned char)from;
+ while(size--) {
+  while (EECON1bits.WR) continue;
 
+  EECON1 &= 0x7F;
 
+  EECON1bits.RD = 1;
+  *cp++ = EEDATA;
+  ++EEADR;
+ }
+# 36 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\sources\\c90\\pic\\__eeprom.c"
 }
 
-
-
-
-void main (void)
+void
+__memcpyee(__eeprom unsigned char * to, const unsigned char *from, unsigned char size)
 {
-    setup();
-    writeToEEPROM('a',0);
-    writeToEEPROM('n',1);
-    writeToEEPROM('d',2);
-    writeToEEPROM('y',3);
+ const unsigned char *ptr =from;
 
-    while (1)
-    {
+ while (EECON1bits.WR) continue;
+ EEADR = (unsigned char)to - 1U;
 
-        USART_Cadena("\r Que accion desea ejecutar? \r");
-        USART_Cadena(" 1) Mover a 0 servo1 \r");
-        USART_Cadena(" 2) Mover a 45 servo1 \r");
-        USART_Cadena(" 3) Mover a 0 servo2 \r");
-        USART_Cadena(" 3) Mover a 45 servo2 \r");
-        USART_Cadena(" 3) Mover a 0 servo3 \r");
-        USART_Cadena(" 3) Mover a 45 servo3 \r");
+ EECON1 &= 0x7F;
 
-        while (PIR1bits.RCIF==0)
-        {
-            dato_recibido = recepcion_rx;
-        }
-
-        switch(dato_recibido)
-        {
-
-            case ('1'):
-                servo1_19();
-                transmision_tx('Servo 1 a 0');
-                break;
-            case ('2'):
-                servo1_18();
-                transmision_tx('Servo 1 a 45');
-                break;
-
-
-            case ('3'):
-                servo2_19();
-                transmision_tx('Servo 2 a 0');
-                break;
-            case ('4'):
-                servo2_18();
-                transmision_tx('Servo 2 a 45');
-                break;
-
-
-            case ('5'):
-                servo3_19();
-                transmision_tx('Servo 3 a 0');
-                break;
-            case ('6'):
-                servo3_18();
-                transmision_tx('Servo 3 a 45');
-                break;
-
-            case ('7'):
-                writeToEEPROM(ADRESH,10);
-                break;
-
-        }
-
-
-
-
-
-    }
-
+ while(size--) {
+  while (EECON1bits.WR) {
+   continue;
+  }
+  EEDATA = *ptr++;
+  ++EEADR;
+  STATUSbits.CARRY = 0;
+  if (INTCONbits.GIE) {
+   STATUSbits.CARRY = 1;
+  }
+  INTCONbits.GIE = 0;
+  EECON1bits.WREN = 1;
+  EECON2 = 0x55;
+  EECON2 = 0xAA;
+  EECON1bits.WR = 1;
+  EECON1bits.WREN = 0;
+  if (STATUSbits.CARRY) {
+   INTCONbits.GIE = 1;
+  }
+ }
+# 101 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\sources\\c90\\pic\\__eeprom.c"
 }
 
-
-
-void setup()
+unsigned char
+__eetoc(__eeprom void *addr)
 {
-
-    ANSELbits.ANS0 = 1;
-    ANSELbits.ANS1 = 1;
-    ANSELbits.ANS2 = 1;
-
-    TRISAbits.TRISA0 = 1;
-    TRISAbits.TRISA1 = 1;
-    TRISAbits.TRISA2 = 1;
-
-    TRISBbits.TRISB0 = 1;
-
-    TRISCbits.TRISC1 = 0;
-    TRISCbits.TRISC2 = 0;
-
-    TRISDbits.TRISD0 = 0;
-    TRISDbits.TRISD1 = 0;
-    TRISDbits.TRISD2 = 0;
-
-    TRISE = 0;
-
-    PORTA = 0;
-    PORTB = 0;
-    PORTC = 0;
-    PORTD = 0;
-    PORTE = 0;
-
-
-    OSCCONbits.IRCF2 = 1;
-    OSCCONbits.IRCF1 = 1;
-    OSCCONbits.IRCF0 = 1;
-    OSCCONbits.SCS=1;
-
-
-    IOCBbits.IOCB0 =1;
-    IOCBbits.IOCB1= 1;
-    OPTION_REGbits.nRBPU=1;
-    WPUBbits.WPUB0 = 1;
-    WPUBbits.WPUB1 = 1;
-
-
-    ADCON1bits.ADFM = 0 ;
-    ADCON1bits.VCFG0 = 0 ;
-    ADCON1bits.VCFG1 = 0 ;
-
-    ADCON0bits.ADCS = 0b10 ;
-    ADCON0bits.CHS = 0;
-    _delay((unsigned long)((50)*(8000000/4000000.0)));
-    ADCON0bits.ADON = 1 ;
-
-
-    PR2 = 249;
-
-    TRISCbits.TRISC2=1;
-    CCP1CONbits.P1M = 0;
-    CCP1CONbits.CCP1M = 0b1100;
-    CCPR1L = 0x0f ;
-    CCP1CONbits.DC1B = 0;
-
-    TRISCbits.TRISC1 = 1;
-    CCP2CONbits.CCP2M = 0b1100;
-    CCPR2L = 0x0f;
-    CCP2CONbits.DC2B1 = 0;
-
-
-    PIR1bits.TMR2IF = 0;
-    T2CONbits.T2CKPS = 0b11;
-    T2CONbits.TMR2ON = 1;
-
-
-    PIR1bits.TMR2IF=0;
-    TRISCbits.TRISC2 = 0;
-    TRISCbits.TRISC1= 0;
-
-
-
-    TXSTAbits.SYNC = 0;
-    TXSTAbits.BRGH = 1;
-    BAUDCTLbits.BRG16 = 1;
-
-    SPBRG = 12;
-    SPBRGH = 0;
-
-    RCSTAbits.SPEN = 1;
-    RCSTAbits.RX9 = 0;
-
-    RCSTAbits.CREN = 1;
-    TXSTAbits.TXEN = 1;
-
-
-    INTCONbits.GIE = 1;
-    INTCONbits.PEIE = 1;
-    INTCONbits.RBIE=1;
-    INTCONbits.RBIF=0;
-
-    PIE1bits.ADIE = 1;
-    PIR1bits.ADIF = 0;
-
-
-    _delay((unsigned long)((100)*(8000000/4000000.0)));
-    ADCON0bits.GO=1;
-
+ unsigned char data;
+ __eecpymem((unsigned char *) &data,addr,1);
+ return data;
 }
 
-
-
-
-
-void servo1_19(void)
+unsigned int
+__eetoi(__eeprom void *addr)
 {
-    for (servo1_1 = 0; servo1_1 <= 15; servo1_1++)
-        {
-            PORTDbits.RD0 = 1;
-            _delay((unsigned long)((1)*(8000000/4000.0)));
-            PORTDbits.RD0 = 0;
-            _delay((unsigned long)((19)*(8000000/4000.0)));
-        }
+ unsigned int data;
+ __eecpymem((unsigned char *) &data,addr,2);
+ return data;
 }
 
-
-void servo1_18(void)
+#pragma warning push
+#pragma warning disable 2040
+__uint24
+__eetom(__eeprom void *addr)
 {
-    for (servo1_2 = 0; servo1_2 <= 15; servo1_2++)
-        {
-            PORTDbits.RD0 = 1;
-            _delay((unsigned long)((1.5)*(8000000/4000.0)));
-            PORTDbits.RD0 = 0;
-            _delay((unsigned long)((18.5)*(8000000/4000.0)));
-        }
+ __uint24 data;
+ __eecpymem((unsigned char *) &data,addr,3);
+ return data;
+}
+#pragma warning pop
+
+unsigned long
+__eetol(__eeprom void *addr)
+{
+ unsigned long data;
+ __eecpymem((unsigned char *) &data,addr,4);
+ return data;
 }
 
-
-
-void servo2_19(void)
+#pragma warning push
+#pragma warning disable 1516
+unsigned long long
+__eetoo(__eeprom void *addr)
 {
-    for (servo2_1 = 0; servo2_1 <= 15; servo2_1++)
-        {
-            PORTDbits.RD1 = 1;
-            _delay((unsigned long)((1)*(8000000/4000.0)));
-            PORTDbits.RD1 = 0;
-            _delay((unsigned long)((19)*(8000000/4000.0)));
-        }
+ unsigned long long data;
+ __eecpymem((unsigned char *) &data,addr,8);
+ return data;
+}
+#pragma warning pop
+
+unsigned char
+__ctoee(__eeprom void *addr, unsigned char data)
+{
+ __memcpyee(addr,(unsigned char *) &data,1);
+ return data;
 }
 
-
-void servo2_18(void)
+unsigned int
+__itoee(__eeprom void *addr, unsigned int data)
 {
-    for (servo2_2 = 0; servo2_2 <= 15; servo2_2++)
-        {
-            PORTDbits.RD1 = 1;
-            _delay((unsigned long)((1.5)*(8000000/4000.0)));
-            PORTDbits.RD1 = 0;
-            _delay((unsigned long)((18.5)*(8000000/4000.0)));
-        }
+ __memcpyee(addr,(unsigned char *) &data,2);
+ return data;
 }
 
-
-void servo3_19(void)
+#pragma warning push
+#pragma warning disable 2040
+__uint24
+__mtoee(__eeprom void *addr, __uint24 data)
 {
-    for (servo3_1 = 0; servo3_1 <= 15; servo3_1++)
-        {
-            PORTDbits.RD2 = 1;
-            _delay((unsigned long)((1)*(8000000/4000.0)));
-            PORTDbits.RD2 = 0;
-            _delay((unsigned long)((19)*(8000000/4000.0)));
-        }
+ __memcpyee(addr,(unsigned char *) &data,3);
+ return data;
+}
+#pragma warning pop
+
+unsigned long
+__ltoee(__eeprom void *addr, unsigned long data)
+{
+ __memcpyee(addr,(unsigned char *) &data,4);
+ return data;
 }
 
-
-void servo3_18(void)
+#pragma warning push
+#pragma warning disable 1516
+unsigned long long
+__otoee(__eeprom void *addr, unsigned long long data)
 {
-    for (servo3_2 = 0; servo3_2 <= 15; servo3_2++)
-        {
-            PORTDbits.RD2 = 1;
-            _delay((unsigned long)((1.5)*(8000000/4000.0)));
-            PORTDbits.RD2 = 0;
-            _delay((unsigned long)((18.5)*(8000000/4000.0)));
-        }
+ __memcpyee(addr,(unsigned char *) &data,8);
+ return data;
+}
+#pragma warning pop
+
+float
+__eetoft(__eeprom void *addr)
+{
+ float data;
+ __eecpymem((unsigned char *) &data,addr,3);
+ return data;
 }
 
-
-char recepcion_rx()
+double
+__eetofl(__eeprom void *addr)
 {
-    return RCREG;
+ double data;
+ __eecpymem((unsigned char *) &data,addr,4);
+ return data;
 }
 
-
-void transmision_tx(char data)
+float
+__fttoee(__eeprom void *addr, float data)
 {
-    while(TXSTAbits.TRMT == 0)
-    {
-        TXREG = data;
-    }
+ __memcpyee(addr,(unsigned char *) &data,3);
+ return data;
 }
 
-
-void USART_Cadena(char *str)
+double
+__fltoee(__eeprom void *addr, double data)
 {
-    while(*str != '\0')
-    {
-        transmision_tx(*str);
-        str++;
-    }
-}
-
-
-void writeToEEPROM(char data, int address)
-{
-    EEADR = address;
-    EEDATA=data;
-
-    EECON1bits.EEPGD = 0;
-    EECON1bits.WREN = 1;
-    INTCONbits.GIE =0;
-
-    EECON2 = 0x55;
-    EECON2 = 0x0AA;
-
-    EECON1bits.WR =1;
-    INTCONbits.GIE =1;
-
-    while(PIR2bits.EEIF==0);
-    PIR2bits.EEIF=0;
-
-    EECON1bits.WREN = 0;
-}
-
-
-char readFromEEPROM(unsigned address)
-{
-    EEADR =address;
-    EECON1bits.EEPGD = 0;
-    EECON1bits.RD=1;
-    return EEDATA;
-
-}
-
-
-void servos_loop(void)
-{
-    for(x=0;x<=7;x++)
-    {
-        if (x == 1)
-        {
-            for (servo1_1 = 0; servo1_1 <= 15; servo1_1++)
-            {
-                PORTDbits.RD0 = 1;
-                _delay((unsigned long)((1)*(8000000/4000.0)));
-                PORTDbits.RD0 = 0;
-                _delay((unsigned long)((19)*(8000000/4000.0)));
-            }
-        }
-
-        if (x == 2)
-        {
-            for (servo1_2 = 0; servo1_2 <= 15; servo1_2++)
-            {
-                PORTDbits.RD0 = 1;
-                _delay((unsigned long)((1.5)*(8000000/4000.0)));
-                PORTDbits.RD0 = 0;
-                _delay((unsigned long)((18.5)*(8000000/4000.0)));
-            }
-        }
-
-        if (x ==3)
-        {
-            for (servo2_1 = 0; servo2_1 <= 20; servo2_1++)
-            {
-                PORTDbits.RD1 = 1;
-                _delay((unsigned long)((1)*(8000000/4000.0)));
-                PORTDbits.RD1 = 0;
-                _delay((unsigned long)((19)*(8000000/4000.0)));
-            }
-        }
-
-        if (x==4)
-        {
-            for (servo2_2 = 0; servo2_2 <= 20; servo2_2++)
-            {
-                PORTDbits.RD1 = 1;
-                _delay((unsigned long)((1.5)*(8000000/4000.0)));
-                PORTDbits.RD1 = 0;
-                _delay((unsigned long)((18.5)*(8000000/4000.0)));
-            }
-        }
-
-        if (x==5)
-        {
-            for (servo3_1 = 0; servo3_1 <= 20; servo3_1++)
-            {
-                PORTDbits.RD2 = 1;
-                _delay((unsigned long)((1)*(8000000/4000.0)));
-                PORTDbits.RD2 = 0;
-                _delay((unsigned long)((19)*(8000000/4000.0)));
-            }
-        }
-
-        if (x==6)
-        {
-            for (servo3_2 = 0; servo3_2 <= 20; servo3_2++)
-            {
-                PORTDbits.RD2 = 1;
-                _delay((unsigned long)((1.5)*(8000000/4000.0)));
-                PORTDbits.RD2 = 0;
-                _delay((unsigned long)((18.5)*(8000000/4000.0)));
-            }
-        }
-        if (x==7)
-        {
-            x=0;
-        }
-    }
+ __memcpyee(addr,(unsigned char *) &data,4);
+ return data;
 }

@@ -222,8 +222,8 @@ maintext 5C 219 CODE 5C 0
 strings 21A 37F STRING 21A 0
 text11 380 8AD CODE 380 0
 %locals
-dist/default/production\Brazo_PF.X.production.o
-C:\Users\ANDYBO~1\AppData\Local\Temp\sfs8.s
+dist/default/debug\Brazo_PF.X.debug.o
+C:\Users\ANDYBO~1\AppData\Local\Temp\s3cc.s
 748 F 0 CODE 0
 751 F 0 CODE 0
 795 F 0 CODE 0
@@ -452,7 +452,7 @@ main_brazo.c
 120 23C 0 CODE 0
 124 23D 0 CODE 0
 94 4 0 CODE 0
-C:\Users\ANDYBO~1\AppData\Local\Temp\sfs8.s
+C:\Users\ANDYBO~1\AppData\Local\Temp\s3cc.s
 3252 28 0 ENTRY 0
 3254 28 0 ENTRY 0
 3255 28 0 ENTRY 0

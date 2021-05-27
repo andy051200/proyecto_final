@@ -48,8 +48,9 @@ int servo2_2;           //control de for en servo2 a 45°
 int servo3_1;           //control de for en servo3 a 0°
 int servo3_2;           //control de for en servo3 a 45°
 char dato_recibido;     //valor recibido de interfaz
+int eeprom_sino;        //variable para guardar o no a EEPROM
 //----
-unsigned int dato ;
+char dato ;
 //-----
 const char data = 10;
 char out_str;
@@ -119,11 +120,7 @@ void __interrupt() isr(void) //funcion de interrupciones
         ADCON0bits.GO = 1;
     }
     
-    if (PIR2bits.EEIF==1)
-    {
-        
-        PIR2bits.EEIF=0;
-    }
+    
 }
 
 /*-----------------------------------------------------------------------------
@@ -158,33 +155,39 @@ void main (void)
             //casos para el servo1
             case ('1'):                 //en caso se reciba 1, servo1 a 0°
                 servo1_19();            //se llama funcion para 0°
+                transmision_tx('Servo 1 a 0');  //estado del servo a GUI
                 break;
             case ('2'):                 //en caso se reciba 2, servo1 a 45°
                 servo1_18();            //se llama funcion para 45°
+                transmision_tx('Servo 1 a 45'); //estado del servo a GUI
                 break;
                 
             //casos para el servo2    
             case ('3'):                 //en caso se reciba 3, servo2 a 0°
                 servo2_19();            //se llama funcion para 0°
+                transmision_tx('Servo 2 a 0'); //estado del servo a GUI
                 break;
             case ('4'):                 //en caso se reciba 4, servo2 a 45°
                 servo2_18();            //se llama funcion para 45°
+                transmision_tx('Servo 2 a 45'); //estado del servo a GUI
                 break;
 
             //casos para el servo3      
             case ('5'):                 //en caso se reciba 5, servo3 a 0°
                 servo3_19();            //se llama funcion para 0°
+                transmision_tx('Servo 3 a 0'); //estado del servo a GUI
                 break;
             case ('6'):                 //en caso se reciba 6, servo3 a 45°
                 servo3_18();            //se llama funcion para 45°
+                transmision_tx('Servo 3 a 45'); //estado del servo a GUI
                 break;
                 
             case ('7'):                 //en caso se reciba 7, se guardan datos
-                writeToEEPROM(ADRESH,direccion_eeprom);
+                writeToEEPROM(ADRESH,direccion_eeprom); 
                 break;
                 
         }
-        
+       
     
         
 
@@ -228,6 +231,13 @@ void setup()
     OSCCONbits.IRCF1 = 1;   //Freq a 8MHz, 111
     OSCCONbits.IRCF0 = 1;   //Freq a 8MHz, 111
     OSCCONbits.SCS=1;       //oscilador interno
+    
+    //CONFIGURACION DE BOTONES
+    IOCBbits.IOCB0 =1;          //IntOnChange Rb0, guardar en EEPROM
+    IOCBbits.IOCB1= 1;          //IntOnCHange RB1, hacer lo que se guardo
+    OPTION_REGbits.nRBPU=1;     //se habilita WPUB
+    WPUBbits.WPUB0 = 1;         //WPUB en RB0
+    WPUBbits.WPUB1 = 1;         //WPUB en RB1
     
     //CONFIGURACION DEL ADC
     ADCON1bits.ADFM = 0 ;   // se justifica a la isquierda
@@ -281,7 +291,9 @@ void setup()
     //CONFIGURACION DE INTERRUPCIONES
     INTCONbits.GIE = 1;     //habilitan interrupciones globales
     INTCONbits.PEIE = 1;    //habilitan interrupciones por perifericos
-    //interrupciones del adc
+    INTCONbits.RBIE=1;      //habilitan IntOnChange
+    INTCONbits.RBIF=0;      //se apaga interrupcion
+    //interrupciones el adc
     PIE1bits.ADIE = 1;      //se habilita interrupcion del ADC
     PIR1bits.ADIF = 0;      //se apaga interrupcion del ADC
     
@@ -409,13 +421,13 @@ void writeToEEPROM(char data, int address)
     INTCONbits.GIE =1;          //se vuelve a habilitar interrupciones
     
     while(PIR2bits.EEIF==0);
-    PIR2bits.EEIF==0;
+    PIR2bits.EEIF=0;
     
     EECON1bits.WREN = 0;        //se deshabilita escritura   
 }
 
 //funcion para lectura en EEPROM
-unsigned char readFromEEPROM(unsigned address)
+char readFromEEPROM(unsigned address)
 {
     EEADR =address;             //se selecciona direccion a leer
     EECON1bits.EEPGD = 0;       //se accede a la memoria EEPROm

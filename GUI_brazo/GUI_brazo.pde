@@ -44,9 +44,9 @@ void setup()
 {
 //------------------Configuracion de puertos seriales
 //puerto = Serial.list()[0];                 //declaraccion de puerto USB para USARTcom
-//myPort = new Serial(this, puerto, 9600);          //configuracion de puerto y braudeaje
-//myPort.buffer(6);
-//thread("serial_comm");
+myPort = new Serial(this, Serial.list()[0], 9600);          //configuracion de puerto y braudeaje
+myPort.buffer(6);
+thread("serial_comm");
 
   
 size(550,580);                                      //tamaño de 500*500 pixeles
@@ -65,6 +65,8 @@ void serialEvent(Serial myPort)
   {
     dePicInt[i] = dePic[i] & 0xFF;
   }
+  
+  
   //inString = p.readString();
   /*int input = myPort.read();
   datosPIC[cont] = input;
@@ -140,6 +142,7 @@ void draw()
         fill(255,0,0);
         square(boton1[0],boton1[1],boton1[2]);
         dato_transmitido=1;
+        myPort.write(dato_transmitido);       //valor
       }
     }
   }
@@ -158,6 +161,7 @@ void draw()
         fill(255,0,0);
         square(boton1[0],boton1[1]+120,boton1[2]);
         dato_transmitido=2;
+        myPort.write(dato_transmitido);
       }
     }
   }
@@ -178,6 +182,7 @@ void draw()
         fill(255,0,0);
         square(boton1[0]+120,boton1[1],boton1[2]);
         dato_transmitido=3;
+        myPort.write(dato_transmitido);
       }
     }
   }
@@ -195,6 +200,7 @@ void draw()
         fill(255,0,0);
         square(boton1[0]+120,boton1[1]+120,boton1[2]);
         dato_transmitido=4;
+        myPort.write(dato_transmitido);
       }
     }
   }
