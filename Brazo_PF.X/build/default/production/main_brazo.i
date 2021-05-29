@@ -2709,6 +2709,7 @@ extern __bank0 __bit __timeout;
 
 
 int x=0;
+int wenas=0;
 int servo1_1;
 int servo1_2;
 int servo2_1;
@@ -2787,6 +2788,21 @@ void __attribute__((picinterrupt(("")))) isr(void)
         PIR1bits.ADIF =0;
         ADCON0bits.GO = 1;
     }
+    if (INTCONbits.RBIF)
+    {
+        if(PORTBbits.RB0==0)
+        {
+            wenas=1;
+        }
+        if(PORTBbits.RB1==0)
+        {
+            wenas=2;
+        }
+        if(PORTBbits.RB2==0)
+        {
+            wenas=3;
+        }
+    }
 
 
 }
@@ -2797,66 +2813,33 @@ void __attribute__((picinterrupt(("")))) isr(void)
 void main (void)
 {
     setup();
-    writeToEEPROM('a',0);
-    writeToEEPROM('n',1);
-    writeToEEPROM('d',2);
-    writeToEEPROM('y',3);
+
+
+
+
 
     while (1)
     {
-
-        USART_Cadena("\r Que accion desea ejecutar? \r");
-        USART_Cadena(" 1) Mover a 0 servo1 \r");
-        USART_Cadena(" 2) Mover a 45 servo1 \r");
-        USART_Cadena(" 3) Mover a 0 servo2 \r");
-        USART_Cadena(" 3) Mover a 45 servo2 \r");
-        USART_Cadena(" 3) Mover a 0 servo3 \r");
-        USART_Cadena(" 3) Mover a 45 servo3 \r");
-
-        while (PIR1bits.RCIF==0)
+        if (wenas==1)
         {
-            dato_recibido = recepcion_rx;
+            servo1_19();
+            _delay((unsigned long)((500)*(8000000/4000.0)));
+            servo1_18();
         }
 
-        switch(dato_recibido)
+        if (wenas==2)
         {
-
-            case ('1'):
-                servo1_19();
-                transmision_tx('Servo 1 a 0');
-                break;
-            case ('2'):
-                servo1_18();
-                transmision_tx('Servo 1 a 45');
-                break;
-
-
-            case ('3'):
-                servo2_19();
-                transmision_tx('Servo 2 a 0');
-                break;
-            case ('4'):
-                servo2_18();
-                transmision_tx('Servo 2 a 45');
-                break;
-
-
-            case ('5'):
-                servo3_19();
-                transmision_tx('Servo 3 a 0');
-                break;
-            case ('6'):
-                servo3_18();
-                transmision_tx('Servo 3 a 45');
-                break;
-
-            case ('7'):
-                writeToEEPROM(ADRESH,10);
-                break;
-
+            servo2_19();
+            _delay((unsigned long)((500)*(8000000/4000.0)));
+            servo2_18();
         }
 
-
+        if (wenas==3)
+        {
+            servo3_19();
+            _delay((unsigned long)((500)*(8000000/4000.0)));
+            servo3_18();
+        }
 
 
 
@@ -2903,9 +2886,11 @@ void setup()
 
     IOCBbits.IOCB0 =1;
     IOCBbits.IOCB1= 1;
+    IOCBbits.IOCB2= 1;
     OPTION_REGbits.nRBPU=1;
     WPUBbits.WPUB0 = 1;
     WPUBbits.WPUB1 = 1;
+    WPUBbits.WPUB2 = 1;
 
 
     ADCON1bits.ADFM = 0 ;
@@ -2942,19 +2927,6 @@ void setup()
     TRISCbits.TRISC1= 0;
 
 
-
-    TXSTAbits.SYNC = 0;
-    TXSTAbits.BRGH = 1;
-    BAUDCTLbits.BRG16 = 1;
-
-    SPBRG = 12;
-    SPBRGH = 0;
-
-    RCSTAbits.SPEN = 1;
-    RCSTAbits.RX9 = 0;
-
-    RCSTAbits.CREN = 1;
-    TXSTAbits.TXEN = 1;
 
 
     INTCONbits.GIE = 1;
@@ -3045,138 +3017,4 @@ void servo3_18(void)
             PORTDbits.RD2 = 0;
             _delay((unsigned long)((18.5)*(8000000/4000.0)));
         }
-}
-
-
-char recepcion_rx()
-{
-    return RCREG;
-}
-
-
-void transmision_tx(char data)
-{
-    while(TXSTAbits.TRMT == 0)
-    {
-        TXREG = data;
-    }
-}
-
-
-void USART_Cadena(char *str)
-{
-    while(*str != '\0')
-    {
-        transmision_tx(*str);
-        str++;
-    }
-}
-
-
-void writeToEEPROM(char data, int address)
-{
-    EEADR = address;
-    EEDATA=data;
-
-    EECON1bits.EEPGD = 0;
-    EECON1bits.WREN = 1;
-    INTCONbits.GIE =0;
-
-    EECON2 = 0x55;
-    EECON2 = 0x0AA;
-
-    EECON1bits.WR =1;
-    INTCONbits.GIE =1;
-
-    while(PIR2bits.EEIF==0);
-    PIR2bits.EEIF=0;
-
-    EECON1bits.WREN = 0;
-}
-
-
-char readFromEEPROM(unsigned address)
-{
-    EEADR =address;
-    EECON1bits.EEPGD = 0;
-    EECON1bits.RD=1;
-    return EEDATA;
-
-}
-
-
-void servos_loop(void)
-{
-    for(x=0;x<=7;x++)
-    {
-        if (x == 1)
-        {
-            for (servo1_1 = 0; servo1_1 <= 15; servo1_1++)
-            {
-                PORTDbits.RD0 = 1;
-                _delay((unsigned long)((1)*(8000000/4000.0)));
-                PORTDbits.RD0 = 0;
-                _delay((unsigned long)((19)*(8000000/4000.0)));
-            }
-        }
-
-        if (x == 2)
-        {
-            for (servo1_2 = 0; servo1_2 <= 15; servo1_2++)
-            {
-                PORTDbits.RD0 = 1;
-                _delay((unsigned long)((1.5)*(8000000/4000.0)));
-                PORTDbits.RD0 = 0;
-                _delay((unsigned long)((18.5)*(8000000/4000.0)));
-            }
-        }
-
-        if (x ==3)
-        {
-            for (servo2_1 = 0; servo2_1 <= 20; servo2_1++)
-            {
-                PORTDbits.RD1 = 1;
-                _delay((unsigned long)((1)*(8000000/4000.0)));
-                PORTDbits.RD1 = 0;
-                _delay((unsigned long)((19)*(8000000/4000.0)));
-            }
-        }
-
-        if (x==4)
-        {
-            for (servo2_2 = 0; servo2_2 <= 20; servo2_2++)
-            {
-                PORTDbits.RD1 = 1;
-                _delay((unsigned long)((1.5)*(8000000/4000.0)));
-                PORTDbits.RD1 = 0;
-                _delay((unsigned long)((18.5)*(8000000/4000.0)));
-            }
-        }
-
-        if (x==5)
-        {
-            for (servo3_1 = 0; servo3_1 <= 20; servo3_1++)
-            {
-                PORTDbits.RD2 = 1;
-                _delay((unsigned long)((1)*(8000000/4000.0)));
-                PORTDbits.RD2 = 0;
-                _delay((unsigned long)((19)*(8000000/4000.0)));
-            }
-        }
-
-        if (x==6)
-        {
-            for (servo3_2 = 0; servo3_2 <= 20; servo3_2++)
-            {
-                PORTDbits.RD2 = 1;
-                _delay((unsigned long)((1.5)*(8000000/4000.0)));
-                PORTDbits.RD2 = 0;
-                _delay((unsigned long)((18.5)*(8000000/4000.0)));
-            }
-        }
-        if (x==7)
-        {
-            x=0;
-        }
-    }
 }

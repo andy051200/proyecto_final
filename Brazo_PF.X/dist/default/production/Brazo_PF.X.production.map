@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files\Microchip\xc8\v2.31\pic\dat\en_msgs.txt -cn \
   -h+dist/default/production\Brazo_PF.X.production.sym \
   --cmf=dist/default/production\Brazo_PF.X.production.cmf -z -Q16F887 \
-  -oC:\Users\ANDYBO~1\AppData\Local\Temp\sfs8.2 --defsym=__MPLAB_BUILD=1 \
+  -oC:\Users\ANDYBO~1\AppData\Local\Temp\s9l4.2 --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/Brazo_PF.X.production.map -E1 -ver=XC8 Compiler \
   --acfsm=1493 -ASTACK=0110h-016Fh -pstack=STACK -ACODE=00h-07FFhx4 \
   -ASTRCODE=00h-01FFFh -ASTRING=00h-0FFhx32 -ACONST=00h-0FFhx32 \
@@ -18,7 +18,7 @@ Linker command line:
   -AEEDATA=00h-0FFh/02100h -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 \
   -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 \
   -preset_vec=00h,intentry=04h,init,end_init -ppowerup=CODE -pcinit=CODE \
-  -pfunctab=ENTRY -k C:\Users\ANDYBO~1\AppData\Local\Temp\sfs8.o \
+  -pfunctab=ENTRY -k C:\Users\ANDYBO~1\AppData\Local\Temp\s9l4.o \
   dist/default/production\Brazo_PF.X.production.o 
 
 Object code version is 3.11
@@ -28,71 +28,65 @@ Machine type is 16F887
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\ANDYBO~1\AppData\Local\Temp\sfs8.o
+C:\Users\ANDYBO~1\AppData\Local\Temp\s9l4.o
                 end_init                              C        C        3        8       0
                 reset_vec                             0        0        3        0       0
                 config                             2007     2007        2        0       4
 dist/default/production\Brazo_PF.X.production.o
-                cinit                                 F        F       19        8       0
-                functab                              28       28        6       50       0
+                cinit                                 F        F       12        8       0
                 intentry                              4        4        8        8       0
                 config                             2007     2007        2        0       4
-                text11                              1C0      1C0       84      380       0
-                text10                              44A      44A        D      380       0
-                text9                               408      408       23      380       0
-                text8                               39E      39E       37      380       0
-                text7                               3D5      3D5       33      380       0
-                text6                               367      367       37      380       0
-                text5                               330      330       37      380       0
-                text4                               2F9      2F9       37      380       0
-                text3                               2C2      2C2       37      380       0
-                text2                               244      244       7E      380       0
-                text1                               42B      42B       1F      380       0
-                maintext                             2E       2E       DF       5C       0
-                cstackBANK0                          2E       2E        4       20       1
+                text8                                21       21       A0        8       0
+                text7                               29D      29D       35        8       0
+                text6                               268      268       35        8       0
+                text5                               233      233       35        8       0
+                text4                               1FE      1FE       35        8       0
+                text3                               1C9      1C9       35        8       0
+                text2                               194      194       35        8       0
+                text1                                C1       C1       6E        8       0
+                maintext                            12F      12F       65        8       0
+                cstackBANK0                          30       30        5       20       1
                 cstackCOMMON                         75       75        5       70       1
-                bssBANK0                             20       20        E       20       1
+                clrtext                             2D2      2D2        8        8       0
+                bssBANK0                             20       20       10       20       1
                 bssCOMMON                            70       70        5       70       1
-                strings                             10D      10D       B3      21A       0
+                strings                             2DA      2DA        7      5B4       0
 
 TOTAL           Name                               Link     Load   Length     Space
         CLASS   STACK          
 
         CLASS   CODE           
                 end_init                              C        C        3         0
-                cinit                                 F        F       19         0
+                cinit                                 F        F       12         0
                 intentry                              4        4        8         0
                 reset_vec                             0        0        3         0
-                text11                              1C0      1C0       84         0
-                text10                              44A      44A        D         0
-                text9                               408      408       23         0
-                text8                               39E      39E       37         0
-                text7                               3D5      3D5       33         0
-                text6                               367      367       37         0
-                text5                               330      330       37         0
-                text4                               2F9      2F9       37         0
-                text3                               2C2      2C2       37         0
-                text2                               244      244       7E         0
-                text1                               42B      42B       1F         0
-                maintext                             2E       2E       DF         0
+                text8                                21       21       A0         0
+                text7                               29D      29D       35         0
+                text6                               268      268       35         0
+                text5                               233      233       35         0
+                text4                               1FE      1FE       35         0
+                text3                               1C9      1C9       35         0
+                text2                               194      194       35         0
+                text1                                C1       C1       6E         0
+                maintext                            12F      12F       65         0
+                clrtext                             2D2      2D2        8         0
 
         CLASS   STRCODE        
 
         CLASS   STRING         
-                strings                             10D      10D       B3         0
+                strings                             2DA      2DA        7         0
 
         CLASS   CONST          
 
         CLASS   ENTRY          
-                functab                              28       28        6         0
 
         CLASS   COMMON         
                 cstackCOMMON                         75       75        5         1
                 bssCOMMON                            70       70        5         1
 
         CLASS   BANK0          
-                cstackBANK0                          2E       2E        4         1
-                bssBANK0                             20       20        E         1
+                cstackBANK0                          30       30        5         1
+                bssBANK0                             20       20       10         1
 
         CLASS   BANK1          
 
@@ -125,32 +119,29 @@ TOTAL           Name                               Link     Load   Length     Sp
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class     Delta
 
                 reset_vec                      000000  000003  000003         0       0  CODE        2
-                intentry                       000004  000024  000028         8       0  CODE        2
-                bssBANK0                       000020  000012  000032        20       1  BANK0       1
-                functab                        000028  000006  00002E        50       0  ENTRY       2
-                maintext                       00002E  0000DF  00010D        5C       0  CODE        2
+                intentry                       000004  0002D6  0002DA         8       0  CODE        2
+                bssBANK0                       000020  000015  000035        20       1  BANK0       1
                 bssCOMMON                      000070  00000A  00007A        70       1  COMMON      1
-                strings                        00010D  0000B3  0001C0       21A       0  STRING      2
-                text11                         0001C0  000297  000457       380       0  CODE        2
+                strings                        0002DA  000007  0002E1       5B4       0  STRING      2
 
 
 UNUSED ADDRESS RANGES
 
         Name                Unused          Largest block    Delta
-        BANK0            0032-006F             3E           1
+        BANK0            0035-006F             3B           1
         BANK1            00A0-00EF             50           1
         BANK2            0110-016F             60           1
         BANK3            0190-01EF             60           1
         CODE             0003-0003              1           2
-                         0457-1FFF            800
+                         02E1-1FFF            800
         COMMON           007A-007D              4           1
         CONST            0003-0003              1           2
-                         0457-1FFF            100
+                         02E1-1FFF            100
         EEDATA           2100-21FF            100           2
         ENTRY            0003-0003              1           2
-                         0457-1FFF            100
+                         02E1-1FFF            100
         IDLOC            2000-2003              4           2
-        RAM              0032-006F             3E           1
+        RAM              0035-006F             3B           1
                          00A0-00EF             50
                          0110-016F             60
                          0190-01EF             60
@@ -160,126 +151,113 @@ UNUSED ADDRESS RANGES
         SFR3             0180-018F             10           1
         STACK            0110-016F             60           1
         STRCODE          0003-0003              1           2
-                         0457-1FFF           1BA9
+                         02E1-1FFF           1D1F
         STRING           0003-0003              1           2
-                         0457-1FFF            100
+                         02E1-1FFF            100
 
                                   Symbol Table
 
-USART_Cadena@str         cstackBANK0  002F
 _ADCON0bits              (abs)        001F
 _ADCON1bits              (abs)        009F
 _ADRESH                  (abs)        001E
 _ADRESL                  (abs)        009E
 _ANSELbits               (abs)        0188
-_BAUDCTLbits             (abs)        0187
 _CCP1CONbits             (abs)        0017
 _CCP2CONbits             (abs)        001D
 _CCPR1L                  (abs)        0015
 _CCPR2L                  (abs)        001B
-_EEADR                   (abs)        010D
-_EECON1bits              (abs)        018C
-_EECON2                  (abs)        018D
-_EEDATA                  (abs)        010C
 _INTCONbits              (abs)        000B
 _IOCBbits                (abs)        0096
 _OPTION_REGbits          (abs)        0081
 _OSCCONbits              (abs)        008F
 _PIE1bits                (abs)        008C
 _PIR1bits                (abs)        000C
-_PIR2bits                (abs)        000D
 _PORTA                   (abs)        0005
 _PORTB                   (abs)        0006
+_PORTBbits               (abs)        0006
 _PORTC                   (abs)        0007
 _PORTD                   (abs)        0008
 _PORTDbits               (abs)        0008
 _PORTE                   (abs)        0009
 _PR2                     (abs)        0092
-_RCREG                   (abs)        001A
-_RCSTAbits               (abs)        0018
-_SPBRG                   (abs)        0099
-_SPBRGH                  (abs)        009A
 _T2CONbits               (abs)        0012
 _TRISAbits               (abs)        0085
 _TRISBbits               (abs)        0086
 _TRISCbits               (abs)        0087
 _TRISDbits               (abs)        0088
 _TRISE                   (abs)        0089
-_TXREG                   (abs)        0019
-_TXSTAbits               (abs)        0098
-_USART_Cadena            text9        0408
 _WPUBbits                (abs)        0095
-__Habs1                  abs1         005C
-__Hbank0                 bank0        005C
-__Hbank1                 bank1        005C
-__Hbank2                 bank2        005C
-__Hbank3                 bank3        005C
-__HbssBANK0              bssBANK0     005C
-__HbssCOMMON             bssCOMMON    005C
-__Hcinit                 cinit        0028
-__Hclrtext               clrtext      005C
-__Hcode                  code         005C
-__Hcommon                common       005C
+__Habs1                  abs1         0000
+__Hbank0                 bank0        0000
+__Hbank1                 bank1        0000
+__Hbank2                 bank2        0000
+__Hbank3                 bank3        0000
+__HbssBANK0              bssBANK0     0000
+__HbssCOMMON             bssCOMMON    0000
+__Hcinit                 cinit        0021
+__Hclrtext               clrtext      0000
+__Hcode                  code         0000
+__Hcommon                common       0000
 __Hconfig                config       2009
-__HcstackBANK0           cstackBANK0  005C
-__HcstackCOMMON          cstackCOMMON 005C
+__HcstackBANK0           cstackBANK0  0000
+__HcstackCOMMON          cstackCOMMON 0000
 __Heeprom_data           eeprom_data  0000
 __Hend_init              end_init     000F
-__Hfunctab               functab      002E
+__Hfunctab               functab      0000
 __Hinit                  init         000C
 __Hintentry              intentry     000C
-__Hmaintext              maintext     005C
+__Hmaintext              maintext     0000
 __Hpowerup               powerup      0000
-__Hram                   ram          005C
+__Hram                   ram          0000
 __Hreset_vec             reset_vec    0003
-__Hsfr0                  sfr0         005C
-__Hsfr1                  sfr1         005C
-__Hsfr2                  sfr2         005C
-__Hsfr3                  sfr3         005C
-__Hspace_0               (abs)        0457
+__Hsfr0                  sfr0         0000
+__Hsfr1                  sfr1         0000
+__Hsfr2                  sfr2         0000
+__Hsfr3                  sfr3         0000
+__Hspace_0               (abs)        02E1
 __Hspace_1               (abs)        007A
 __Hspace_2               (abs)        0000
 __Hspace_3               (abs)        0000
 __Hspace_4               (abs)        4010
 __Hstack                 stack        0000
-__Hstrings               strings      005C
-__Htext                  text         005C
-__Labs1                  abs1         005C
-__Lbank0                 bank0        005C
-__Lbank1                 bank1        005C
-__Lbank2                 bank2        005C
-__Lbank3                 bank3        005C
-__LbssBANK0              bssBANK0     005C
-__LbssCOMMON             bssCOMMON    005C
+__Hstrings               strings      0000
+__Htext                  text         0000
+__Labs1                  abs1         0000
+__Lbank0                 bank0        0000
+__Lbank1                 bank1        0000
+__Lbank2                 bank2        0000
+__Lbank3                 bank3        0000
+__LbssBANK0              bssBANK0     0000
+__LbssCOMMON             bssCOMMON    0000
 __Lcinit                 cinit        000F
-__Lclrtext               clrtext      005C
-__Lcode                  code         005C
-__Lcommon                common       005C
+__Lclrtext               clrtext      0000
+__Lcode                  code         0000
+__Lcommon                common       0000
 __Lconfig                config       0000
-__LcstackBANK0           cstackBANK0  005C
-__LcstackCOMMON          cstackCOMMON 005C
+__LcstackBANK0           cstackBANK0  0000
+__LcstackCOMMON          cstackCOMMON 0000
 __Leeprom_data           eeprom_data  0000
 __Lend_init              end_init     000C
-__Lfunctab               functab      0028
+__Lfunctab               functab      0000
 __Linit                  init         000C
 __Lintentry              intentry     0004
-__Lmaintext              maintext     005C
+__Lmaintext              maintext     0000
 __Lpowerup               powerup      0000
-__Lram                   ram          005C
+__Lram                   ram          0000
 __Lreset_vec             reset_vec    0000
-__Lsfr0                  sfr0         005C
-__Lsfr1                  sfr1         005C
-__Lsfr2                  sfr2         005C
-__Lsfr3                  sfr3         005C
+__Lsfr0                  sfr0         0000
+__Lsfr1                  sfr1         0000
+__Lsfr2                  sfr2         0000
+__Lsfr3                  sfr3         0000
 __Lspace_0               (abs)        0000
 __Lspace_1               (abs)        0000
 __Lspace_2               (abs)        0000
 __Lspace_3               (abs)        0000
 __Lspace_4               (abs)        0000
 __Lstack                 stack        0000
-__Lstrings               strings      005C
-__Ltext                  text         005C
-__S0                     (abs)        0457
+__Lstrings               strings      0000
+__Ltext                  text         0000
+__S0                     (abs)        02E1
 __S1                     (abs)        007A
 __S2                     (abs)        0000
 __S3                     (abs)        0000
@@ -288,45 +266,34 @@ ___latbits               (abs)        0002
 ___sp                    stack        0000
 ___stackhi               (abs)        0000
 ___stacklo               (abs)        0000
-__end_of_USART_Cadena    text9        042B
-__end_of__fptable        functab      002E
-__end_of__initialization cinit        0024
-__end_of__stringtab      strings      0113
-__end_of_data            strings      0114
-__end_of_isr             text11       0244
-__end_of_main            maintext     010D
-__end_of_servo1_18       text8        03D5
-__end_of_servo1_19       text7        0408
-__end_of_servo2_18       text6        039E
-__end_of_servo2_19       text5        0367
-__end_of_servo3_18       text4        0330
-__end_of_servo3_19       text3        02F9
-__end_of_setup           text2        02C2
-__end_of_transmision_tx  text10       0457
-__end_of_writeToEEPROM   text1        044A
-__fptable                functab      0028
+__end_of__initialization cinit        001D
+__end_of__stringtab      strings      02E0
+__end_of_data            strings      02E1
+__end_of_isr             text8        00C1
+__end_of_main            maintext     0194
+__end_of_servo1_18       text7        02D2
+__end_of_servo1_19       text6        029D
+__end_of_servo2_18       text5        0268
+__end_of_servo2_19       text4        0233
+__end_of_servo3_18       text3        01FE
+__end_of_servo3_19       text2        01C9
+__end_of_setup           text1        012F
 __initialization         cinit        000F
 __pbssBANK0              bssBANK0     0020
 __pbssCOMMON             bssCOMMON    0070
-__pcstackBANK0           cstackBANK0  002E
+__pcstackBANK0           cstackBANK0  0030
 __pcstackCOMMON          cstackCOMMON 0075
-__pfunctab               functab      0028
 __pintentry              intentry     0004
-__pmaintext              maintext     002E
-__pstrings               strings      010D
-__ptext1                 text1        042B
-__ptext10                text10       044A
-__ptext11                text11       01C0
-__ptext2                 text2        0244
-__ptext3                 text3        02C2
-__ptext4                 text4        02F9
-__ptext5                 text5        0330
-__ptext6                 text6        0367
-__ptext7                 text7        03D5
-__ptext8                 text8        039E
-__ptext9                 text9        0408
-__size_of_USART_Cadena   (abs)        0000
-__size_of__fptable       (abs)        0000
+__pmaintext              maintext     012F
+__pstrings               strings      02DA
+__ptext1                 text1        00C1
+__ptext2                 text2        0194
+__ptext3                 text3        01C9
+__ptext4                 text4        01FE
+__ptext5                 text5        0233
+__ptext6                 text6        0268
+__ptext7                 text7        029D
+__ptext8                 text8        0021
 __size_of_isr            (abs)        0000
 __size_of_main           (abs)        0000
 __size_of_servo1_18      (abs)        0000
@@ -336,49 +303,38 @@ __size_of_servo2_19      (abs)        0000
 __size_of_servo3_18      (abs)        0000
 __size_of_servo3_19      (abs)        0000
 __size_of_setup          (abs)        0000
-__size_of_transmision_tx (abs)        0000
-__size_of_writeToEEPROM  (abs)        0000
-__stringbase             strings      0112
-__stringtab              strings      010D
-_dato_recibido           bssCOMMON    0074
-_isr                     text11       01C0
-_main                    maintext     002E
-_recepcion_rx            (abs)        0000
-_servo1_1                bssCOMMON    0070
-_servo1_18               text8        039E
-_servo1_19               text7        03D5
+__stringbase             strings      02DF
+__stringtab              strings      02DA
+_isr                     text8        0021
+_main                    maintext     012F
+_servo1_1                bssBANK0     002C
+_servo1_18               text7        029D
+_servo1_19               text6        0268
 _servo1_2                bssBANK0     002A
 _servo2_1                bssBANK0     0028
-_servo2_18               text6        0367
-_servo2_19               text5        0330
+_servo2_18               text5        0233
+_servo2_19               text4        01FE
 _servo2_2                bssBANK0     0026
 _servo3_1                bssBANK0     0024
-_servo3_18               text4        02F9
-_servo3_19               text3        02C2
+_servo3_18               text3        01C9
+_servo3_19               text2        0194
 _servo3_2                bssBANK0     0022
-_setup                   text2        0244
-_transmision_tx          text10       044A
-_writeToEEPROM           text1        042B
-_x                       bssCOMMON    0072
+_setup                   text1        00C1
+_wenas                   bssCOMMON    0070
 btemp                    (abs)        007E
-end_of_initialization    cinit        0024
-fpbase                   functab      002D
-fptable                  functab      0028
-fptotal                  (abs)        0001
+clear_ram0               clrtext      02D2
+end_of_initialization    cinit        001D
 interrupt_function       intentry     0004
-intlevel0                functab      0028
-intlevel1                functab      0028
-intlevel2                functab      0028
-intlevel3                functab      0028
-intlevel4                functab      0028
-intlevel5                functab      0028
+intlevel0                functab      0000
+intlevel1                functab      0000
+intlevel2                functab      0000
+intlevel3                functab      0000
+intlevel4                functab      0000
+intlevel5                functab      0000
 reset_vec                reset_vec    0000
 saved_w                  (abs)        007E
 start                    init         000C
 start_initialization     cinit        000F
-transmision_tx@data      cstackCOMMON 0079
-writeToEEPROM@address    cstackBANK0  002E
-writeToEEPROM@data       cstackCOMMON 0079
 wtemp0                   (abs)        007E
 
 
@@ -386,7 +342,7 @@ FUNCTION INFORMATION:
 
  *************** function _main *****************
  Defined at:
-		line 129 in file "main_brazo.c"
+		line 145 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -394,7 +350,7 @@ FUNCTION INFORMATION:
  Return value:  Size  Location     Type
                   1    wreg      void 
  Registers used:
-		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
+		wreg, status,2, status,0, btemp+1, pclath, cstack
  Tracked objects:
 		On entry : 
 		On exit  : 
@@ -402,12 +358,11 @@ FUNCTION INFORMATION:
  Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
       Params:         0       0       0       0       0
       Locals:         0       0       0       0       0
-      Temps:          0       2       0       0       0
-      Totals:         0       2       0       0       0
-Total ram usage:        2 bytes
- Hardware stack levels required when called:    3
+      Temps:          0       3       0       0       0
+      Totals:         0       3       0       0       0
+Total ram usage:        3 bytes
+ Hardware stack levels required when called:    2
  This function calls:
-		_USART_Cadena
 		_servo1_18
 		_servo1_19
 		_servo2_18
@@ -415,47 +370,14 @@ Total ram usage:        2 bytes
 		_servo3_18
 		_servo3_19
 		_setup
-		_transmision_tx
-		_writeToEEPROM
  This function is called by:
 		Startup code after reset
  This function uses a non-reentrant model
 
 
- *************** function _writeToEEPROM *****************
- Defined at:
-		line 408 in file "main_brazo.c"
- Parameters:    Size  Location     Type
-  data            1    wreg     unsigned char 
-  address         2    0[BANK0 ] int 
- Auto vars:     Size  Location     Type
-  data            1    4[COMMON] unsigned char 
- Return value:  Size  Location     Type
-                  1    wreg      void 
- Registers used:
-		wreg
- Tracked objects:
-		On entry : 
-		On exit  : 
-		Unchanged: 
- Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-      Params:         0       2       0       0       0
-      Locals:         1       0       0       0       0
-      Temps:          0       0       0       0       0
-      Totals:         1       2       0       0       0
-Total ram usage:        3 bytes
- Hardware stack levels used:    1
- Hardware stack levels required when called:    1
- This function calls:
-		Nothing
- This function is called by:
-		_main
- This function uses a non-reentrant model
-
-
  *************** function _setup *****************
  Defined at:
-		line 201 in file "main_brazo.c"
+		line 184 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -485,7 +407,7 @@ Total ram usage:        1 bytes
 
  *************** function _servo3_19 *****************
  Defined at:
-		line 359 in file "main_brazo.c"
+		line 331 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -515,7 +437,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo3_18 *****************
  Defined at:
-		line 371 in file "main_brazo.c"
+		line 343 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -545,7 +467,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo2_19 *****************
  Defined at:
-		line 335 in file "main_brazo.c"
+		line 307 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -575,7 +497,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo2_18 *****************
  Defined at:
-		line 347 in file "main_brazo.c"
+		line 319 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -605,7 +527,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo1_19 *****************
  Defined at:
-		line 310 in file "main_brazo.c"
+		line 282 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -635,7 +557,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo1_18 *****************
  Defined at:
-		line 322 in file "main_brazo.c"
+		line 294 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -663,74 +585,9 @@ Total ram usage:        2 bytes
  This function uses a non-reentrant model
 
 
- *************** function _USART_Cadena *****************
- Defined at:
-		line 398 in file "main_brazo.c"
- Parameters:    Size  Location     Type
-  str             1    wreg     PTR unsigned char 
-		 -> STR_7(24), STR_6(23), STR_5(24), STR_4(23), 
-		 -> STR_3(24), STR_2(23), STR_1(31), 
- Auto vars:     Size  Location     Type
-  str             1    1[BANK0 ] PTR unsigned char 
-		 -> STR_7(24), STR_6(23), STR_5(24), STR_4(23), 
-		 -> STR_3(24), STR_2(23), STR_1(31), 
- Return value:  Size  Location     Type
-                  1    wreg      void 
- Registers used:
-		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
- Tracked objects:
-		On entry : 
-		On exit  : 
-		Unchanged: 
- Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-      Params:         0       0       0       0       0
-      Locals:         0       1       0       0       0
-      Temps:          0       1       0       0       0
-      Totals:         0       2       0       0       0
-Total ram usage:        2 bytes
- Hardware stack levels used:    1
- Hardware stack levels required when called:    2
- This function calls:
-		_transmision_tx
- This function is called by:
-		_main
- This function uses a non-reentrant model
-
-
- *************** function _transmision_tx *****************
- Defined at:
-		line 389 in file "main_brazo.c"
- Parameters:    Size  Location     Type
-  data            1    wreg     unsigned char 
- Auto vars:     Size  Location     Type
-  data            1    4[COMMON] unsigned char 
- Return value:  Size  Location     Type
-                  1    wreg      void 
- Registers used:
-		wreg
- Tracked objects:
-		On entry : 
-		On exit  : 
-		Unchanged: 
- Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-      Params:         0       0       0       0       0
-      Locals:         1       0       0       0       0
-      Temps:          0       0       0       0       0
-      Totals:         1       0       0       0       0
-Total ram usage:        1 bytes
- Hardware stack levels used:    1
- Hardware stack levels required when called:    1
- This function calls:
-		Nothing
- This function is called by:
-		_main
-		_USART_Cadena
- This function uses a non-reentrant model
-
-
  *************** function _isr *****************
  Defined at:
-		line 94 in file "main_brazo.c"
+		line 95 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -762,26 +619,22 @@ MODULE INFORMATION
 
 Module		Function		Class		Link	Load	Size
 main_brazo.c
-		_writeToEEPROM 		CODE           	042B	0000	31
-		_servo2_18     		CODE           	0367	0000	55
-		_servo2_19     		CODE           	0330	0000	55
-		_transmision_tx		CODE           	044A	0000	13
-		_main          		CODE           	002E	0000	223
-		_servo3_18     		CODE           	02F9	0000	55
-		_servo3_19     		CODE           	02C2	0000	55
-		_isr           		CODE           	01C0	0000	132
-		_setup         		CODE           	0244	0000	126
-		_servo1_18     		CODE           	039E	0000	55
-		_servo1_19     		CODE           	03D5	0000	51
-		_USART_Cadena  		CODE           	0408	0000	35
+		_servo2_18     		CODE           	0233	0000	53
+		_servo2_19     		CODE           	01FE	0000	53
+		_main          		CODE           	012F	0000	101
+		_servo3_18     		CODE           	01C9	0000	53
+		_servo3_19     		CODE           	0194	0000	53
+		_isr           		CODE           	0021	0000	160
+		_setup         		CODE           	00C1	0000	110
+		_servo1_18     		CODE           	029D	0000	53
+		_servo1_19     		CODE           	0268	0000	53
 
-main_brazo.c estimated size: 886
+main_brazo.c estimated size: 689
 
 shared
-		__stringtab    		STRING         	010D	0000	6
-		__initialization		CODE           	000F	0000	21
+		__stringtab    		STRING         	02DA	0000	6
+		__initialization		CODE           	000F	0000	14
 		_data          		STRING         	0000	0000	0
-		__fptable      		ENTRY          	0028	0000	6
 
-shared estimated size: 33
+shared estimated size: 20
 

@@ -40,7 +40,8 @@ Descripcion:
 /*-----------------------------------------------------------------------------
 ------------------------varibales a implementar ------------------------------
 -----------------------------------------------------------------------------*/
-int x=0;            
+int x=0;    
+int wenas=0;
 int servo1_1;           //control de for en servo1 a 0°
 int servo1_2;           //control de for en servo1 a 45°
 int servo2_1;           //control de for en servo2 a 0°
@@ -119,6 +120,21 @@ void __interrupt() isr(void) //funcion de interrupciones
         PIR1bits.ADIF =0;
         ADCON0bits.GO = 1;
     }
+    if (INTCONbits.RBIF)
+    {
+        if(PORTBbits.RB0==0)
+        {
+            wenas=1;
+        }
+        if(PORTBbits.RB1==0)
+        {
+            wenas=2;
+        }
+        if(PORTBbits.RB2==0)
+        {
+            wenas=3;
+        }
+    }
     
     
 }
@@ -129,68 +145,35 @@ void __interrupt() isr(void) //funcion de interrupciones
 void main (void)
 {
     setup();                            //se llama funcion con configuracion
-    writeToEEPROM('a',0);        //dato, direccion
+    /*writeToEEPROM('a',0);        //dato, direccion
     writeToEEPROM('n',1);        //dato, direccion
     writeToEEPROM('d',2);        //dato, direccion
-    writeToEEPROM('y',3);        //dato, direccion
+    writeToEEPROM('y',3);        //dato, direccion*/
     //MAIN LOOP
     while (1)                           
     {
-        
-        USART_Cadena("\r Que accion desea ejecutar? \r");
-        USART_Cadena(" 1) Mover a 0 servo1 \r");
-        USART_Cadena(" 2) Mover a 45 servo1 \r");
-        USART_Cadena(" 3) Mover a 0 servo2 \r");
-        USART_Cadena(" 3) Mover a 45 servo2 \r");
-        USART_Cadena(" 3) Mover a 0 servo3 \r");
-        USART_Cadena(" 3) Mover a 45 servo3 \r");
-        
-        while (PIR1bits.RCIF==0)
+        if (wenas==1)
         {
-            dato_recibido = recepcion_rx; //se almacena dato recibio en variable 
+            servo1_19();
+            __delay_ms(500);
+            servo1_18();
         }
         
-        switch(dato_recibido)
+        if (wenas==2)
         {
-            //casos para el servo1
-            case ('1'):                 //en caso se reciba 1, servo1 a 0°
-                servo1_19();            //se llama funcion para 0°
-                transmision_tx('Servo 1 a 0');  //estado del servo a GUI
-                break;
-            case ('2'):                 //en caso se reciba 2, servo1 a 45°
-                servo1_18();            //se llama funcion para 45°
-                transmision_tx('Servo 1 a 45'); //estado del servo a GUI
-                break;
-                
-            //casos para el servo2    
-            case ('3'):                 //en caso se reciba 3, servo2 a 0°
-                servo2_19();            //se llama funcion para 0°
-                transmision_tx('Servo 2 a 0'); //estado del servo a GUI
-                break;
-            case ('4'):                 //en caso se reciba 4, servo2 a 45°
-                servo2_18();            //se llama funcion para 45°
-                transmision_tx('Servo 2 a 45'); //estado del servo a GUI
-                break;
-
-            //casos para el servo3      
-            case ('5'):                 //en caso se reciba 5, servo3 a 0°
-                servo3_19();            //se llama funcion para 0°
-                transmision_tx('Servo 3 a 0'); //estado del servo a GUI
-                break;
-            case ('6'):                 //en caso se reciba 6, servo3 a 45°
-                servo3_18();            //se llama funcion para 45°
-                transmision_tx('Servo 3 a 45'); //estado del servo a GUI
-                break;
-                
-            case ('7'):                 //en caso se reciba 7, se guardan datos
-                writeToEEPROM(ADRESH,direccion_eeprom); 
-                break;
-                
+            servo2_19();
+            __delay_ms(500);
+            servo2_18();
         }
-       
-    
         
-
+        if (wenas==3)
+        {
+            servo3_19();
+            __delay_ms(500);
+            servo3_18();
+        }
+        
+        
         //servos_loop();          //funcion para movimiento de servos
     }
 
@@ -233,11 +216,13 @@ void setup()
     OSCCONbits.SCS=1;       //oscilador interno
     
     //CONFIGURACION DE BOTONES
-    IOCBbits.IOCB0 =1;          //IntOnChange Rb0, guardar en EEPROM
-    IOCBbits.IOCB1= 1;          //IntOnCHange RB1, hacer lo que se guardo
+    IOCBbits.IOCB0 =1;          //IntOnChange Rb0
+    IOCBbits.IOCB1= 1;          //IntOnCHange RB1
+    IOCBbits.IOCB2= 1;          //IntOnCHange RB2
     OPTION_REGbits.nRBPU=1;     //se habilita WPUB
     WPUBbits.WPUB0 = 1;         //WPUB en RB0
     WPUBbits.WPUB1 = 1;         //WPUB en RB1
+    WPUBbits.WPUB2 = 1;         //WPUB en RB1
     
     //CONFIGURACION DEL ADC
     ADCON1bits.ADFM = 0 ;   // se justifica a la isquierda
@@ -273,20 +258,7 @@ void setup()
     TRISCbits.TRISC2 = 0;       //salida del pwm1
     TRISCbits.TRISC1= 0;        // salida del pwm 2
     
-    //CONFIGURACION DE UART
-    //transmision
-    TXSTAbits.SYNC = 0;         //se habilita transmision asincrona
-    TXSTAbits.BRGH = 1;         //se habilita transmision de alta velocidad
-    BAUDCTLbits.BRG16 = 1;      //se habilita uso los 16 bits   
-    //braudeaje
-    SPBRG = 12;                //valor adecuado al SPBRG para braudeaje                  
-    SPBRGH = 0;                 //pagina 168 del datasheet del 2009       
-    //recepcion
-    RCSTAbits.SPEN = 1;          //se enciendeel modulo
-    RCSTAbits.RX9 = 0;           //se habilita transmision de 8bits
-    //encendido de modulos
-    RCSTAbits.CREN = 1;          //se activa la recepción
-    TXSTAbits.TXEN = 1;          //se activa la transmision 
+    
     
     //CONFIGURACION DE INTERRUPCIONES
     INTCONbits.GIE = 1;     //habilitan interrupciones globales
@@ -379,136 +351,3 @@ void servo3_18(void)
         }
 }
 
-//funcion para transladar datos recibidos
-char recepcion_rx()
-{
-    return RCREG;       //el valor de RCREG lo pongo en ese caracter
-}
-
-//funcion para transmitir datos a interfaz
-void transmision_tx(char data)
-{
-    while(TXSTAbits.TRMT == 0)
-    {
-        TXREG = data;
-    }
-}
-
-//funcion con cadena de caracteres
-void USART_Cadena(char *str)
-{
-    while(*str != '\0')
-    {
-        transmision_tx(*str);
-        str++;
-    }
-}
-
-//funcion para escritura en EEPROM
-void writeToEEPROM(char data, int address)
-{
-    EEADR = address;             //se seleccion direccion a escribir
-    EEDATA=data;                 //se asgina dato a escribir
-    
-    EECON1bits.EEPGD = 0;       //se accede a la memoria EEPROm
-    EECON1bits.WREN = 1;        //se habilita escritura
-    INTCONbits.GIE =0;          //se deshabilitan interrupciones
-    
-    EECON2 = 0x55;              //escritura de valores por defecto  
-    EECON2 = 0x0AA;              //escritura de valores por defecto
-    
-    EECON1bits.WR =1;           //inicializa la escritura
-    INTCONbits.GIE =1;          //se vuelve a habilitar interrupciones
-    
-    while(PIR2bits.EEIF==0);
-    PIR2bits.EEIF=0;
-    
-    EECON1bits.WREN = 0;        //se deshabilita escritura   
-}
-
-//funcion para lectura en EEPROM
-char readFromEEPROM(unsigned address)
-{
-    EEADR =address;             //se selecciona direccion a leer
-    EECON1bits.EEPGD = 0;       //se accede a la memoria EEPROm
-    EECON1bits.RD=1;            //inicializando la lectura
-    return EEDATA;
-    
-}
-
-//muy probable que me lo vuele, pero lo dejo por si me sirve
-void servos_loop(void)
-{
-    for(x=0;x<=7;x++)
-    {
-        if (x == 1)                 //para servo1 a 0°
-        {
-            for (servo1_1 = 0; servo1_1 <= 15; servo1_1++)
-            {
-                PORTDbits.RD0 = 1;
-                __delay_ms(1);
-                PORTDbits.RD0 = 0;
-                __delay_ms(19);
-            }
-        }
-
-        if (x == 2)                 //para servo1 a 45°
-        {
-            for (servo1_2 = 0; servo1_2 <= 15; servo1_2++)
-            {
-                PORTDbits.RD0 = 1;
-                __delay_ms(1.5);
-                PORTDbits.RD0 = 0;
-                __delay_ms(18.5);
-            }
-        }
-
-        if (x ==3)                  //para servo2 a 0°
-        {
-            for (servo2_1 = 0; servo2_1 <= 20; servo2_1++)
-            {
-                PORTDbits.RD1 = 1;
-                __delay_ms(1);
-                PORTDbits.RD1 = 0;
-                __delay_ms(19);
-            }
-        }
-
-        if (x==4)                   //para servo2 a 45°
-        {
-            for (servo2_2 = 0; servo2_2 <= 20; servo2_2++)
-            {
-                PORTDbits.RD1 = 1;
-                __delay_ms(1.5);
-                PORTDbits.RD1 = 0;
-                __delay_ms(18.5);
-            }   
-        }
-
-        if (x==5)                   //para servo3 a 0°
-        {
-            for (servo3_1 = 0; servo3_1 <= 20; servo3_1++)
-            {
-                PORTDbits.RD2 = 1;
-                __delay_ms(1);
-                PORTDbits.RD2 = 0;
-                __delay_ms(19);
-            }
-        }
-
-        if (x==6)                   //para servo3 a 45°
-        {
-            for (servo3_2 = 0; servo3_2 <= 20; servo3_2++)
-            {
-                PORTDbits.RD2 = 1;
-                __delay_ms(1.5);
-                PORTDbits.RD2 = 0;
-                __delay_ms(18.5);        
-            }
-        }
-        if (x==7)           //se estable limite
-        {
-            x=0;
-        }
-    }
-}
