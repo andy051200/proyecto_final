@@ -2774,27 +2774,27 @@ void main (void)
     while (1)
     {
 
-        if (!PORTBbits.RB0)
+        if (PORTBbits.RB0==1)
         {
             servo1_0grados();
         }
-        else if (!PORTBbits.RB1)
+        else if (PORTBbits.RB1==1)
         {
             servo1_180grados();
         }
-        else if (!PORTBbits.RB2)
+        else if (PORTBbits.RB2==1)
         {
             servo2_0grados();
         }
-        else if (!PORTBbits.RB3)
+        else if (PORTBbits.RB3==1)
         {
             servo2_180grados();
         }
-        else if (!PORTBbits.RB4)
+        else if (PORTBbits.RB4==1)
         {
             servo3_0grados();
         }
-        else if (!PORTBbits.RB5)
+        else if (PORTBbits.RB5==1)
         {
             servo3_180grados();
         }
@@ -2802,23 +2802,26 @@ void main (void)
 
         if (ADCON0bits.GO==0)
         {
-            if (ADCON0bits.CHS==5)
+            if (ADCON0bits.CHS==0)
             {
                 CCPR1L =ADRESH;
-                ADCON0bits.CHS=6;
+                _delay((unsigned long)((100)*(8000000/4000000.0)));
+                ADCON0bits.CHS=1;
             }
-            else if (ADCON0bits.CHS==6)
+            if (ADCON0bits.CHS==1)
             {
                 CCPR2L =ADRESH;
-                ADCON0bits.CHS=7;
+                _delay((unsigned long)((100)*(8000000/4000000.0)));
+                ADCON0bits.CHS=2;
             }
-            else if (ADCON0bits.CHS==7)
+            if (ADCON0bits.CHS==2)
             {
                 PORTE = ADRESH;
+                _delay((unsigned long)((100)*(8000000/4000000.0)));
+                ADCON0bits.CHS=0;
             }
             _delay((unsigned long)((100)*(8000000/4000000.0)));
             ADCON0bits.GO=1;
-
         }
 
 
@@ -2863,36 +2866,6 @@ void setup()
     OSCCONbits.IRCF1 = 1;
     OSCCONbits.IRCF0 = 1;
     OSCCONbits.SCS=1;
-
-
-    OPTION_REGbits.T0CS = 0;
-    OPTION_REGbits.T0SE = 0;
-    OPTION_REGbits.PSA = 0;
-    OPTION_REGbits.PS2 = 1;
-    OPTION_REGbits.PS1 = 1;
-    OPTION_REGbits.PS0 = 1;
-    TMR0 = 89;
-
-
-    T1CONbits.T1CKPS1 = 1;
-    T1CONbits.T1CKPS0 = 1;
-    T1CONbits.T1OSCEN = 1;
-    T1CONbits.T1SYNC = 1;
-    T1CONbits.TMR1CS = 0;
-    T1CONbits.TMR1ON = 1;
-    TMR1H = 0xEC;
-    TMR1L = 0x78;
-
-
-    OPTION_REGbits.nRBPU=1;
-    WPUBbits.WPUB0 = 1;
-    WPUBbits.WPUB1 = 1;
-    WPUBbits.WPUB2 = 1;
-    WPUBbits.WPUB3 = 1;
-    WPUBbits.WPUB4 = 1;
-    WPUBbits.WPUB5 = 1;
-    WPUBbits.WPUB6 = 1;
-    WPUBbits.WPUB7 = 1;
 
 
     ADCON1bits.ADFM = 0 ;

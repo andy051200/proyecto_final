@@ -106,27 +106,27 @@ void main (void)
     while (1)                           
     {
         //--------------bloque para mover los servos
-        if (!PORTBbits.RB0)
+        if (PORTBbits.RB0==1)
         {
             servo1_0grados();
         }
-        else if (!PORTBbits.RB1)
+        else if (PORTBbits.RB1==1)
         {
             servo1_180grados();
         }
-        else if (!PORTBbits.RB2)
+        else if (PORTBbits.RB2==1)
         {
             servo2_0grados();
         }
-        else if (!PORTBbits.RB3)
+        else if (PORTBbits.RB3==1)
         {
             servo2_180grados();
         }
-        else if (!PORTBbits.RB4)
+        else if (PORTBbits.RB4==1)
         {
             servo3_0grados();
         }
-        else if (!PORTBbits.RB5)
+        else if (PORTBbits.RB5==1)
         {
             servo3_180grados();
         }
@@ -134,23 +134,26 @@ void main (void)
         //--------------bloque para toggle de canales del ADC
         if (ADCON0bits.GO==0)
         {
-            if (ADCON0bits.CHS==5)
+            if (ADCON0bits.CHS==0)
             {
                 CCPR1L =ADRESH;
-                ADCON0bits.CHS=6;
+                __delay_us(100);
+                ADCON0bits.CHS=1;
             }
-            else if (ADCON0bits.CHS==6)
+            if (ADCON0bits.CHS==1)
             {
                 CCPR2L =ADRESH;
-                ADCON0bits.CHS=7;
+                __delay_us(100);
+                ADCON0bits.CHS=2;
             }
-            else if (ADCON0bits.CHS==7)
+            if (ADCON0bits.CHS==2)
             {
                 PORTE = ADRESH;
+                __delay_us(100);
+                ADCON0bits.CHS=0;            
             }
             __delay_us(100);        //tiempo de recarga de capacitor
             ADCON0bits.GO=1;        //se reinician las mediciones
-            
         }
         
         
@@ -173,7 +176,7 @@ void setup()
     TRISAbits.TRISA1 = 1;   //RA0 como entrada
     TRISAbits.TRISA2 = 1;   //RA0 como entrada
     
-    TRISB =0xff;              //PortB como entrada
+    TRISB =0xff;            //PortB como entrada
     
     TRISCbits.TRISC1 = 0;   //RC1 como salida CCP2
     TRISCbits.TRISC2 = 0;   //RC1 como salida CCP1
@@ -195,37 +198,7 @@ void setup()
     OSCCONbits.IRCF1 = 1;   //Freq a 8MHz, 111
     OSCCONbits.IRCF0 = 1;   //Freq a 8MHz, 111
     OSCCONbits.SCS=1;       //oscilador interno
-    
-    //CONFIGURACION DEL TIMER0
-    OPTION_REGbits.T0CS = 0;    //Timer0 Clock select 
-    OPTION_REGbits.T0SE = 0;    //en flanco de subida
-    OPTION_REGbits.PSA = 0;     //preescaler en modulo
-    OPTION_REGbits.PS2 = 1;     //preescaler 1:256, 111 
-    OPTION_REGbits.PS1 = 1;     //preescaler 1:256, 111
-    OPTION_REGbits.PS0 = 1;     //preescaler 1:256, 111
-    TMR0 = 89;                  //valor inicial, interrupcion cada 20ms
-    
-    //Timer1 Registers Prescaler= 8 - TMR1 Preset = 60536 - Freq = 50.00 Hz - Period = 0.020000 seconds
-    T1CONbits.T1CKPS1 = 1;   // bits 5-4  Prescaler Rate Select bits
-    T1CONbits.T1CKPS0 = 1;   // bit 4
-    T1CONbits.T1OSCEN = 1;   // bit 3 Timer1 Oscillator Enable Control bit 1 = on
-    T1CONbits.T1SYNC = 1;    // bit 2 Timer1 External Clock Input Synchronization Control bit...1 = Do not synchronize external clock input
-    T1CONbits.TMR1CS = 0;    // bit 1 Timer1 Clock Source Select bit...0 = Internal clock (FOSC/4)
-    T1CONbits.TMR1ON = 1;    // bit 0 enables timer
-    TMR1H = 0xEC;            // valor inicial de MSB de timer1
-    TMR1L = 0x78;            // valor inicial de LSB de timer1
-    
-    //CONFIGURACION DE BOTONES
-    OPTION_REGbits.nRBPU=1;     //se habilita WPUB
-    WPUBbits.WPUB0 = 1;         //WPUB en RB0
-    WPUBbits.WPUB1 = 1;         //WPUB en RB1
-    WPUBbits.WPUB2 = 1;         //WPUB en RB2
-    WPUBbits.WPUB3 = 1;         //WPUB en RB3
-    WPUBbits.WPUB4 = 1;         //WPUB en RB4
-    WPUBbits.WPUB5 = 1;         //WPUB en RB5
-    WPUBbits.WPUB6 = 1;         //WPUB en RB6
-    WPUBbits.WPUB7 = 1;         //WPUB en RB7
-    
+   
     //CONFIGURACION DEL ADC
     ADCON1bits.ADFM = 0 ;   // se justifica a la isquierda
     ADCON1bits.VCFG0 = 0 ;  // voltajes de referencia
