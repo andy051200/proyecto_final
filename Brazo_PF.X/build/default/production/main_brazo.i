@@ -2800,7 +2800,26 @@ void main (void)
         }
 
 
+        if (ADCON0bits.GO==0)
+        {
+            if (ADCON0bits.CHS==5)
+            {
+                CCPR1L =ADRESH;
+                ADCON0bits.CHS=6;
+            }
+            else if (ADCON0bits.CHS==6)
+            {
+                CCPR2L =ADRESH;
+                ADCON0bits.CHS=7;
+            }
+            else if (ADCON0bits.CHS==7)
+            {
+                PORTE = ADRESH;
+            }
+            _delay((unsigned long)((100)*(8000000/4000000.0)));
+            ADCON0bits.GO=1;
 
+        }
 
 
 
@@ -2822,7 +2841,7 @@ void setup()
     TRISAbits.TRISA1 = 1;
     TRISAbits.TRISA2 = 1;
 
-    TRISB = 1;
+    TRISB =0xff;
 
     TRISCbits.TRISC1 = 0;
     TRISCbits.TRISC2 = 0;
@@ -2844,7 +2863,6 @@ void setup()
     OSCCONbits.IRCF1 = 1;
     OSCCONbits.IRCF0 = 1;
     OSCCONbits.SCS=1;
-
 
 
     OPTION_REGbits.T0CS = 0;

@@ -131,8 +131,27 @@ void main (void)
             servo3_180grados();
         }
         
-        //bloque para toggle de canales del ADC
-        //if 
+        //--------------bloque para toggle de canales del ADC
+        if (ADCON0bits.GO==0)
+        {
+            if (ADCON0bits.CHS==5)
+            {
+                CCPR1L =ADRESH;
+                ADCON0bits.CHS=6;
+            }
+            else if (ADCON0bits.CHS==6)
+            {
+                CCPR2L =ADRESH;
+                ADCON0bits.CHS=7;
+            }
+            else if (ADCON0bits.CHS==7)
+            {
+                PORTE = ADRESH;
+            }
+            __delay_us(100);        //tiempo de recarga de capacitor
+            ADCON0bits.GO=1;        //se reinician las mediciones
+            
+        }
         
         
         
@@ -146,15 +165,15 @@ void main (void)
 void setup()
 {
     //CONFIGURACION DE ENTRADAS Y SALIDAS
-    ANSELbits.ANS0 = 1;     //AN0 como entrada analogica
-    ANSELbits.ANS1 = 1;     //AN1 como entrada analogica
-    ANSELbits.ANS2 = 1;     //AN2 como entrada analogica
+    ANSELbits.ANS0 = 1;     //AN5 como entrada analogica
+    ANSELbits.ANS1 = 1;     //AN6 como entrada analogica
+    ANSELbits.ANS2 = 1;     //AN7 como entrada analogica
 
     TRISAbits.TRISA0 = 1;   //RA0 como entrada
     TRISAbits.TRISA1 = 1;   //RA0 como entrada
     TRISAbits.TRISA2 = 1;   //RA0 como entrada
     
-    TRISB = 1;              //PortB como entrada
+    TRISB =0xff;              //PortB como entrada
     
     TRISCbits.TRISC1 = 0;   //RC1 como salida CCP2
     TRISCbits.TRISC2 = 0;   //RC1 como salida CCP1
@@ -176,7 +195,6 @@ void setup()
     OSCCONbits.IRCF1 = 1;   //Freq a 8MHz, 111
     OSCCONbits.IRCF0 = 1;   //Freq a 8MHz, 111
     OSCCONbits.SCS=1;       //oscilador interno
- 
     
     //CONFIGURACION DEL TIMER0
     OPTION_REGbits.T0CS = 0;    //Timer0 Clock select 
