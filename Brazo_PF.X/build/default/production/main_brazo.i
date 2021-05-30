@@ -2711,12 +2711,9 @@ extern __bank0 __bit __timeout;
 
 int x=0;
 int wenas=0;
-int servo1_1;
-int servo1_2;
-int servo2_1;
-int servo2_2;
-int servo3_1;
-int servo3_2;
+int servos=0;
+
+
 char dato_recibido;
 int eeprom_sino;
 
@@ -2731,7 +2728,16 @@ char out_str;
 
 
 void setup(void);
-void loop_servos(void);
+
+
+void servo1_0grados (void);
+void servo1_180grados (void);
+
+void servo2_0grados (void);
+void servo2_180grados (void);
+
+void servo3_0grados (void);
+void servo3_180grados(void);
 
 
 void transmision_tx(char data);
@@ -2743,14 +2749,6 @@ void USART_Cadena(char *str);
 char recepcion_rx();
 
 
-void servo1_19(void);
-void servo1_18(void);
-
-void servo2_19(void);
-void servo2_18(void);
-
-void servo3_19(void);
-void servo3_18(void);
 
 
 void writeToEEPROM(char data, int address);
@@ -2775,18 +2773,38 @@ void main (void)
 
     while (1)
     {
-        if (INTCONbits.T0IF=1)
+
+        if (!PORTBbits.RB0)
         {
-            if (!PORTBbits.RB0)
-            {
-                for (servo1_1 = 0;servo1_1 <20; servo1_1++ )
-                {
-                    PORTDbits.RD0=1;
-                    _delay((unsigned long)((2)*(8000000/4000.0)));
-                    PORTDbits.RD0=1;
-                }
-            }
+            servo1_0grados();
         }
+        else if (!PORTBbits.RB1)
+        {
+            servo1_180grados();
+        }
+        else if (!PORTBbits.RB2)
+        {
+            servo2_0grados();
+        }
+        else if (!PORTBbits.RB3)
+        {
+            servo2_180grados();
+        }
+        else if (!PORTBbits.RB4)
+        {
+            servo3_0grados();
+        }
+        else if (!PORTBbits.RB5)
+        {
+            servo3_180grados();
+        }
+
+
+
+
+
+
+
     }
 
 }
@@ -2852,6 +2870,11 @@ void setup()
     WPUBbits.WPUB0 = 1;
     WPUBbits.WPUB1 = 1;
     WPUBbits.WPUB2 = 1;
+    WPUBbits.WPUB3 = 1;
+    WPUBbits.WPUB4 = 1;
+    WPUBbits.WPUB5 = 1;
+    WPUBbits.WPUB6 = 1;
+    WPUBbits.WPUB7 = 1;
 
 
     ADCON1bits.ADFM = 0 ;
@@ -2913,4 +2936,80 @@ void setup()
     _delay((unsigned long)((100)*(8000000/4000000.0)));
     ADCON0bits.GO=1;
 
+}
+
+
+
+
+
+void servo1_0grados (void)
+{
+    for (servos = 0;servos <25; servos ++)
+    {
+        PORTDbits.RD0=1;
+        _delay((unsigned long)((1)*(8000000/4000.0)));
+        PORTDbits.RD0=0;
+        _delay((unsigned long)((19)*(8000000/4000.0)));
+    }
+}
+
+
+void servo1_180grados (void)
+{
+    for (servos = 0; servos<25; servos++)
+    {
+        PORTDbits.RD0=1;
+        _delay((unsigned long)((2)*(8000000/4000.0)));
+        PORTDbits.RD0=0;
+        _delay((unsigned long)((18)*(8000000/4000.0)));
+    }
+}
+
+
+void servo2_0grados (void)
+{
+    for (servos = 0; servos <25; servos++)
+    {
+        PORTDbits.RD1=1;
+        _delay((unsigned long)((1)*(8000000/4000.0)));
+        PORTDbits.RD1=0;
+        _delay((unsigned long)((19)*(8000000/4000.0)));
+
+    }
+}
+
+
+void servo2_180grados (void)
+{
+    for (servos = 0; servos <25; servos++)
+    {
+        PORTDbits.RD1=1;
+        _delay((unsigned long)((2)*(8000000/4000.0)));
+        PORTDbits.RD1=0;
+        _delay((unsigned long)((18)*(8000000/4000.0)));
+    }
+}
+
+
+void servo3_0grados (void)
+{
+    for (servos = 0; servos <25; servos++)
+    {
+        PORTDbits.RD2=1;
+        _delay((unsigned long)((1)*(8000000/4000.0)));
+        PORTDbits.RD2=0;
+        _delay((unsigned long)((19)*(8000000/4000.0)));
+    }
+}
+
+
+void servo3_180grados (void)
+{
+    for (servos = 0; servos <25; servos++)
+    {
+        PORTDbits.RD2=1;
+        _delay((unsigned long)((2)*(8000000/4000.0)));
+        PORTDbits.RD2=0;
+        _delay((unsigned long)((18)*(8000000/4000.0)));
+    }
 }

@@ -11,19 +11,25 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.o
+$C:\Users\ANDYBO~1\AppData\Local\Temp\s62s.o
 reset_vec CODE 0 0 0 3 2
 end_init CODE 0 C C 3 2
 config CONFIG 4 2007 2007 2 2
 $dist/default/production\Brazo_PF.X.production.o
-cinit CODE 0 F F 1B 2
-text1 CODE 0 2A 2A 95 2
-text2 CODE 0 FA FA 7 2
-maintext CODE 0 BF BF 34 2
-cstackCOMMON COMMON 1 79 79 5 1
+cinit CODE 0 F F 11 2
+text1 CODE 0 20 20 9A 2
+text2 CODE 0 101 101 30 2
+text3 CODE 0 131 131 30 2
+text4 CODE 0 161 161 30 2
+text5 CODE 0 191 191 30 2
+text6 CODE 0 1C1 1C1 30 2
+text7 CODE 0 1F1 1F1 30 2
+text8 CODE 0 228 228 7 2
+maintext CODE 0 BA BA 47 2
+cstackCOMMON COMMON 1 79 79 4 1
 intentry CODE 0 4 4 8 2
-bssBANK0 BANK0 1 20 20 C 1
-strings STRING 0 F3 F3 7 2
+bssBANK0 BANK0 1 20 20 2 1
+strings STRING 0 221 221 7 2
 bssCOMMON COMMON 1 70 70 9 1
 config CONFIG 4 2007 2007 2 2
 # %UNUSED Section
@@ -32,31 +38,32 @@ config CONFIG 4 2007 2007 2 2
 #    <class name> <range> <delta>
 # Addresses given in the range are in hexadecimal and units of delta.
 %UNUSED
-RAM 2C-6F 1
+RAM 22-6F 1
 RAM A0-EF 1
 RAM 110-16F 1
 RAM 190-1EF 1
-BANK0 2C-6F 1
+BANK0 22-6F 1
 BANK1 A0-EF 1
 BANK2 110-16F 1
 BANK3 190-1EF 1
 CONST 3-3 2
-CONST 101-1FFF 2
+CONST 22F-1FFF 2
 ENTRY 3-3 2
-ENTRY 101-1FFF 2
+ENTRY 22F-1FFF 2
 IDLOC 2000-2003 2
 STACK 110-16F 1
 CODE 3-3 2
-CODE 101-1FFF 2
+CODE 22F-1FFF 2
 SFR0 0-1F 1
 SFR1 80-9F 1
 SFR2 100-10F 1
 SFR3 180-18F 1
+COMMON 7D-7D 1
 EEDATA 2100-21FF 2
 STRCODE 3-3 2
-STRCODE 101-1FFF 2
+STRCODE 22F-1FFF 2
 STRING 3-3 2
-STRING 101-1FFF 2
+STRING 22F-1FFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -71,129 +78,183 @@ STRING 101-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\Brazo_PF.X.production.o
-F cinit CODE >525:C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.s
-F cinit CODE >528:C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.s
-F cinit CODE >575:C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.s
-10 cinit CODE >576:C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.s
-11 cinit CODE >577:C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.s
-12 cinit CODE >578:C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.s
-13 cinit CODE >579:C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.s
-14 cinit CODE >580:C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.s
-15 cinit CODE >581:C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.s
-16 cinit CODE >582:C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.s
-17 cinit CODE >583:C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.s
-18 cinit CODE >586:C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.s
-19 cinit CODE >587:C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.s
-1A cinit CODE >588:C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.s
-1B cinit CODE >589:C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.s
-1C cinit CODE >590:C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.s
-1D cinit CODE >591:C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.s
-1E cinit CODE >592:C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.s
-1F cinit CODE >593:C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.s
-20 cinit CODE >594:C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.s
-21 cinit CODE >595:C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.s
-22 cinit CODE >596:C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.s
-23 cinit CODE >597:C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.s
-24 cinit CODE >598:C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.s
-25 cinit CODE >599:C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.s
-26 cinit CODE >605:C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.s
-26 cinit CODE >607:C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.s
-27 cinit CODE >608:C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.s
-4 intentry CODE >96:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-FA text2 CODE >96:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-FA text2 CODE >98:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-2A text1 CODE >128:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-2A text1 CODE >131:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-2D text1 CODE >132:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-2E text1 CODE >133:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-2F text1 CODE >135:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-32 text1 CODE >136:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-33 text1 CODE >137:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-34 text1 CODE >139:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-36 text1 CODE >141:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-37 text1 CODE >142:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-38 text1 CODE >144:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-39 text1 CODE >145:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-3A text1 CODE >146:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-3B text1 CODE >148:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-3C text1 CODE >150:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-3F text1 CODE >151:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-40 text1 CODE >152:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-41 text1 CODE >153:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-42 text1 CODE >154:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-43 text1 CODE >157:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-46 text1 CODE >158:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-47 text1 CODE >159:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-48 text1 CODE >160:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-49 text1 CODE >164:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-4A text1 CODE >165:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-4B text1 CODE >166:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-4C text1 CODE >167:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-4D text1 CODE >168:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-4E text1 CODE >169:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-4F text1 CODE >170:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-53 text1 CODE >173:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-54 text1 CODE >174:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-55 text1 CODE >175:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-56 text1 CODE >176:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-57 text1 CODE >177:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-58 text1 CODE >178:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-59 text1 CODE >179:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-5B text1 CODE >180:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-5D text1 CODE >183:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-60 text1 CODE >184:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-61 text1 CODE >185:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-62 text1 CODE >186:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-63 text1 CODE >189:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-64 text1 CODE >190:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-65 text1 CODE >191:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-66 text1 CODE >192:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-6C text1 CODE >193:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-6E text1 CODE >194:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-73 text1 CODE >195:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-76 text1 CODE >198:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-7A text1 CODE >200:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-7B text1 CODE >201:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-7F text1 CODE >202:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-83 text1 CODE >203:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-85 text1 CODE >204:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-87 text1 CODE >206:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-8A text1 CODE >207:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-90 text1 CODE >208:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-92 text1 CODE >209:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-93 text1 CODE >212:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-94 text1 CODE >213:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-96 text1 CODE >214:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-97 text1 CODE >217:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-98 text1 CODE >218:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-9B text1 CODE >219:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-9C text1 CODE >223:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-9D text1 CODE >224:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-9E text1 CODE >225:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-A1 text1 CODE >227:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-A5 text1 CODE >228:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-A6 text1 CODE >230:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-A9 text1 CODE >231:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-AA text1 CODE >232:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-AB text1 CODE >233:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-AE text1 CODE >237:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-AF text1 CODE >238:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-B0 text1 CODE >239:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-B1 text1 CODE >240:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-B2 text1 CODE >241:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-B3 text1 CODE >242:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-B6 text1 CODE >245:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-BB text1 CODE >246:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-BE text1 CODE >248:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-BF maintext CODE >103:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-BF maintext CODE >105:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-C4 maintext CODE >110:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-C5 maintext CODE >112:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-CB maintext CODE >114:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-CD maintext CODE >116:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-D0 maintext CODE >117:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-D9 maintext CODE >118:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
-DC maintext CODE >119:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+F cinit CODE >531:C:\Users\ANDYBO~1\AppData\Local\Temp\s62s.s
+F cinit CODE >534:C:\Users\ANDYBO~1\AppData\Local\Temp\s62s.s
+F cinit CODE >566:C:\Users\ANDYBO~1\AppData\Local\Temp\s62s.s
+10 cinit CODE >567:C:\Users\ANDYBO~1\AppData\Local\Temp\s62s.s
+11 cinit CODE >568:C:\Users\ANDYBO~1\AppData\Local\Temp\s62s.s
+12 cinit CODE >569:C:\Users\ANDYBO~1\AppData\Local\Temp\s62s.s
+13 cinit CODE >570:C:\Users\ANDYBO~1\AppData\Local\Temp\s62s.s
+14 cinit CODE >571:C:\Users\ANDYBO~1\AppData\Local\Temp\s62s.s
+15 cinit CODE >572:C:\Users\ANDYBO~1\AppData\Local\Temp\s62s.s
+16 cinit CODE >573:C:\Users\ANDYBO~1\AppData\Local\Temp\s62s.s
+17 cinit CODE >574:C:\Users\ANDYBO~1\AppData\Local\Temp\s62s.s
+18 cinit CODE >577:C:\Users\ANDYBO~1\AppData\Local\Temp\s62s.s
+19 cinit CODE >578:C:\Users\ANDYBO~1\AppData\Local\Temp\s62s.s
+1A cinit CODE >579:C:\Users\ANDYBO~1\AppData\Local\Temp\s62s.s
+1B cinit CODE >580:C:\Users\ANDYBO~1\AppData\Local\Temp\s62s.s
+1C cinit CODE >586:C:\Users\ANDYBO~1\AppData\Local\Temp\s62s.s
+1C cinit CODE >588:C:\Users\ANDYBO~1\AppData\Local\Temp\s62s.s
+1D cinit CODE >589:C:\Users\ANDYBO~1\AppData\Local\Temp\s62s.s
+4 intentry CODE >94:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+228 text8 CODE >94:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+228 text8 CODE >96:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+1F1 text7 CODE >277:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+1F1 text7 CODE >279:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+201 text7 CODE >281:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+204 text7 CODE >282:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+20D text7 CODE >283:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+210 text7 CODE >284:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+219 text7 CODE >285:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+220 text7 CODE >286:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+1C1 text6 CODE >289:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+1C1 text6 CODE >291:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+1D1 text6 CODE >293:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+1D4 text6 CODE >294:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+1DD text6 CODE >295:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+1E0 text6 CODE >296:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+1E9 text6 CODE >297:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+1F0 text6 CODE >298:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+191 text5 CODE >301:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+191 text5 CODE >303:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+1A1 text5 CODE >305:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+1A4 text5 CODE >306:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+1AD text5 CODE >307:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+1B0 text5 CODE >308:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+1B9 text5 CODE >310:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+1C0 text5 CODE >311:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+161 text4 CODE >314:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+161 text4 CODE >316:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+171 text4 CODE >318:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+174 text4 CODE >319:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+17D text4 CODE >320:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+180 text4 CODE >321:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+189 text4 CODE >322:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+190 text4 CODE >323:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+131 text3 CODE >326:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+131 text3 CODE >328:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+141 text3 CODE >330:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+144 text3 CODE >331:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+14D text3 CODE >332:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+150 text3 CODE >333:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+159 text3 CODE >334:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+160 text3 CODE >335:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+101 text2 CODE >338:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+101 text2 CODE >340:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+111 text2 CODE >342:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+114 text2 CODE >343:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+11D text2 CODE >344:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+120 text2 CODE >345:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+129 text2 CODE >346:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+130 text2 CODE >347:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+20 text1 CODE >146:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+20 text1 CODE >149:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+23 text1 CODE >150:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+24 text1 CODE >151:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+25 text1 CODE >153:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+28 text1 CODE >154:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+29 text1 CODE >155:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+2A text1 CODE >157:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+2C text1 CODE >159:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+2D text1 CODE >160:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+2E text1 CODE >162:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+2F text1 CODE >163:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+30 text1 CODE >164:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+31 text1 CODE >166:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+32 text1 CODE >168:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+35 text1 CODE >169:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+36 text1 CODE >170:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+37 text1 CODE >171:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+38 text1 CODE >172:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+39 text1 CODE >175:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+3C text1 CODE >176:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+3D text1 CODE >177:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+3E text1 CODE >178:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+3F text1 CODE >182:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+40 text1 CODE >183:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+41 text1 CODE >184:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+42 text1 CODE >185:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+43 text1 CODE >186:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+44 text1 CODE >187:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+45 text1 CODE >188:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+49 text1 CODE >191:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+4A text1 CODE >192:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+4B text1 CODE >193:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+4C text1 CODE >194:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+4D text1 CODE >195:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+4E text1 CODE >196:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+4F text1 CODE >197:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+51 text1 CODE >198:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+53 text1 CODE >201:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+56 text1 CODE >202:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+57 text1 CODE >203:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+58 text1 CODE >204:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+59 text1 CODE >205:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+5A text1 CODE >206:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+5B text1 CODE >207:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+5C text1 CODE >208:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+5D text1 CODE >209:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+5E text1 CODE >212:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+5F text1 CODE >213:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+60 text1 CODE >214:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+61 text1 CODE >215:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+67 text1 CODE >216:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+69 text1 CODE >217:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+6E text1 CODE >218:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+71 text1 CODE >221:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+75 text1 CODE >223:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+76 text1 CODE >224:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+7A text1 CODE >225:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+7E text1 CODE >226:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+80 text1 CODE >227:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+82 text1 CODE >229:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+85 text1 CODE >230:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+8B text1 CODE >231:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+8D text1 CODE >232:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+8E text1 CODE >235:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+8F text1 CODE >236:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+91 text1 CODE >237:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+92 text1 CODE >240:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+93 text1 CODE >241:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+96 text1 CODE >242:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+97 text1 CODE >246:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+98 text1 CODE >247:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+99 text1 CODE >248:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+9C text1 CODE >250:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+A0 text1 CODE >251:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+A1 text1 CODE >253:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+A4 text1 CODE >254:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+A5 text1 CODE >255:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+A6 text1 CODE >256:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+A9 text1 CODE >260:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+AA text1 CODE >261:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+AB text1 CODE >262:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+AC text1 CODE >263:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+AD text1 CODE >264:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+AE text1 CODE >265:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+B1 text1 CODE >268:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+B6 text1 CODE >269:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+B9 text1 CODE >271:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+BA maintext CODE >101:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+BA maintext CODE >103:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+BF maintext CODE >109:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+C5 maintext CODE >111:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+CA maintext CODE >112:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+CB maintext CODE >113:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+CF maintext CODE >115:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+D4 maintext CODE >116:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+D5 maintext CODE >117:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+D9 maintext CODE >119:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+DE maintext CODE >120:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+DF maintext CODE >121:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+E3 maintext CODE >123:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+E8 maintext CODE >124:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+E9 maintext CODE >125:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+ED maintext CODE >127:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+F2 maintext CODE >128:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+F3 maintext CODE >129:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+F7 maintext CODE >131:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
+FD maintext CODE >132:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -207,8 +268,8 @@ DC maintext CODE >119:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Braz
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
 ___latbits 2 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
-__Hspace_0 101 0 ABS 0 - -
-__Hspace_1 7E 0 ABS 0 - -
+__Hspace_0 22F 0 ABS 0 - -
+__Hspace_1 7D 0 ABS 0 - -
 __Hspace_2 0 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
 __Hspace_4 4010 0 ABS 0 - -
@@ -216,30 +277,34 @@ __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 _T1CONbits 10 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 __Hstrings 0 0 ABS 0 strings -
 _TMR0 1 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
-___sp 0 0 STACK 2 stack C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.o
-_main 17E 0 CODE 0 maintext dist/default/production\Brazo_PF.X.production.o
+___sp 0 0 STACK 2 stack C:\Users\ANDYBO~1\AppData\Local\Temp\s62s.o
+_main 174 0 CODE 0 maintext dist/default/production\Brazo_PF.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
-start 18 0 CODE 0 init C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.o
+start 18 0 CODE 0 init C:\Users\ANDYBO~1\AppData\Local\Temp\s62s.o
+__size_of_servo1_0grados 0 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 __size_of_main 0 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 __HbssCOMMON 0 0 ABS 0 bssCOMMON -
 _OPTION_REGbits 81 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
+__end_of_servo2_0grados 382 0 CODE 0 text5 dist/default/production\Brazo_PF.X.production.o
 __Hpowerup 0 0 CODE 0 powerup -
-intlevel0 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\s62s.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\s62s.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\s62s.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\s62s.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\s62s.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\s62s.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 _OSCCONbits 8F 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 wtemp0 7E 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 __Hfunctab 0 0 ENTRY 0 functab -
+__end_of_servo2_180grados 322 0 CODE 0 text4 dist/default/production\Brazo_PF.X.production.o
 __Hclrtext 0 0 ABS 0 clrtext -
+__size_of_servo2_180grados 0 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 _CCPR1L 15 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 _CCPR2L 1B 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 __Lmaintext 0 0 ABS 0 maintext -
-___stackhi 0 0 ABS 0 - C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.o
-___stacklo 0 0 ABS 0 - C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.o
+___stackhi 0 0 ABS 0 - C:\Users\ANDYBO~1\AppData\Local\Temp\s62s.o
+___stacklo 0 0 ABS 0 - C:\Users\ANDYBO~1\AppData\Local\Temp\s62s.o
 _BAUDCTLbits 187 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 __size_of_setup 0 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 _WPUBbits 95 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
@@ -248,15 +313,16 @@ _TRISAbits 85 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 _TRISCbits 87 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 _TRISDbits 88 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 _SPBRGH 9A 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.o
+___int_sp 0 0 STACK 2 stack C:\Users\ANDYBO~1\AppData\Local\Temp\s62s.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
 __Hbank3 0 0 ABS 0 bank3 -
-__Hcinit 54 0 CODE 0 cinit -
+__Hcinit 40 0 CODE 0 cinit -
 __Hstack 0 0 STACK 2 stack -
-__stringbase 1F0 0 STRING 0 strings dist/default/production\Brazo_PF.X.production.o
+__stringbase 44C 0 STRING 0 strings dist/default/production\Brazo_PF.X.production.o
 __Hmaintext 0 0 ABS 0 maintext -
+_servo3_0grados 262 0 CODE 0 text3 dist/default/production\Brazo_PF.X.production.o
 __Hcommon 0 0 ABS 0 common -
 __Hconfig 4012 0 CONFIG 4 config -
 __Lbank0 0 0 ABS 0 bank0 -
@@ -268,6 +334,7 @@ __Lstack 0 0 STACK 2 stack -
 _PORTBbits 6 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 _PORTDbits 8 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 _INTCONbits B 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
+_servo1_180grados 382 0 CODE 0 text6 dist/default/production\Brazo_PF.X.production.o
 __Habs1 0 0 ABS 0 abs1 -
 __Hcode 0 0 ABS 0 code -
 __Hinit 18 0 CODE 0 init -
@@ -286,54 +353,69 @@ __Lsfr3 0 0 ABS 0 sfr3 -
 __Ltext 0 0 ABS 0 text -
 __HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
 _PR2 92 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
-__S0 101 0 ABS 0 - -
-__S1 7E 0 ABS 0 - -
+__S0 22F 0 ABS 0 - -
+__S1 7D 0 ABS 0 - -
 __S2 0 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
-_isr 1F4 0 CODE 0 text2 dist/default/production\Brazo_PF.X.production.o
+_isr 450 0 CODE 0 text8 dist/default/production\Brazo_PF.X.production.o
+_servo3_180grados 202 0 CODE 0 text2 dist/default/production\Brazo_PF.X.production.o
 saved_w 7E 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
-__end_of_isr 202 0 CODE 0 text2 dist/default/production\Brazo_PF.X.production.o
+_servo1_0grados 3E2 0 CODE 0 text7 dist/default/production\Brazo_PF.X.production.o
+__size_of_servo2_0grados 0 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
+__end_of_isr 45E 0 CODE 0 text8 dist/default/production\Brazo_PF.X.production.o
+__end_of_servo3_0grados 2C2 0 CODE 0 text3 dist/default/production\Brazo_PF.X.production.o
 __Lintentry 8 0 CODE 0 intentry -
-__stringtab 1E6 0 STRING 0 strings dist/default/production\Brazo_PF.X.production.o
-reset_vec 0 0 CODE 0 reset_vec C:\Users\ANDYBO~1\AppData\Local\Temp\siqc.o
+__stringtab 442 0 STRING 0 strings dist/default/production\Brazo_PF.X.production.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\ANDYBO~1\AppData\Local\Temp\s62s.o
 __LbssBANK0 0 0 ABS 0 bssBANK0 -
 _RCSTAbits 18 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 _PIE1bits 8C 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
-__pmaintext 17E 0 CODE 0 maintext dist/default/production\Brazo_PF.X.production.o
+__pmaintext 174 0 CODE 0 maintext dist/default/production\Brazo_PF.X.production.o
 __Lcommon 0 0 ABS 0 common -
 __Lconfig 0 0 CONFIG 4 config -
+__end_of_servo1_0grados 442 0 CODE 0 text7 dist/default/production\Brazo_PF.X.production.o
+__end_of_servo1_180grados 3E2 0 CODE 0 text6 dist/default/production\Brazo_PF.X.production.o
+_servos 70 0 COMMON 1 bssCOMMON dist/default/production\Brazo_PF.X.production.o
+__size_of_servo1_180grados 0 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
+__end_of_servo3_180grados 262 0 CODE 0 text2 dist/default/production\Brazo_PF.X.production.o
 _ADCON0bits 1F 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 _ADCON1bits 9F 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
-__end_of__stringtab 1F2 0 STRING 0 strings dist/default/production\Brazo_PF.X.production.o
+__end_of__stringtab 44E 0 STRING 0 strings dist/default/production\Brazo_PF.X.production.o
 __Lspace_0 0 0 ABS 0 - -
 __Lspace_1 0 0 ABS 0 - -
 __Lspace_2 0 0 ABS 0 - -
 __Lspace_3 0 0 ABS 0 - -
 __Lspace_4 0 0 ABS 0 - -
 __pbssCOMMON 70 0 COMMON 1 bssCOMMON dist/default/production\Brazo_PF.X.production.o
+__size_of_servo3_180grados 0 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 _PIR1bits C 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 __Lend_init 18 0 CODE 0 end_init -
 __LcstackCOMMON 0 0 ABS 0 cstackCOMMON -
-end_of_initialization 4C 0 CODE 0 cinit dist/default/production\Brazo_PF.X.production.o
+end_of_initialization 38 0 CODE 0 cinit dist/default/production\Brazo_PF.X.production.o
 __Hintentry 18 0 CODE 0 intentry -
 __Lstrings 0 0 ABS 0 strings -
-_servo1_1 70 0 COMMON 1 bssCOMMON dist/default/production\Brazo_PF.X.production.o
 __Hreset_vec 6 0 CODE 0 reset_vec -
 __HbssBANK0 0 0 ABS 0 bssBANK0 -
-__ptext1 54 0 CODE 0 text1 dist/default/production\Brazo_PF.X.production.o
-__ptext2 1F4 0 CODE 0 text2 dist/default/production\Brazo_PF.X.production.o
+__ptext1 40 0 CODE 0 text1 dist/default/production\Brazo_PF.X.production.o
+__ptext2 202 0 CODE 0 text2 dist/default/production\Brazo_PF.X.production.o
+__ptext3 262 0 CODE 0 text3 dist/default/production\Brazo_PF.X.production.o
+__ptext4 2C2 0 CODE 0 text4 dist/default/production\Brazo_PF.X.production.o
+__ptext5 322 0 CODE 0 text5 dist/default/production\Brazo_PF.X.production.o
+__ptext6 382 0 CODE 0 text6 dist/default/production\Brazo_PF.X.production.o
+__ptext7 3E2 0 CODE 0 text7 dist/default/production\Brazo_PF.X.production.o
+__ptext8 450 0 CODE 0 text8 dist/default/production\Brazo_PF.X.production.o
 __Lpowerup 0 0 CODE 0 powerup -
 __Leeprom_data 0 0 EEDATA 3 eeprom_data -
 __Lreset_vec 0 0 CODE 0 reset_vec -
-__end_of__initialization 4C 0 CODE 0 cinit dist/default/production\Brazo_PF.X.production.o
+__end_of__initialization 38 0 CODE 0 cinit dist/default/production\Brazo_PF.X.production.o
 __Lfunctab 0 0 ENTRY 0 functab -
 __Lclrtext 0 0 ABS 0 clrtext -
 _ANSELbits 188 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 __pcstackCOMMON 79 0 COMMON 1 cstackCOMMON dist/default/production\Brazo_PF.X.production.o
 _TXSTAbits 98 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 __Hend_init 1E 0 CODE 0 end_init -
-__end_of_data 1F4 0 STRING 0 strings dist/default/production\Brazo_PF.X.production.o
-__end_of_main 1E6 0 CODE 0 maintext dist/default/production\Brazo_PF.X.production.o
+__end_of_data 450 0 STRING 0 strings dist/default/production\Brazo_PF.X.production.o
+__end_of_main 202 0 CODE 0 maintext dist/default/production\Brazo_PF.X.production.o
 _CCP2CONbits 1D 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 _PORTA 5 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 _PORTB 6 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
@@ -345,18 +427,21 @@ _TMR1H F 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 _TMR1L E 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 _TRISB 86 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 _TRISE 89 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
-__end_of_setup 17E 0 CODE 0 text1 dist/default/production\Brazo_PF.X.production.o
+__end_of_setup 174 0 CODE 0 text1 dist/default/production\Brazo_PF.X.production.o
 __Hram 0 0 ABS 0 ram -
 __Lram 0 0 ABS 0 ram -
 interrupt_function 8 0 CODE 0 intentry dist/default/production\Brazo_PF.X.production.o
-_setup 54 0 CODE 0 text1 dist/default/production\Brazo_PF.X.production.o
+_setup 40 0 CODE 0 text1 dist/default/production\Brazo_PF.X.production.o
 __pintentry 8 0 CODE 0 intentry dist/default/production\Brazo_PF.X.production.o
 __size_of_isr 0 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 __initialization 1E 0 CODE 0 cinit dist/default/production\Brazo_PF.X.production.o
 __pbssBANK0 20 0 BANK0 1 bssBANK0 dist/default/production\Brazo_PF.X.production.o
 _T2CONbits 12 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
-__pstrings 1E6 0 STRING 0 strings dist/default/production\Brazo_PF.X.production.o
+__pstrings 442 0 STRING 0 strings dist/default/production\Brazo_PF.X.production.o
+_servo2_0grados 322 0 CODE 0 text5 dist/default/production\Brazo_PF.X.production.o
+__size_of_servo3_0grados 0 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 _CCP1CONbits 17 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
+_servo2_180grados 2C2 0 CODE 0 text4 dist/default/production\Brazo_PF.X.production.o
 # %SPLITSTAB Section
 # This section enumerates all the psect splits performed by the assembler.
 # The beginning of the section is indicated by %SPLITSTAB.
@@ -382,12 +467,12 @@ _CCP1CONbits 17 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 # and size are in units of delta. The file address is in units of bytes.
 # All other numeric quantities are in decimal.
 %SEGMENTS
-text2 0 FA 1F4 7 2
-intentry 0 4 8 EF 2
+text8 0 228 450 7 2
+intentry 0 4 8 21D 2
 reset_vec 0 0 0 3 2
-bssBANK0 1 20 20 C 1
-strings 0 F3 1E6 7 2
-bssCOMMON 1 70 70 E 1
+bssBANK0 1 20 20 2 1
+strings 0 221 442 7 2
+bssCOMMON 1 70 70 D 1
 # %NOTES Section
 # This section contains data of all the note-psects.  The beginning of the section
 # is indicated by %NOTES. The first line indicates the name and decimal

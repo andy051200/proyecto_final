@@ -43,12 +43,9 @@ Descripcion:
 -----------------------------------------------------------------------------*/
 int x=0;    
 int wenas=0;
-int servo1_1;           //control de for en servo1 a 0°
-int servo1_2;           //control de for en servo1 a 45°
-int servo2_1;           //control de for en servo2 a 0°
-int servo2_2;           //control de for en servo2 a 45°
-int servo3_1;           //control de for en servo3 a 0°
-int servo3_2;           //control de for en servo3 a 45°
+int servos=0;             //control para las funciones de los servos
+
+
 char dato_recibido;     //valor recibido de interfaz
 int eeprom_sino;        //variable para guardar o no a EEPROM
 //----
@@ -62,8 +59,17 @@ char out_str;
 -------------------------prototipos de funciones-------------------------------
 -----------------------------------------------------------------------------*/
 //setup del pic
-void setup(void);  //funcion para configuracion de registros del PIC
-void loop_servos(void);
+void setup(void);               //configuracion de registros del PIC
+
+//funciones para servos
+void servo1_0grados (void);      //funcion1 para servo1 
+void servo1_180grados (void);    //funcion2 para servo1
+
+void servo2_0grados (void);      //funcion1 para servo2
+void servo2_180grados (void);     //funcion2 para servo2
+
+void servo3_0grados (void);      //funcion1 para servo3
+void servo3_180grados(void);    //funcion2 para servo3
 
 //transmision
 void transmision_tx(char data);  //funcion para transmitir datos via UART
@@ -74,15 +80,7 @@ void USART_Cadena(char *str);
 //recepcion
 char recepcion_rx();    //funcion para recepcion datos via UART
 
-//servo1
-void servo1_19(void);   //funcion para mover servo1 a 0° 
-void servo1_18(void);   //funcion para mover servo1 a 45°
-//servo2
-void servo2_19(void);   //funcion para mover servo2 a 0°
-void servo2_18(void);   //funcion para mover servo2 a 45° 
-//servo3
-void servo3_19(void);   //funcion para mover servo3 a 0°
-void servo3_18(void);   //funcion para mover servo3 a 45°
+
 
 //-----prueba de eeprom
 void writeToEEPROM(char data, int address); //los ints en teoria son de 8bits
@@ -107,18 +105,38 @@ void main (void)
     //MAIN LOOP
     while (1)                           
     {
-        if (INTCONbits.T0IF=1)
+        //--------------bloque para mover los servos
+        if (!PORTBbits.RB0)
         {
-            if (!PORTBbits.RB0)     //ver si está en 0
-            {
-                for (servo1_1 = 0;servo1_1 <20; servo1_1++  )
-                {
-                    PORTDbits.RD0=1;
-                    __delay_ms(2);
-                    PORTDbits.RD0=1;
-                }
-            }
+            servo1_0grados();
         }
+        else if (!PORTBbits.RB1)
+        {
+            servo1_180grados();
+        }
+        else if (!PORTBbits.RB2)
+        {
+            servo2_0grados();
+        }
+        else if (!PORTBbits.RB3)
+        {
+            servo2_180grados();
+        }
+        else if (!PORTBbits.RB4)
+        {
+            servo3_0grados();
+        }
+        else if (!PORTBbits.RB5)
+        {
+            servo3_180grados();
+        }
+        
+        //bloque para toggle de canales del ADC
+        //if 
+        
+        
+        
+        
     }
 
 }
@@ -183,7 +201,12 @@ void setup()
     OPTION_REGbits.nRBPU=1;     //se habilita WPUB
     WPUBbits.WPUB0 = 1;         //WPUB en RB0
     WPUBbits.WPUB1 = 1;         //WPUB en RB1
-    WPUBbits.WPUB2 = 1;         //WPUB en RB1
+    WPUBbits.WPUB2 = 1;         //WPUB en RB2
+    WPUBbits.WPUB3 = 1;         //WPUB en RB3
+    WPUBbits.WPUB4 = 1;         //WPUB en RB4
+    WPUBbits.WPUB5 = 1;         //WPUB en RB5
+    WPUBbits.WPUB6 = 1;         //WPUB en RB6
+    WPUBbits.WPUB7 = 1;         //WPUB en RB7
     
     //CONFIGURACION DEL ADC
     ADCON1bits.ADFM = 0 ;   // se justifica a la isquierda
@@ -250,4 +273,76 @@ void setup()
 /*-----------------------------------------------------------------------------
 ------------------------------ funciones -------------------------------------
 -----------------------------------------------------------------------------*/
+//funcion para servo1 a 0 grados
+void servo1_0grados (void)
+{
+    for (servos = 0;servos <25; servos ++)
+    {
+        PORTDbits.RD0=1;
+        __delay_ms(1);
+        PORTDbits.RD0=0;
+        __delay_ms(19);
+    }
+}
+
+//funcion para servo1 a 180 grados
+void servo1_180grados (void)
+{
+    for (servos = 0; servos<25; servos++)
+    {
+        PORTDbits.RD0=1;
+        __delay_ms(2);
+        PORTDbits.RD0=0;
+        __delay_ms(18);
+    }
+}
+
+//funcion para servo2 a 0 grados
+void servo2_0grados (void)
+{
+    for (servos = 0; servos <25; servos++)
+    {
+        PORTDbits.RD1=1;
+        __delay_ms(1);
+        PORTDbits.RD1=0;
+        __delay_ms(19);
+        
+    }
+}
+
+//funcion para servo2 a 180 grados
+void servo2_180grados (void)
+{
+    for (servos = 0; servos <25; servos++)
+    {
+        PORTDbits.RD1=1;
+        __delay_ms(2);
+        PORTDbits.RD1=0;
+        __delay_ms(18);
+    }
+}
+
+//funcion para servo3 a 0 grados
+void servo3_0grados (void)
+{
+    for (servos = 0; servos <25; servos++)
+    {
+        PORTDbits.RD2=1;
+        __delay_ms(1);
+        PORTDbits.RD2=0;
+        __delay_ms(19);
+    }
+}
+
+//funcion para servo3 a 180 grados
+void servo3_180grados (void)
+{
+    for (servos = 0; servos <25; servos++)
+    {
+        PORTDbits.RD2=1;
+        __delay_ms(2);
+        PORTDbits.RD2=0;
+        __delay_ms(18);
+    }
+}
 
