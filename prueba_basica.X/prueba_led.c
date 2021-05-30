@@ -21,7 +21,7 @@ Descripcion:
 #pragma config BOREN = OFF      // Brown Out Reset apagado
 #pragma config IESO = OFF       // Internal External Switchover bit apagado
 #pragma config FCMEN = OFF      // Fail-Safe Clock Monitor Enabled bit apagado
-#pragma config LVP = OFF        // low voltaje programming prendido
+#pragma config LVP = ON        // low voltaje programming prendido
 // CONFIG2
 #pragma config BOR4V = BOR40V   // configuración de brown out reset
 #pragma config WRT = OFF        // apagado de auto escritura de cÃ?Â³digo
@@ -29,10 +29,9 @@ Descripcion:
 ------------------------librerias a implementar ------------------------------
 -----------------------------------------------------------------------------*/
 #include <pic16f887.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include <stdint.h>
 #include <xc.h>
-#define  _XTAL_FREQ 4000000  //se define el delay con FreqOsc 4Mhz
+#define  _XTAL_FREQ 8000000  //se define el delay con FreqOsc 4Mhz
 
 /*-----------------------------------------------------------------------------
 ------------------------varibales a implementar ------------------------------

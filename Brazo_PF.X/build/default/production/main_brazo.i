@@ -2708,6 +2708,7 @@ extern __bank0 __bit __timeout;
 
 
 
+
 int x=0;
 int wenas=0;
 int servo1_1;
@@ -2730,7 +2731,7 @@ char out_str;
 
 
 void setup(void);
-void servos_loop(void);
+void loop_servos(void);
 
 
 void transmision_tx(char data);
@@ -2762,49 +2763,6 @@ void writeToEEPROM(char data, int address);
 
 void __attribute__((picinterrupt(("")))) isr(void)
 {
-    if (PIR1bits.ADIF)
-    {
-        if (ADCON0bits.CHS ==0)
-        {
-            CCPR1L = (ADRESH>>1)+62;
-            CCP1CONbits.DC1B1 = ADRESH & 0b01;
-            CCP1CONbits.DC1B0 = (ADRESL>>7);
-            ADCON0bits.CHS = 1;
-        }
-        if (ADCON0bits.CHS ==1)
-        {
-            CCPR2L = (ADRESH>>1)+62;
-            CCP2CONbits.DC2B1 = ADRESH & 0b01;
-            CCP2CONbits.DC2B0 = (ADRESL>>7);
-            ADCON0bits.CHS = 2;
-        }
-        if (ADCON0bits.CHS == 2)
-        {
-            PORTE = ADRESH;
-            ADCON0bits.CHS = 0;
-        }
-
-        _delay((unsigned long)((50)*(8000000/4000000.0)));
-        PIR1bits.ADIF =0;
-        ADCON0bits.GO = 1;
-    }
-    if (INTCONbits.RBIF)
-    {
-        if(PORTBbits.RB0==0)
-        {
-            wenas=1;
-        }
-        if(PORTBbits.RB1==0)
-        {
-            wenas=2;
-        }
-        if(PORTBbits.RB2==0)
-        {
-            wenas=3;
-        }
-    }
-
-
 }
 
 
@@ -2815,34 +2773,20 @@ void main (void)
     setup();
 
 
-
-
-
     while (1)
     {
-        if (wenas==1)
+        if (INTCONbits.T0IF=1)
         {
-            servo1_19();
-            _delay((unsigned long)((500)*(8000000/4000.0)));
-            servo1_18();
+            if (!PORTBbits.RB0)
+            {
+                for (servo1_1 = 0;servo1_1 <20; servo1_1++ )
+                {
+                    PORTDbits.RD0=1;
+                    _delay((unsigned long)((2)*(8000000/4000.0)));
+                    PORTDbits.RD0=1;
+                }
+            }
         }
-
-        if (wenas==2)
-        {
-            servo2_19();
-            _delay((unsigned long)((500)*(8000000/4000.0)));
-            servo2_18();
-        }
-
-        if (wenas==3)
-        {
-            servo3_19();
-            _delay((unsigned long)((500)*(8000000/4000.0)));
-            servo3_18();
-        }
-
-
-
     }
 
 }
@@ -2860,7 +2804,7 @@ void setup()
     TRISAbits.TRISA1 = 1;
     TRISAbits.TRISA2 = 1;
 
-    TRISBbits.TRISB0 = 1;
+    TRISB = 1;
 
     TRISCbits.TRISC1 = 0;
     TRISCbits.TRISC2 = 0;
@@ -2884,9 +2828,26 @@ void setup()
     OSCCONbits.SCS=1;
 
 
-    IOCBbits.IOCB0 =1;
-    IOCBbits.IOCB1= 1;
-    IOCBbits.IOCB2= 1;
+
+    OPTION_REGbits.T0CS = 0;
+    OPTION_REGbits.T0SE = 0;
+    OPTION_REGbits.PSA = 0;
+    OPTION_REGbits.PS2 = 1;
+    OPTION_REGbits.PS1 = 1;
+    OPTION_REGbits.PS0 = 1;
+    TMR0 = 89;
+
+
+    T1CONbits.T1CKPS1 = 1;
+    T1CONbits.T1CKPS0 = 1;
+    T1CONbits.T1OSCEN = 1;
+    T1CONbits.T1SYNC = 1;
+    T1CONbits.TMR1CS = 0;
+    T1CONbits.TMR1ON = 1;
+    TMR1H = 0xEC;
+    TMR1L = 0x78;
+
+
     OPTION_REGbits.nRBPU=1;
     WPUBbits.WPUB0 = 1;
     WPUBbits.WPUB1 = 1;
@@ -2896,10 +2857,9 @@ void setup()
     ADCON1bits.ADFM = 0 ;
     ADCON1bits.VCFG0 = 0 ;
     ADCON1bits.VCFG1 = 0 ;
-
     ADCON0bits.ADCS = 0b10 ;
     ADCON0bits.CHS = 0;
-    _delay((unsigned long)((50)*(8000000/4000000.0)));
+    _delay((unsigned long)((100)*(8000000/4000000.0)));
     ADCON0bits.ADON = 1 ;
 
 
@@ -2928,93 +2888,29 @@ void setup()
 
 
 
+    TXSTAbits.SYNC = 0;
+    TXSTAbits.BRGH = 1;
+    BAUDCTLbits.BRG16 = 1;
+
+    SPBRG = 207;
+    SPBRGH = 0;
+
+    RCSTAbits.SPEN = 1;
+    RCSTAbits.RX9 = 0;
+    RCSTAbits.CREN = 1;
+    TXSTAbits.TXEN = 1;
+
+
 
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
-    INTCONbits.RBIE=1;
-    INTCONbits.RBIF=0;
-
-    PIE1bits.ADIE = 1;
+    INTCONbits.T0IE=0;
+    INTCONbits.T0IF=0;
+    PIE1bits.ADIE = 0;
     PIR1bits.ADIF = 0;
 
 
     _delay((unsigned long)((100)*(8000000/4000000.0)));
     ADCON0bits.GO=1;
 
-}
-
-
-
-
-
-void servo1_19(void)
-{
-    for (servo1_1 = 0; servo1_1 <= 15; servo1_1++)
-        {
-            PORTDbits.RD0 = 1;
-            _delay((unsigned long)((1)*(8000000/4000.0)));
-            PORTDbits.RD0 = 0;
-            _delay((unsigned long)((19)*(8000000/4000.0)));
-        }
-}
-
-
-void servo1_18(void)
-{
-    for (servo1_2 = 0; servo1_2 <= 15; servo1_2++)
-        {
-            PORTDbits.RD0 = 1;
-            _delay((unsigned long)((1.5)*(8000000/4000.0)));
-            PORTDbits.RD0 = 0;
-            _delay((unsigned long)((18.5)*(8000000/4000.0)));
-        }
-}
-
-
-
-void servo2_19(void)
-{
-    for (servo2_1 = 0; servo2_1 <= 15; servo2_1++)
-        {
-            PORTDbits.RD1 = 1;
-            _delay((unsigned long)((1)*(8000000/4000.0)));
-            PORTDbits.RD1 = 0;
-            _delay((unsigned long)((19)*(8000000/4000.0)));
-        }
-}
-
-
-void servo2_18(void)
-{
-    for (servo2_2 = 0; servo2_2 <= 15; servo2_2++)
-        {
-            PORTDbits.RD1 = 1;
-            _delay((unsigned long)((1.5)*(8000000/4000.0)));
-            PORTDbits.RD1 = 0;
-            _delay((unsigned long)((18.5)*(8000000/4000.0)));
-        }
-}
-
-
-void servo3_19(void)
-{
-    for (servo3_1 = 0; servo3_1 <= 15; servo3_1++)
-        {
-            PORTDbits.RD2 = 1;
-            _delay((unsigned long)((1)*(8000000/4000.0)));
-            PORTDbits.RD2 = 0;
-            _delay((unsigned long)((19)*(8000000/4000.0)));
-        }
-}
-
-
-void servo3_18(void)
-{
-    for (servo3_2 = 0; servo3_2 <= 15; servo3_2++)
-        {
-            PORTDbits.RD2 = 1;
-            _delay((unsigned long)((1.5)*(8000000/4000.0)));
-            PORTDbits.RD2 = 0;
-            _delay((unsigned long)((18.5)*(8000000/4000.0)));
-        }
 }

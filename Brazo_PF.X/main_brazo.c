@@ -36,6 +36,7 @@ Descripcion:
 #include <xc.h>
 #define  _XTAL_FREQ 8000000  //se define el delay con FreqOsc 4Mhz
 #define direccion_eeprom 10  //direccion de escritura/lectura EEPROM
+#define _tmr0_value 99       //valor para interccupcion cada 20ms
 
 /*-----------------------------------------------------------------------------
 ------------------------varibales a implementar ------------------------------
@@ -62,7 +63,7 @@ char out_str;
 -----------------------------------------------------------------------------*/
 //setup del pic
 void setup(void);  //funcion para configuracion de registros del PIC
-void servos_loop(void);
+void loop_servos(void);
 
 //transmision
 void transmision_tx(char data);  //funcion para transmitir datos via UART
@@ -94,49 +95,6 @@ void writeToEEPROM(char data, int address); //los ints en teoria son de 8bits
 -----------------------------------------------------------------------------*/
 void __interrupt() isr(void) //funcion de interrupciones
 {
-    if (PIR1bits.ADIF)
-    {
-        if (ADCON0bits.CHS ==0)
-        {
-            CCPR1L = (ADRESH>>1)+62;          
-            CCP1CONbits.DC1B1 = ADRESH & 0b01; 
-            CCP1CONbits.DC1B0 = (ADRESL>>7);
-            ADCON0bits.CHS = 1;             
-        }
-        if (ADCON0bits.CHS ==1)
-        {
-            CCPR2L = (ADRESH>>1)+62;           
-            CCP2CONbits.DC2B1 = ADRESH & 0b01;  
-            CCP2CONbits.DC2B0 = (ADRESL>>7);
-            ADCON0bits.CHS = 2;                
-        }
-        if (ADCON0bits.CHS == 2)
-        {
-            PORTE = ADRESH;                     
-            ADCON0bits.CHS = 0;
-        }
-        
-        __delay_us(50);
-        PIR1bits.ADIF =0;
-        ADCON0bits.GO = 1;
-    }
-    if (INTCONbits.RBIF)
-    {
-        if(PORTBbits.RB0==0)
-        {
-            wenas=1;
-        }
-        if(PORTBbits.RB1==0)
-        {
-            wenas=2;
-        }
-        if(PORTBbits.RB2==0)
-        {
-            wenas=3;
-        }
-    }
-    
-    
 }
 
 /*-----------------------------------------------------------------------------
@@ -144,37 +102,23 @@ void __interrupt() isr(void) //funcion de interrupciones
 -----------------------------------------------------------------------------*/
 void main (void)
 {
-    setup();                            //se llama funcion con configuracion
-    /*writeToEEPROM('a',0);        //dato, direccion
-    writeToEEPROM('n',1);        //dato, direccion
-    writeToEEPROM('d',2);        //dato, direccion
-    writeToEEPROM('y',3);        //dato, direccion*/
+    setup();                   //se llama funcion con configuracion
+    
     //MAIN LOOP
     while (1)                           
     {
-        if (wenas==1)
+        if (INTCONbits.T0IF=1)
         {
-            servo1_19();
-            __delay_ms(500);
-            servo1_18();
+            if (!PORTBbits.RB0)     //ver si está en 0
+            {
+                for (servo1_1 = 0;servo1_1 <20; servo1_1++  )
+                {
+                    PORTDbits.RD0=1;
+                    __delay_ms(2);
+                    PORTDbits.RD0=1;
+                }
+            }
         }
-        
-        if (wenas==2)
-        {
-            servo2_19();
-            __delay_ms(500);
-            servo2_18();
-        }
-        
-        if (wenas==3)
-        {
-            servo3_19();
-            __delay_ms(500);
-            servo3_18();
-        }
-        
-        
-        //servos_loop();          //funcion para movimiento de servos
     }
 
 }
@@ -192,7 +136,7 @@ void setup()
     TRISAbits.TRISA1 = 1;   //RA0 como entrada
     TRISAbits.TRISA2 = 1;   //RA0 como entrada
     
-    TRISBbits.TRISB0 = 1;   //RB2 como entrada
+    TRISB = 1;              //PortB como entrada
     
     TRISCbits.TRISC1 = 0;   //RC1 como salida CCP2
     TRISCbits.TRISC2 = 0;   //RC1 como salida CCP1
@@ -214,11 +158,28 @@ void setup()
     OSCCONbits.IRCF1 = 1;   //Freq a 8MHz, 111
     OSCCONbits.IRCF0 = 1;   //Freq a 8MHz, 111
     OSCCONbits.SCS=1;       //oscilador interno
+ 
+    
+    //CONFIGURACION DEL TIMER0
+    OPTION_REGbits.T0CS = 0;    //Timer0 Clock select 
+    OPTION_REGbits.T0SE = 0;    //en flanco de subida
+    OPTION_REGbits.PSA = 0;     //preescaler en modulo
+    OPTION_REGbits.PS2 = 1;     //preescaler 1:256, 111 
+    OPTION_REGbits.PS1 = 1;     //preescaler 1:256, 111
+    OPTION_REGbits.PS0 = 1;     //preescaler 1:256, 111
+    TMR0 = 89;                  //valor inicial, interrupcion cada 20ms
+    
+    //Timer1 Registers Prescaler= 8 - TMR1 Preset = 60536 - Freq = 50.00 Hz - Period = 0.020000 seconds
+    T1CONbits.T1CKPS1 = 1;   // bits 5-4  Prescaler Rate Select bits
+    T1CONbits.T1CKPS0 = 1;   // bit 4
+    T1CONbits.T1OSCEN = 1;   // bit 3 Timer1 Oscillator Enable Control bit 1 = on
+    T1CONbits.T1SYNC = 1;    // bit 2 Timer1 External Clock Input Synchronization Control bit...1 = Do not synchronize external clock input
+    T1CONbits.TMR1CS = 0;    // bit 1 Timer1 Clock Source Select bit...0 = Internal clock (FOSC/4)
+    T1CONbits.TMR1ON = 1;    // bit 0 enables timer
+    TMR1H = 0xEC;            // valor inicial de MSB de timer1
+    TMR1L = 0x78;            // valor inicial de LSB de timer1
     
     //CONFIGURACION DE BOTONES
-    IOCBbits.IOCB0 =1;          //IntOnChange Rb0
-    IOCBbits.IOCB1= 1;          //IntOnCHange RB1
-    IOCBbits.IOCB2= 1;          //IntOnCHange RB2
     OPTION_REGbits.nRBPU=1;     //se habilita WPUB
     WPUBbits.WPUB0 = 1;         //WPUB en RB0
     WPUBbits.WPUB1 = 1;         //WPUB en RB1
@@ -228,10 +189,9 @@ void setup()
     ADCON1bits.ADFM = 0 ;   // se justifica a la isquierda
     ADCON1bits.VCFG0 = 0 ;  // voltajes de referencia
     ADCON1bits.VCFG1 = 0 ;  // voltaje de referencia
-    
     ADCON0bits.ADCS = 0b10 ; // se usa division de 4us con F/32
     ADCON0bits.CHS = 0;     // seleccion de canal 0
-    __delay_us(50);         //delay de 50us para que cargue capacitor
+    __delay_us(100);         //delay de 50us para que cargue capacitor
     ADCON0bits.ADON = 1 ;   // se prende modulo ADC
     
     //CONFIGURACION DE PWM
@@ -258,16 +218,28 @@ void setup()
     TRISCbits.TRISC2 = 0;       //salida del pwm1
     TRISCbits.TRISC1= 0;        // salida del pwm 2
     
+    //CONFIGURACION DE COMUNICACION UART
+    //transmision
+    TXSTAbits.SYNC = 0;         //se transmicion asincrona
+    TXSTAbits.BRGH = 1;         //transmision de alta velocidad
+    BAUDCTLbits.BRG16 = 1;      //se habilitan los 16 bits
+    //braudeaje
+    SPBRG = 207;                //segun tabla se asigna valor de 208             
+    SPBRGH = 0;                 //plt, no tiene valores en MSB
+    //recepcion
+    RCSTAbits.SPEN = 1;         //enciendo el modulo
+    RCSTAbits.RX9 = 0;          //No trabajo a 9 bits
+    RCSTAbits.CREN = 1;         //activo recepción
+    TXSTAbits.TXEN = 1;         //activo transmision 
     
     
     //CONFIGURACION DE INTERRUPCIONES
     INTCONbits.GIE = 1;     //habilitan interrupciones globales
     INTCONbits.PEIE = 1;    //habilitan interrupciones por perifericos
-    INTCONbits.RBIE=1;      //habilitan IntOnChange
-    INTCONbits.RBIF=0;      //se apaga interrupcion
-    //interrupciones el adc
-    PIE1bits.ADIE = 1;      //se habilita interrupcion del ADC
-    PIR1bits.ADIF = 0;      //se apaga interrupcion del ADC
+    INTCONbits.T0IE=0;      //no se habilita la interrupcion como tal
+    INTCONbits.T0IF=0;      //se apaga bandera de interrupcion
+    PIE1bits.ADIE = 0;      //no se habilita interrupcion del ADC
+    PIR1bits.ADIF = 0;      //se apaga bandera de interrupcion del ADC
     
     //tiempo de espera para conversion inicial ADC
     __delay_us(100);
@@ -278,76 +250,4 @@ void setup()
 /*-----------------------------------------------------------------------------
 ------------------------------ funciones -------------------------------------
 -----------------------------------------------------------------------------*/
-//funcion para movimiento del servo1 a 0°
-void servo1_19(void)
-{
-    for (servo1_1 = 0; servo1_1 <= 15; servo1_1++)
-        {
-            PORTDbits.RD0 = 1;
-            __delay_ms(1);
-            PORTDbits.RD0 = 0;
-            __delay_ms(19);
-        }
-}
-
-//funcion para movimiento del servo1 a 45°
-void servo1_18(void)
-{
-    for (servo1_2 = 0; servo1_2 <= 15; servo1_2++)
-        {
-            PORTDbits.RD0 = 1;
-            __delay_ms(1.5);
-            PORTDbits.RD0 = 0;
-            __delay_ms(18.5);
-        }
-}
-
-
-//funcion para movimiento del servo2 a 0°
-void servo2_19(void)
-{
-    for (servo2_1 = 0; servo2_1 <= 15; servo2_1++)
-        {
-            PORTDbits.RD1 = 1;
-            __delay_ms(1);
-            PORTDbits.RD1 = 0;
-            __delay_ms(19);
-        }
-}
-
-//funcion para movimiento del servo2 a 45°
-void servo2_18(void)
-{
-    for (servo2_2 = 0; servo2_2 <= 15; servo2_2++)
-        {
-            PORTDbits.RD1 = 1;
-            __delay_ms(1.5);
-            PORTDbits.RD1 = 0;
-            __delay_ms(18.5);
-        }   
-}
-
-//funcion para el movimiento del servo3 a 0°
-void servo3_19(void)
-{
-    for (servo3_1 = 0; servo3_1 <= 15; servo3_1++)
-        {
-            PORTDbits.RD2 = 1;
-            __delay_ms(1);
-            PORTDbits.RD2 = 0;
-            __delay_ms(19);
-        }
-}
-
-//funcion para el movimiento del servo3 a 45°
-void servo3_18(void)
-{
-    for (servo3_2 = 0; servo3_2 <= 15; servo3_2++)
-        {
-            PORTDbits.RD2 = 1;
-            __delay_ms(1.5);
-            PORTDbits.RD2 = 0;
-            __delay_ms(18.5);        
-        }
-}
 
