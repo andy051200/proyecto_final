@@ -110,23 +110,23 @@ void main (void)
         {
             servo1_0grados();
         }
-        else if (PORTBbits.RB1==1)
+        if (PORTBbits.RB1==1)
         {
             servo1_180grados();
         }
-        else if (PORTBbits.RB2==1)
+        if (PORTBbits.RB2==1)
         {
             servo2_0grados();
         }
-        else if (PORTBbits.RB3==1)
+        if (PORTBbits.RB3==1)
         {
             servo2_180grados();
         }
-        else if (PORTBbits.RB4==1)
+        if (PORTBbits.RB4==1)
         {
             servo3_0grados();
         }
-        else if (PORTBbits.RB5==1)
+        if (PORTBbits.RB5==1)
         {
             servo3_180grados();
         }
@@ -176,15 +176,16 @@ void setup()
     TRISAbits.TRISA1 = 1;   //RA0 como entrada
     TRISAbits.TRISA2 = 1;   //RA0 como entrada
     
-    TRISB =0xff;            //PortB como entrada
+    TRISB =1;            //PortB como entrada
     
     TRISCbits.TRISC1 = 0;   //RC1 como salida CCP2
     TRISCbits.TRISC2 = 0;   //RC1 como salida CCP1
+    TRISD=0;
     
-    TRISDbits.TRISD0 = 0;   //RD0 como salida, Servo1
-    TRISDbits.TRISD1 = 0;   //RD1 como salida, Servo2
-    TRISDbits.TRISD2 = 0;   //RD2 como salida, Servo3
-    
+//    TRISDbits.TRISD0 = 0;   //RD0 como salida, Servo1
+//    TRISDbits.TRISD1 = 0;   //RD1 como salida, Servo2
+//    TRISDbits.TRISD2 = 0;   //RD2 como salida, Servo3
+//    
     TRISE = 0;              //PortE como salida
     
     PORTA = 0;              //se limpia puertoA

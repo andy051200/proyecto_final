@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files\Microchip\xc8\v2.31\pic\dat\en_msgs.txt -cn \
   -h+dist/default/production\Brazo_PF.X.production.sym \
   --cmf=dist/default/production\Brazo_PF.X.production.cmf -z -Q16F887 \
-  -oC:\Users\ANDYBO~1\AppData\Local\Temp\sbko.2 --defsym=__MPLAB_BUILD=1 \
+  -oC:\Users\ANDYBO~1\AppData\Local\Temp\s3k0.2 --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/Brazo_PF.X.production.map -E1 -ver=XC8 Compiler \
   --acfsm=1493 -ASTACK=0110h-016Fh -pstack=STACK -ACODE=00h-07FFhx4 \
   -ASTRCODE=00h-01FFFh -ASTRING=00h-0FFhx32 -ACONST=00h-0FFhx32 \
@@ -18,7 +18,7 @@ Linker command line:
   -AEEDATA=00h-0FFh/02100h -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 \
   -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 \
   -preset_vec=00h,intentry=04h,init,end_init -ppowerup=CODE -pcinit=CODE \
-  -pfunctab=ENTRY -k C:\Users\ANDYBO~1\AppData\Local\Temp\sbko.o \
+  -pfunctab=ENTRY -k C:\Users\ANDYBO~1\AppData\Local\Temp\s3k0.o \
   dist/default/production\Brazo_PF.X.production.o 
 
 Object code version is 3.11
@@ -28,7 +28,7 @@ Machine type is 16F887
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\ANDYBO~1\AppData\Local\Temp\sbko.o
+C:\Users\ANDYBO~1\AppData\Local\Temp\s3k0.o
                 end_init                              C        C        3        8       0
                 reset_vec                             0        0        3        0       0
                 config                             2007     2007        2        0       4
@@ -36,19 +36,19 @@ dist/default/production\Brazo_PF.X.production.o
                 cinit                                 F        F       11        8       0
                 intentry                              4        4        8        8       0
                 config                             2007     2007        2        0       4
-                text8                               257      257        7      4AE       0
-                text7                               220      220       30        8       0
-                text6                               1F0      1F0       30        8       0
-                text5                               1C0      1C0       30        8       0
-                text4                               190      190       30        8       0
-                text3                               160      160       30        8       0
-                text2                               130      130       30        8       0
-                text1                                B5       B5       7B        8       0
-                maintext                             20       20       95        8       0
+                text8                               259      259        7      4B2       0
+                text7                               222      222       30        8       0
+                text6                               1F2      1F2       30        8       0
+                text5                               1C2      1C2       30        8       0
+                text4                               192      192       30        8       0
+                text3                               162      162       30        8       0
+                text2                               132      132       30        8       0
+                text1                                B9       B9       79        8       0
+                maintext                             20       20       99        8       0
                 cstackCOMMON                         79       79        5       70       1
                 bssBANK0                             20       20        2       20       1
                 bssCOMMON                            70       70        9       70       1
-                strings                             250      250        7      4A0       0
+                strings                             252      252        7      4A4       0
 
 TOTAL           Name                               Link     Load   Length     Space
         CLASS   STACK          
@@ -58,20 +58,20 @@ TOTAL           Name                               Link     Load   Length     Sp
                 cinit                                 F        F       11         0
                 intentry                              4        4        8         0
                 reset_vec                             0        0        3         0
-                text8                               257      257        7         0
-                text7                               220      220       30         0
-                text6                               1F0      1F0       30         0
-                text5                               1C0      1C0       30         0
-                text4                               190      190       30         0
-                text3                               160      160       30         0
-                text2                               130      130       30         0
-                text1                                B5       B5       7B         0
-                maintext                             20       20       95         0
+                text8                               259      259        7         0
+                text7                               222      222       30         0
+                text6                               1F2      1F2       30         0
+                text5                               1C2      1C2       30         0
+                text4                               192      192       30         0
+                text3                               162      162       30         0
+                text2                               132      132       30         0
+                text1                                B9       B9       79         0
+                maintext                             20       20       99         0
 
         CLASS   STRCODE        
 
         CLASS   STRING         
-                strings                             250      250        7         0
+                strings                             252      252        7         0
 
         CLASS   CONST          
 
@@ -115,11 +115,11 @@ TOTAL           Name                               Link     Load   Length     Sp
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class     Delta
 
                 reset_vec                      000000  000003  000003         0       0  CODE        2
-                intentry                       000004  00024C  000250         8       0  CODE        2
+                intentry                       000004  00024E  000252         8       0  CODE        2
                 bssBANK0                       000020  000002  000022        20       1  BANK0       1
                 bssCOMMON                      000070  00000E  00007E        70       1  COMMON      1
-                strings                        000250  000007  000257       4A0       0  STRING      2
-                text8                          000257  000007  00025E       4AE       0  CODE        2
+                strings                        000252  000007  000259       4A4       0  STRING      2
+                text8                          000259  000007  000260       4B2       0  CODE        2
 
 
 UNUSED ADDRESS RANGES
@@ -130,12 +130,12 @@ UNUSED ADDRESS RANGES
         BANK2            0110-016F             60           1
         BANK3            0190-01EF             60           1
         CODE             0003-0003              1           2
-                         025E-1FFF            800
+                         0260-1FFF            800
         CONST            0003-0003              1           2
-                         025E-1FFF            100
+                         0260-1FFF            100
         EEDATA           2100-21FF            100           2
         ENTRY            0003-0003              1           2
-                         025E-1FFF            100
+                         0260-1FFF            100
         IDLOC            2000-2003              4           2
         RAM              0022-006F             4E           1
                          00A0-00EF             50
@@ -147,9 +147,9 @@ UNUSED ADDRESS RANGES
         SFR3             0180-018F             10           1
         STACK            0110-016F             60           1
         STRCODE          0003-0003              1           2
-                         025E-1FFF           1DA2
+                         0260-1FFF           1DA0
         STRING           0003-0003              1           2
-                         025E-1FFF            100
+                         0260-1FFF            100
 
                                   Symbol Table
 
@@ -181,7 +181,7 @@ _T2CONbits                 (abs)        0012
 _TRISAbits                 (abs)        0085
 _TRISB                     (abs)        0086
 _TRISCbits                 (abs)        0087
-_TRISDbits                 (abs)        0088
+_TRISD                     (abs)        0088
 _TRISE                     (abs)        0089
 _TXSTAbits                 (abs)        0098
 __Habs1                    abs1         0000
@@ -210,7 +210,7 @@ __Hsfr0                    sfr0         0000
 __Hsfr1                    sfr1         0000
 __Hsfr2                    sfr2         0000
 __Hsfr3                    sfr3         0000
-__Hspace_0                 (abs)        025E
+__Hspace_0                 (abs)        0260
 __Hspace_1                 (abs)        007E
 __Hspace_2                 (abs)        0000
 __Hspace_3                 (abs)        0000
@@ -252,7 +252,7 @@ __Lspace_4                 (abs)        0000
 __Lstack                   stack        0000
 __Lstrings                 strings      0000
 __Ltext                    text         0000
-__S0                       (abs)        025E
+__S0                       (abs)        0260
 __S1                       (abs)        007E
 __S2                       (abs)        0000
 __S3                       (abs)        0000
@@ -262,32 +262,32 @@ ___sp                      stack        0000
 ___stackhi                 (abs)        0000
 ___stacklo                 (abs)        0000
 __end_of__initialization   cinit        001C
-__end_of__stringtab        strings      0256
-__end_of_data              strings      0257
-__end_of_isr               text8        025E
-__end_of_main              maintext     00B5
-__end_of_servo1_0grados    text7        0250
-__end_of_servo1_180grados  text6        0220
-__end_of_servo2_0grados    text5        01F0
-__end_of_servo2_180grados  text4        01C0
-__end_of_servo3_0grados    text3        0190
-__end_of_servo3_180grados  text2        0160
-__end_of_setup             text1        0130
+__end_of__stringtab        strings      0258
+__end_of_data              strings      0259
+__end_of_isr               text8        0260
+__end_of_main              maintext     00B9
+__end_of_servo1_0grados    text7        0252
+__end_of_servo1_180grados  text6        0222
+__end_of_servo2_0grados    text5        01F2
+__end_of_servo2_180grados  text4        01C2
+__end_of_servo3_0grados    text3        0192
+__end_of_servo3_180grados  text2        0162
+__end_of_setup             text1        0132
 __initialization           cinit        000F
 __pbssBANK0                bssBANK0     0020
 __pbssCOMMON               bssCOMMON    0070
 __pcstackCOMMON            cstackCOMMON 0079
 __pintentry                intentry     0004
 __pmaintext                maintext     0020
-__pstrings                 strings      0250
-__ptext1                   text1        00B5
-__ptext2                   text2        0130
-__ptext3                   text3        0160
-__ptext4                   text4        0190
-__ptext5                   text5        01C0
-__ptext6                   text6        01F0
-__ptext7                   text7        0220
-__ptext8                   text8        0257
+__pstrings                 strings      0252
+__ptext1                   text1        00B9
+__ptext2                   text2        0132
+__ptext3                   text3        0162
+__ptext4                   text4        0192
+__ptext5                   text5        01C2
+__ptext6                   text6        01F2
+__ptext7                   text7        0222
+__ptext8                   text8        0259
 __size_of_isr              (abs)        0000
 __size_of_main             (abs)        0000
 __size_of_servo1_0grados   (abs)        0000
@@ -297,18 +297,18 @@ __size_of_servo2_180grados (abs)        0000
 __size_of_servo3_0grados   (abs)        0000
 __size_of_servo3_180grados (abs)        0000
 __size_of_setup            (abs)        0000
-__stringbase               strings      0255
-__stringtab                strings      0250
-_isr                       text8        0257
+__stringbase               strings      0257
+__stringtab                strings      0252
+_isr                       text8        0259
 _main                      maintext     0020
-_servo1_0grados            text7        0220
-_servo1_180grados          text6        01F0
-_servo2_0grados            text5        01C0
-_servo2_180grados          text4        0190
-_servo3_0grados            text3        0160
-_servo3_180grados          text2        0130
+_servo1_0grados            text7        0222
+_servo1_180grados          text6        01F2
+_servo2_0grados            text5        01C2
+_servo2_180grados          text4        0192
+_servo3_0grados            text3        0162
+_servo3_180grados          text2        0132
 _servos                    bssCOMMON    0070
-_setup                     text1        00B5
+_setup                     text1        00B9
 btemp                      (abs)        007E
 end_of_initialization      cinit        001C
 interrupt_function         intentry     0004
@@ -394,7 +394,7 @@ Total ram usage:        1 bytes
 
  *************** function _servo3_180grados *****************
  Defined at:
-		line 329 in file "main_brazo.c"
+		line 330 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -424,7 +424,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo3_0grados *****************
  Defined at:
-		line 317 in file "main_brazo.c"
+		line 318 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -454,7 +454,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo2_180grados *****************
  Defined at:
-		line 305 in file "main_brazo.c"
+		line 306 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -484,7 +484,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo2_0grados *****************
  Defined at:
-		line 292 in file "main_brazo.c"
+		line 293 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -514,7 +514,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo1_180grados *****************
  Defined at:
-		line 280 in file "main_brazo.c"
+		line 281 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -544,7 +544,7 @@ Total ram usage:        2 bytes
 
  *************** function _servo1_0grados *****************
  Defined at:
-		line 268 in file "main_brazo.c"
+		line 269 in file "main_brazo.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -606,20 +606,20 @@ MODULE INFORMATION
 
 Module		Function		Class		Link	Load	Size
 main_brazo.c
-		_servo1_180grados		CODE           	01F0	0000	48
-		_servo1_0grados		CODE           	0220	0000	48
-		_main          		CODE           	0020	0000	149
-		_servo2_180grados		CODE           	0190	0000	48
-		_servo2_0grados		CODE           	01C0	0000	48
-		_isr           		CODE           	0257	0000	7
-		_servo3_180grados		CODE           	0130	0000	48
-		_setup         		CODE           	00B5	0000	123
-		_servo3_0grados		CODE           	0160	0000	48
+		_servo1_180grados		CODE           	01F2	0000	48
+		_servo1_0grados		CODE           	0222	0000	48
+		_main          		CODE           	0020	0000	153
+		_servo2_180grados		CODE           	0192	0000	48
+		_servo2_0grados		CODE           	01C2	0000	48
+		_isr           		CODE           	0259	0000	7
+		_servo3_180grados		CODE           	0132	0000	48
+		_setup         		CODE           	00B9	0000	121
+		_servo3_0grados		CODE           	0162	0000	48
 
-main_brazo.c estimated size: 567
+main_brazo.c estimated size: 569
 
 shared
-		__stringtab    		STRING         	0250	0000	6
+		__stringtab    		STRING         	0252	0000	6
 		__initialization		CODE           	000F	0000	13
 		_data          		STRING         	0000	0000	0
 

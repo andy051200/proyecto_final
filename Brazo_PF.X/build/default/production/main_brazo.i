@@ -2778,23 +2778,23 @@ void main (void)
         {
             servo1_0grados();
         }
-        else if (PORTBbits.RB1==1)
+        if (PORTBbits.RB1==1)
         {
             servo1_180grados();
         }
-        else if (PORTBbits.RB2==1)
+        if (PORTBbits.RB2==1)
         {
             servo2_0grados();
         }
-        else if (PORTBbits.RB3==1)
+        if (PORTBbits.RB3==1)
         {
             servo2_180grados();
         }
-        else if (PORTBbits.RB4==1)
+        if (PORTBbits.RB4==1)
         {
             servo3_0grados();
         }
-        else if (PORTBbits.RB5==1)
+        if (PORTBbits.RB5==1)
         {
             servo3_180grados();
         }
@@ -2844,14 +2844,15 @@ void setup()
     TRISAbits.TRISA1 = 1;
     TRISAbits.TRISA2 = 1;
 
-    TRISB =0xff;
+    TRISB =1;
 
     TRISCbits.TRISC1 = 0;
     TRISCbits.TRISC2 = 0;
+    TRISD=0;
 
-    TRISDbits.TRISD0 = 0;
-    TRISDbits.TRISD1 = 0;
-    TRISDbits.TRISD2 = 0;
+
+
+
 
     TRISE = 0;
 
