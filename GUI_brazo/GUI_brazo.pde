@@ -22,7 +22,7 @@ int [] haciaPicInt = {0,1,0,1,1,0};    //arreglo de datos a mandar al PIC, [serv
 int interval = 100;
 int previousMillis = 0;
 int currentMillis = 0;
-char dato_transmitido=0;    //variable para mandar al PIC
+int dato_transmitido=0;    //variable para mandar al PIC
 int dato_recibido;         //variable con datos desde el PIC
 String puerto[];          //variable tipo string para los datos
 

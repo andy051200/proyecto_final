@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.31 build 20201012212115 
-                                                                                               Mon May 31 17:12:41 2021
+                                                                                               Mon May 31 20:23:40 2021
 
 Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1 
      1                           	processor	16F887
@@ -2693,11 +2693,11 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   2673                           ;	Fail-Safe Clock Monitor Enabled bit
   2674                           ;	FCMEN = OFF, Fail-Safe Clock Monitor is disabled
   2675                           ;	Low Voltage Programming Enable bit
-  2676                           ;	LVP = ON, RB3/PGM pin has PGM function, low voltage programming enabled
+  2676                           ;	LVP = OFF, RB3 pin has digital I/O, HV on MCLR must be used for programming
   2677                           ;	In-Circuit Debugger Mode bit
   2678                           ;	DEBUG = 0x1, unprogrammed default
   2679  2007                     	org	8199
-  2680  2007  30D4               	dw	12500
+  2680  2007  20D4               	dw	8404
   2681                           
   2682                           ;Config register CONFIG2 @ 0x2008
   2683                           ;	Brown-out Reset Selection bit
@@ -2877,7 +2877,7 @@ DATA                 0      0      1C      12        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.31 build 20201012212115 
-Symbol Table                                                                                   Mon May 31 17:12:41 2021
+Symbol Table                                                                                   Mon May 31 20:23:40 2021
 
                       _x 0074                        pc 0002                       u10 04BE  
                      u11 04BD                       u30 0429                       u31 0428  

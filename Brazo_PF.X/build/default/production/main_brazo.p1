@@ -439,7 +439,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "23
 [p x FCMEN  =  OFF       ]
 "24
-[p x LVP  =  ON         ]
+[p x LVP  =  OFF         ]
 "27
 [p x BOR4V  =  BOR40V    ]
 "28

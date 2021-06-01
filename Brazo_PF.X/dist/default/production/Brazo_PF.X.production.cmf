@@ -11,7 +11,7 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.o
+$C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.o
 reset_vec CODE 0 0 0 3 2
 end_init CODE 0 C C 3 2
 config CONFIG 4 2007 2007 2 2
@@ -88,44 +88,44 @@ STRING 4C6-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\Brazo_PF.X.production.o
-F cinit CODE >752:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-F cinit CODE >755:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-F cinit CODE >802:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-10 cinit CODE >803:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-11 cinit CODE >804:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-12 cinit CODE >805:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-13 cinit CODE >806:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-14 cinit CODE >807:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-15 cinit CODE >808:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-16 cinit CODE >811:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-17 cinit CODE >812:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-18 cinit CODE >813:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-19 cinit CODE >814:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-1A cinit CODE >815:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-1B cinit CODE >816:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-1C cinit CODE >817:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-1D cinit CODE >818:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-1E cinit CODE >819:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-1F cinit CODE >820:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-20 cinit CODE >821:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-21 cinit CODE >822:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-22 cinit CODE >823:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-23 cinit CODE >824:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-24 cinit CODE >825:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-25 cinit CODE >826:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-26 cinit CODE >832:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-26 cinit CODE >834:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-27 cinit CODE >835:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-2A functab ENTRY >3475:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-2A functab ENTRY >3477:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-2A functab ENTRY >3478:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-2A functab ENTRY >3479:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-2B functab ENTRY >3480:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-2C functab ENTRY >3481:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-2D functab ENTRY >3482:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-2E functab ENTRY >3483:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-2F functab ENTRY >3485:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
-2F functab ENTRY >3486:C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
+F cinit CODE >752:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+F cinit CODE >755:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+F cinit CODE >802:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+10 cinit CODE >803:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+11 cinit CODE >804:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+12 cinit CODE >805:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+13 cinit CODE >806:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+14 cinit CODE >807:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+15 cinit CODE >808:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+16 cinit CODE >811:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+17 cinit CODE >812:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+18 cinit CODE >813:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+19 cinit CODE >814:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+1A cinit CODE >815:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+1B cinit CODE >816:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+1C cinit CODE >817:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+1D cinit CODE >818:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+1E cinit CODE >819:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+1F cinit CODE >820:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+20 cinit CODE >821:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+21 cinit CODE >822:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+22 cinit CODE >823:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+23 cinit CODE >824:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+24 cinit CODE >825:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+25 cinit CODE >826:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+26 cinit CODE >832:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+26 cinit CODE >834:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+27 cinit CODE >835:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+2A functab ENTRY >3475:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+2A functab ENTRY >3477:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+2A functab ENTRY >3478:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+2A functab ENTRY >3479:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+2B functab ENTRY >3480:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+2C functab ENTRY >3481:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+2D functab ENTRY >3482:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+2E functab ENTRY >3483:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+2F functab ENTRY >3485:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
+2F functab ENTRY >3486:C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
 4 intentry CODE >96:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
 4BF text11 CODE >96:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
 4BF text11 CODE >100:C:\Users\Andy Bonilla\Documents\GitHub\proyecto_final\Brazo_PF.X\main_brazo.c
@@ -399,22 +399,22 @@ __end_of_writeToEEPROM 964 0 CODE 0 text1 dist/default/production\Brazo_PF.X.pro
 _T1CONbits 10 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 __Hstrings 60 0 ABS 0 strings -
 _TMR0 1 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
-___sp 0 0 STACK 2 stack C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.o
+___sp 0 0 STACK 2 stack C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.o
 _main 60 0 CODE 0 maintext dist/default/production\Brazo_PF.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
-start 18 0 CODE 0 init C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.o
+start 18 0 CODE 0 init C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.o
 __pfunctab 54 0 ENTRY 0 functab dist/default/production\Brazo_PF.X.production.o
 __size_of_main 0 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 __HbssCOMMON 60 0 ABS 0 bssCOMMON -
 _OPTION_REGbits 81 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 __Hpowerup 0 0 CODE 0 powerup -
 _transmision_tx 964 0 CODE 0 text10 dist/default/production\Brazo_PF.X.production.o
-intlevel0 54 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.o
-intlevel1 54 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.o
-intlevel2 54 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.o
-intlevel3 54 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.o
-intlevel4 54 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.o
-intlevel5 54 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.o
+intlevel0 54 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.o
+intlevel1 54 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.o
+intlevel2 54 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.o
+intlevel3 54 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.o
+intlevel4 54 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.o
+intlevel5 54 0 ENTRY 0 functab C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.o
 __LbssCOMMON 60 0 ABS 0 bssCOMMON -
 _OSCCONbits 8F 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 wtemp0 7E 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
@@ -428,8 +428,8 @@ _EECON2 18D 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 _EEDATA 10C 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 __end_of_transmision_tx 97E 0 CODE 0 text10 dist/default/production\Brazo_PF.X.production.o
 __Lmaintext 60 0 ABS 0 maintext -
-___stackhi 0 0 ABS 0 - C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.o
-___stacklo 0 0 ABS 0 - C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.o
+___stackhi 0 0 ABS 0 - C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.o
+___stacklo 0 0 ABS 0 - C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.o
 _BAUDCTLbits 187 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 __size_of_setup 0 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 start_initialization 1E 0 CODE 0 cinit dist/default/production\Brazo_PF.X.production.o
@@ -439,7 +439,7 @@ _TRISCbits 87 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 _TRISDbits 88 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 _SPBRGH 9A 0 ABS 0 - dist/default/production\Brazo_PF.X.production.o
 __pcstackBANK0 2E 0 BANK0 1 cstackBANK0 dist/default/production\Brazo_PF.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.o
+___int_sp 0 0 STACK 2 stack C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.o
 __Hbank0 60 0 ABS 0 bank0 -
 __Hbank1 60 0 ABS 0 bank1 -
 __Hbank2 60 0 ABS 0 bank2 -
@@ -492,7 +492,7 @@ transmision_tx@data 79 0 COMMON 1 cstackCOMMON dist/default/production\Brazo_PF.
 __end_of_isr 98C 0 CODE 0 text11 dist/default/production\Brazo_PF.X.production.o
 __Lintentry 8 0 CODE 0 intentry -
 __stringtab 400 0 STRING 0 strings dist/default/production\Brazo_PF.X.production.o
-reset_vec 0 0 CODE 0 reset_vec C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.o
 __fptable 54 0 ENTRY 0 functab dist/default/production\Brazo_PF.X.production.o
 __end_of_servo1_18 8F4 0 CODE 0 text8 dist/default/production\Brazo_PF.X.production.o
 __end_of_servo1_19 894 0 CODE 0 text7 dist/default/production\Brazo_PF.X.production.o

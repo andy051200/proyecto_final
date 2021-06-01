@@ -225,7 +225,7 @@ strings 400 565 STRING 400 0
 text2 566 98B CODE 566 0
 %locals
 dist/default/production\Brazo_PF.X.production.o
-C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
+C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
 752 F 0 CODE 0
 755 F 0 CODE 0
 802 F 0 CODE 0
@@ -504,7 +504,7 @@ main_brazo.c
 96 4BF 0 CODE 0
 100 4BF 0 CODE 0
 96 4 0 CODE 0
-C:\Users\ANDYBO~1\AppData\Local\Temp\sfgo.s
+C:\Users\ANDYBO~1\AppData\Local\Temp\s1g0.s
 3475 2A 0 ENTRY 0
 3477 2A 0 ENTRY 0
 3478 2A 0 ENTRY 0
