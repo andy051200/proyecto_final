@@ -21,7 +21,7 @@ Descripcion:
 #pragma config BOREN = OFF      // Brown Out Reset apagado
 #pragma config IESO = OFF       // Internal External Switchover bit apagado
 #pragma config FCMEN = OFF      // Fail-Safe Clock Monitor Enabled bit apagado
-#pragma config LVP = ON        // low voltaje programming prendido
+#pragma config LVP = OFF        // low voltaje programming apagado
 
 // CONFIG2
 #pragma config BOR4V = BOR40V   // configuración de brown out reset
@@ -36,11 +36,13 @@ Descripcion:
 #include <xc.h>
 #define  _XTAL_FREQ 8000000  //se define el delay con FreqOsc 4Mhz
 #define direccion_eeprom 10  //direccion de escritura/lectura EEPROM
+//#include "Servo.h"
 
 /*-----------------------------------------------------------------------------
 ------------------------varibales a implementar ------------------------------
 -----------------------------------------------------------------------------*/
 int x=0;            
+int antirrebote;
 int servo1_1;           //control de for en servo1 a 0°
 int servo1_2;           //control de for en servo1 a 45°
 int servo2_1;           //control de for en servo2 a 0°
@@ -93,7 +95,7 @@ void writeToEEPROM(char data, int address); //los ints en teoria son de 8bits
 -----------------------------------------------------------------------------*/
 void __interrupt() isr(void) //funcion de interrupciones
 {
-    
+  
     
 }
 
@@ -102,7 +104,7 @@ void __interrupt() isr(void) //funcion de interrupciones
 -----------------------------------------------------------------------------*/
 void main (void)
 {
-    setup();                            //se llama funcion con configuracion
+        setup();                            //se llama funcion con configuracion
     writeToEEPROM('a',0);        //dato, direccion
     writeToEEPROM('n',1);        //dato, direccion
     writeToEEPROM('d',2);        //dato, direccion
@@ -110,7 +112,61 @@ void main (void)
     //MAIN LOOP
     while (1)                           
     {
-        servos_loop();          //funcion para movimiento de servos
+        //interrupciones sin ser interrupciones como tal
+        if (INTCONbits.T0IF==1)
+        {
+            PORTDbits.RD0=1;    //creacion de 1ms en alto
+            PORTDbits.RD1=1;
+            PORTDbits.RD2=1;
+            __delay_ms(1);
+            PORTDbits.RD0=0;    //se apaga por 19ms mientras pasa interrupcion
+            PORTDbits.RD1=0;
+            PORTDbits.RD2=0;
+            INTCONbits.T0IF=0;  //apaga la bandera de interrupcion
+        }
+        if (PIR1bits.TMR1IF==1)
+        {
+            PORTDbits.RD0=1;    //creacion de 1ms en alto
+            PORTDbits.RD1=1;
+            PORTDbits.RD2=1;
+            __delay_ms(2);
+            PORTDbits.RD0=0;    //se apaga por 19ms mientras pasa interrupcion
+            PORTDbits.RD1=0;
+            PORTDbits.RD2=0;
+            PIR1bits.TMR1IF=0;  //se apaga bandera de interrupcion
+        }
+        
+        
+        //SWITCH DE TIMERS
+        //swtich de timer1 -> timer0
+        if (PORTBbits.RB0==1)
+        {
+            INTCONbits.T0IE=0;
+            INTCONbits.T0IF=0;
+            PIE1bits.TMR1IE=1;      //se habilita interrupcion   
+        }
+        else
+        {
+            INTCONbits.T0IE=1;
+            INTCONbits.T0IF=0;
+            PIE1bits.TMR1IE=0;      //se habilita interrupcion      
+        }
+        //switch de timer0 -> timer1
+        
+        if (PORTBbits.RB1==1)
+        {
+            INTCONbits.T0IE=1;
+            INTCONbits.T0IF=0;
+            PIE1bits.TMR1IE=0;      //se habilita interrupcion   
+        }
+        else 
+        {
+            INTCONbits.T0IE=0;
+            INTCONbits.T0IF=0;
+            PIE1bits.TMR1IE=1;      //se habilita interrupcion  
+        }
+        
+       //TOGGLE DE CANALES DEL ADC 
         
         if (ADCON0bits.GO==0)
         {
@@ -136,7 +192,7 @@ void main (void)
             ADCON0bits.GO=1;        //se reinician las mediciones
         }
         
-        
+        //FUNCIONES PARA COMUNICACION SERIAL
         USART_Cadena("\r Que accion desea ejecutar? \r");
         USART_Cadena(" 1) Mover a 0 servo1 \r");
         USART_Cadena(" 2) Mover a 45 servo1 \r");
@@ -145,7 +201,7 @@ void main (void)
         USART_Cadena(" 3) Mover a 0 servo3 \r");
         USART_Cadena(" 3) Mover a 45 servo3 \r");
         
-        while (PIR1bits.RCIF==0)
+        if (PIR1bits.RCIF==0)
         {
             dato_recibido = recepcion_rx; //se almacena dato recibio en variable 
         }
@@ -225,12 +281,31 @@ void setup()
     OSCCONbits.IRCF0 = 1;   //Freq a 8MHz, 111
     OSCCONbits.SCS=1;       //oscilador interno
     
-    //CONFIGURACION DE BOTONES
+    //CONFIGURACION DE TIMER0
+    OPTION_REGbits.T0CS = 0;  //Internal Clock 
+    OPTION_REGbits.T0SE = 0;  //TMR0 Source Edge Select bit 0 = low/high 1 = high/low
+    OPTION_REGbits.PSA = 0;   //se habilita preescaler Timer0
+    OPTION_REGbits.PS2 = 1;   //preescaler 111, 1:256
+    OPTION_REGbits.PS1 = 1;   //preescaler 111, 1:256
+    OPTION_REGbits.PS0 = 1;   //preescaler 111, 1:256
+    TMR0 = 108;               //valor inicial del timer0
+
+    //CONFIGURACION DEL TIMER1
+    T1CONbits.T1CKPS1 = 1;   // bits 5-4  Prescaler Rate Select bits
+    T1CONbits.T1CKPS0 = 0;   // bit 4
+    T1CONbits.T1OSCEN = 1;   // bit 3 Timer1 Oscillator Enable Control bit 1 = on
+    T1CONbits.T1SYNC = 1;    // bit 2 Timer1 External Clock Input Synchronization Control bit...1 = Do not synchronize external clock input
+    T1CONbits.TMR1CS = 0;    // bit 1 Timer1 Clock Source Select bit...0 = Internal clock (FOSC/4)
+    T1CONbits.TMR1ON = 1;    // bit 0 enables timer
+    TMR1H = 220;             // preset for timer1 MSB register
+    TMR1L = 180;             // preset for timer1 LSB register
+
+    /*//CONFIGURACION DE BOTONES
     IOCBbits.IOCB0 =1;          //IntOnChange Rb0, guardar en EEPROM
     IOCBbits.IOCB1= 1;          //IntOnCHange RB1, hacer lo que se guardo
     OPTION_REGbits.nRBPU=1;     //se habilita WPUB
     WPUBbits.WPUB0 = 1;         //WPUB en RB0
-    WPUBbits.WPUB1 = 1;         //WPUB en RB1
+    WPUBbits.WPUB1 = 1;         //WPUB en RB1*/
     
     //CONFIGURACION DEL ADC
     ADCON1bits.ADFM = 0 ;   // se justifica a la isquierda
@@ -286,8 +361,12 @@ void setup()
     INTCONbits.PEIE = 1;    //habilitan interrupciones por perifericos
     INTCONbits.RBIE=1;      //habilitan IntOnChange
     INTCONbits.RBIF=0;      //se apaga interrupcion
+    INTCONbits.T0IE=0;      //se habilita interrupcion del timer0
+    INTCONbits.T0IF=0;      //se apaga interrupcion del timer0
     //interrupciones el adc
-    PIE1bits.ADIE = 1;      //se habilita interrupcion del ADC
+    PIE1bits.TMR1IE=0;      //no se habilita interrupcion
+    PIR1bits.TMR1IF=0;      //se apaga interrupcion
+    PIE1bits.ADIE = 0;      //se habilita interrupcion del ADC
     PIR1bits.ADIF = 0;      //se apaga interrupcion del ADC
     
     //tiempo de espera para conversion inicial ADC
@@ -413,7 +492,7 @@ void writeToEEPROM(char data, int address)
     EECON1bits.WR =1;           //inicializa la escritura
     INTCONbits.GIE =1;          //se vuelve a habilitar interrupciones
     
-    while(PIR2bits.EEIF==0);
+    //while(PIR2bits.EEIF==0);
     PIR2bits.EEIF=0;
     
     EECON1bits.WREN = 0;        //se deshabilita escritura   

@@ -2708,7 +2708,9 @@ extern __bank0 __bit __timeout;
 
 
 
+
 int x=0;
+int antirrebote;
 int servo1_1;
 int servo1_2;
 int servo2_1;
@@ -2770,7 +2772,7 @@ void __attribute__((picinterrupt(("")))) isr(void)
 
 void main (void)
 {
-    setup();
+        setup();
     writeToEEPROM('a',0);
     writeToEEPROM('n',1);
     writeToEEPROM('d',2);
@@ -2778,7 +2780,61 @@ void main (void)
 
     while (1)
     {
-        servos_loop();
+
+        if (INTCONbits.T0IF==1)
+        {
+            PORTDbits.RD0=1;
+            PORTDbits.RD1=1;
+            PORTDbits.RD2=1;
+            _delay((unsigned long)((1)*(8000000/4000.0)));
+            PORTDbits.RD0=0;
+            PORTDbits.RD1=0;
+            PORTDbits.RD2=0;
+            INTCONbits.T0IF=0;
+        }
+        if (PIR1bits.TMR1IF==1)
+        {
+            PORTDbits.RD0=1;
+            PORTDbits.RD1=1;
+            PORTDbits.RD2=1;
+            _delay((unsigned long)((2)*(8000000/4000.0)));
+            PORTDbits.RD0=0;
+            PORTDbits.RD1=0;
+            PORTDbits.RD2=0;
+            PIR1bits.TMR1IF=0;
+        }
+
+
+
+
+        if (PORTBbits.RB0==1)
+        {
+            INTCONbits.T0IE=0;
+            INTCONbits.T0IF=0;
+            PIE1bits.TMR1IE=1;
+        }
+        else
+        {
+            INTCONbits.T0IE=1;
+            INTCONbits.T0IF=0;
+            PIE1bits.TMR1IE=0;
+        }
+
+
+        if (PORTBbits.RB1==1)
+        {
+            INTCONbits.T0IE=1;
+            INTCONbits.T0IF=0;
+            PIE1bits.TMR1IE=0;
+        }
+        else
+        {
+            INTCONbits.T0IE=0;
+            INTCONbits.T0IF=0;
+            PIE1bits.TMR1IE=1;
+        }
+
+
 
         if (ADCON0bits.GO==0)
         {
@@ -2813,7 +2869,7 @@ void main (void)
         USART_Cadena(" 3) Mover a 0 servo3 \r");
         USART_Cadena(" 3) Mover a 45 servo3 \r");
 
-        while (PIR1bits.RCIF==0)
+        if (PIR1bits.RCIF==0)
         {
             dato_recibido = recepcion_rx;
         }
@@ -2894,13 +2950,24 @@ void setup()
     OSCCONbits.SCS=1;
 
 
-    IOCBbits.IOCB0 =1;
-    IOCBbits.IOCB1= 1;
-    OPTION_REGbits.nRBPU=1;
-    WPUBbits.WPUB0 = 1;
-    WPUBbits.WPUB1 = 1;
+    OPTION_REGbits.T0CS = 0;
+    OPTION_REGbits.T0SE = 0;
+    OPTION_REGbits.PSA = 0;
+    OPTION_REGbits.PS2 = 1;
+    OPTION_REGbits.PS1 = 1;
+    OPTION_REGbits.PS0 = 1;
+    TMR0 = 108;
 
 
+    T1CONbits.T1CKPS1 = 1;
+    T1CONbits.T1CKPS0 = 0;
+    T1CONbits.T1OSCEN = 1;
+    T1CONbits.T1SYNC = 1;
+    T1CONbits.TMR1CS = 0;
+    T1CONbits.TMR1ON = 1;
+    TMR1H = 220;
+    TMR1L = 180;
+# 311 "main_brazo.c"
     ADCON1bits.ADFM = 0 ;
     ADCON1bits.VCFG0 = 0 ;
     ADCON1bits.VCFG1 = 0 ;
@@ -2954,8 +3021,12 @@ void setup()
     INTCONbits.PEIE = 1;
     INTCONbits.RBIE=1;
     INTCONbits.RBIF=0;
+    INTCONbits.T0IE=0;
+    INTCONbits.T0IF=0;
 
-    PIE1bits.ADIE = 1;
+    PIE1bits.TMR1IE=0;
+    PIR1bits.TMR1IF=0;
+    PIE1bits.ADIE = 0;
     PIR1bits.ADIF = 0;
 
 
@@ -3081,7 +3152,7 @@ void writeToEEPROM(char data, int address)
     EECON1bits.WR =1;
     INTCONbits.GIE =1;
 
-    while(PIR2bits.EEIF==0);
+
     PIR2bits.EEIF=0;
 
     EECON1bits.WREN = 0;
