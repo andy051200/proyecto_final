@@ -11,6 +11,10 @@ Creado: 26 de abril de 2021
 Descripcion: 
 //se usan modulo ADC, CCP1, CCP2, ida y vuelta UART, W/R EEPROM
 ------------------------------------------------------------------------------*/
+
+#include <stdint.h>
+#include <xc.h>
+
 // CONFIG1
 #pragma config FOSC = INTRC_NOCLKOUT// se declara oscilador interno
 #pragma config WDTE = OFF       // Watchdog Timer apagado
@@ -27,15 +31,12 @@ Descripcion:
 #pragma config BOR4V = BOR40V   // configuración de brown out reset
 #pragma config WRT = OFF        // apagado de auto escritura de cÃ?Â³digo
 
+#define  _XTAL_FREQ 8000000  //se define el delay con FreqOsc 4Mhz
 /*-----------------------------------------------------------------------------
 ------------------------librerias a implementar ------------------------------
 -----------------------------------------------------------------------------*/
-#include <pic16f887.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <xc.h>
-#define  _XTAL_FREQ 8000000  //se define el delay con FreqOsc 4Mhz
-#define direccion_eeprom 10  //direccion de escritura/lectura EEPROM
+
+//#define direccion_eeprom 10  //direccion de escritura/lectura EEPROM
 //#include "Servo.h"
 
 /*-----------------------------------------------------------------------------
@@ -86,7 +87,7 @@ void servo3_18(void);   //funcion para mover servo3 a 45°
 
 //-----prueba de eeprom
 void writeToEEPROM(char data, int address); //los ints en teoria son de 8bits
-//unsigned char readFromEEPROM(int address);
+unsigned char readFromEEPROM(int address);
 
 //-----------
 
@@ -96,7 +97,7 @@ void writeToEEPROM(char data, int address); //los ints en teoria son de 8bits
 void __interrupt() isr(void) //funcion de interrupciones
 {
   
-    
+    A
 }
 
 /*-----------------------------------------------------------------------------
@@ -104,7 +105,7 @@ void __interrupt() isr(void) //funcion de interrupciones
 -----------------------------------------------------------------------------*/
 void main (void)
 {
-        setup();                            //se llama funcion con configuracion
+    setup();                            //se llama funcion con configuracion
     writeToEEPROM('a',0);        //dato, direccion
     writeToEEPROM('n',1);        //dato, direccion
     writeToEEPROM('d',2);        //dato, direccion
